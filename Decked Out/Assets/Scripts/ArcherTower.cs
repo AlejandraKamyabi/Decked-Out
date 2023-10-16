@@ -7,8 +7,8 @@ public class ArcherTower : MonoBehaviour
 {
     public float attackRange = 5.0f; 
     public GameObject arrowPrefab; 
-    public float attackCooldown = 1.0f; 
-
+    public float attackCooldown = 1.0f;
+    public float damage;
     private float lastAttackTime;
     private bool canAttack = true;
 
@@ -43,8 +43,9 @@ public class ArcherTower : MonoBehaviour
 
         lastAttackTime = Time.time;
         canAttack = false;
-
+        arrowScript.SetDamage(damage);
         StartCoroutine(AttackCooldown());
+
     }
 
     private IEnumerator AttackCooldown()

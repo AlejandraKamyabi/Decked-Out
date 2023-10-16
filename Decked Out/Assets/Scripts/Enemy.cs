@@ -8,22 +8,59 @@ public class Enemy : MonoBehaviour
 
 public GameObject enemyPrefab;
 public UnityEngine.Transform targetCastle;
-public float spawnInterval = 3.0f; 
+
 public float unitSquareSize = 10.0f; 
 public float moveSpeed = 1f;
-private float timeSinceLastSpawn = 0.0f;
-private bool isSpawning = false;
+public float damage = 10.0f; 
 
-private void Update()
-{
-    timeSinceLastSpawn += Time.deltaTime;
+public float maxHealth = 100.0f; 
+private float currentHealth;
 
-    if (timeSinceLastSpawn >= spawnInterval && !isSpawning)
+
+//public Transform healthBar;
+private Vector3 healthBarScale;
+
+
+    private void Start()
     {
-        isSpawning = true;
-        SpawnEnemy();
-        timeSinceLastSpawn = 0.0f;
+        currentHealth = maxHealth;
+       // healthBarScale = healthBar.localScale;
     }
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        float healthPercentage = currentHealth / maxHealth;
+        healthBarScale.x = Mathf.Clamp(healthPercentage, 0f, 1f);
+       // healthBar.localScale = healthBarScale;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Castle castle = collision.gameObject.GetComponent<Castle>();
+            if (castle != null)
+            {
+                castle.TakeDamage(damage);
+            }
+
+            Destroy(gameObject);
+        }
+    }
+        private void Update()
+{
+
         if (targetCastle != null)
         {
 
@@ -33,44 +70,8 @@ private void Update()
         }
     }
 
-void SpawnEnemy()
-{
-
-    Vector3 spawnPosition = CalculateRandomPerimeterSpawnPosition();
-
-    Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-}
-
-    Vector3 CalculateRandomPerimeterSpawnPosition()
-    {
-        int randomSide = Random.Range(0, 4);
 
 
-        float randomX = 0;
-        float randomY = 0;
-
-        switch (randomSide)
-        {
-            case 0:
-                randomX = Random.Range(-unitSquareSize / 2, unitSquareSize / 2);
-                randomY = unitSquareSize / 2;
-                break;
-            case 1: 
-                randomX = unitSquareSize / 2;
-                randomY = Random.Range(-unitSquareSize / 2, unitSquareSize / 2);
-                break;
-            case 2: 
-                randomX = Random.Range(-unitSquareSize / 2, unitSquareSize / 2);
-                randomY = -unitSquareSize / 2;
-                break;
-            case 3: 
-                randomX = -unitSquareSize / 2;
-                randomY = Random.Range(-unitSquareSize / 2, unitSquareSize / 2);
-                break;
-        }
-
-        Vector3 spawnPosition = new Vector3(0,0,0) + new Vector3(randomX, randomY, 0);
-
-        return spawnPosition;
-    }
+ 
+      
 }
