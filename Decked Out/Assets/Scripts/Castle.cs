@@ -11,6 +11,7 @@ public class Castle : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        healthSlider.maxValue = maxHealth;
         UpdateHealthUI();
     }
 
