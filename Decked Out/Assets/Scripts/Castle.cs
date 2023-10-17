@@ -34,6 +34,6 @@ public class Castle : MonoBehaviour
     private void UpdateHealthUI()
     {
 
-        healthSlider.value = currentHealth / maxHealth;
+        healthSlider.value = currentHealth;
     }
 }
