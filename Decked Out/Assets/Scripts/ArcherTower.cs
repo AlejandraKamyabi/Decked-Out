@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class ArcherTower : MonoBehaviour
 {
-    public float attackRange = 5.0f; 
+    public float attackRange = 6.0f; 
     public GameObject arrowPrefab; 
     public float attackCooldown = 1.0f;
     public float damage;
     private float lastAttackTime;
+
     private bool canAttack = true;
 
     private void Update()
@@ -46,6 +47,10 @@ public class ArcherTower : MonoBehaviour
         arrowScript.SetDamage(damage);
         StartCoroutine(AttackCooldown());
 
+    }
+    public float GetAttackRange()
+    {
+        return attackRange;
     }
 
     private IEnumerator AttackCooldown()
