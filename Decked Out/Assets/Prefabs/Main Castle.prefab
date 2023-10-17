@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthSlider: {fileID: 4757950268812987710, guid: dd80e7c209536ff4fb2e51b90083bbb1, type: 3}
+  healthSlider: {fileID: 5754171760604926964, guid: 3f66af8e5379c7847bf5c6fb615db128, type: 3}
