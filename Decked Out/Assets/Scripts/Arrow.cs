@@ -8,11 +8,11 @@ public class Arrow : MonoBehaviour
 
     private void Update()
     {
-      if (target == null)
-      {
-      
-          return;
-      }
+        if (target == null || target.gameObject == null)
+        {
+            Destroy(gameObject); 
+            return;
+        }
 
         transform.position = Vector3.MoveTowards(transform.position, target.position, arrowSpeed * Time.deltaTime);
 
@@ -22,6 +22,9 @@ public class Arrow : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
+  
 
     public void SetDamage(float value)
     {

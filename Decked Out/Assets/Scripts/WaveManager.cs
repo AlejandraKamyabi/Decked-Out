@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Wave
+{
+    public int numberOfEnemies = 5;
+    public float timeBetweenEnemies = 2.0f;
+    public float timeBetweenWaves = 10.0f;
+}
+
 public class WaveManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public int numberOfWaves = 5; 
     public float unitSquareSize = 10.0f;
-    public float timeBetweenWaves = 10.0f; 
+
+    public List<Wave> waves = new List<Wave>(); 
 
     private int currentWave = 0;
 
@@ -18,17 +26,17 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator StartWaves()
     {
-        while (currentWave < numberOfWaves)
+        while (currentWave < waves.Count)
         {
-          
-            int numberOfEnemies = 5; 
+            int numberOfEnemies = waves[currentWave].numberOfEnemies;
+
             for (int i = 0; i < numberOfEnemies; i++)
             {
                 SpawnEnemy();
-                yield return new WaitForSeconds(2.0f); 
+                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
             }
 
-            yield return new WaitForSeconds(timeBetweenWaves);
+            yield return new WaitForSeconds(waves[currentWave].timeBetweenWaves);
             currentWave++;
         }
     }
@@ -39,7 +47,6 @@ public class WaveManager : MonoBehaviour
 
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
-
     private Vector3 GetRandomSpawnPosition()
     {
         int randomSide = Random.Range(0, 4);
