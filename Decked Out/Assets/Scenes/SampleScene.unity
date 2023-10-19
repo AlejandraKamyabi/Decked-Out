@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1353,7 +1353,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 3913288999114805945, guid: 59d3508bbaa1f8340a03f638ecfcc487, type: 3}
   unitSquareSize: 20
   waves:
-  - numberOfEnemies: 5
+  - numberOfEnemies: 17
     timeBetweenEnemies: 2.91
     timeBetweenWaves: 2.15
   - numberOfEnemies: 5
