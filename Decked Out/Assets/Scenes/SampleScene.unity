@@ -1011,8 +1011,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3913288999114805945, guid: 59d3508bbaa1f8340a03f638ecfcc487, type: 3}
   unitSquareSize: 20
-  timeBetweenWaves: 5
-  enemiesPerWave: 0200000002000000020000000200000002000000
+  waves:
+  - numberOfEnemies: 5
+    timeBetweenEnemies: 2.91
+    timeBetweenWaves: 2.15
+  - numberOfEnemies: 5
+    timeBetweenEnemies: 1.55
+    timeBetweenWaves: 2.12
 --- !u!1 &1318932040
 GameObject:
   m_ObjectHideFlags: 0
