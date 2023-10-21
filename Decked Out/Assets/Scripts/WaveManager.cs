@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 [System.Serializable]
 public class Wave
 {
     public int numberOfEnemies = 5;
     public float timeBetweenEnemies = 2.0f;
     public float timeBetweenWaves = 10.0f;
+
 }
 
 public class WaveManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public float unitSquareSize = 10.0f;
-
+    public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>(); 
 
     private int currentWave = 0;
@@ -44,8 +45,16 @@ public class WaveManager : MonoBehaviour
     private void SpawnEnemy()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+        newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
     }
     private Vector3 GetRandomSpawnPosition()
     {

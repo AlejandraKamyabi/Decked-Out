@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
 
-public GameObject enemyPrefab;
 public UnityEngine.Transform targetCastle;
 
 public float unitSquareSize = 10.0f; 
@@ -15,24 +14,19 @@ public float damage = 10.0f;
 
 public float maxHealth = 100.0f; 
 private float currentHealth;
+public Slider healthSlider;
 
-
-//public Transform healthBar;
-private Vector3 healthBarScale;
 
 
     private void Start()
     {
         currentHealth = maxHealth;
-       // healthBarScale = healthBar.localScale;
     }
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
 
-        float healthPercentage = currentHealth / maxHealth;
-        healthBarScale.x = Mathf.Clamp(healthPercentage, 0f, 1f);
-       // healthBar.localScale = healthBarScale;
+        currentHealth -= damage;
+        UpdateEnemyHealthUI();
 
         if (currentHealth <= 0)
         {
@@ -41,6 +35,7 @@ private Vector3 healthBarScale;
     }
     private void Die()
     {
+        Destroy(healthSlider.gameObject);
         Destroy(gameObject);
     }
 
@@ -54,24 +49,35 @@ private Vector3 healthBarScale;
             {
                 castle.TakeDamage(damage);
             }
-
+            Destroy(healthSlider.gameObject);
             Destroy(gameObject);
         }
     }
-        private void Update()
-{
+    private void Update()
+    {
 
         if (targetCastle != null)
         {
-
             Vector3 moveDirection = (targetCastle.position - transform.position).normalized;
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
+            if (healthSlider != null)
+            {
+                Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+                healthSlider.transform.position = screenPosition + new Vector3(0, 70.0f, 0); 
+            }
         }
+
+    }
+    private void UpdateEnemyHealthUI()
+    {
+
+        healthSlider.value = currentHealth;
+    }
+    public void SetHealthSlider(Slider slider)
+    {
+        healthSlider = slider;
     }
 
 
-
- 
-      
 }

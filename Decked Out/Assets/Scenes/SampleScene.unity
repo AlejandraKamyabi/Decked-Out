@@ -1352,6 +1352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3913288999114805945, guid: 59d3508bbaa1f8340a03f638ecfcc487, type: 3}
   unitSquareSize: 20
+  healthSliderPrefab: {fileID: 956535979688031471, guid: 04aa93d6cc648cb4982bd84bab08c24f, type: 3}
   waves:
   - numberOfEnemies: 17
     timeBetweenEnemies: 2.91
