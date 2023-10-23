@@ -10,7 +10,7 @@ public class ArcherTower : MonoBehaviour
     public float attackCooldown = 1.0f;
     public float damage;
     private float lastAttackTime;
-
+    public bool collisionOccurredd = false;
     private bool canAttack = true;
 
     private void Update()
@@ -57,5 +57,9 @@ public class ArcherTower : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+    }
+    public void setbool()
+    {
+        collisionOccurredd = true;
     }
 }

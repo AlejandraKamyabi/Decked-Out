@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Castle
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - IgnoreCastle
   - Water
   - UI
-  - 
+  - Tower
   - 
   - 
   - 

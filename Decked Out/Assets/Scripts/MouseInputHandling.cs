@@ -10,21 +10,21 @@ public class MouseInputHandling : MonoBehaviour
     public GameObject Tower;
     Vector3 mousePosition;
     float attackRange;
-    private ArcherTower archerTower; 
+    private ArcherTower archerTower;
+
+    public bool collisionOccurred = false; 
+
     private void Start()
     {
-        towerSelection = GetComponent<TowerSelection>();
+        towerSelection = GetComponent < TowerSelection>();
         castleGameObject = GameObject.Find("Main Castle");
         archerTower = Tower.GetComponent<ArcherTower>();
         attackRange = archerTower.GetAttackRange();
         rangeIndicatorPrefab.transform.localScale = new Vector3(attackRange / 0.40105374f, attackRange / 0.40105374f);
 
-     
- 
-
         if (castleGameObject == null)
         {
-            castleGameObject = GameObject.FindWithTag("Player"); 
+            castleGameObject = GameObject.FindWithTag("Player");
         }
     }
 
@@ -36,44 +36,38 @@ public class MouseInputHandling : MonoBehaviour
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             rangeIndicatorPrefab.transform.position = mousePosition;
-            
-
         }
     }
 
     private void HandleTowerPlacement()
     {
- 
-
         if (Input.GetMouseButtonDown(0))
         {
-
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 towerPosition = mousePos;
-
             mousePos.z = 0;
             float minDistance = 1.0f;
-            
-            Vector3 castlePosition = castleGameObject.transform.position; 
-
+            Vector3 castlePosition = castleGameObject.transform.position;
             float distanceToCastle = Vector3.Distance(mousePos, castlePosition);
 
             if (distanceToCastle < minDistance)
             {
-   
                 return;
             }
+
             currentTowerInstance = Instantiate(towerSelection.towerPrefab, mousePos, Quaternion.identity);
 
-
             towerSelection.SetSelectingTower(false);
+
+            if (!collisionOccurred && !archerTower.collisionOccurredd)
+            {
+                currentTowerInstance.AddComponent<PositionUpdater>();
+                //collisionOccurred = true; 
+            }
         }
         else if (currentTowerInstance != null && Input.GetMouseButtonDown(1))
         {
-
             Destroy(currentTowerInstance);
-
-
             towerSelection.SetSelectingTower(false);
         }
     }
