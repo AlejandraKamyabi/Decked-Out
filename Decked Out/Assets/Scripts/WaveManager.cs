@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 [System.Serializable]
 public class Wave
 {
     public int numberOfEnemies = 5;
     public float timeBetweenEnemies = 2.0f;
     public float timeBetweenWaves = 10.0f;
-
 }
 
 public class WaveManager : MonoBehaviour
@@ -16,18 +16,27 @@ public class WaveManager : MonoBehaviour
     public GameObject enemyPrefab;
     public float unitSquareSize = 10.0f;
     public Slider healthSliderPrefab;
-    public List<Wave> waves = new List<Wave>(); 
+    public List<Wave> waves = new List<Wave>();
+    public Button startButton; // Reference to the button that starts the waves.
 
     private int currentWave = 0;
 
     private void Start()
     {
-        StartCoroutine(StartWaves());
+        startButton.onClick.AddListener(StartWaves);
+        ToggleStartButton(true); // Enable and show the button at the start.
     }
 
-    private IEnumerator StartWaves()
+    private void StartWaves()
     {
-        while (currentWave < waves.Count)
+        ToggleStartButton(false); // Disable and hide the button while the wave is running.
+        StartCoroutine(StartWave());
+    }
+
+    private IEnumerator StartWave()
+    {
+
+        if (currentWave < waves.Count)
         {
             int numberOfEnemies = waves[currentWave].numberOfEnemies;
 
@@ -37,7 +46,12 @@ public class WaveManager : MonoBehaviour
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
             }
 
-            yield return new WaitForSeconds(waves[currentWave].timeBetweenWaves);
+            while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+            {
+                yield return null;
+            }
+
+            ToggleStartButton(true); 
             currentWave++;
         }
     }
@@ -55,6 +69,11 @@ public class WaveManager : MonoBehaviour
         newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
         newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
         newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
+    }
+    private void ToggleStartButton(bool isEnabled)
+    {
+        startButton.interactable = isEnabled;
+        startButton.gameObject.SetActive(isEnabled);
     }
     private Vector3 GetRandomSpawnPosition()
     {
