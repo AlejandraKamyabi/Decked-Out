@@ -6,17 +6,20 @@ public class MouseInputHandling : MonoBehaviour
     private GameObject currentTowerInstance;
     public GameObject rangeIndicatorPrefab;
     public GameObject castleGameObject;
-
+    private PositionUpdater updater;
     public GameObject Tower;
     Vector3 mousePosition;
     float attackRange;
     private ArcherTower archerTower;
 
-    public bool collisionOccurred = false; 
+    public bool collisionOccurred = false;
+    private bool _initialized = false;
 
-    private void Start()
+    public void Initialize()
     {
+        Debug.Log("<color=cyan> INITIALIZAING </color>");
         towerSelection = GetComponent < TowerSelection>();
+        updater = GetComponent<PositionUpdater>();
         castleGameObject = GameObject.Find("Main Castle");
         archerTower = Tower.GetComponent<ArcherTower>();
         attackRange = archerTower.GetAttackRange();
@@ -26,10 +29,14 @@ public class MouseInputHandling : MonoBehaviour
         {
             castleGameObject = GameObject.FindWithTag("Player");
         }
+
+        _initialized = true;
     }
 
     private void Update()
     {
+        if (_initialized == false) { return; }
+
         if (towerSelection.IsSelectingTower())
         {
             HandleTowerPlacement();
@@ -59,7 +66,7 @@ public class MouseInputHandling : MonoBehaviour
 
             towerSelection.SetSelectingTower(false);
 
-            if (!collisionOccurred && !archerTower.collisionOccurredd)
+            if (!collisionOccurred)
             {
                 currentTowerInstance.AddComponent<PositionUpdater>();
                 //collisionOccurred = true; 
@@ -70,6 +77,10 @@ public class MouseInputHandling : MonoBehaviour
             Destroy(currentTowerInstance);
             towerSelection.SetSelectingTower(false);
         }
+    }
+    public void setCollision()
+    {
+        collisionOccurred = true;
     }
 
 }

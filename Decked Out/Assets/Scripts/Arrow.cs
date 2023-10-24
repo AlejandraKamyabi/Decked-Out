@@ -10,26 +10,26 @@ public class Arrow : MonoBehaviour
     {
         if (target == null || target.gameObject == null)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
             return;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position, arrowSpeed * Time.deltaTime);
+        Vector2 currentPosition = new Vector2(transform.position.x, transform.position.y);
+        Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
+        transform.position = Vector2.MoveTowards(currentPosition, targetPosition, arrowSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, target.position) < 0.1f)
+        if (Vector2.Distance(currentPosition, targetPosition) < 0.1f)
         {
             DealDamage(target.gameObject);
             Destroy(gameObject);
         }
     }
 
-
-  
-
     public void SetDamage(float value)
     {
         damage = value;
     }
+
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
@@ -37,7 +37,6 @@ public class Arrow : MonoBehaviour
 
     private void DealDamage(GameObject enemy)
     {
-  
         Enemy enemyScript = enemy.GetComponent<Enemy>();
         if (enemyScript != null)
         {

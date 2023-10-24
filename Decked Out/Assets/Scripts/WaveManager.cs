@@ -17,20 +17,28 @@ public class WaveManager : MonoBehaviour
     public float unitSquareSize = 10.0f;
     public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>();
-    public Button startButton; // Reference to the button that starts the waves.
+    
+    private Button startButton; // Reference to the button that starts the waves.
 
     private int currentWave = 0;
 
-    private void Start()
+    public WaveManager Initialize()
     {
-        startButton.onClick.AddListener(StartWaves);
-        ToggleStartButton(true); // Enable and show the button at the start.
+        Debug.Log("Wave Manager Initializing");
+        return this;
     }
 
     private void StartWaves()
     {
         ToggleStartButton(false); // Disable and hide the button while the wave is running.
         StartCoroutine(StartWave());
+    }
+
+    public void SetStartButton(Button button)
+    {
+        startButton = button;
+        startButton.onClick.AddListener(StartWaves);
+        ToggleStartButton(true); // Enable and show the button at the start.
     }
 
     private IEnumerator StartWave()
