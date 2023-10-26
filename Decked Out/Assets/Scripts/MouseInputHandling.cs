@@ -62,14 +62,28 @@ public class MouseInputHandling : MonoBehaviour
                 return;
             }
 
-            currentTowerInstance = Instantiate(towerSelection.towerPrefab, mousePos, Quaternion.identity);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePos, 0.1f);
+            bool towerCollision = false;
 
-            towerSelection.SetSelectingTower(false);
-
-            if (!collisionOccurred)
+            foreach (Collider2D collider in colliders)
             {
-                currentTowerInstance.AddComponent<PositionUpdater>();
-                //collisionOccurred = true; 
+                if (collider.CompareTag("Tower"))
+                {
+                    towerCollision = true;
+                    break;
+                }
+            }
+
+            if (!towerCollision)
+            {
+                currentTowerInstance = Instantiate(towerSelection.towerPrefab, mousePos, Quaternion.identity);
+
+                towerSelection.SetSelectingTower(false);
+
+                if (!collisionOccurred)
+                {
+                    currentTowerInstance.AddComponent<PositionUpdater>();
+                }
             }
         }
         else if (currentTowerInstance != null && Input.GetMouseButtonDown(1))
@@ -78,6 +92,7 @@ public class MouseInputHandling : MonoBehaviour
             towerSelection.SetSelectingTower(false);
         }
     }
+
     public void setCollision()
     {
         collisionOccurred = true;
