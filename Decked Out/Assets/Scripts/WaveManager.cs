@@ -17,10 +17,11 @@ public class WaveManager : MonoBehaviour
     public float unitSquareSize = 10.0f;
     public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>();
-    
+
     private Button startButton; // Reference to the button that starts the waves.
 
     private int currentWave = 0;
+    private int wavesToDestroyTowers = 2; // Number of waves after which to destroy towers.
 
     public WaveManager Initialize()
     {
@@ -43,7 +44,6 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator StartWave()
     {
-
         if (currentWave < waves.Count)
         {
             int numberOfEnemies = waves[currentWave].numberOfEnemies;
@@ -59,11 +59,20 @@ public class WaveManager : MonoBehaviour
                 yield return null;
             }
 
-            ToggleStartButton(true); 
+            if (currentWave >= wavesToDestroyTowers)
+            {
+                DestroyTowers();
+            }
+
+            ToggleStartButton(true);
             currentWave++;
         }
     }
-
+    private void ToggleStartButton(bool isEnabled)
+    {
+        startButton.interactable = isEnabled;
+        startButton.gameObject.SetActive(isEnabled);
+    }
     private void SpawnEnemy()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
@@ -78,10 +87,14 @@ public class WaveManager : MonoBehaviour
         newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
         newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
     }
-    private void ToggleStartButton(bool isEnabled)
+
+    private void DestroyTowers()
     {
-        startButton.interactable = isEnabled;
-        startButton.gameObject.SetActive(isEnabled);
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+        foreach (GameObject tower in towers)
+        {
+            Destroy(tower);
+        }
     }
     private Vector3 GetRandomSpawnPosition()
     {

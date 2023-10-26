@@ -29,7 +29,7 @@ public class PositionUpdater : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!hasCollided && other.CompareTag("Platform"))
+        if (!mouse.collisionOccurred && other.CompareTag("Platform"))
         {
             hasCollided = true;
             transform.position = platformTransform.position + new Vector3(0, 1.0f, 0);

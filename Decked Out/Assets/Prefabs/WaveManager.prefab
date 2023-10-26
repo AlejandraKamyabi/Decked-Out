@@ -51,7 +51,7 @@ MonoBehaviour:
   - numberOfEnemies: 2
     timeBetweenEnemies: 2.91
     timeBetweenWaves: 2.15
-  - numberOfEnemies: 5
+  - numberOfEnemies: 2
     timeBetweenEnemies: 1.55
     timeBetweenWaves: 2.12
   - numberOfEnemies: 5
