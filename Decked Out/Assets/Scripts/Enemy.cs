@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
 
 public UnityEngine.Transform targetCastle;
 
-public float unitSquareSize = 10.0f; 
 public float moveSpeed = 1f;
 public float damage = 10.0f; 
 
@@ -40,7 +39,7 @@ public Slider healthSlider;
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -58,7 +57,7 @@ public Slider healthSlider;
 
         if (targetCastle != null)
         {
-            Vector3 moveDirection = (targetCastle.position - transform.position).normalized;
+            Vector3 moveDirection = (targetCastle.position + new Vector3(0f,-1f,0) - transform.position).normalized;
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
             if (healthSlider != null)

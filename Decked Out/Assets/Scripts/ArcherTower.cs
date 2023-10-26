@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ArcherTower : MonoBehaviour
 {
-    public float attackRange = 6.0f; 
+    public float attackRange; 
     public GameObject arrowPrefab; 
-    public float attackCooldown = 1.0f;
+    public float attackSpeed = 1.0f;
     public float damage;
     private float lastAttackTime;
     public bool collisionOccurredd = false;
@@ -55,7 +55,7 @@ public class ArcherTower : MonoBehaviour
 
     private IEnumerator AttackCooldown()
     {
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(attackSpeed);
         canAttack = true;
     }
     public void setbool()

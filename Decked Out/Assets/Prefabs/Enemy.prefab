@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3913288999114805958}
   - component: {fileID: 3913288999114805959}
   - component: {fileID: 3913288999114805944}
-  - component: {fileID: 3913288999114805957}
+  - component: {fileID: 1920306922376555978}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 3913288999114805945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.1, y: -1.32, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.031221177, y: 0.031221177, z: 0.031221177}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3913288997857569340}
@@ -106,9 +106,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 13
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 21300000, guid: 39ce5c97863c9f44b8846f61727ac122, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -131,13 +131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-  unitSquareSize: 20
-  moveSpeed: 1
+  moveSpeed: 3
   damage: 10
   maxHealth: 100
   healthSlider: {fileID: 956535979688031471, guid: 04aa93d6cc648cb4982bd84bab08c24f, type: 3}
---- !u!61 &3913288999114805957
-BoxCollider2D:
+--- !u!70 &1920306922376555978
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -149,16 +148,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.02993153, y: -1.317161}
+  m_Size: {x: 8.565657, y: 14.36}
+  m_Direction: 0

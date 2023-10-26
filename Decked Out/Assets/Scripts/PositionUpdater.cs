@@ -32,7 +32,7 @@ public class PositionUpdater : MonoBehaviour
         if (!mouse.collisionOccurred && other.CompareTag("Platform"))
         {
             hasCollided = true;
-            transform.position = platformTransform.position + new Vector3(0, 1.0f, 0);
+            transform.position = platformTransform.position + new Vector3(0, 0.9f, 0);
             mouse.setCollision();
 
         }
@@ -42,7 +42,7 @@ public class PositionUpdater : MonoBehaviour
     {
         if (hasCollided && platformTransform != null)
         {
-            transform.position = platformTransform.position + new Vector3(0, 1.0f, 0);
+            transform.position = platformTransform.position + new Vector3(0, 0.9f, 0);
         }
     }
 }
