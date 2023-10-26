@@ -18,10 +18,10 @@ public class WaveManager : MonoBehaviour
     public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>();
 
-    private Button startButton; // Reference to the button that starts the waves.
+    private Button startButton; 
 
     private int currentWave = 0;
-    private int wavesToDestroyTowers = 2; // Number of waves after which to destroy towers.
+    private int wavesToDestroyTowers = 2; 
 
     public WaveManager Initialize()
     {
@@ -31,7 +31,7 @@ public class WaveManager : MonoBehaviour
 
     private void StartWaves()
     {
-        ToggleStartButton(false); // Disable and hide the button while the wave is running.
+        ToggleStartButton(false); 
         StartCoroutine(StartWave());
     }
 
@@ -39,7 +39,7 @@ public class WaveManager : MonoBehaviour
     {
         startButton = button;
         startButton.onClick.AddListener(StartWaves);
-        ToggleStartButton(true); // Enable and show the button at the start.
+        ToggleStartButton(true); 
     }
 
     private IEnumerator StartWave()

@@ -46,6 +46,7 @@ public class MouseInputHandling : MonoBehaviour
         }
     }
 
+
     private void HandleTowerPlacement()
     {
         if (Input.GetMouseButtonDown(0))
@@ -53,7 +54,7 @@ public class MouseInputHandling : MonoBehaviour
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 towerPosition = mousePos;
             mousePos.z = 0;
-            float minDistance = 2.0f;
+            float minDistance = 1.0f;
             Vector3 castlePosition = castleGameObject.transform.position;
             float distanceToCastle = Vector3.Distance(mousePos, castlePosition);
 
@@ -62,8 +63,7 @@ public class MouseInputHandling : MonoBehaviour
                 return;
             }
 
-
-            if (Mathf.Abs(towerPosition.x) <= unitSquareSize / 1 && Mathf.Abs(towerPosition.y) <= unitSquareSize / 3)
+            if (Mathf.Abs(towerPosition.x) <= unitSquareSize / 1 && Mathf.Abs(towerPosition.y) <= unitSquareSize / 2.5)
             {
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePos, 0.1f);
                 bool towerCollision = false;
@@ -96,6 +96,7 @@ public class MouseInputHandling : MonoBehaviour
             towerSelection.SetSelectingTower(false);
         }
     }
+
 
     public void setCollision()
     {
