@@ -11,7 +11,7 @@ public class MouseInputHandling : MonoBehaviour
     Vector3 mousePosition;
     float attackRange;
     private ArcherTower archerTower;
-
+    private float unitSquareSize = 10.0f;
     public bool collisionOccurred = false;
     private bool _initialized = false;
 
@@ -53,7 +53,7 @@ public class MouseInputHandling : MonoBehaviour
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 towerPosition = mousePos;
             mousePos.z = 0;
-            float minDistance = 1.0f;
+            float minDistance = 2.0f;
             Vector3 castlePosition = castleGameObject.transform.position;
             float distanceToCastle = Vector3.Distance(mousePos, castlePosition);
 
@@ -62,27 +62,31 @@ public class MouseInputHandling : MonoBehaviour
                 return;
             }
 
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePos, 0.1f);
-            bool towerCollision = false;
 
-            foreach (Collider2D collider in colliders)
+            if (Mathf.Abs(towerPosition.x) <= unitSquareSize / 1 && Mathf.Abs(towerPosition.y) <= unitSquareSize / 3)
             {
-                if (collider.CompareTag("Tower"))
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePos, 0.1f);
+                bool towerCollision = false;
+
+                foreach (Collider2D collider in colliders)
                 {
-                    towerCollision = true;
-                    break;
+                    if (collider.CompareTag("Tower"))
+                    {
+                        towerCollision = true;
+                        break;
+                    }
                 }
-            }
 
-            if (!towerCollision)
-            {
-                currentTowerInstance = Instantiate(towerSelection.towerPrefab, mousePos, Quaternion.identity);
-
-                towerSelection.SetSelectingTower(false);
-
-                if (!collisionOccurred)
+                if (!towerCollision)
                 {
-                    currentTowerInstance.AddComponent<PositionUpdater>();
+                    currentTowerInstance = Instantiate(towerSelection.towerPrefab, mousePos, Quaternion.identity);
+
+                    towerSelection.SetSelectingTower(false);
+
+                    if (!collisionOccurred)
+                    {
+                        currentTowerInstance.AddComponent<PositionUpdater>();
+                    }
                 }
             }
         }
