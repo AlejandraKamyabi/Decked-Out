@@ -18,10 +18,9 @@ public class WaveManager : MonoBehaviour
     public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>();
 
-    private Button startButton; 
-
+    private Button startButton;
+    public int towersPlaced = 0;
     private int currentWave = 0;
-    private int wavesToDestroyTowers = 2; 
 
     public WaveManager Initialize()
     {
@@ -31,7 +30,8 @@ public class WaveManager : MonoBehaviour
 
     private void StartWaves()
     {
-        ToggleStartButton(false); 
+        ToggleStartButton(false);
+        DestroyTowers();
         StartCoroutine(StartWave());
     }
 
@@ -48,6 +48,7 @@ public class WaveManager : MonoBehaviour
         {
             int numberOfEnemies = waves[currentWave].numberOfEnemies;
 
+
             for (int i = 0; i < numberOfEnemies; i++)
             {
                 SpawnEnemy();
@@ -59,19 +60,42 @@ public class WaveManager : MonoBehaviour
                 yield return null;
             }
 
-            if (currentWave >= wavesToDestroyTowers)
-            {
-                DestroyTowers();
-            }
+            UpdateTowerHealth();
 
             ToggleStartButton(true);
+
+            towersPlaced = 0;
             currentWave++;
+        }
+    }
+    private void UpdateTowerHealth()
+    {
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+        foreach (GameObject tower in towers)
+        {
+            ArcherTower towerScript = tower.GetComponent<ArcherTower>();
+            if (towerScript != null)
+            {
+                towerScript.towerHealth--; 
+            }
         }
     }
     private void ToggleStartButton(bool isEnabled)
     {
         startButton.interactable = isEnabled;
         startButton.gameObject.SetActive(isEnabled);
+    }
+    private void DestroyTowers()
+    {
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+        foreach (GameObject tower in towers)
+        {
+            ArcherTower towerScript = tower.GetComponent<ArcherTower>();
+            if (towerScript != null && towerScript.towerHealth <= 0)
+            {
+                Destroy(tower);
+            }
+        }
     }
     private void SpawnEnemy()
     {
@@ -88,14 +112,7 @@ public class WaveManager : MonoBehaviour
         newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
     }
 
-    private void DestroyTowers()
-    {
-        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
-        foreach (GameObject tower in towers)
-        {
-            Destroy(tower);
-        }
-    }
+
     private Vector3 GetRandomSpawnPosition()
     {
         int randomSide = Random.Range(0, 4);
@@ -128,4 +145,9 @@ public class WaveManager : MonoBehaviour
 
         return spawnPosition;
     }
+    public void IncrementTowersPlaced()
+    {
+        towersPlaced++;
+    }
+
 }

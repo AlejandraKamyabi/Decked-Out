@@ -7,6 +7,7 @@ public class MouseInputHandling : MonoBehaviour
     public GameObject rangeIndicatorPrefab;
     public GameObject castleGameObject;
     private PositionUpdater updater;
+    private WaveManager Wave;
     public GameObject Tower;
     Vector3 mousePosition;
     float attackRange;
@@ -22,6 +23,7 @@ public class MouseInputHandling : MonoBehaviour
         updater = GetComponent<PositionUpdater>();
         castleGameObject = GameObject.Find("Main Castle");
         archerTower = Tower.GetComponent<ArcherTower>();
+        Wave = ServiceLocator.Get<WaveManager>();
         attackRange = archerTower.GetAttackRange();
         rangeIndicatorPrefab.transform.localScale = new Vector3(attackRange / 0.40105374f, attackRange / 0.40105374f);
 
@@ -37,7 +39,7 @@ public class MouseInputHandling : MonoBehaviour
     {
         if (_initialized == false) { return; }
 
-        if (towerSelection.IsSelectingTower())
+        if (towerSelection.IsSelectingTower() && Wave.towersPlaced < 5)
         {
             HandleTowerPlacement();
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -57,7 +59,10 @@ public class MouseInputHandling : MonoBehaviour
             float minDistance = 1.0f;
             Vector3 castlePosition = castleGameObject.transform.position;
             float distanceToCastle = Vector3.Distance(mousePos, castlePosition);
-
+            if (archerTower != null)
+            {
+                archerTower.towerHealth = 3; 
+            }
             if (distanceToCastle < minDistance)
             {
                 return;
@@ -82,7 +87,7 @@ public class MouseInputHandling : MonoBehaviour
                     currentTowerInstance = Instantiate(towerSelection.towerPrefab, mousePos, Quaternion.identity);
 
                     towerSelection.SetSelectingTower(false);
-
+                    Wave.IncrementTowersPlaced();
                     if (!collisionOccurred)
                     {
                         currentTowerInstance.AddComponent<PositionUpdater>();

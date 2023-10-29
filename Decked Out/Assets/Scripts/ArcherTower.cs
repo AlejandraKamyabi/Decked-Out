@@ -12,7 +12,7 @@ public class ArcherTower : MonoBehaviour
     private float lastAttackTime;
     public bool collisionOccurredd = false;
     private bool canAttack = true;
-
+    public int towerHealth = 3;
     private void Update()
     {
         FindAndShootTarget();
