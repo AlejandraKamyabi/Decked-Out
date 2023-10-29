@@ -7,6 +7,7 @@ public class Castle : MonoBehaviour
     private float currentHealth;
 
     public Slider healthSlider;
+    public EndGameSplashManager endGame;
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class Castle : MonoBehaviour
 
     private void Die()
     {
-
+        endGame.Death();
     }
 
     private void UpdateHealthUI()
