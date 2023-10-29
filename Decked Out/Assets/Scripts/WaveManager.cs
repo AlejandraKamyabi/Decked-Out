@@ -16,6 +16,7 @@ public class WaveManager : MonoBehaviour
     public GameObject enemyPrefab;
     public float unitSquareSize = 10.0f;
     public Slider healthSliderPrefab;
+    public Canvas worldSpaceCanvas;
     public List<Wave> waves = new List<Wave>();
 
     private Button startButton;
@@ -102,7 +103,7 @@ public class WaveManager : MonoBehaviour
         Vector3 spawnPosition = GetRandomSpawnPosition();
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);       
 
         Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
         newHealthSlider.transform.position = sliderPosition;
