@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
   moveSpeed: 1
-  damage: 10
+  damage: 100
   maxHealth: 100
   healthSlider: {fileID: 956535979688031471, guid: 04aa93d6cc648cb4982bd84bab08c24f, type: 3}
   isBurning: 0

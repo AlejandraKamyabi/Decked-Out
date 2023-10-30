@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class Castle : MonoBehaviour
 {
-    public float maxHealth = 100.0f; 
+    public float maxHealth = 100.0f;
     private float currentHealth;
 
     public Slider healthSlider;
+    public EndGameSplashManager endGame;
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class Castle : MonoBehaviour
 
     private void Die()
     {
-
+        endGame.Death();
     }
 
     private void UpdateHealthUI()
