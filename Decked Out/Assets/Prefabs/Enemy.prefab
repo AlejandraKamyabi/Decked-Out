@@ -135,8 +135,6 @@ MonoBehaviour:
   damage: 10
   maxHealth: 100
   healthSlider: {fileID: 956535979688031471, guid: 04aa93d6cc648cb4982bd84bab08c24f, type: 3}
-  isBurning: 0
-  isFrozen: 0
 --- !u!70 &1920306922376555978
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

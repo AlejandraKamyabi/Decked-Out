@@ -5,54 +5,25 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public UnityEngine.Transform targetCastle;
-    public float moveSpeed = 1f;
-    public float damage = 10.0f;
-    public float maxHealth = 100.0f;
-    private float currentHealth;
-    public Slider healthSlider;
-    public bool isBurning = false;
-    private float damageTimer = 1.0f;
-    public bool isFrozen = false;
-    private float timeSinceLastDamage = 0.0f;
+
+public UnityEngine.Transform targetCastle;
+
+public float moveSpeed = 1f;
+public float damage = 10.0f; 
+
+public float maxHealth = 100.0f; 
+private float currentHealth;
+public Slider healthSlider;
+
+
 
     private void Start()
     {
         currentHealth = maxHealth;
-        timeSinceLastDamage = damageTimer; 
     }
-
-    private void Update()
-    {
-        if (targetCastle != null)
-        {
-            Vector3 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
-            transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-
-            if (healthSlider != null)
-            {
-                Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-                healthSlider.transform.position = screenPosition + new Vector3(0, 70.0f, 0);
-            }
-        }
-        if (isBurning)
-        {
-            timeSinceLastDamage += Time.deltaTime;
-
-            if (timeSinceLastDamage >= damageTimer)
-            {
-                timeSinceLastDamage = 0.0f; 
-                TakeDamage(20.0f); 
-            }
-        }
-        if (isFrozen)
-        {
-            moveSpeed = 0.39f;
-        }
-    }
-
     public void TakeDamage(float damage)
     {
+
         currentHealth -= damage;
         UpdateEnemyHealthUI();
 
@@ -61,12 +32,12 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-
     private void Die()
     {
         Destroy(healthSlider.gameObject);
         Destroy(gameObject);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -81,23 +52,31 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Update()
+    {
 
+        if (targetCastle != null)
+        {
+            Vector3 moveDirection = (targetCastle.position + new Vector3(0f,-1f,0) - transform.position).normalized;
+            transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+
+            if (healthSlider != null)
+            {
+                Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+                healthSlider.transform.position = screenPosition + new Vector3(0, 70.0f, 0); 
+            }
+        }
+
+    }
     private void UpdateEnemyHealthUI()
     {
+
         healthSlider.value = currentHealth;
     }
-
     public void SetHealthSlider(Slider slider)
     {
         healthSlider = slider;
     }
-    public void setBurning()
-    {
-        isBurning = true;   
-    }
-    public void ApplyFreeze()
-    {
-        isFrozen = true;
-    }
+
 
 }
