@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
+
 
 [System.Serializable]
 public class Wave
@@ -15,8 +17,13 @@ public class WaveManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public float unitSquareSize = 10.0f;
+    public float TowersLeft = 5;
     public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>();
+    private Text towersLeftText;
+
+
+
 
     private Button startButton;
     public int towersPlaced = 0;
@@ -24,6 +31,7 @@ public class WaveManager : MonoBehaviour
 
     public WaveManager Initialize()
     {
+        towersLeftText = FindObjectOfType<Text>();
         Debug.Log("Wave Manager Initializing");
         return this;
     }
@@ -41,7 +49,10 @@ public class WaveManager : MonoBehaviour
         startButton.onClick.AddListener(StartWaves);
         ToggleStartButton(true); 
     }
-
+    public void SetText(Text text)
+    {
+        text = towersLeftText;
+    }
     private IEnumerator StartWave()
     {
         if (currentWave < waves.Count)
@@ -65,9 +76,11 @@ public class WaveManager : MonoBehaviour
             ToggleStartButton(true);
 
             towersPlaced = 0;
+            TowersLeft = 5;
             currentWave++;
         }
     }
+
     private void UpdateTowerHealth()
     {
         GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
@@ -80,11 +93,18 @@ public class WaveManager : MonoBehaviour
             }
         }
     }
+
     private void ToggleStartButton(bool isEnabled)
     {
         startButton.interactable = isEnabled;
         startButton.gameObject.SetActive(isEnabled);
     }
+    private void Update()
+    {
+
+        towersLeftText.text = "Towers Left to Place: " + TowersLeft;
+    }
+
     private void DestroyTowers()
     {
         GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
@@ -148,6 +168,7 @@ public class WaveManager : MonoBehaviour
     public void IncrementTowersPlaced()
     {
         towersPlaced++;
+        TowersLeft--;
     }
 
 }
