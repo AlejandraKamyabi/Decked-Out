@@ -2,11 +2,8 @@ using UnityEngine;
 
 public class TowerSelection : MonoBehaviour
 {
-    public GameObject towerPrefab;
-    public GameObject towerPrefab1;
-    public GameObject towerPrefab2;
+    public GameObject towerPrefab; 
     public bool isSelectingTower = false;
-    public int tower;
 
     public void SelectTower()
     {
@@ -20,17 +17,5 @@ public class TowerSelection : MonoBehaviour
     public void SetSelectingTower(bool value)
     {
         isSelectingTower = value;
-    }
-    public void setArcherTower()
-    {
-        tower = 1;
-    }
-    public void setFlameTower()
-    {
-        tower = 2;
-    }
-    public void setFrostTower()
-    {
-        tower = 3;
     }
 }
