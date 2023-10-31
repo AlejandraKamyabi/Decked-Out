@@ -61,5 +61,5 @@ MonoBehaviour:
   - numberOfEnemies: 5
     timeBetweenEnemies: 1.55
     timeBetweenWaves: 2.12
-  towersLeftText: {fileID: 1229484711097133576, guid: efb155cde4d681147bbb570d205ad2a8, type: 3}
+  towersLeftText: {fileID: 7887576859159861775, guid: aa84db7868a1a1a48893a85ef7bcc20c, type: 3}
   towersPlaced: 0
