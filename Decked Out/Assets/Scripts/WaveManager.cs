@@ -31,7 +31,8 @@ public class WaveManager : MonoBehaviour
     private int currentWave = 0;
 
     public WaveManager Initialize()
-    {        
+    {
+        towersLeftText = FindObjectOfType<TMP_Text>();        
         Debug.Log("Wave Manager Initializing");
         return this;
     }
