@@ -49,17 +49,34 @@ MonoBehaviour:
   TowersLeft: 5
   healthSliderPrefab: {fileID: 956535979688031471, guid: 04aa93d6cc648cb4982bd84bab08c24f, type: 3}
   waves:
-  - numberOfEnemies: 6
-    timeBetweenEnemies: 2.91
-    timeBetweenWaves: 2.15
-  - numberOfEnemies: 6
-    timeBetweenEnemies: 1.55
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 6
-    timeBetweenEnemies: 1.55
-    timeBetweenWaves: 2.12
   - numberOfEnemies: 5
-    timeBetweenEnemies: 1.55
+    timeBetweenEnemies: 3
+    timeBetweenWaves: 2.15
+  - numberOfEnemies: 15
+    timeBetweenEnemies: 2
     timeBetweenWaves: 2.12
-  towersLeftText: {fileID: 1229484711097133576, guid: efb155cde4d681147bbb570d205ad2a8, type: 3}
+  - numberOfEnemies: 25
+    timeBetweenEnemies: 1
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.75
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 60
+    timeBetweenEnemies: 0.6
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 70
+    timeBetweenEnemies: 0.5
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 80
+    timeBetweenEnemies: 0.4
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 90
+    timeBetweenEnemies: 0.3
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.2
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 150
+    timeBetweenEnemies: 0.1
+    timeBetweenWaves: 2.12
   towersPlaced: 0
