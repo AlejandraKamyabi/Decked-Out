@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using TMPro;
 
 
 [System.Serializable]
@@ -20,7 +21,7 @@ public class WaveManager : MonoBehaviour
     public float TowersLeft = 5;
     public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>();
-    private Text towersLeftText;
+    public TMP_Text towersLeftText;
 
 
 
@@ -31,7 +32,7 @@ public class WaveManager : MonoBehaviour
 
     public WaveManager Initialize()
     {
-        towersLeftText = FindObjectOfType<Text>();
+        towersLeftText = FindObjectOfType<TMP_Text>();        
         Debug.Log("Wave Manager Initializing");
         return this;
     }
@@ -51,7 +52,7 @@ public class WaveManager : MonoBehaviour
     }
     public void SetText(Text text)
     {
-        text = towersLeftText;
+        towersLeftText.text = "Towers Left to Place: " + TowersLeft;
     }
     private IEnumerator StartWave()
     {

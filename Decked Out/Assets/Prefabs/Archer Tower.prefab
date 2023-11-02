@@ -127,9 +127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 4
   arrowPrefab: {fileID: 3956206777213680668, guid: b800817393e85f34bb96ba0046b04e0f, type: 3}
-  attackCooldown: 1
-  damage: 10
+  attackSpeed: 1
+  damage: 12
   collisionOccurredd: 0
+  towerHealth: 3
 --- !u!50 &-8631973492879612246
 Rigidbody2D:
   serializedVersion: 4
