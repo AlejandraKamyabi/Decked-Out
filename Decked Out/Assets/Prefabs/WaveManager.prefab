@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3913288999114805945, guid: 59d3508bbaa1f8340a03f638ecfcc487, type: 3}
-  cardRandoEngine: {fileID: 666733774535688695, guid: c9cb0ad09f8ce134cb84f66c32fd24c1, type: 3}
   unitSquareSize: 20
   TowersLeft: 5
   healthSliderPrefab: {fileID: 956535979688031471, guid: 04aa93d6cc648cb4982bd84bab08c24f, type: 3}
@@ -80,5 +79,4 @@ MonoBehaviour:
   - numberOfEnemies: 150
     timeBetweenEnemies: 0.1
     timeBetweenWaves: 2.12
-  towersLeftText: {fileID: 0}
   towersPlaced: 0

@@ -17,7 +17,6 @@ public class Wave
 public class WaveManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public CardRandoEngine cardRandoEngine;
     public float unitSquareSize = 10.0f;
     public float TowersLeft = 5;
     public Slider healthSliderPrefab;
@@ -33,18 +32,16 @@ public class WaveManager : MonoBehaviour
 
     public WaveManager Initialize()
     {
-        towersLeftText = FindObjectOfType<TMP_Text>();
-        cardRandoEngine = FindObjectOfType<CardRandoEngine>();
+        towersLeftText = FindObjectOfType<TMP_Text>();        
         Debug.Log("Wave Manager Initializing");
         return this;
     }
 
     private void StartWaves()
     {
-        ToggleStartButton(false); 
+        ToggleStartButton(false);
         DestroyTowers();
         StartCoroutine(StartWave());
-        cardRandoEngine.NewWave();
     }
 
     public void SetStartButton(Button button)
@@ -101,7 +98,7 @@ public class WaveManager : MonoBehaviour
     private void ToggleStartButton(bool isEnabled)
     {
         startButton.interactable = isEnabled;
-        startButton.gameObject.SetActive(isEnabled);        
+        startButton.gameObject.SetActive(isEnabled);
     }
     private void Update()
     {
