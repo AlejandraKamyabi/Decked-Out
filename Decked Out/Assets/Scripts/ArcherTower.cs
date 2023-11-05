@@ -9,7 +9,8 @@ public class ArcherTower : MonoBehaviour, ITower
     public GameObject arrowPrefab;
     [SerializeField] private float Damage = 10.0f; 
     [SerializeField] private float RateOfFire = 1.0f; 
-    [SerializeField] private float Health = 2; 
+    [SerializeField] private float Health = 2;
+    private GameObject towerGameObject;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
     private void Update()
@@ -26,6 +27,11 @@ public class ArcherTower : MonoBehaviour, ITower
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
+    GameObject ITower.gameObject
+    {
+        get { return towerGameObject; }
+        set { towerGameObject = value; }
+    }
     public float health
     {
         get { return Health; }
@@ -33,7 +39,7 @@ public class ArcherTower : MonoBehaviour, ITower
     }
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
-        if (!hasBeenBuffed)
+        if (!hasBeenBuffed && !gameObject.CompareTag("Empty"))
         {
             Damage += damageBuff;
             RateOfFire *= rateOfFireBuff;
