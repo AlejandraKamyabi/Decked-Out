@@ -40,6 +40,7 @@ public class PositionUpdater : MonoBehaviour
             mouse.setCollision();
 
         }
+        gameObject.tag = "Empty";
     }
 
     private void Update()

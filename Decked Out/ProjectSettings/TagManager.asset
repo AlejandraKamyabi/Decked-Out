@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Tower
   - Buffer
+  - Empty
   layers:
   - Default
   - TransparentFX

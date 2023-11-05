@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class FlameThrowerTower : MonoBehaviour, ITower
+public class FlamethrowerTower : MonoBehaviour, ITower
 {
     public float attackRange;
     public GameObject Flame;
     [SerializeField] private float Damage = 3.0f;
     [SerializeField] private float RateOfFire = 1.0f;
     [SerializeField] private float Health = 2;
+    private GameObject towerGameObject;
     private float lastAttackTime;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
@@ -27,6 +28,11 @@ public class FlameThrowerTower : MonoBehaviour, ITower
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
+    GameObject ITower.gameObject
+    {
+        get { return towerGameObject; }
+        set { towerGameObject = value; }
+    }
     public float health
     {
         get { return Health; }
@@ -34,7 +40,7 @@ public class FlameThrowerTower : MonoBehaviour, ITower
     }
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
-        if (!hasBeenBuffed)
+        if (!hasBeenBuffed && !gameObject.CompareTag("Empty"))
         {
             Damage += damageBuff;
             RateOfFire *= rateOfFireBuff;

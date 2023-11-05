@@ -8,6 +8,7 @@ public class FrostTower : MonoBehaviour, ITower
     private float Damage = 10.0f;
     private float RateOfFire = 1.0f;
     [SerializeField] private float Health = 2;
+    private GameObject towerGameObject;
     private bool hasBeenBuffed = false;
 
     private void Update()
@@ -44,9 +45,14 @@ public class FrostTower : MonoBehaviour, ITower
         get { return Health; }
         set { Health = value; }
     }
+    GameObject ITower.gameObject
+    {
+        get { return towerGameObject; }
+        set { towerGameObject = value; }
+    }
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
-        if (!hasBeenBuffed)
+        if (!hasBeenBuffed && !gameObject.CompareTag("Empty"))
         {
             Damage += damageBuff;
             RateOfFire *= rateOfFireBuff;
