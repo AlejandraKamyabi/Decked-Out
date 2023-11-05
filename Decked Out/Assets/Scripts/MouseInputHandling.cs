@@ -4,14 +4,10 @@ public class MouseInputHandling : MonoBehaviour
 {
     private TowerSelection towerSelection;
     private GameObject currentTowerInstance;
-    public GameObject rangeIndicatorPrefab;
     public GameObject castleGameObject;
-    private PositionUpdater updater;
     private WaveManager Wave;
-    public GameObject Tower;
     Vector3 mousePosition;
     float attackRange;
-    private ArcherTower archerTower;
     private float unitSquareSize = 10.0f;
     public bool collisionOccurred = false;
     private bool _initialized = false;
@@ -20,12 +16,8 @@ public class MouseInputHandling : MonoBehaviour
     {
         Debug.Log("<color=cyan> INITIALIZAING </color>");
         towerSelection = GetComponent < TowerSelection>();
-        updater = GetComponent<PositionUpdater>();
         castleGameObject = GameObject.Find("Main Castle");
-        archerTower = Tower.GetComponent<ArcherTower>();
         Wave = ServiceLocator.Get<WaveManager>();
-        attackRange = archerTower.GetAttackRange();
-        rangeIndicatorPrefab.transform.localScale = new Vector3(attackRange / 0.40105374f, attackRange / 0.40105374f);
 
         if (castleGameObject == null)
         {
@@ -44,7 +36,6 @@ public class MouseInputHandling : MonoBehaviour
             HandleTowerPlacement();
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
-            rangeIndicatorPrefab.transform.position = mousePosition;
         }
     }
 
@@ -59,10 +50,7 @@ public class MouseInputHandling : MonoBehaviour
             float minDistance = 1.0f;
             Vector3 castlePosition = castleGameObject.transform.position;
             float distanceToCastle = Vector3.Distance(mousePos, castlePosition);
-            if (archerTower != null)
-            {
-                archerTower.towerHealth = 3; 
-            }
+
             if (distanceToCastle < minDistance)
             {
                 return;
@@ -75,7 +63,7 @@ public class MouseInputHandling : MonoBehaviour
 
                 foreach (Collider2D collider in colliders)
                 {
-                    if (collider.CompareTag("Tower"))
+                    if (collider.CompareTag("Tower") || collider.CompareTag("Buffer"))
                     {
                         towerCollision = true;
                         break;
@@ -96,11 +84,16 @@ public class MouseInputHandling : MonoBehaviour
                     {
                         currentTowerInstance = Instantiate(towerSelection.towerPrefab2, mousePos, Quaternion.identity);
                     }
+                    else if (towerSelection.tower == 4)
+                    {
+                        currentTowerInstance = Instantiate(towerSelection.towerPrefab3, mousePos, Quaternion.identity);
+                    }
                     towerSelection.SetSelectingTower(false);
                     Wave.IncrementTowersPlaced();
-                    if (!collisionOccurred)
+                    if (!Wave.collisionOccurred)
                     {
                         currentTowerInstance.AddComponent<PositionUpdater>();
+               
                     }
                 }
             }
