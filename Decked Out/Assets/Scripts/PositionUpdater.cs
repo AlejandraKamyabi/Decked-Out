@@ -5,7 +5,7 @@ public class PositionUpdater : MonoBehaviour
     private Transform platformTransform;
     private Vector3 offset;
     private bool hasCollided = false;
-    private MouseInputHandling mouse;
+    private WaveManager mouse;
     private GameLoader _loader;
 
     private void Start()
@@ -19,7 +19,7 @@ public class PositionUpdater : MonoBehaviour
         Debug.Log("PostionUpdater.Initialize");
         platformTransform = GameObject.FindGameObjectWithTag("Platform").transform;
         offset = transform.position - platformTransform.position;
-        mouse = ServiceLocator.Get<MouseInputHandling>();
+        mouse = ServiceLocator.Get<WaveManager>();
 
         if(mouse is null)
         {
@@ -29,6 +29,10 @@ public class PositionUpdater : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (gameObject.CompareTag("Buffer"))
+        {
+            return;
+        }
         if (!mouse.collisionOccurred && other.CompareTag("Platform"))
         {
             hasCollided = true;

@@ -1,67 +1,101 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class FlamethrowerTower : MonoBehaviour
-{
-    public float attackRange = 5.0f;
-    public GameObject flamePrefab;
-    private Transform currentTarget;
-    private float timeBetweenFlames = 3.0f;
-    private float lastFlameTime = 0.0f;
-    private bool isShooting = false; 
 
+public class FlameThrowerTower : MonoBehaviour, ITower
+{
+    public float attackRange;
+    public GameObject Flame;
+    [SerializeField] private float Damage = 3.0f;
+    [SerializeField] private float RateOfFire = 1.0f;
+    [SerializeField] private float Health = 2;
+    private float lastAttackTime;
+    private bool canAttack = true;
+    private bool hasBeenBuffed = false;
     private void Update()
     {
-        if (!isShooting) 
+        FindAndShootTarget();
+    }
+    public float damage
+    {
+        get { return Damage; }
+        set { Damage = value; }
+    }
+    public float attackSpeed
+    {
+        get { return RateOfFire; }
+        set { RateOfFire = value; }
+    }
+    public float health
+    {
+        get { return Health; }
+        set { Health = value; }
+    }
+    public void ApplyBuff(float damageBuff, float rateOfFireBuff)
+    {
+        if (!hasBeenBuffed)
         {
-            if (currentTarget == null)
+            Damage += damageBuff;
+            RateOfFire *= rateOfFireBuff;
+            if (RateOfFire < 0.1f)
             {
-                FindNewTarget();
+                RateOfFire = 0.1f;
             }
-            else
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
             {
-                if (Time.time - lastFlameTime >= timeBetweenFlames)
-                {
-                    ShootFlame();
-                }
+                Color buffColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+                spriteRenderer.color = buffColor;
             }
+            hasBeenBuffed = true;
+
         }
     }
-
-    private void FindNewTarget()
+    private void FindAndShootTarget()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
-        foreach (Collider2D collider in colliders)
+        if (canAttack)
         {
-            if (collider.CompareTag("Enemy"))
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
+            foreach (Collider2D collider in colliders)
             {
-                if (!collider.GetComponent<Enemy>().isBurning) 
+                if (collider.CompareTag("Enemy"))
                 {
-                    currentTarget = collider.transform;
+                    ShootArrow(collider.transform);
                     break;
                 }
             }
         }
     }
 
-    private void ShootFlame()
+    private void ShootArrow(Transform target)
     {
-        if (currentTarget != null)
+
+        GameObject arrow = Instantiate(Flame, transform.position, Quaternion.identity);
+        FlamesEffect flameScript = arrow.GetComponent<FlamesEffect>();
+        flameScript.SetTarget(target);
+
+        lastAttackTime = Time.time;
+        canAttack = false;
+        flameScript.SetDamage(Damage);
+        StartCoroutine(AttackCooldown());
+
+    }
+    public float GetAttackRange()
+    {
+        return attackRange;
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        float actualRateOfFire = RateOfFire;
+
+        while (!canAttack)
         {
-            isShooting = true; 
-
-            GameObject flame = Instantiate(flamePrefab, transform.position, Quaternion.identity);
-            FlamesEffect flamesEffect = flame.GetComponent<FlamesEffect>();
-            flamesEffect.SetTarget(currentTarget);
-
-
-            flamesEffect.OnFlameEffectEnd += HandleFlameEffectEnd;
-
-            lastFlameTime = Time.time;
+            yield return new WaitForSeconds(actualRateOfFire);
+            canAttack = true;
         }
     }
 
-    private void HandleFlameEffectEnd()
-    {
-        isShooting = false;
-    }
 }

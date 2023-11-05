@@ -574,86 +574,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &385993503
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 385993504}
-  - component: {fileID: 385993506}
-  - component: {fileID: 385993505}
-  m_Layer: 5
-  m_Name: Text (Legacy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &385993504
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 385993503}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1547120668}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -790.9352, y: 391.18658}
-  m_SizeDelta: {x: 724.5461, y: 135.8524}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &385993505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 385993503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: eaa1a647a8d81bc4a9a85f97afa578d3, type: 3}
-    m_FontSize: 73
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 76
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: New Text
---- !u!222 &385993506
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 385993503}
-  m_CullTransparentMesh: 1
 --- !u!1 &433289292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,7 +1950,7 @@ GameObject:
   - component: {fileID: 1028135228}
   - component: {fileID: 1028135227}
   m_Layer: 5
-  m_Name: Archer Card  copy
+  m_Name: Buffer Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2115,7 +2035,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1106663290}
         m_TargetAssemblyTypeName: TowerSelection, Assembly-CSharp
-        m_MethodName: setArcherTower
+        m_MethodName: setBufferTower
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2145,7 +2065,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 39fc2b9035f58804d90a3ffc6a86b360, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bdae1b32157e452458295dd84c3156f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2440,9 +2360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80646ee834e19ce40b3e884676db6e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeIndicatorPrefab: {fileID: 1689018863}
   castleGameObject: {fileID: 892063877}
-  Tower: {fileID: 7405903770306088367, guid: 701360c609ace1640886a48c4f28bbf1, type: 3}
   collisionOccurred: 0
 --- !u!114 &1106663290
 MonoBehaviour:
@@ -2459,6 +2377,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 7405903770306088367, guid: 701360c609ace1640886a48c4f28bbf1, type: 3}
   towerPrefab1: {fileID: 7405903770306088367, guid: 6867a10647dd9564199cce2e5c8bdf2c, type: 3}
   towerPrefab2: {fileID: 7405903770306088367, guid: 7ff0f0660475d354db2ad64019aa29fb, type: 3}
+  towerPrefab3: {fileID: 7405903770306088367, guid: 6cc4e1f99b55745418aed0a7bb269caf, type: 3}
   isSelectingTower: 0
   tower: 0
 --- !u!114 &1106663292
@@ -3025,7 +2944,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1547120668}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -3163,7 +3082,7 @@ RectTransform:
   m_Children:
   - {fileID: 1897319863}
   m_Father: {fileID: 1547120668}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3265,7 +3184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startButton: {fileID: 1544873037}
-  text: {fileID: 385993505}
+  text: {fileID: 0}
 --- !u!1 &1547120664
 GameObject:
   m_ObjectHideFlags: 0
@@ -3364,10 +3283,9 @@ RectTransform:
   - {fileID: 1836870888}
   - {fileID: 1103847313}
   - {fileID: 971113541}
-  - {fileID: 385993504}
   - {fileID: 1544873036}
-  - {fileID: 2089853970}
   - {fileID: 1532686955}
+  - {fileID: 2089853970}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

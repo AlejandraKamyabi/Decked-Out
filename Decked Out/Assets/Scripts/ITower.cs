@@ -1,0 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public interface ITower
+{
+    float attackSpeed { get; set; }
+    float damage { get; set; }
+    float health { get; set; }
+    void ApplyBuff(float damageBuff, float rateOfFireBuff);
+}
