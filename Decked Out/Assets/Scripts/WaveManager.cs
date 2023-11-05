@@ -22,6 +22,7 @@ public class WaveManager : MonoBehaviour
     public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>();
     public TMP_Text towersLeftText;
+    public bool collisionOccurred = false;
 
 
 
@@ -87,10 +88,11 @@ public class WaveManager : MonoBehaviour
         GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
         foreach (GameObject tower in towers)
         {
-            ArcherTower towerScript = tower.GetComponent<ArcherTower>();
+            ITower towerScript = tower.GetComponent<ITower>();
+
             if (towerScript != null)
             {
-                towerScript.towerHealth--; 
+                towerScript.health--;
             }
         }
     }
@@ -111,14 +113,28 @@ public class WaveManager : MonoBehaviour
         GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
         foreach (GameObject tower in towers)
         {
-            ArcherTower towerScript = tower.GetComponent<ArcherTower>();
-            if (towerScript != null && towerScript.towerHealth <= 0)
+            ITower towerScript = tower.GetComponent<ITower>();
+
+            if (towerScript != null && towerScript.health <= 0)
             {
                 Destroy(tower);
+                collisionOccurred = false;
             }
         }
+        GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
+        foreach (GameObject buffers in buffer)
+        {
+            BuffTower towerScript = buffers.GetComponent<BuffTower>();
+
+            if (towerScript != null && towerScript.health <= 0)
+            {
+                Destroy(buffers);
+                collisionOccurred = false;
+            }
+        }
+
     }
-    private void SpawnEnemy()
+        private void SpawnEnemy()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
@@ -171,5 +187,8 @@ public class WaveManager : MonoBehaviour
         towersPlaced++;
         TowersLeft--;
     }
-
+    public void setCollision()
+    {
+        collisionOccurred = true;
+    }
 }

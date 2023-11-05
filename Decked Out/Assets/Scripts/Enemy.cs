@@ -97,7 +97,17 @@ public class Enemy : MonoBehaviour
     }
     public void ApplyFreeze()
     {
-        isFrozen = true;
+        if (!isFrozen) 
+        {
+            isFrozen = true;
+            StartCoroutine(DisableFreezeAfterDuration(3.0f)); 
+        }
+    }
+    private IEnumerator DisableFreezeAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isFrozen = false; 
+        moveSpeed = 1.0f; 
     }
 
 }

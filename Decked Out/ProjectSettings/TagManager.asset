@@ -8,6 +8,7 @@ TagManager:
   - Castle
   - Platform
   - Tower
+  - Buffer
   layers:
   - Default
   - TransparentFX
