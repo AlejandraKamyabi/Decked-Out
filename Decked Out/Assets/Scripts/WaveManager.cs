@@ -27,6 +27,7 @@ public class WaveManager : MonoBehaviour
     public bool collisionOccurred = false;
     private int enemiesSpawned = 0;
     public int spawnNewEnemyAfter = 4;
+    private Coroutine spawningCoroutine;
 
 
 
@@ -45,7 +46,7 @@ public class WaveManager : MonoBehaviour
     {
         ToggleStartButton(false);
         DestroyTowers();
-        StartCoroutine(StartWave());
+        spawningCoroutine = StartCoroutine(StartWave());
     }
 
     public void SetStartButton(Button button)
@@ -112,6 +113,12 @@ public class WaveManager : MonoBehaviour
         TowersLeft = 5;
         currentWave = 0;
         ToggleStartButton(true);
+        if (spawningCoroutine != null)
+        {
+            StopCoroutine(spawningCoroutine);
+            spawningCoroutine = null;
+        }
+
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
