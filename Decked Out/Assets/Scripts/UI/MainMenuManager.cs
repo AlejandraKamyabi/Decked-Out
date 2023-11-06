@@ -11,6 +11,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject minimizeCollider;
     public Image enemyPageImage;
+    
 
     public void Start()
     {
@@ -21,7 +22,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(gameScene);
+        var loadSceneTask = SceneManager.LoadSceneAsync(gameScene);
     }
     public void ContinueGame()
     {
