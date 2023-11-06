@@ -7,6 +7,7 @@ public class GameLoader : AsyncLoader
 {
     [SerializeField] private GameObject _waveManager = null;
     [SerializeField] private MouseInputHandling _mouseInputHandling = null;
+    [SerializeField] private Castle castle = null;
 
     [SerializeField] private int sceneIndexToLoad = 1;
     private static int _sceneIndex = 1;
@@ -85,6 +86,8 @@ public class GameLoader : AsyncLoader
         Debug.Log("Registering MouseInputHandling");
         _mouseInputHandling.Initialize();
         ServiceLocator.Register<MouseInputHandling>(_mouseInputHandling);
+        castle.Initialize();
+        ServiceLocator.Register<Castle>(castle);
 
 
         yield return null;

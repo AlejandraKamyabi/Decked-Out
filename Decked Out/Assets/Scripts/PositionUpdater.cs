@@ -33,6 +33,7 @@ public class PositionUpdater : MonoBehaviour
         {
             return;
         }
+        gameObject.tag = "Empty";
         if (!mouse.collisionOccurred && other.CompareTag("Platform"))
         {
             hasCollided = true;
@@ -40,7 +41,7 @@ public class PositionUpdater : MonoBehaviour
             mouse.setCollision();
 
         }
-        gameObject.tag = "Empty";
+     
     }
 
     private void Update()
