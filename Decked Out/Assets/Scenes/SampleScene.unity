@@ -1561,6 +1561,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2239141, y: 1.6348014}
   m_EdgeRadius: 0
+--- !u!114 &892063888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8565322880100771210, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
+  m_PrefabInstance: {fileID: 1489383117861147257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892063877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a21a9913d636c54cadc4ef26c87fcef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &895130073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,6 +2419,7 @@ MonoBehaviour:
   gameScene: SampleScene
   mainMenuScene: MainMenu
   deckbuilderScene: 
+  castleGameObject: {fileID: 892063888}
 --- !u!1 &1158864045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2623,6 +2635,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7994801624321871189, guid: d7aecdf4ac82a104ebc6c8a34cf2a04d, type: 3}
+      propertyPath: castle
+      value: 
+      objectReference: {fileID: 892063888}
     - target: {fileID: 7994801624321871189, guid: d7aecdf4ac82a104ebc6c8a34cf2a04d, type: 3}
       propertyPath: _gameManager
       value: 

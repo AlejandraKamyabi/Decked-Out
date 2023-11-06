@@ -8,14 +8,21 @@ public class Castle : MonoBehaviour
 
     public Slider healthSlider;
     public EndGameSplashManager endGame;
+    private GameLoader _loader;
+    private WaveManager wave;
 
     private void Start()
     {
+        _loader = ServiceLocator.Get<GameLoader>();
+        _loader.CallOnComplete(Initialize);
+    }
+    public void Initialize()
+    {
         currentHealth = maxHealth;
         healthSlider.maxValue = maxHealth;
+        wave = ServiceLocator.Get<WaveManager>();
         UpdateHealthUI();
     }
-
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -29,9 +36,15 @@ public class Castle : MonoBehaviour
 
     private void Die()
     {
+        wave.StopWave();
         endGame.Death();
-    }
 
+    }
+    public void ResetHealth()
+    {
+        currentHealth = 100;
+        UpdateHealthUI();
+    }
     private void UpdateHealthUI()
     {
 

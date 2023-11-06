@@ -10,6 +10,7 @@ TagManager:
   - Tower
   - Buffer
   - Empty
+  - Health
   layers:
   - Default
   - TransparentFX

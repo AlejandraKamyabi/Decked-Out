@@ -11,12 +11,22 @@ public class EndGameSplashManager : MonoBehaviour
     public string gameScene;
     public string mainMenuScene;
     public string deckbuilderScene;
+    private WaveManager wave;
+    private GameLoader _loader;
+    public Castle castleGameObject;
 
-    public void Start()
+    private void Start()
     {
+        _loader = ServiceLocator.Get<GameLoader>();
+        _loader.CallOnComplete(Initialize);
         splashScreen.SetActive(false);
     }
+    private void Initialize()
+    {
+        wave = ServiceLocator.Get<WaveManager>();
+        castleGameObject = ServiceLocator.Get<Castle>();
 
+    }
     public void Death()
     {
         splashScreen.SetActive(true);
@@ -24,11 +34,13 @@ public class EndGameSplashManager : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(gameScene);
+        castleGameObject.ResetHealth();
+        splashScreen.SetActive(false);
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene(mainMenuScene);
+     //   wave.StopWave();
+     //   var loadSceneTask = SceneManager.LoadSceneAsync(mainMenuScene);
     }
     public void Deckbuilder()
     {

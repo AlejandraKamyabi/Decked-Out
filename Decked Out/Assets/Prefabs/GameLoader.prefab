@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35cce5970d301a419b1b7032dbc760c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 0}
-  sceneIndexToLoad: 1
+  _waveManager: {fileID: 3161876444809573594, guid: 285823d4cf212eb4fad1bcaf75962279, type: 3}
+  _mouseInputHandling: {fileID: 0}
+  castle: {fileID: 0}
+  sceneIndexToLoad: 0
   _moduleComponents:
   - {fileID: 7994801624321871191}
 --- !u!114 &7994801624321871191

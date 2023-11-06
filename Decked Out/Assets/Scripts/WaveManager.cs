@@ -85,6 +85,52 @@ public class WaveManager : MonoBehaviour
             currentWave++;
         }
     }
+    public void StopWave()
+    {
+        towersPlaced = 0;
+        TowersLeft = 5;
+        currentWave = 0;
+        ToggleStartButton(true);
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        GameObject[] sliders = GameObject.FindGameObjectsWithTag("Health");
+        foreach (GameObject slider in sliders)
+        {
+            Destroy(slider);
+        }
+
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+        foreach (GameObject tower in towers)
+        {
+            ITower towerScript = tower.GetComponent<ITower>();
+
+                Destroy(tower);
+                collisionOccurred = false;
+        }
+        GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
+        foreach (GameObject empty in Empties)
+        {
+            ITower towerScript = empty.GetComponent<ITower>();
+
+            Destroy(empty);
+            collisionOccurred = false;
+        }
+        GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
+        foreach (GameObject buffers in buffer)
+        {
+            BuffTower towerScript = buffers.GetComponent<BuffTower>();
+
+
+                Destroy(buffers);
+                collisionOccurred = false;
+
+        }
+
+    }
 
     private void UpdateTowerHealth()
     {
