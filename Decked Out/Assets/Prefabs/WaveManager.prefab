@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3913288999114805945, guid: 59d3508bbaa1f8340a03f638ecfcc487, type: 3}
-  cardRandoEngine: {fileID: 666733774535688695, guid: c9cb0ad09f8ce134cb84f66c32fd24c1, type: 3}
+  newEnemyPrefab: {fileID: 3913288999114805945, guid: f1862827c278b8f4ba6d1c6eebc4b423, type: 3}
   unitSquareSize: 20
   TowersLeft: 5
-  healthSliderPrefab: {fileID: 956535979688031471, guid: 04aa93d6cc648cb4982bd84bab08c24f, type: 3}
+  kaboomEnemy: 0
+  healthSliderPrefab: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
   waves:
   - numberOfEnemies: 5
     timeBetweenEnemies: 3
@@ -81,4 +82,6 @@ MonoBehaviour:
     timeBetweenEnemies: 0.1
     timeBetweenWaves: 2.12
   towersLeftText: {fileID: 0}
+  collisionOccurred: 0
+  spawnNewEnemyAfter: 4
   towersPlaced: 0

@@ -17,14 +17,16 @@ public class Wave
 public class WaveManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public CardRandoEngine cardRandoEngine;
+    public GameObject newEnemyPrefab;
     public float unitSquareSize = 10.0f;
     public float TowersLeft = 5;
+    public bool kaboomEnemy = false;
     public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>();
     public TMP_Text towersLeftText;
     public bool collisionOccurred = false;
-
+    private int enemiesSpawned = 0;
+    public int spawnNewEnemyAfter = 4;
 
 
 
@@ -34,18 +36,16 @@ public class WaveManager : MonoBehaviour
 
     public WaveManager Initialize()
     {
-        towersLeftText = FindObjectOfType<TMP_Text>();
-        cardRandoEngine = FindObjectOfType<CardRandoEngine>();
+        towersLeftText = FindObjectOfType<TMP_Text>();        
         Debug.Log("Wave Manager Initializing");
         return this;
     }
 
     private void StartWaves()
     {
-        ToggleStartButton(false); 
+        ToggleStartButton(false);
         DestroyTowers();
         StartCoroutine(StartWave());
-        cardRandoEngine.NewWave();
     }
 
     public void SetStartButton(Button button)
@@ -64,13 +64,20 @@ public class WaveManager : MonoBehaviour
         {
             int numberOfEnemies = waves[currentWave].numberOfEnemies;
 
-
             for (int i = 0; i < numberOfEnemies; i++)
             {
                 SpawnEnemy();
+                enemiesSpawned++;
+
+                if (enemiesSpawned == spawnNewEnemyAfter)
+                {
+                    SpawnNewEnemy(); 
+                    kaboomEnemy = true;
+                    enemiesSpawned = 0; 
+                }
+
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
             }
-
             while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
             {
                 yield return null;
@@ -84,6 +91,20 @@ public class WaveManager : MonoBehaviour
             TowersLeft = 5;
             currentWave++;
         }
+    }
+    private void SpawnNewEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(newEnemyPrefab, spawnPosition, Quaternion.identity);
+
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
+        newEnemy.GetComponent<KaboomEnemy>().SetHealthSlider(newHealthSlider);
     }
     public void StopWave()
     {
@@ -149,7 +170,7 @@ public class WaveManager : MonoBehaviour
     private void ToggleStartButton(bool isEnabled)
     {
         startButton.interactable = isEnabled;
-        startButton.gameObject.SetActive(isEnabled);        
+        startButton.gameObject.SetActive(isEnabled);
     }
     private void Update()
     {
