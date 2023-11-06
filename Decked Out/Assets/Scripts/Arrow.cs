@@ -42,5 +42,10 @@ public class Arrow : MonoBehaviour
         {
             enemyScript.TakeDamage(damage);
         }
+        KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
+        if (kaboom != null)
+        {
+            kaboom.TakeDamage(damage);
+        }
     }
 }
