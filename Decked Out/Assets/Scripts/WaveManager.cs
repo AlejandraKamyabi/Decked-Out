@@ -135,26 +135,26 @@ public class WaveManager : MonoBehaviour
         foreach (GameObject tower in towers)
         {
             ITower towerScript = tower.GetComponent<ITower>();
+            collisionOccurred = false;
+            Destroy(tower);
 
-                Destroy(tower);
-                collisionOccurred = false;
         }
         GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
         foreach (GameObject empty in Empties)
         {
             ITower towerScript = empty.GetComponent<ITower>();
-
-            Destroy(empty);
             collisionOccurred = false;
+            Destroy(empty);
+
         }
         GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
         foreach (GameObject buffers in buffer)
         {
             BuffTower towerScript = buffers.GetComponent<BuffTower>();
 
-
-                Destroy(buffers);
-                collisionOccurred = false;
+            collisionOccurred = false;
+            Destroy(buffers);
+    
 
         }
 
@@ -194,8 +194,9 @@ public class WaveManager : MonoBehaviour
 
             if (towerScript != null && towerScript.health <= 0)
             {
-                Destroy(tower);
                 collisionOccurred = false;
+                Destroy(tower);
+ 
             }
         }
         GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
@@ -205,8 +206,9 @@ public class WaveManager : MonoBehaviour
 
             if (towerScript != null && towerScript.health <= 0)
             {
-                Destroy(buffers);
                 collisionOccurred = false;
+                Destroy(buffers);
+
             }
         }
 
