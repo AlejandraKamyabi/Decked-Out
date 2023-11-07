@@ -43,5 +43,11 @@ public class FlamesEffect : MonoBehaviour
             enemyScript.TakeDamage(damage);
             enemyScript.setBurning();
         }
+        KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
+        if (kaboom != null)
+        {
+            kaboom.TakeDamage(damage);
+            kaboom.setBurning();
+        }
     }
 }
