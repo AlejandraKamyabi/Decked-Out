@@ -21,11 +21,18 @@ public class FrostTower : MonoBehaviour, ITower
             if (collider.CompareTag("Enemy"))
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
+                KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
 
                 if (enemy != null)
                 {
                   
                     enemy.ApplyFreeze();
+
+                }
+                if (kaboom != null)
+                {
+                    kaboom.ApplyFreeze();
+
                 }
             }
         }
