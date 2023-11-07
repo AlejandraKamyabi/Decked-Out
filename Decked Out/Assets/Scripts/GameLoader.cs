@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameLoader : AsyncLoader
 {
-    [SerializeField] private GameObject _waveManager = null;
-    [SerializeField] private MouseInputHandling _mouseInputHandling = null;
-    [SerializeField] private Castle castle = null;
-
     [SerializeField] private int sceneIndexToLoad = 1;
     private static int _sceneIndex = 1;
     private static GameLoader _instance; // The only singleton you should have.
@@ -73,21 +69,6 @@ public class GameLoader : AsyncLoader
     {
         // Setup Core Systems
         Debug.Log("Loading Core Systems");
-
-
-        Debug.Log("Registering Wave Manager");
-        if (_waveManager != null)
-        {
-            var wm = Instantiate(_waveManager, SystemsParent);
-            var waveManager = wm.GetComponent<WaveManager>();
-            ServiceLocator.Register<WaveManager>(waveManager.Initialize());
-        }
-
-        Debug.Log("Registering MouseInputHandling");
-        _mouseInputHandling.Initialize();
-        ServiceLocator.Register<MouseInputHandling>(_mouseInputHandling);
-        castle.Initialize();
-        ServiceLocator.Register<Castle>(castle);
 
 
         yield return null;
