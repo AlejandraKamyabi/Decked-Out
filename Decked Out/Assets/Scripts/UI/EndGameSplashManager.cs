@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using UnityEngine.SceneManagement;
 
 public class EndGameSplashManager : MonoBehaviour
@@ -12,18 +8,12 @@ public class EndGameSplashManager : MonoBehaviour
     public string mainMenuScene;
     public string deckbuilderScene;
     private WaveManager wave;
-    private GameLoader _loader;
     public Castle castleGameObject;
 
-    private void Start()
-    {
-        _loader = ServiceLocator.Get<GameLoader>();
-        _loader.CallOnComplete(Initialize);
-        splashScreen.SetActive(false);
-    }
-    private void Initialize()
+    public void Initialize()
     {
         wave = ServiceLocator.Get<WaveManager>();
+        splashScreen.SetActive(false);
         castleGameObject = ServiceLocator.Get<Castle>();
 
     }
@@ -39,8 +29,8 @@ public class EndGameSplashManager : MonoBehaviour
     }
     public void MainMenu()
     {
-     //   wave.StopWave();
-     //   var loadSceneTask = SceneManager.LoadSceneAsync(mainMenuScene);
+        wave.StopWave();
+        var loadSceneTask = SceneManager.LoadSceneAsync(mainMenuScene);
     }
     public void Deckbuilder()
     {
