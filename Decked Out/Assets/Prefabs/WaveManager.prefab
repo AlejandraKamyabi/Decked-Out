@@ -51,35 +51,35 @@ MonoBehaviour:
   kaboomEnemy: 0
   healthSliderPrefab: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
   waves:
-  - numberOfEnemies: 3
+  - numberOfEnemies: 5
     timeBetweenEnemies: 5
     timeBetweenWaves: 2.15
   - numberOfEnemies: 10
     timeBetweenEnemies: 4
     timeBetweenWaves: 2.12
   - numberOfEnemies: 20
-    timeBetweenEnemies: 3
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 40
     timeBetweenEnemies: 2
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 60
-    timeBetweenEnemies: 1
+  - numberOfEnemies: 30
+    timeBetweenEnemies: 1.5
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 70
+  - numberOfEnemies: 40
+    timeBetweenEnemies: 0.75
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.75
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 75
     timeBetweenEnemies: 0.5
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 80
-    timeBetweenEnemies: 0.4
-    timeBetweenWaves: 2.12
   - numberOfEnemies: 90
-    timeBetweenEnemies: 0.3
+    timeBetweenEnemies: 0.5
     timeBetweenWaves: 2.12
   - numberOfEnemies: 100
-    timeBetweenEnemies: 0.2
+    timeBetweenEnemies: 0.5
     timeBetweenWaves: 2.12
   - numberOfEnemies: 150
-    timeBetweenEnemies: 0.1
+    timeBetweenEnemies: 0.25
     timeBetweenWaves: 2.12
   towersLeftText: {fileID: 0}
   collisionOccurred: 0

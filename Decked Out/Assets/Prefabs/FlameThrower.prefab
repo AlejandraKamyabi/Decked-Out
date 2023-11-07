@@ -128,7 +128,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 7
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -150,4 +150,4 @@ MonoBehaviour:
   Flame: {fileID: 3956206777213680668, guid: 182c1aafca12b4e4c881f8ad13344350, type: 3}
   Damage: 5
   RateOfFire: 4
-  Health: 3
+  Health: 2
