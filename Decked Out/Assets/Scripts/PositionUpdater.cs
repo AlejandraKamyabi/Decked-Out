@@ -36,9 +36,10 @@ public class PositionUpdater : MonoBehaviour
         gameObject.tag = "Empty";
         if (!mouse.collisionOccurred && other.CompareTag("Platform"))
         {
+            mouse.setCollision();
             hasCollided = true;
             transform.position = platformTransform.position + new Vector3(0, 0.9f, 0);
-            mouse.setCollision();
+          
 
         }
      
