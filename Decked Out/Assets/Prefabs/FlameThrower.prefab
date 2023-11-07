@@ -146,8 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eb04ba4da750e44a423a56b7112494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 5
+  attackRange: 3
   Flame: {fileID: 3956206777213680668, guid: 182c1aafca12b4e4c881f8ad13344350, type: 3}
-  Damage: 10
-  RateOfFire: 1
+  Damage: 5
+  RateOfFire: 4
   Health: 3
