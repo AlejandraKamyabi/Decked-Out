@@ -60,6 +60,8 @@ public class CardRandoEngine : MonoBehaviour
     }
     public void GetCards()
     {
+        towerCards.Clear();
+        cardsInHand.Clear();
         GetRandomizedCards(handSize);
         GetCardData();
         ButtonData();
