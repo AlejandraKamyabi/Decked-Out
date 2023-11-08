@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 3455199093096613857, guid: 976320af1210dc141928ec2c601ec02d, type: 3}
+    - target: {fileID: 7994801624321871189, guid: d7aecdf4ac82a104ebc6c8a34cf2a04d, type: 3}
+      propertyPath: sceneIndexToLoad
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7994801624321871194, guid: d7aecdf4ac82a104ebc6c8a34cf2a04d, type: 3}
       propertyPath: m_Name
       value: GameLoader
