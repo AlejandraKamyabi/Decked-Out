@@ -4,14 +4,19 @@ using System.Linq;
 using UnityEngine;
 
 
-public class BuffTower : MonoBehaviour
+public class BuffTower : MonoBehaviour, IBuffTower
 {
     public float buffRange = 2.0f;
     public float damageBuff = 2.0f;
     public float rateOfFireBuff = 0.2f;
 
-    public float health = 2;
+    [SerializeField] private float Health = 2;
 
+    public float health
+    {
+        get { return Health; }
+        set { Health = value; }
+    }
     private void Update()
     {
         ITower[] towers = FindTowersInRange();

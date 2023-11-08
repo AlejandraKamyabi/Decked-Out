@@ -136,7 +136,6 @@ public class WaveManager : MonoBehaviour
         {
             ITower towerScript = tower.GetComponent<ITower>();
             Destroy(tower);
-            collisionOccurred = false;
 
         }
         GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
@@ -150,11 +149,9 @@ public class WaveManager : MonoBehaviour
         GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
         foreach (GameObject buffers in buffer)
         {
-            BuffTower towerScript = buffers.GetComponent<BuffTower>();
-            Destroy(buffers);
+            IBuffTower towerScript = buffers.GetComponent<IBuffTower>();
 
-
-
+                Destroy(buffers);
         }
 
     }
@@ -166,6 +163,15 @@ public class WaveManager : MonoBehaviour
         {
             ITower towerScript = tower.GetComponent<ITower>();
 
+            if (towerScript != null)
+            {
+                towerScript.health--;
+            }
+        }
+        GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
+        foreach (GameObject buffers in buffer)
+        {
+            IBuffTower towerScript = buffers.GetComponent<IBuffTower>();
             if (towerScript != null)
             {
                 towerScript.health--;
@@ -195,14 +201,22 @@ public class WaveManager : MonoBehaviour
             {
 
                 Destroy(tower);
-                collisionOccurred = false;
 
             }
+
+        }
+        GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
+        foreach (GameObject empty in Empties)
+        {
+            ITower towerScript = empty.GetComponent<ITower>();
+            Destroy(empty);
+            collisionOccurred = false;
+
         }
         GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
         foreach (GameObject buffers in buffer)
         {
-            BuffTower towerScript = buffers.GetComponent<BuffTower>();
+            IBuffTower towerScript = buffers.GetComponent<IBuffTower>();
 
             if (towerScript != null && towerScript.health <= 0)
             {
