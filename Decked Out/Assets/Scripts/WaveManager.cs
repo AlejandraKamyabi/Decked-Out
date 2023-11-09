@@ -194,6 +194,17 @@ public class WaveManager : MonoBehaviour
                 towerScript.health--;
             }
         }
+        GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
+        foreach (GameObject empty in Empties)
+        {
+            ITower towerScript = empty.GetComponent<ITower>();
+
+            if (towerScript != null)
+            {
+                towerScript.health--;
+            }
+
+        }
         GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
         foreach (GameObject buffers in buffer)
         {
@@ -235,8 +246,14 @@ public class WaveManager : MonoBehaviour
         foreach (GameObject empty in Empties)
         {
             ITower towerScript = empty.GetComponent<ITower>();
-            Destroy(empty);
-            collisionOccurred = false;
+
+            if (towerScript != null && towerScript.health <= 0)
+            {
+
+                Destroy(empty);
+                collisionOccurred = false;
+
+            }
 
         }
         GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
