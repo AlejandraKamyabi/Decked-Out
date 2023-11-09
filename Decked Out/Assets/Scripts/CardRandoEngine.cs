@@ -47,21 +47,32 @@ public class CardRandoEngine : MonoBehaviour
 
     [Header("Card Rando System")]
     public List<TowerCardSO> towerCards = new List<TowerCardSO>();
-    List<TowerCardSO> cardsInHand = new List<TowerCardSO>();
+    public List<TowerCardSO> cardsInHand = new List<TowerCardSO>();
 
 
-    public void Start()
+    private void Start()
     {
         cardSpace0.gameObject.SetActive(false);
         cardSpace1.gameObject.SetActive(false);
         cardSpace2.gameObject.SetActive(false);
         cardSpace3.gameObject.SetActive(false);
         cardSpace4.gameObject.SetActive(false);
+        NewWave();
+    }
+    public void NewWave()
+    {
+        //cardsInHand.Clear();
+        GetCards();
+        cardSpace0.gameObject.SetActive(true);
+        cardSpace1.gameObject.SetActive(true);
+        cardSpace2.gameObject.SetActive(true);
+        cardSpace3.gameObject.SetActive(true);
+        cardSpace4.gameObject.SetActive(true);
+     
+
     }
     public void GetCards()
-    {
-        towerCards.Clear();
-        cardsInHand.Clear();
+    {       
         GetRandomizedCards(handSize);
         GetCardData();
         ButtonData();
@@ -74,6 +85,7 @@ public class CardRandoEngine : MonoBehaviour
         card2Data = cardsInHand[2];
         card3Data = cardsInHand[3];
         card4Data = cardsInHand[4];
+        //cardsInHand.Clear();
 
     }
     public void ButtonData()
@@ -166,14 +178,5 @@ public class CardRandoEngine : MonoBehaviour
         return null;
     }
    
-    public void NewWave()
-    {
-        GetCards();
-        cardSpace0.gameObject.SetActive(true);
-        cardSpace1.gameObject.SetActive(true);
-        cardSpace2.gameObject.SetActive(true);
-        cardSpace3.gameObject.SetActive(true);
-        cardSpace4.gameObject.SetActive(true);
-        
-    }
+   
 }

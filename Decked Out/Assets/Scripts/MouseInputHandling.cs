@@ -5,6 +5,7 @@ public class MouseInputHandling : MonoBehaviour
     private TowerSelection towerSelection;
     private GameObject currentTowerInstance;
     public GameObject castleGameObject;
+    public CardRandoEngine cardRandoEngine;
     private WaveManager Wave;
     Vector3 mousePosition;
     float attackRange;
@@ -18,7 +19,7 @@ public class MouseInputHandling : MonoBehaviour
         towerSelection = GetComponent < TowerSelection>();
         castleGameObject = GameObject.Find("Main Castle");
         Wave = ServiceLocator.Get<WaveManager>();
-
+        cardRandoEngine = FindObjectOfType<CardRandoEngine>();
         if (castleGameObject == null)
         {
             castleGameObject = GameObject.FindWithTag("Player");
@@ -35,7 +36,14 @@ public class MouseInputHandling : MonoBehaviour
         {
             HandleTowerPlacement();
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
+            mousePosition.z = 0;           
+        }
+        int enemy = Wave.GetEnemies();
+        if (enemy <= 0)
+        {
+            Debug.Log("All Enemies Dead");
+            cardRandoEngine.cardsInHand.Clear();
+            cardRandoEngine.NewWave();
         }
     }
 
@@ -44,6 +52,7 @@ public class MouseInputHandling : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 towerPosition = mousePos;
             mousePos.z = 0;

@@ -28,17 +28,19 @@ public class WaveManager : MonoBehaviour
     private int enemiesSpawned = 0;
     public int spawnNewEnemyAfter = 4;
     private Coroutine spawningCoroutine;
+    public CardRandoEngine cardRandoEngine;
 
-
+    private GameLoader _loader;    
 
     private Button startButton;
     public int towersPlaced = 0;
-    private int currentWave = 0;
+    public int currentWave = 0;
 
     public WaveManager Initialize()
     {
-        towersLeftText = FindObjectOfType<TMP_Text>();        
-        Debug.Log("Wave Manager Initializing");
+        towersLeftText = FindObjectOfType<TMP_Text>();
+        cardRandoEngine = FindObjectOfType<CardRandoEngine>();
+        Debug.Log("Wave Manager Initializing");       
         return this;
     }
 
@@ -47,6 +49,7 @@ public class WaveManager : MonoBehaviour
         ToggleStartButton(false);
         DestroyTowers();
         spawningCoroutine = StartCoroutine(StartWave());
+  
     }
 
     public void SetStartButton(Button button)
@@ -81,8 +84,10 @@ public class WaveManager : MonoBehaviour
             }
             while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
             {
+                cardRandoEngine.cardsInHand.Clear();
+                cardRandoEngine.NewWave();
                 yield return null;
-            }
+            }            
 
             UpdateTowerHealth();
 
@@ -283,5 +288,9 @@ public class WaveManager : MonoBehaviour
     public void setCollision()
     {
         collisionOccurred = true;
+    }
+    public int GetEnemies()
+    {
+        return waves[currentWave].numberOfEnemies;
     }
 }
