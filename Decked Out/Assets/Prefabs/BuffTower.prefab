@@ -149,4 +149,4 @@ MonoBehaviour:
   buffRange: 1
   damageBuff: 5
   rateOfFireBuff: 0.6
-  Health: 1
+  Health: 4
