@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3913288999114805945, guid: 59d3508bbaa1f8340a03f638ecfcc487, type: 3}
-  newEnemyPrefab: {fileID: 3913288999114805945, guid: f1862827c278b8f4ba6d1c6eebc4b423, type: 3}
+  KaboomPrefab: {fileID: 3913288999114805945, guid: f1862827c278b8f4ba6d1c6eebc4b423, type: 3}
+  GolemPrefab: {fileID: 3913288999114805945, guid: 245fe243352756e46944c4a8c4be652b, type: 3}
   unitSquareSize: 20
   TowersLeft: 5
   kaboomEnemy: 0
@@ -83,5 +84,6 @@ MonoBehaviour:
     timeBetweenWaves: 2.12
   towersLeftText: {fileID: 0}
   collisionOccurred: 0
-  spawnNewEnemyAfter: 4
+  spawnKaboomEnemyAfter: 4
+  spawnGolemEnemyAfter: 10
   towersPlaced: 0

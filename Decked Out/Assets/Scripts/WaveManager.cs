@@ -17,7 +17,8 @@ public class Wave
 public class WaveManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public GameObject newEnemyPrefab;
+    public GameObject KaboomPrefab;
+    public GameObject GolemPrefab;
     public float unitSquareSize = 10.0f;
     public float TowersLeft = 5;
     public bool kaboomEnemy = false;
@@ -26,7 +27,8 @@ public class WaveManager : MonoBehaviour
     public TMP_Text towersLeftText;
     public bool collisionOccurred = false;
     private int enemiesSpawned = 0;
-    public int spawnNewEnemyAfter = 4;
+    public int spawnKaboomEnemyAfter = 4;
+    public int spawnGolemEnemyAfter = 10;
     private Coroutine spawningCoroutine;
 
 
@@ -70,11 +72,16 @@ public class WaveManager : MonoBehaviour
                 SpawnEnemy();
                 enemiesSpawned++;
 
-                if (enemiesSpawned == spawnNewEnemyAfter)
+                if (enemiesSpawned == spawnKaboomEnemyAfter)
                 {
-                    SpawnNewEnemy(); 
+                    SpawnKaboomEnemy(); 
                     kaboomEnemy = true;
-                    enemiesSpawned = 0; 
+                }
+                if (enemiesSpawned == spawnKaboomEnemyAfter)
+                {
+                    SpawnGolemEnemy();
+                    kaboomEnemy = true;
+                    enemiesSpawned -=6;
                 }
 
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
@@ -93,10 +100,10 @@ public class WaveManager : MonoBehaviour
             currentWave++;
         }
     }
-    private void SpawnNewEnemy()
+    private void SpawnKaboomEnemy()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(newEnemyPrefab, spawnPosition, Quaternion.identity);
+        GameObject newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
 
         Slider newHealthSlider = Instantiate(healthSliderPrefab);
 
@@ -106,6 +113,20 @@ public class WaveManager : MonoBehaviour
         newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
         newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
         newEnemy.GetComponent<KaboomEnemy>().SetHealthSlider(newHealthSlider);
+    }
+        private void SpawnGolemEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
+
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+        newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
     }
     public void StopWave()
     {
