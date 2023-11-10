@@ -15,6 +15,7 @@ MonoBehaviour:
   towerName: Buff Tower
   background: {fileID: 21300000, guid: 7b276240032b8fa419849ff5eeba1a8e, type: 3}
   image: {fileID: 21300000, guid: f297617f716168847b5370004d33ce35, type: 3}
+  icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
   dmg: 0
   range: 0
   rateOfFire: 0
