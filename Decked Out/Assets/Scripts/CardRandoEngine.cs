@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CardRandoEngine : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class CardRandoEngine : MonoBehaviour
     public WaveManager waveManager;
     public TowerSelection towerSelection;
 
-    [Header("UI Stuff")]
+    [Header("Card Spaces")]
     public Button cardSpace0;
     public Button cardSpace1;
     public Button cardSpace2;
@@ -18,30 +19,45 @@ public class CardRandoEngine : MonoBehaviour
 
     [Header("Hand Cards Data")]
     public int handSize;
+   
+
+    [Header("Button Input Modifers")]
+    public List<Button> buttons = new List<Button>();
+    public float longPressDuration = 1.0f;    
+
     [Header("Card 0 Data")]
     public TowerCardSO card0Data;
     public string card0Name;
     public Image card0TowerImage;
+    public Image card0IconImage;
     public int card0TowerID;
+
     [Header("Card 1 Data")]
     public TowerCardSO card1Data;
     public string card1Name;
     public Image card1TowerImage;
+    public Image card1IconImage;
     public int card1TowerID;
+
     [Header("Card 2 Data")]
     public TowerCardSO card2Data;
     public string card2Name;
     public Image card2TowerImage;
+    public Image card2IconImage;
+
     public int card2TowerID;
     [Header("Card 3 Data")]
     public TowerCardSO card3Data;
     public string card3Name;
     public Image card3TowerImage;
+    public Image card3IconImage;
     public int card3TowerID;
+
     [Header("Card 4 Data")]
     public TowerCardSO card4Data;
     public string card4Name;
     public Image card4TowerImage;
+    public Image card4IconImage;
     public int card4TowerID;
 
 
@@ -52,6 +68,7 @@ public class CardRandoEngine : MonoBehaviour
 
     private void Start()
     {
+    
         cardSpace0.gameObject.SetActive(false);
         cardSpace1.gameObject.SetActive(false);
         cardSpace2.gameObject.SetActive(false);
@@ -59,6 +76,8 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace4.gameObject.SetActive(false);
         NewWave();
     }
+
+
     public void NewWave()
     {
         //cardsInHand.Clear();
@@ -92,23 +111,81 @@ public class CardRandoEngine : MonoBehaviour
     {
         cardSpace0.image.sprite = card0Data.background;
         card0TowerImage.sprite = card0Data.image;
+        card0IconImage.sprite = card0Data.icon;
         card0TowerID = card0Data.towerID;
 
         cardSpace1.image.sprite = card1Data.background;
         card1TowerImage.sprite = card1Data.image;
+        card1IconImage.sprite = card1Data.icon;
         card1TowerID = card1Data.towerID;
 
         cardSpace2.image.sprite = card2Data.background;
         card2TowerImage.sprite = card2Data.image;
+        card2IconImage.sprite = card2Data.icon;
         card2TowerID = card2Data.towerID;
 
         cardSpace3.image.sprite = card3Data.background;
         card3TowerImage.sprite = card3Data.image;
+        card3IconImage.sprite = card3Data.icon;
         card3TowerID = card3Data.towerID;
 
         cardSpace4.image.sprite = card4Data.background;
         card4TowerImage.sprite = card4Data.image;
+        card4IconImage.sprite = card4Data.icon;
         card4TowerID = card4Data.towerID;
+    }
+    private void OnClick(Button button)
+    {
+        if (button == cardSpace0)
+        {
+            Button0();
+        }
+        else if (button == cardSpace1)
+        {
+            Button1();
+
+        }
+        else if (button == cardSpace2)
+        {
+            Button2();
+
+        }
+        else if (button == cardSpace3)
+        {
+            Button3();
+
+        }
+        else if (button == cardSpace4)
+        {
+            Button4();
+        }
+    }
+    private void OnLongPress(Button button)
+    {
+        if (button == cardSpace0)
+        {
+            //Button0LongPress();
+        }
+        else if (button == cardSpace1)
+        {
+            //Button1LongPress();
+
+        }
+        else if (button == cardSpace2)
+        {
+            //Button2LongPress();
+
+        }
+        else if (button == cardSpace3)
+        {
+           //Button3LongPress();
+
+        }
+        else if (button == cardSpace4)
+        {
+           // Button4LongPress();
+        }
+
     }
 
     public void Button0()
@@ -116,6 +193,10 @@ public class CardRandoEngine : MonoBehaviour
         towerSelection.SelectTower();
         towerSelection.tower = card0TowerID;
         cardSpace0.gameObject.SetActive(false);
+    } 
+    public void Button0LongPress()
+    {
+        Debug.Log("Button 0 Long Press");
     }
     public void Button1()
     {

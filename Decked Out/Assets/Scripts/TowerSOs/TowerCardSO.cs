@@ -9,6 +9,7 @@ public class TowerCardSO : ScriptableObject
     public string towerName;
     public Sprite background;
     public Sprite image;
+    public Sprite icon;
     public float dmg;
     public float range;
     public float rateOfFire;
