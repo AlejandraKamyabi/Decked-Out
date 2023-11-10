@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public UnityEngine.Transform targetCastle;
     public float moveSpeed = 1f;
     public float damage = 10.0f;
-    public float maxHealth = 100.0f;
+    public float maxHealth;
     private float currentHealth;
     public Slider healthSlider;
     public bool isBurning = false;
