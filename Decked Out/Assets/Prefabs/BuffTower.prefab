@@ -148,5 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffRange: 1
   damageBuff: 5
-  rateOfFireBuff: 0.6
-  Health: 4
+  rateOfFireBuff: 0.7
+  Health: 5

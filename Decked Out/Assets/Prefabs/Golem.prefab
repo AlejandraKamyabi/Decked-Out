@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-  moveSpeed: 0.45
-  damage: 30
-  maxHealth: 200
+  moveSpeed: 0.3
+  damage: 15
+  maxHealth: 350
   healthSlider: {fileID: 956535979688031471, guid: 05d591599fa8af24b880994cfe2c8817, type: 3}
   isBurning: 0
   isFrozen: 0
@@ -150,6 +150,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02993153, y: -1.317161}
-  m_Size: {x: 8.565657, y: 14.36}
+  m_Offset: {x: 0.02993159, y: -3.0399806}
+  m_Size: {x: 8.565657, y: 8.565657}
   m_Direction: 0
