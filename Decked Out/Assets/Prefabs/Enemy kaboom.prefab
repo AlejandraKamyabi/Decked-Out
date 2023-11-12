@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3913288999114805959}
   - component: {fileID: 1920306922376555978}
   - component: {fileID: 7651664643644394062}
+  - component: {fileID: 4658380144572453347}
   m_Layer: 3
   m_Name: Enemy kaboom
   m_TagString: Enemy
@@ -154,3 +155,17 @@ MonoBehaviour:
   isBurning: 0
   effect: {fileID: 5573567819655174200, guid: d526ccb5e04baa941acdce1105d46085, type: 3}
   isFrozen: 0
+  deathSound: {fileID: 8300000, guid: f01c623f724825e44a923d1ae50256f2, type: 3}
+--- !u!114 &4658380144572453347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e259ba58349c84d9a4e59aa84dd08a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyDeathSound: {fileID: 0}

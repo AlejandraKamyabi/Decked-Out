@@ -13,6 +13,7 @@ public class ArcherTower : MonoBehaviour, ITower
     private GameObject towerGameObject;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+    public AudioSource audioSource;
     private void Update()
     {
         FindAndShootTarget();
@@ -76,7 +77,7 @@ public class ArcherTower : MonoBehaviour, ITower
 
     private void ShootArrow(Transform target)
     {
-
+        audioSource.Play();
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         arrowScript.SetTarget(target);

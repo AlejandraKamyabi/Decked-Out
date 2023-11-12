@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3913288999114805959}
   - component: {fileID: 3913288999114805944}
   - component: {fileID: 1920306922376555978}
+  - component: {fileID: 6658792433454387541}
   m_Layer: 3
   m_Name: Golem
   m_TagString: Enemy
@@ -137,6 +138,7 @@ MonoBehaviour:
   healthSlider: {fileID: 956535979688031471, guid: 05d591599fa8af24b880994cfe2c8817, type: 3}
   isBurning: 0
   isFrozen: 0
+  deathSound: {fileID: 8300000, guid: 754d75f5564d7dd45bf68235144d6def, type: 3}
 --- !u!70 &1920306922376555978
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -153,3 +155,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0.02993159, y: -3.0399806}
   m_Size: {x: 8.565657, y: 8.565657}
   m_Direction: 0
+--- !u!114 &6658792433454387541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e259ba58349c84d9a4e59aa84dd08a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyDeathSound: {fileID: 0}

@@ -16,11 +16,15 @@ public class KaboomEnemy : MonoBehaviour
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
     private float timeSinceLastDamage = 0.0f;
+    public AudioClip deathSound;
+    private EnemyDeathSoundHandling deathSoundHandling;
 
     private void Start()
     {
         currentHealth = maxHealth;
         timeSinceLastDamage = damageTimer;
+        deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
+        deathSoundHandling.enemyDeathSound = deathSound;
     }
 
     private void Update()
@@ -80,7 +84,9 @@ public class KaboomEnemy : MonoBehaviour
 
     private void Die()
     {
+        deathSoundHandling.PlayDeathSound();
         GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
+       
 
         DealAOEDamage();
 

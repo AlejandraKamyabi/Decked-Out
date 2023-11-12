@@ -15,11 +15,15 @@ public class Enemy : MonoBehaviour
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
     private float timeSinceLastDamage = 0.0f;
+    public AudioClip deathSound;
+    private EnemyDeathSoundHandling deathSoundHandling;
 
     private void Start()
     {
         currentHealth = maxHealth;
-        timeSinceLastDamage = damageTimer; 
+        timeSinceLastDamage = damageTimer;
+        deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
+        deathSoundHandling.enemyDeathSound = deathSound;
     }
 
     private void Update()
@@ -64,6 +68,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        deathSoundHandling.PlayDeathSound();
         Destroy(healthSlider.gameObject);
         Destroy(gameObject);
     }

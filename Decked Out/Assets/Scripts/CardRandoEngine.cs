@@ -65,6 +65,8 @@ public class CardRandoEngine : MonoBehaviour
     public List<TowerCardSO> towerCards = new List<TowerCardSO>();
     public List<TowerCardSO> cardsInHand = new List<TowerCardSO>();
 
+    [Header("Card Audio")]
+    public AudioSource cardShuffle;
 
     private void Start()
     {
@@ -81,14 +83,13 @@ public class CardRandoEngine : MonoBehaviour
     public void NewWave()
     {
         //cardsInHand.Clear();
-        GetCards();
+        PlayCardSuffleSound();
         cardSpace0.gameObject.SetActive(true);
         cardSpace1.gameObject.SetActive(true);
         cardSpace2.gameObject.SetActive(true);
         cardSpace3.gameObject.SetActive(true);
         cardSpace4.gameObject.SetActive(true);
-     
-
+        GetCards();
     }
     public void GetCards()
     {       
@@ -133,71 +134,14 @@ public class CardRandoEngine : MonoBehaviour
         card4TowerImage.sprite = card4Data.image;
         card4IconImage.sprite = card4Data.icon;
         card4TowerID = card4Data.towerID;
-    }
-    private void OnClick(Button button)
-    {
-        if (button == cardSpace0)
-        {
-            Button0();
-        }
-        else if (button == cardSpace1)
-        {
-            Button1();
-
-        }
-        else if (button == cardSpace2)
-        {
-            Button2();
-
-        }
-        else if (button == cardSpace3)
-        {
-            Button3();
-
-        }
-        else if (button == cardSpace4)
-        {
-            Button4();
-        }
-    }
-    private void OnLongPress(Button button)
-    {
-        if (button == cardSpace0)
-        {
-            //Button0LongPress();
-        }
-        else if (button == cardSpace1)
-        {
-            //Button1LongPress();
-
-        }
-        else if (button == cardSpace2)
-        {
-            //Button2LongPress();
-
-        }
-        else if (button == cardSpace3)
-        {
-           //Button3LongPress();
-
-        }
-        else if (button == cardSpace4)
-        {
-           // Button4LongPress();
-        }
-
-    }
+    }  
 
     public void Button0()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card0TowerID;
         cardSpace0.gameObject.SetActive(false);
-    } 
-    public void Button0LongPress()
-    {
-        Debug.Log("Button 0 Long Press");
-    }
+    }   
     public void Button1()
     {
         towerSelection.SelectTower();
@@ -257,6 +201,13 @@ public class CardRandoEngine : MonoBehaviour
         }
 
         return null;
+    }
+    public void PlayCardSuffleSound()
+    {
+        if (!cardShuffle.isPlaying)
+        {
+            cardShuffle.Play();
+        }
     }
    
    
