@@ -11,6 +11,8 @@ public class KaboomEnemy : MonoBehaviour
     public float maxHealth = 100.0f;
     private float currentHealth;
     public Slider healthSlider;
+    public GameObject zapPrefab;
+    private bool hasBeenZapped = false;
     public bool isBurning = false;
     public GameObject effect;
     private float damageTimer = 1.0f;
@@ -140,5 +142,30 @@ public class KaboomEnemy : MonoBehaviour
         isFrozen = false;
         moveSpeed = 1.0f;
     }
+    public void Zap()
+    {
+        if (!hasBeenZapped)
+        {
+            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 6f);
 
+            foreach (Collider2D enemyCollider in nearbyEnemies)
+            {
+                if (enemyCollider.CompareTag("Enemy") && enemyCollider.gameObject != this.gameObject)
+                {
+                    GameObject zapPrefabInstance = Instantiate(zapPrefab, transform.position, Quaternion.identity);
+                    ZapProjectile zapProjectile = zapPrefabInstance.GetComponent<ZapProjectile>();
+
+                    if (zapProjectile != null)
+                    {
+                        zapProjectile.SetTarget(enemyCollider.transform);
+                        zapProjectile.SetDamage(30f);
+                    }
+                }
+            }
+        }
+    }
+    public void ResetZapFlag()
+    {
+        hasBeenZapped = true;
+    }
 }
