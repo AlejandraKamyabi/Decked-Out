@@ -11,9 +11,7 @@ public class Enemy : MonoBehaviour
     public float maxHealth;
     private float currentHealth;
     public Slider healthSlider;
-    public GameObject zapPrefab;
     public bool isBurning = false;
-    private bool hasBeenZapped = false;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
     private float timeSinceLastDamage = 0.0f;
@@ -116,30 +114,5 @@ public class Enemy : MonoBehaviour
         isFrozen = false; 
         moveSpeed = 1.0f; 
     }
-    public void Zap()
-    {
-        if (!hasBeenZapped)
-        {
-            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 6f);
 
-            foreach (Collider2D enemyCollider in nearbyEnemies)
-            {
-                if (enemyCollider.CompareTag("Enemy") && enemyCollider.gameObject != this.gameObject)
-                {
-                    GameObject zapPrefabInstance = Instantiate(zapPrefab, transform.position, Quaternion.identity);
-                    ZapProjectile zapProjectile = zapPrefabInstance.GetComponent<ZapProjectile>();
-
-                    if (zapProjectile != null)
-                    {
-                        zapProjectile.SetTarget(enemyCollider.transform);
-                        zapProjectile.SetDamage(30f);
-                    }
-                }
-            }
-        }
-    }
-    public void ResetZapFlag()
-    {
-        hasBeenZapped = true;
-    }
 }
