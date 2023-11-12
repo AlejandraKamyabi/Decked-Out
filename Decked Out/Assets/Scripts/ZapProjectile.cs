@@ -5,6 +5,7 @@ public class ZapProjectile : MonoBehaviour
     public float Speed = 10.0f;
     private float damage;
     private Transform target;
+    public GameObject effect;
 
     private void Update()
     {
@@ -20,8 +21,10 @@ public class ZapProjectile : MonoBehaviour
 
         if (Vector2.Distance(currentPosition, targetPosition) < 0.1f)
         {
+            GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
             DealDamage(target.gameObject);
             Destroy(gameObject);
+            Destroy(deathEffect, 1.0f);
         }
     }
 
@@ -48,6 +51,8 @@ public class ZapProjectile : MonoBehaviour
         if (kaboom != null)
         {
             kaboom.TakeDamage(damage);
+            kaboom.Zap();
+            kaboom.ResetZapFlag();
 
         }
     }

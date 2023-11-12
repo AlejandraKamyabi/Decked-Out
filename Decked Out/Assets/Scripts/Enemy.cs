@@ -127,6 +127,7 @@ public class Enemy : MonoBehaviour
                     if (zapProjectile != null)
                     {
                         zapProjectile.SetTarget(enemyCollider.transform);
+                        zapProjectile.SetDamage(30f);
                     }
                 }
             }
