@@ -2606,7 +2606,8 @@ MonoBehaviour:
   towerPrefab: {fileID: 7405903770306088367, guid: 701360c609ace1640886a48c4f28bbf1, type: 3}
   towerPrefab1: {fileID: 7405903770306088367, guid: 6867a10647dd9564199cce2e5c8bdf2c, type: 3}
   towerPrefab2: {fileID: 7405903770306088367, guid: 7ff0f0660475d354db2ad64019aa29fb, type: 3}
-  towerPrefab3: {fileID: 7405903770306088367, guid: 6cc4e1f99b55745418aed0a7bb269caf, type: 3}
+  towerPrefab3: {fileID: 7405903770306088367, guid: a75e815b98551d641a9295d6ed872483, type: 3}
+  towerPrefab4: {fileID: 7405903770306088367, guid: 6cc4e1f99b55745418aed0a7bb269caf, type: 3}
   isSelectingTower: 0
   tower: 0
 --- !u!114 &1106663292

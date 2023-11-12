@@ -24,7 +24,7 @@ public class ZapProjectile : MonoBehaviour
             GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
             DealDamage(target.gameObject);
             Destroy(gameObject);
-            Destroy(deathEffect, 1.0f);
+            Destroy(deathEffect, 0.5f);
         }
     }
 
