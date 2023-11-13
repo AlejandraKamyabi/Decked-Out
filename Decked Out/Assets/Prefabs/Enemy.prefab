@@ -265,4 +265,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e259ba58349c84d9a4e59aa84dd08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDeathSound: {fileID: 0}
+  enemyDeathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}

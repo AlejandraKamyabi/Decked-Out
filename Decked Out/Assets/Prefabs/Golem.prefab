@@ -136,6 +136,7 @@ MonoBehaviour:
   damage: 15
   maxHealth: 350
   healthSlider: {fileID: 956535979688031471, guid: 05d591599fa8af24b880994cfe2c8817, type: 3}
+  zapPrefab: {fileID: 0}
   isBurning: 0
   isFrozen: 0
   deathSound: {fileID: 8300000, guid: 754d75f5564d7dd45bf68235144d6def, type: 3}
@@ -167,4 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e259ba58349c84d9a4e59aa84dd08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDeathSound: {fileID: 0}
+  enemyDeathSound: {fileID: 8300000, guid: 754d75f5564d7dd45bf68235144d6def, type: 3}

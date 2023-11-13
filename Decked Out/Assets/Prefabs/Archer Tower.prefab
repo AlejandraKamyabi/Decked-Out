@@ -131,7 +131,7 @@ MonoBehaviour:
   Damage: 12
   RateOfFire: 1
   Health: 3
-  audioSource: {fileID: 0}
+  audioSource: {fileID: -4882260772056868227}
 --- !u!50 &-8631973492879612246
 Rigidbody2D:
   serializedVersion: 4
