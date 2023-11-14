@@ -68,7 +68,14 @@ public class CardRandoEngine : MonoBehaviour
     [Header("Card Audio")]
     public AudioSource cardShuffle;
 
+    private GameLoader _loader;
+
     private void Start()
+    {
+        _loader = ServiceLocator.Get<GameLoader>();
+        _loader.CallOnComplete(Initialize);
+    }
+    private void Initialize()
     {
     
         cardSpace0.gameObject.SetActive(false);
