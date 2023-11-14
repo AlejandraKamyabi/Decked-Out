@@ -62,7 +62,7 @@ public class WaveManager : MonoBehaviour
     }
     public void SetText(Text text)
     {
-        towersLeftText.text = "Towers Left to Place: " + TowersLeft;
+        //towersLeftText.text = "Towers Left to Place: " + TowersLeft;
     }
     private IEnumerator StartWave()
     {
