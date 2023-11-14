@@ -29,6 +29,7 @@ public class WaveManager : MonoBehaviour
     private int enemiesSpawned = 0;
     public int spawnKaboomEnemyAfter = 4;
     public int spawnGolemEnemyAfter = 10;
+    private EnemyKillTracker EnemyKillTracker;
     private Coroutine spawningCoroutine;
     public CardRandoEngine cardRandoEngine;
 
@@ -42,7 +43,8 @@ public class WaveManager : MonoBehaviour
     {
         //towersLeftText = FindObjectOfType<TMP_Text>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
-        Debug.Log("Wave Manager Initializing");       
+        Debug.Log("Wave Manager Initializing");
+        EnemyKillTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
         return this;
     }
 
@@ -103,6 +105,7 @@ public class WaveManager : MonoBehaviour
             towersPlaced = 0;
             TowersLeft = 5;
             currentWave++;
+            EnemyKillTracker.WaveUpdate();
         }
     }
     private void SpawnKaboomEnemy()
@@ -138,6 +141,7 @@ public class WaveManager : MonoBehaviour
         towersPlaced = 0;
         TowersLeft = 5;
         currentWave = 0;
+        EnemyKillTracker.resetWave();
         ToggleStartButton(true);
         if (spawningCoroutine != null)
         {
@@ -330,5 +334,9 @@ public class WaveManager : MonoBehaviour
     public int GetEnemies()
     {
         return waves[currentWave].numberOfEnemies;
+    }
+    public int GetWave()
+    {
+        return currentWave;
     }
 }
