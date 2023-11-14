@@ -483,7 +483,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCountText: {fileID: 408985931}
+  wave: {fileID: 656539775}
   totalEnemiesDestroyed: 0
+  currentWave: 1
   duration: 1
 --- !u!1 &240017400
 GameObject:
