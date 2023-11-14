@@ -40,7 +40,7 @@ public class WaveManager : MonoBehaviour
 
     public WaveManager Initialize()
     {
-        towersLeftText = FindObjectOfType<TMP_Text>();
+        //towersLeftText = FindObjectOfType<TMP_Text>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
         Debug.Log("Wave Manager Initializing");       
         return this;
@@ -224,7 +224,7 @@ public class WaveManager : MonoBehaviour
     private void Update()
     {
 
-        towersLeftText.text = "Towers Left to Place: " + TowersLeft;
+        //towersLeftText.text = "Towers Left to Place: " + TowersLeft;
     }
 
     private void DestroyTowers()
