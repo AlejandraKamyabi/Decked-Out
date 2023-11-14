@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
+    private EnemyKillTracker EnemyKillTracker;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
         timeSinceLastDamage = damageTimer;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         deathSoundHandling.enemyDeathSound = deathSound;
+        EnemyKillTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
     }
 
     private void Update()
@@ -73,6 +75,11 @@ public class Enemy : MonoBehaviour
         deathSoundHandling.PlayDeathSound();
         Destroy(healthSlider.gameObject);
         Destroy(gameObject);
+
+        if (EnemyKillTracker != null)
+        {
+            EnemyKillTracker.EnemyDestroyed();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

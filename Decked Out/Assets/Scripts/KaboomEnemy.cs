@@ -20,6 +20,7 @@ public class KaboomEnemy : MonoBehaviour
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
+    private EnemyKillTracker enemyKillTracker;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class KaboomEnemy : MonoBehaviour
         timeSinceLastDamage = damageTimer;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         deathSoundHandling.enemyDeathSound = deathSound;
+        enemyKillTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
     }
 
     private void Update()
@@ -95,6 +97,11 @@ public class KaboomEnemy : MonoBehaviour
         Destroy(healthSlider.gameObject);
         Destroy(gameObject);
         Destroy(deathEffect, 4.0f);
+
+        if (enemyKillTracker != null)
+        {
+            enemyKillTracker.EnemyDestroyed();
+        }
 
     }
 
