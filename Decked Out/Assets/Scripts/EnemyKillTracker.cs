@@ -6,9 +6,12 @@ using TMPro;
 public class EnemyKillTracker : MonoBehaviour
 {
     public TextMeshProUGUI enemyCountText;
+    public TextMeshProUGUI wave;
     public int totalEnemiesDestroyed = 0;
+    public int currentWave = 1;
     public float duration;
     private GameLoader _loader;
+    private WaveManager mouse;
 
     private void Start()
     {
@@ -18,12 +21,25 @@ public class EnemyKillTracker : MonoBehaviour
     private void Initialize()
     {
         UpdateEnemyCountText();
+        mouse = ServiceLocator.Get<WaveManager>();
     }
 
     public void EnemyDestroyed()
     {
         totalEnemiesDestroyed++;
         UpdateEnemyCountText();
+    }
+    public void WaveUpdate()
+    {
+        currentWave++;
+        UpdateEnemyCountText();
+
+    }
+    public void resetWave()
+    {
+        currentWave = 1;
+        UpdateEnemyCountText();
+
     }
 
     private void UpdateEnemyCountText()
@@ -36,6 +52,7 @@ public class EnemyKillTracker : MonoBehaviour
                 StartCoroutine(ChangeTextColour(duration));
             }            
         }
+        wave.text = "Wave: " + currentWave.ToString();
     }
     
     IEnumerator ChangeTextColour(float duraton)
