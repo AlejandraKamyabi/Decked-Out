@@ -15,9 +15,10 @@ MonoBehaviour:
   towerName: Frost Tower
   background: {fileID: 21300000, guid: bc03351b8feb74c42a9cdef7c5ca01f5, type: 3}
   image: {fileID: 21300000, guid: c68e73f3a63cc2845882c325e077fef1, type: 3}
+  icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
   dmg: 0
   range: 0
   rateOfFire: 0
   duration: 0
   towerID: 5
-  rarityWeight: 20
+  rarityWeight: 4

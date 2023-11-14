@@ -127,7 +127,7 @@ public class Enemy : MonoBehaviour
     {
         if (!hasBeenZapped)
         {
-            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 6f);
+            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 2f);
 
             foreach (Collider2D enemyCollider in nearbyEnemies)
             {
