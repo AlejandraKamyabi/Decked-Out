@@ -334,6 +334,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: beb6c0bf0cacdb545ac0a525d40c9432, type: 2}
   - {fileID: 11400000, guid: f3b9932f60e217e4f8da4b2bc39894f2, type: 2}
   - {fileID: 11400000, guid: a594bc4f654a0324c9f522defa7f346b, type: 2}
+  - {fileID: 11400000, guid: edeaafcae54913549a1514d0ec193284, type: 2}
   cardsInHand: []
   cardShuffle: {fileID: 133661373}
 --- !u!82 &133661373
