@@ -16,6 +16,7 @@ public class CardRandoEngine : MonoBehaviour
     public Button cardSpace2;
     public Button cardSpace3;
     public Button cardSpace4;
+    public Button blockingButton;
 
     [Header("Hand Cards Data")]
     public int handSize;
@@ -69,6 +70,7 @@ public class CardRandoEngine : MonoBehaviour
     public AudioSource cardShuffle;
 
     private GameLoader _loader;
+    private bool isSelectingTower;
 
     private void Start()
     {
@@ -83,13 +85,22 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace2.gameObject.SetActive(false);
         cardSpace3.gameObject.SetActive(false);
         cardSpace4.gameObject.SetActive(false);
+        blockingButton.gameObject.SetActive(false);
         NewWave();
     }
-
+    private void Update()
+    {
+        isSelectingTower = towerSelection.isSelectingTower;
+        if (!isSelectingTower)
+        {
+            blockingButton.gameObject.SetActive(false);
+        }
+    }
 
     public void NewWave()
     {
         //cardsInHand.Clear();
+        blockingButton.gameObject.SetActive(true);
         PlayCardSuffleSound();
         cardSpace0.gameObject.SetActive(true);
         cardSpace1.gameObject.SetActive(true);
@@ -148,30 +159,35 @@ public class CardRandoEngine : MonoBehaviour
         towerSelection.SelectTower();
         towerSelection.tower = card0TowerID;
         cardSpace0.gameObject.SetActive(false);
+        blockingButton.gameObject.SetActive(true);
     }   
     public void Button1()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card1TowerID;
         cardSpace1.gameObject.SetActive(false);
+        blockingButton.gameObject.SetActive(true);
     }
     public void Button2()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card2TowerID;
         cardSpace2.gameObject.SetActive(false);
+        blockingButton.gameObject.SetActive(true);
     }
     public void Button3()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card3TowerID;
         cardSpace3.gameObject.SetActive(false);
+        blockingButton.gameObject.SetActive(true);
     }
     public void Button4()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card4TowerID;
         cardSpace4.gameObject.SetActive(false);
+        blockingButton.gameObject.SetActive(true);
 
     }    
 
