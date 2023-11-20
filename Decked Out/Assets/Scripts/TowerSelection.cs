@@ -7,6 +7,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject towerPrefab2;
     public GameObject towerPrefab3;
     public GameObject towerPrefab4;
+    public GameObject towerPrefab5;
     public bool isSelectingTower = false;
     public int tower;
 
@@ -42,5 +43,9 @@ public class TowerSelection : MonoBehaviour
     public void setElecetricTower()
     {
         tower = 5;
+    }
+    public void setEarthQuackTower()
+    {
+        tower = 6;
     }
 }

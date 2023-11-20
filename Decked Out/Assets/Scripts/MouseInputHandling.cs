@@ -101,6 +101,10 @@ public class MouseInputHandling : MonoBehaviour
                     {
                         currentTowerInstance = Instantiate(towerSelection.towerPrefab4, mousePos, Quaternion.identity);
                     }
+                    else if (towerSelection.tower == 6)
+                    {
+                        currentTowerInstance = Instantiate(towerSelection.towerPrefab5, mousePos, Quaternion.identity);
+                    }
                     towerSelection.SetSelectingTower(false);
                     Wave.IncrementTowersPlaced();
                     if (!Wave.collisionOccurred)
