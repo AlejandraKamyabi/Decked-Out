@@ -20,7 +20,7 @@ public class WaveManager : MonoBehaviour
     public GameObject KaboomPrefab;
     public GameObject GolemPrefab;
     public float unitSquareSize = 10.0f;
-    public float TowersLeft = 5;
+    public float TowersLeft = 6;
     public bool kaboomEnemy = false;
     public Slider healthSliderPrefab;
     public List<Wave> waves = new List<Wave>();
@@ -95,6 +95,7 @@ public class WaveManager : MonoBehaviour
             {
                 cardRandoEngine.cardsInHand.Clear();
                 cardRandoEngine.NewWave();
+                cardRandoEngine.MoveToLeft();
                 yield return null;
             }            
 
@@ -102,6 +103,7 @@ public class WaveManager : MonoBehaviour
 
             ToggleStartButton(true);
 
+            cardRandoEngine.MoveToBottom();
             towersPlaced = 0;
             TowersLeft = 5;
             currentWave++;
