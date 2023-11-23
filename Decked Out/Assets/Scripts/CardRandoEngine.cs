@@ -9,14 +9,17 @@ public class CardRandoEngine : MonoBehaviour
     [Header("Game Tool")]
     public WaveManager waveManager;
     public TowerSelection towerSelection;
+    public Transform leftSpot;
+    public Vector3 leftSpotScale;
+    public Transform bottomSpot;
+    public Vector3 bottomSpotScale;
 
     [Header("Card Spaces")]
     public Button cardSpace0;
     public Button cardSpace1;
     public Button cardSpace2;
     public Button cardSpace3;
-    public Button cardSpace4;
-    public Button cardSpace5;
+    public Button cardSpace4; 
     public Button blockingButton;
 
     [Header("Hand Cards Data")]
@@ -61,13 +64,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card4TowerImage;
     public Image card4IconImage;
     public int card4TowerID;
-
-    [Header("Card 5 Data")]
-    public TowerCardSO card5Data;
-    public string card5Name;
-    public Image card5TowerImage;
-    public Image card5IconImage;
-    public int card5TowerID;
+ 
 
 
     [Header("Card Rando System")]
@@ -87,13 +84,13 @@ public class CardRandoEngine : MonoBehaviour
     }
     private void Initialize()
     {
-    
+        transform.position = bottomSpot.position;
+        transform.rotation = bottomSpot.rotation;
         cardSpace0.gameObject.SetActive(false);
         cardSpace1.gameObject.SetActive(false);
         cardSpace2.gameObject.SetActive(false);
         cardSpace3.gameObject.SetActive(false);
-        cardSpace4.gameObject.SetActive(false);
-        cardSpace5.gameObject.SetActive(false);
+        cardSpace4.gameObject.SetActive(false);       
         blockingButton.gameObject.SetActive(false);
         NewWave();
     }
@@ -108,15 +105,14 @@ public class CardRandoEngine : MonoBehaviour
 
     public void NewWave()
     {
-        //cardsInHand.Clear();
+        cardsInHand.Clear();
         blockingButton.gameObject.SetActive(true);
         PlayCardSuffleSound();
         cardSpace0.gameObject.SetActive(true);
         cardSpace1.gameObject.SetActive(true);
         cardSpace2.gameObject.SetActive(true);
         cardSpace3.gameObject.SetActive(true);
-        cardSpace4.gameObject.SetActive(true);
-        cardSpace5.gameObject.SetActive(true);
+        cardSpace4.gameObject.SetActive(true);      
         GetCards();
     }
     public void GetCards()
@@ -132,8 +128,7 @@ public class CardRandoEngine : MonoBehaviour
         card1Data = cardsInHand[1];
         card2Data = cardsInHand[2];
         card3Data = cardsInHand[3];
-        card4Data = cardsInHand[4];
-        card5Data = cardsInHand[5];
+        card4Data = cardsInHand[4];       
         //cardsInHand.Clear();
 
     }
@@ -163,11 +158,7 @@ public class CardRandoEngine : MonoBehaviour
         card4TowerImage.sprite = card4Data.image;
         card4IconImage.sprite = card4Data.icon;
         card4TowerID = card4Data.towerID;
-
-        cardSpace5.image.sprite = card5Data.background;
-        card5TowerImage.sprite = card5Data.image;
-        card5IconImage.sprite = card5Data.icon;
-        card5TowerID = card5Data.towerID;
+       
     }  
 
     public void Button0()
@@ -203,14 +194,6 @@ public class CardRandoEngine : MonoBehaviour
         towerSelection.SelectTower();
         towerSelection.tower = card4TowerID;
         cardSpace4.gameObject.SetActive(false);
-        blockingButton.gameObject.SetActive(true);
-
-    }
-    public void Button5()
-    {
-        towerSelection.SelectTower();
-        towerSelection.tower = card5TowerID;
-        cardSpace5.gameObject.SetActive(false);
         blockingButton.gameObject.SetActive(true);
 
     }
@@ -254,6 +237,20 @@ public class CardRandoEngine : MonoBehaviour
         {
             cardShuffle.Play();
         }
+    }
+
+    public void MoveToLeft()
+    {
+        transform.position = leftSpot.position;
+        transform.rotation = leftSpot.rotation;
+        transform.localScale = leftSpotScale;
+    }
+   
+    public void MoveToBottom()
+    {
+        transform.position = bottomSpot.position;
+        transform.rotation = bottomSpot.rotation;
+        transform.localScale = bottomSpotScale;
     }
    
    
