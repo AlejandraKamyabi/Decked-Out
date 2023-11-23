@@ -544,6 +544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waveManager: {fileID: 3161876444809573594, guid: 285823d4cf212eb4fad1bcaf75962279, type: 3}
   _mouseInputHandling: {fileID: 1106663289}
+  Pos: {fileID: 1106663292}
   CardRando: {fileID: 0}
   castle: {fileID: 892063888}
   _endGameSplash: {fileID: 1106663293}
