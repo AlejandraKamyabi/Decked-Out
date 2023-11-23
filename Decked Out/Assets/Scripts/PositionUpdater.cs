@@ -14,14 +14,14 @@ public class PositionUpdater : MonoBehaviour
         _loader.CallOnComplete(Initialize);
     }
 
-    private void Initialize()
+    public void Initialize()
     {
         Debug.Log("PostionUpdater.Initialize");
         platformTransform = GameObject.FindGameObjectWithTag("Platform").transform;
         offset = transform.position - platformTransform.position;
         mouse = ServiceLocator.Get<WaveManager>();
 
-        if(mouse is null)
+        if (mouse is null)
         {
             Debug.LogWarning("Position Updated Failed to find the MouseInputHandling");
         }
@@ -33,16 +33,22 @@ public class PositionUpdater : MonoBehaviour
         {
             return;
         }
+
         gameObject.tag = "Empty";
+        if (other.CompareTag("Empty") || other.CompareTag("Tower") )
+        {
+            return;
+        }
+
         if (!mouse.collisionOccurred && other.CompareTag("Platform"))
         {
             mouse.setCollision();
             hasCollided = true;
             transform.position = platformTransform.position + new Vector3(0, 0.9f, 0);
-          
+
 
         }
-     
+
     }
 
     private void Update()
