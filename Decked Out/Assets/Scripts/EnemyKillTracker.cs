@@ -7,6 +7,8 @@ public class EnemyKillTracker : MonoBehaviour
 {
     public TextMeshProUGUI enemyCountText;
     public TextMeshProUGUI wave;
+    public TextMeshProUGUI endGameEnemyCountText;
+    public TextMeshProUGUI endGameWave;
     public int totalEnemiesDestroyed = 0;
     public int currentWave = 1;
     public float duration;
@@ -62,6 +64,12 @@ public class EnemyKillTracker : MonoBehaviour
         yield return new WaitForSeconds(duraton);
 
         enemyCountText.color = Color.white;
+    }
+
+    public void EndGame()
+    {
+        endGameEnemyCountText.text = "Kills: " + totalEnemiesDestroyed.ToString();
+        endGameWave.text = "Wave: " + currentWave.ToString();
     }
 }
 

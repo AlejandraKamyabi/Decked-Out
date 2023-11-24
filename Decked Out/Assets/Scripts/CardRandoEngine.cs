@@ -13,6 +13,9 @@ public class CardRandoEngine : MonoBehaviour
     public Vector3 leftSpotScale;
     public Transform bottomSpot;
     public Vector3 bottomSpotScale;
+    public float delayTimer;
+    public Slider timerSlider;
+    public bool cardsOnLeft;
 
     [Header("Card Spaces")]
     public Button cardSpace0;
@@ -76,6 +79,8 @@ public class CardRandoEngine : MonoBehaviour
 
     private GameLoader _loader;
     private bool isSelectingTower;
+    private float timer;
+    private bool timerOn = false;
 
     private void Start()
     {
@@ -92,6 +97,8 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace3.gameObject.SetActive(false);
         cardSpace4.gameObject.SetActive(false);       
         blockingButton.gameObject.SetActive(false);
+        timerSlider.gameObject.SetActive(false);
+        timer = delayTimer;
         NewWave();
     }
     private void Update()
@@ -100,6 +107,20 @@ public class CardRandoEngine : MonoBehaviour
         if (!isSelectingTower)
         {
             blockingButton.gameObject.SetActive(false);
+        }
+        if (timerOn)
+        {
+            timerSlider.gameObject.SetActive(true);           
+            timer -= Time.deltaTime;
+            timerSlider.value = timer / delayTimer;
+            if (timer <= 0)
+            {
+                timerOn = false;
+                timerSlider.gameObject.SetActive(false);
+                MoveToLeft();              
+                
+                timer = delayTimer;
+            }
         }
     }
 
@@ -238,9 +259,16 @@ public class CardRandoEngine : MonoBehaviour
             cardShuffle.Play();
         }
     }
+    public void StartMoveToLeft()
+    {
+        timerOn = true;
+    }
 
     public void MoveToLeft()
     {
+        cardsOnLeft = true;
+        cardsInHand.Clear();
+        NewWave();
         transform.position = leftSpot.position;
         transform.rotation = leftSpot.rotation;
         transform.localScale = leftSpotScale;
@@ -248,6 +276,7 @@ public class CardRandoEngine : MonoBehaviour
    
     public void MoveToBottom()
     {
+        cardsOnLeft = false;
         transform.position = bottomSpot.position;
         transform.rotation = bottomSpot.rotation;
         transform.localScale = bottomSpotScale;

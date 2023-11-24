@@ -9,6 +9,7 @@ public class EndGameSplashManager : MonoBehaviour
     public string deckbuilderScene;
     private WaveManager wave;
     public Castle castleGameObject;
+    public EnemyKillTracker enemyKillTracker;
 
     public void Initialize()
     {
@@ -20,6 +21,7 @@ public class EndGameSplashManager : MonoBehaviour
     public void Death()
     {
         splashScreen.SetActive(true);
+        enemyKillTracker.EndGame();
     }
 
     public void Retry()

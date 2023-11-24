@@ -31,7 +31,7 @@ public class WaveManager : MonoBehaviour
     public int spawnGolemEnemyAfter = 10;
     private EnemyKillTracker EnemyKillTracker;
     private Coroutine spawningCoroutine;
-    public CardRandoEngine cardRandoEngine;
+    public CardRandoEngine cardRandoEngine;    
 
     private GameLoader _loader;    
 
@@ -44,7 +44,7 @@ public class WaveManager : MonoBehaviour
         //towersLeftText = FindObjectOfType<TMP_Text>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
         Debug.Log("Wave Manager Initializing");
-        EnemyKillTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
+        EnemyKillTracker = FindObjectOfType<EnemyKillTracker>();       
         return this;
     }
 
@@ -93,9 +93,14 @@ public class WaveManager : MonoBehaviour
             }
             while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
             {
-                cardRandoEngine.cardsInHand.Clear();
-                cardRandoEngine.NewWave();
-                cardRandoEngine.MoveToLeft();
+                if (!cardRandoEngine.cardsOnLeft)
+                {
+                    cardRandoEngine.StartMoveToLeft();
+                }
+                else if (cardRandoEngine.cardsOnLeft)
+                {
+                    cardRandoEngine.NewWave();
+                }
                 yield return null;
             }            
 
