@@ -105,6 +105,15 @@ public class MouseInputHandling : MonoBehaviour
                     {
                         currentTowerInstance = Instantiate(towerSelection.towerPrefab5, mousePos, Quaternion.identity);
                     }
+
+                    SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
+                    if (towerRenderer != null)
+                    {
+                        int orderInLayer = Wave.towersPlaced; 
+                        towerRenderer.sortingOrder -= orderInLayer;
+                    }
+
+
                     towerSelection.SetSelectingTower(false);
                     Wave.IncrementTowersPlaced();
                     if (!Wave.collisionOccurred)
@@ -112,6 +121,7 @@ public class MouseInputHandling : MonoBehaviour
                         currentTowerInstance.AddComponent<PositionUpdater>();
                
                     }
+
                 }
             }
         }
