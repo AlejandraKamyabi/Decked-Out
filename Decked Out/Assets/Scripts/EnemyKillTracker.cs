@@ -20,6 +20,7 @@ public class EnemyKillTracker : MonoBehaviour
         _loader = ServiceLocator.Get<GameLoader>();
         _loader.CallOnComplete(Initialize);
     }
+
     private void Initialize()
     {
         UpdateEnemyCountText();
@@ -31,17 +32,24 @@ public class EnemyKillTracker : MonoBehaviour
         totalEnemiesDestroyed++;
         UpdateEnemyCountText();
     }
+
     public void WaveUpdate()
     {
         currentWave++;
         UpdateEnemyCountText();
-
     }
+
     public void resetWave()
     {
         currentWave = 1;
         UpdateEnemyCountText();
+    }
 
+    public void ResetValues()
+    {
+        totalEnemiesDestroyed = 0;
+        currentWave = 1;
+        UpdateEnemyCountText();
     }
 
     private void UpdateEnemyCountText()
@@ -52,16 +60,16 @@ public class EnemyKillTracker : MonoBehaviour
             if (totalEnemiesDestroyed > 0)
             {
                 StartCoroutine(ChangeTextColour(duration));
-            }            
+            }
         }
         wave.text = "Wave: " + currentWave.ToString();
     }
-    
-    IEnumerator ChangeTextColour(float duraton)
+
+    IEnumerator ChangeTextColour(float duration)
     {
         enemyCountText.color = Color.red;
 
-        yield return new WaitForSeconds(duraton);
+        yield return new WaitForSeconds(duration);
 
         enemyCountText.color = Color.white;
     }
@@ -70,7 +78,9 @@ public class EnemyKillTracker : MonoBehaviour
     {
         endGameEnemyCountText.text = "Kills: " + totalEnemiesDestroyed.ToString();
         endGameWave.text = "Wave: " + currentWave.ToString();
+
+        // Reset values when the game ends
+        ResetValues();
     }
 }
 
-  
