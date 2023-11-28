@@ -18,12 +18,12 @@ public class CardRandoEngine : MonoBehaviour
     public bool cardsOnLeft;
 
     [Header("Card Spaces")]
-    public Button cardSpace0;
-    public Button cardSpace1;
-    public Button cardSpace2;
-    public Button cardSpace3;
-    public Button cardSpace4; 
-    public Button blockingButton;
+    public GameObject cardSpace0;   
+    public GameObject cardSpace1;
+    public GameObject cardSpace2;
+    public GameObject cardSpace3;
+    public GameObject cardSpace4; 
+    public GameObject blockingButton;
 
     [Header("Hand Cards Data")]
     public int handSize;
@@ -35,39 +35,50 @@ public class CardRandoEngine : MonoBehaviour
 
     [Header("Card 0 Data")]
     public TowerCardSO card0Data;
+    public Image cardSpace0Background;
     public string card0Name;
     public Image card0TowerImage;
     public Image card0IconImage;
     public int card0TowerID;
+    public bool card0Used;
+
 
     [Header("Card 1 Data")]
     public TowerCardSO card1Data;
+    public Image cardSpace1Background;
     public string card1Name;
     public Image card1TowerImage;
     public Image card1IconImage;
     public int card1TowerID;
+    public bool card1Used;
 
     [Header("Card 2 Data")]
     public TowerCardSO card2Data;
+    public Image cardSpace2Background;
     public string card2Name;
     public Image card2TowerImage;
     public Image card2IconImage;
-
     public int card2TowerID;
+    public bool card2Used;
+
     [Header("Card 3 Data")]
     public TowerCardSO card3Data;
+    public Image cardSpace3Background;
     public string card3Name;
     public Image card3TowerImage;
     public Image card3IconImage;
     public int card3TowerID;
+    public bool card3Used;
 
     [Header("Card 4 Data")]
     public TowerCardSO card4Data;
+    public Image cardSpace4Background;
     public string card4Name;
     public Image card4TowerImage;
     public Image card4IconImage;
     public int card4TowerID;
- 
+    public bool card4Used;
+
 
 
     [Header("Card Rando System")]
@@ -110,18 +121,31 @@ public class CardRandoEngine : MonoBehaviour
         }
         if (timerOn)
         {
-            timerSlider.gameObject.SetActive(true);           
-            timer -= Time.deltaTime;
-            timerSlider.value = timer / delayTimer;
-            if (timer <= 0)
+            
+            if (!card0Used || !card1Used || !card2Used || !card3Used || !card4Used) 
+            {
+                timerSlider.gameObject.SetActive(true);
+                timer -= Time.deltaTime;
+                timerSlider.value = timer / delayTimer;
+                if (timer <= 0)
+                {
+                    timerOn = false;
+                    timerSlider.gameObject.SetActive(false);
+                    MoveToLeft();
+
+                    timer = delayTimer;
+                }
+            }
+            else if (card0Used && card1Used && card2Used && card3Used && card4Used)
             {
                 timerOn = false;
                 timerSlider.gameObject.SetActive(false);
-                MoveToLeft();              
-                
+                MoveToLeft();
                 timer = delayTimer;
             }
+
         }
+       
     }
 
     public void NewWave()
@@ -135,6 +159,11 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace3.gameObject.SetActive(true);
         cardSpace4.gameObject.SetActive(true);      
         GetCards();
+        card0Used = false;
+        card1Used = false;
+        card2Used = false;
+        card3Used = false;
+        card4Used = false;
     }
     public void GetCards()
     {       
@@ -155,27 +184,27 @@ public class CardRandoEngine : MonoBehaviour
     }
     public void ButtonData()
     {
-        cardSpace0.image.sprite = card0Data.background;
+        cardSpace0Background.sprite = card0Data.background;
         card0TowerImage.sprite = card0Data.image;
         card0IconImage.sprite = card0Data.icon;
         card0TowerID = card0Data.towerID;
 
-        cardSpace1.image.sprite = card1Data.background;
+        cardSpace1Background.sprite = card1Data.background;
         card1TowerImage.sprite = card1Data.image;
         card1IconImage.sprite = card1Data.icon;
         card1TowerID = card1Data.towerID;
 
-        cardSpace2.image.sprite = card2Data.background;
+        cardSpace2Background.sprite = card2Data.background;
         card2TowerImage.sprite = card2Data.image;
         card2IconImage.sprite = card2Data.icon;
         card2TowerID = card2Data.towerID;
 
-        cardSpace3.image.sprite = card3Data.background;
+        cardSpace3Background.sprite = card3Data.background;
         card3TowerImage.sprite = card3Data.image;
         card3IconImage.sprite = card3Data.icon;
         card3TowerID = card3Data.towerID;
 
-        cardSpace4.image.sprite = card4Data.background;
+        cardSpace4Background.sprite = card4Data.background;
         card4TowerImage.sprite = card4Data.image;
         card4IconImage.sprite = card4Data.icon;
         card4TowerID = card4Data.towerID;
@@ -188,6 +217,7 @@ public class CardRandoEngine : MonoBehaviour
         towerSelection.tower = card0TowerID;
         cardSpace0.gameObject.SetActive(false);
         blockingButton.gameObject.SetActive(true);
+        card0Used = true;
     }   
     public void Button1()
     {
@@ -195,6 +225,7 @@ public class CardRandoEngine : MonoBehaviour
         towerSelection.tower = card1TowerID;
         cardSpace1.gameObject.SetActive(false);
         blockingButton.gameObject.SetActive(true);
+        card1Used = true;
     }
     public void Button2()
     {
@@ -202,6 +233,7 @@ public class CardRandoEngine : MonoBehaviour
         towerSelection.tower = card2TowerID;
         cardSpace2.gameObject.SetActive(false);
         blockingButton.gameObject.SetActive(true);
+        card2Used = true;
     }
     public void Button3()
     {
@@ -209,6 +241,7 @@ public class CardRandoEngine : MonoBehaviour
         towerSelection.tower = card3TowerID;
         cardSpace3.gameObject.SetActive(false);
         blockingButton.gameObject.SetActive(true);
+        card3Used = true;
     }
     public void Button4()
     {
@@ -216,6 +249,7 @@ public class CardRandoEngine : MonoBehaviour
         towerSelection.tower = card4TowerID;
         cardSpace4.gameObject.SetActive(false);
         blockingButton.gameObject.SetActive(true);
+        card4Used = true;
 
     }
     public List<TowerCardSO> GetRandomizedCards(int count)
@@ -267,6 +301,7 @@ public class CardRandoEngine : MonoBehaviour
     public void MoveToLeft()
     {
         cardsOnLeft = true;
+        timerSlider.gameObject.SetActive(false);
         cardsInHand.Clear();
         NewWave();
         transform.position = leftSpot.position;

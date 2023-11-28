@@ -11,6 +11,12 @@ public class EarthQuack : MonoBehaviour, ITower
     [SerializeField] private float Health = 2;
     private GameObject towerGameObject;
     private bool hasBeenBuffed = false;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
     private void Start()
     {
         StartCoroutine(DamageOverTime());

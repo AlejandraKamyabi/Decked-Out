@@ -14,6 +14,12 @@ public class ArcherTower : MonoBehaviour, ITower
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
     public AudioSource audioSource;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
     private void Update()
     {
         FindAndShootTarget();

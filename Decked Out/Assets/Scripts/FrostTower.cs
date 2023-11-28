@@ -11,6 +11,11 @@ public class FrostTower : MonoBehaviour, ITower
     private GameObject towerGameObject;
     private bool hasBeenBuffed = false;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
     private void Update()
     {
 
