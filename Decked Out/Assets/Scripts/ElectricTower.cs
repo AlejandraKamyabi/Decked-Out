@@ -13,6 +13,12 @@ public class ElectricTower : MonoBehaviour, ITower
     private GameObject towerGameObject;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
     private void Update()
     {
         FindAndShootTarget();

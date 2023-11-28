@@ -14,6 +14,11 @@ public class FlamethrowerTower : MonoBehaviour, ITower
     private float lastAttackTime;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
     private void Update()
     {
         FindAndShootTarget();

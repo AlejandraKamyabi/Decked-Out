@@ -12,6 +12,11 @@ public class BuffTower : MonoBehaviour, IBuffTower
 
     [SerializeField] private float Health = 2;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, buffRange);
+    }
     public float health
     {
         get { return Health; }

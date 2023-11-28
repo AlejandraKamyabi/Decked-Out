@@ -15,7 +15,7 @@ MonoBehaviour:
   towerName: EarthQuack
   background: {fileID: 21300000, guid: 22650383234d3e24ca9131310b52bf04, type: 3}
   image: {fileID: 21300000, guid: d401af8b67a999e468fce44def95582e, type: 3}
-  icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
+  icon: {fileID: 21300000, guid: 3a850c90f79c14f47bc19e23774b7763, type: 3}
   dmg: 0
   range: 0
   rateOfFire: 0
