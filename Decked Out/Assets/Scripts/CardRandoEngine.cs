@@ -96,20 +96,20 @@ public class CardRandoEngine : MonoBehaviour
     private void Start()
     {
         _loader = ServiceLocator.Get<GameLoader>();
-        _loader.CallOnComplete(Initialize);
+        _loader.CallOnComplete(Initialize);        
     }
     private void Initialize()
-    {
+    {        
         transform.position = bottomSpot.position;
         transform.rotation = bottomSpot.rotation;
-        cardSpace0.gameObject.SetActive(false);
-        cardSpace1.gameObject.SetActive(false);
-        cardSpace2.gameObject.SetActive(false);
-        cardSpace3.gameObject.SetActive(false);
-        cardSpace4.gameObject.SetActive(false);       
+        cardSpace0.gameObject.SetActive(false);        
+        cardSpace1.gameObject.SetActive(false);        
+        cardSpace2.gameObject.SetActive(false);       
+        cardSpace3.gameObject.SetActive(false);        
+        cardSpace4.gameObject.SetActive(false);        
         blockingButton.gameObject.SetActive(false);
         timerSlider.gameObject.SetActive(false);
-        timer = delayTimer;
+        timer = delayTimer;        
         NewWave();
     }
     private void Update()
@@ -315,7 +315,7 @@ public class CardRandoEngine : MonoBehaviour
         transform.position = bottomSpot.position;
         transform.rotation = bottomSpot.rotation;
         transform.localScale = bottomSpotScale;
-    }
+    }    
    
    
 }
