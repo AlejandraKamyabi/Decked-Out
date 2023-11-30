@@ -9,4 +9,5 @@ public interface ITower
     float health { get; set; }
     GameObject gameObject { get; set; }
     void ApplyBuff(float damageBuff, float rateOfFireBuff);
+    void ResetTowerEffects();
 }

@@ -180,8 +180,14 @@ public class MouseInputHandling : MonoBehaviour
                     SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
                     if (towerRenderer != null)
                     {
-                        int orderInLayer = Wave.towersPlaced;
-                        towerRenderer.sortingOrder -= orderInLayer;
+                        int orderInLayer = Wave.towersPlaced; 
+
+                        if (orderInLayer <= 0)
+                        {
+                            orderInLayer = 60;
+                        }
+
+                        towerRenderer.sortingOrder = orderInLayer--;
                     }
                     towerSelection.SetSelectingTower(false);
                     Wave.IncrementTowersPlaced();

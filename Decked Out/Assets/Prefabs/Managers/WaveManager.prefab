@@ -52,7 +52,7 @@ MonoBehaviour:
   kaboomEnemy: 0
   healthSliderPrefab: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
   waves:
-  - numberOfEnemies: 50
+  - numberOfEnemies: 5
     timeBetweenEnemies: 1
     timeBetweenWaves: 2.15
   - numberOfEnemies: 5
