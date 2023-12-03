@@ -137,7 +137,7 @@ public class MouseInputHandling : MonoBehaviour
 
             foreach (Collider2D collider in colliders)
             {
-                if (collider.CompareTag("Tower") || collider.CompareTag("Buffer"))
+                if (collider.CompareTag("Tower") || collider.CompareTag("Buffer") || collider.CompareTag("Placed"))
                 {
                     towerCollision = true;                   
                     break;
