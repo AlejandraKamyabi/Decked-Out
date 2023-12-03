@@ -29,7 +29,7 @@ public class PositionUpdater : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (gameObject.CompareTag("Buffer"))
+        if (gameObject.CompareTag("Buffer") || gameObject.CompareTag("Placed"))
         {
             return;
         }

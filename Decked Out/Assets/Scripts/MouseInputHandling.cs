@@ -13,7 +13,7 @@ public class MouseInputHandling : MonoBehaviour
     private float unitSquareSize = 10.0f;
     public bool collisionOccurred = false;
     private bool _initialized = false;
-
+    private bool IslandTowerSelection = false;
     public GameObject towerRig;
     private SpriteRenderer towerRigSprite;
     public SpriteRenderer rangeIndicator;
@@ -178,6 +178,10 @@ public class MouseInputHandling : MonoBehaviour
                     }
 
                     SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
+                    if (!IslandTowerSelection)
+                    {
+                       currentTowerInstance.tag = "Placed";
+                    }
                     if (towerRenderer != null)
                     {
                         int orderInLayer = Wave.towersPlaced; 
@@ -218,8 +222,9 @@ public class MouseInputHandling : MonoBehaviour
                 {
                     towerRigSprite.color = Color.yellow;
                     rangeIndicator.color = Color.yellow;
+                    IslandTowerSelection = true;
                 }
-              
+
             }
 
             else if (!towerCollision)
@@ -227,7 +232,7 @@ public class MouseInputHandling : MonoBehaviour
                 towerRigSprite.color = Color.white;
                 rangeIndicator.color = rigColor;
             }
-            
+            else { IslandTowerSelection = false; }
         }  
         
         else if (currentTowerInstance != null && Input.GetMouseButtonDown(1))
