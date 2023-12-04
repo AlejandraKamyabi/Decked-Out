@@ -128,6 +128,14 @@ public class MouseInputHandling : MonoBehaviour
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
         }
+        if (towerSelection.tower == 7)
+        {
+            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
+            towerRigSprite.sprite = towerSelection.spellPrefab1.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.spellPrefab1.GetComponent<LightningStrike>().attackRange;
+            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+        }
         towerRig.gameObject.SetActive(true);
 
         if (Mathf.Abs(towerPosition.x) <= unitSquareSize / 1 && Mathf.Abs(towerPosition.y) <= unitSquareSize / 2.5)
@@ -176,6 +184,10 @@ public class MouseInputHandling : MonoBehaviour
                     {
                         currentTowerInstance = Instantiate(towerSelection.towerPrefab5, mousePos, Quaternion.identity);
                     }
+                    else if (towerSelection.tower == 7)
+                    {
+                        currentTowerInstance = Instantiate(towerSelection.spellPrefab1, mousePos, Quaternion.identity);
+                    }
 
                     SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
                     if (!IslandTowerSelection)
@@ -195,7 +207,7 @@ public class MouseInputHandling : MonoBehaviour
                     }
                     towerSelection.SetSelectingTower(false);
                     Wave.IncrementTowersPlaced();
-                    if (!Wave.collisionOccurred)
+                    if (!Wave.collisionOccurred && towerSelection.tower == 7)
                     {
                         currentTowerInstance.AddComponent<PositionUpdater>();
 
@@ -213,7 +225,7 @@ public class MouseInputHandling : MonoBehaviour
 
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
             {
-                if ((towerSelection.tower == 3) || (towerSelection.tower == 4) || (towerSelection.tower == 6))
+                if ((towerSelection.tower == 3) || (towerSelection.tower == 4) || (towerSelection.tower == 6) || (towerSelection.tower == 7))
                 {
                     towerRigSprite.color = Color.gray;
                     rangeIndicator.color = Color.gray;
