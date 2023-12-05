@@ -147,6 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 2
-  Damage: 10
+  Damage: 8
   effect: {fileID: 7953254493702069685, guid: 7a4d86962636c9a47b759ab77dcb7a41, type: 3}
   Health: 2

@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 3.5
   arrowPrefab: {fileID: 3956206777213680668, guid: b800817393e85f34bb96ba0046b04e0f, type: 3}
-  Damage: 10
+  Damage: 12
   RateOfFire: 1
   Health: 3
   audioSource: {fileID: -4882260772056868227}
