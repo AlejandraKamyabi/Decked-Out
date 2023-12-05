@@ -207,7 +207,7 @@ public class MouseInputHandling : MonoBehaviour
                     }
                     towerSelection.SetSelectingTower(false);
                     Wave.IncrementTowersPlaced();
-                    if (!Wave.collisionOccurred && towerSelection.tower == 7)
+                    if (!Wave.collisionOccurred && towerSelection.tower != 7)
                     {
                         currentTowerInstance.AddComponent<PositionUpdater>();
 
