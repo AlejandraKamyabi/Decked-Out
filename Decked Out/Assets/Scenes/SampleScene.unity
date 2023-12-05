@@ -311,7 +311,7 @@ MonoBehaviour:
   cardSpace3: {fileID: 1510496461}
   cardSpace4: {fileID: 1073442144}
   blockingButton: {fileID: 528506559}
-  handSize: 7
+  handSize: 5
   buttons: []
   longPressDuration: 2
   card0Data: {fileID: 0}
@@ -349,6 +349,7 @@ MonoBehaviour:
   card4IconImage: {fileID: 1013344015}
   card4TowerID: 0
   card4Used: 0
+  totalWeight: 0
   towerCards:
   - {fileID: 11400000, guid: 8430b8eca9945e34cbcdec8e2ff926ba, type: 2}
   - {fileID: 11400000, guid: beb6c0bf0cacdb545ac0a525d40c9432, type: 2}
@@ -2294,7 +2295,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2549
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.58433104, g: 0, b: 1, a: 0.49019608}
   m_FlipX: 0
@@ -3713,6 +3714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80646ee834e19ce40b3e884676db6e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigColor: {r: 0, g: 0, b: 0, a: 0}
+  notPlaceable: {r: 0.8867924, g: 0, b: 0, a: 0.6862745}
+  onIsland: {r: 0.75294125, g: 0.60784316, b: 0.011764707, a: 0.6862745}
+  supportOnIsland: {r: 0.3018868, g: 0.30049294, b: 0.2947668, a: 0.6862745}
   castleGameObject: {fileID: 892063877}
   cardRandoEngine: {fileID: 0}
   collisionOccurred: 0
@@ -3752,6 +3757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539d0cd0642e13a4eb3a035a72b16ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformTransform: {fileID: 0}
 --- !u!114 &1106663293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5745,6 +5751,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7123561325698608166, guid: 522346df8077db04c8a31fe0f59d6aa7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 522346df8077db04c8a31fe0f59d6aa7, type: 3}
 --- !u!1 &1830850339
@@ -6666,7 +6676,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 2550
   m_Sprite: {fileID: 21300000, guid: f72f36eff16faf844a167820e993d724, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
