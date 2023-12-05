@@ -97,6 +97,7 @@ public class FlamethrowerTower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        hasBeenBuffed = false;
     }
     private void ShootArrow(Transform target)
     {
