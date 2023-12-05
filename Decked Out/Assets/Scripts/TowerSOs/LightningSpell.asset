@@ -21,4 +21,4 @@ MonoBehaviour:
   rateOfFire: 0
   duration: 0
   towerID: 7
-  rarityWeight: 64.91
+  rarityWeight: 15

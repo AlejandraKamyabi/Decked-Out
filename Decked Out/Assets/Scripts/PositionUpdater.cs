@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PositionUpdater : MonoBehaviour
 {
-    private Transform platformTransform;
+    public Transform platformTransform;
     private Vector3 offset;
     private bool hasCollided = false;
     private WaveManager mouse;

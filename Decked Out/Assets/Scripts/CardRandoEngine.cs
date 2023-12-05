@@ -82,6 +82,7 @@ public class CardRandoEngine : MonoBehaviour
 
 
     [Header("Card Rando System")]
+    public float totalWeight;
     public List<TowerCardSO> towerCards = new List<TowerCardSO>();
     public List<TowerCardSO> cardsInHand = new List<TowerCardSO>();
 
@@ -92,6 +93,7 @@ public class CardRandoEngine : MonoBehaviour
     private bool isSelectingTower;
     private float timer;
     private bool timerOn = false;
+    float scale;
 
     private void Start()
     {
@@ -254,34 +256,55 @@ public class CardRandoEngine : MonoBehaviour
     }
     public List<TowerCardSO> GetRandomizedCards(int count)
     {
-        List<TowerCardSO> remainingCards = new List<TowerCardSO>(towerCards);
-        for (int i = 0; i < count; i++)
-        {
-            TowerCardSO randomCard = SelectRandomWeightedCard(remainingCards);
-            cardsInHand.Add(randomCard);
-        }
-
-        return cardsInHand;
-    }
-    private TowerCardSO SelectRandomWeightedCard(List<TowerCardSO> cards)
-    {
-        float totalWeight = 0f;
-
-        foreach (TowerCardSO card in cards)
+        List<TowerCardSO> cardsToShuffle = new List<TowerCardSO>(towerCards);
+        totalWeight = 0;
+        foreach (TowerCardSO card in cardsToShuffle)
         {
             totalWeight += card.rarityWeight;
         }
 
-        float randomValue = Random.Range(0f, totalWeight);
+        Debug.Log("Cards in Deck: " + cardsToShuffle.Count);
+        Debug.Log("Total Weight: " + totalWeight);
 
-        foreach (TowerCardSO card in cards)
+        for (int i = 0; i < count; i++)
+        {            
+            TowerCardSO randomCard = SelectRandomWeightedCard(cardsToShuffle);
+            cardsInHand.Add(randomCard);
+        }
+
+        Debug.Log(cardsInHand.Count);
+        return cardsInHand;
+    }
+    private TowerCardSO SelectRandomWeightedCard(List<TowerCardSO> _cardsToShuffle)
+    {         
+        if (totalWeight > 100)
         {
-            if (randomValue <= card.rarityWeight)
-            {
-                return card;
-            }
+            scale = totalWeight / 100f;
+            Debug.Log("Scale: " + scale);
+        }
+        else if (totalWeight <= 100)
+        {
+            scale = 1;
+        }
+        float randomValue = Random.Range(0f, totalWeight);
+        Debug.Log("Random: " + randomValue);
 
-            randomValue -= card.rarityWeight;
+        foreach (TowerCardSO card in _cardsToShuffle)
+        {
+            float scaledWeight = card.rarityWeight * scale;           
+
+            if (randomValue <= scaledWeight)
+            {
+                Debug.Log(card.towerName + " selected with a weight of:  " + scaledWeight);
+                return card;
+                
+            }
+            else if (randomValue > scaledWeight)
+            {
+                //Debug.Log(card.towerName + "NOT selected with a weight of: " + scaledWeight);
+                randomValue -= scaledWeight;
+            }
+            
         }
 
         return null;

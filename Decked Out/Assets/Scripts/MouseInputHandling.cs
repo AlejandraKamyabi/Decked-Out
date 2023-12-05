@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class MouseInputHandling : MonoBehaviour
 {
+    [Header("Range Colours")]
+    public Color rigColor;
+    public Color notPlaceable;
+    public Color onIsland;
+    public Color supportOnIsland;
     private TowerSelection towerSelection;
     private GameObject currentTowerInstance;
     public GameObject castleGameObject;
@@ -13,11 +18,11 @@ public class MouseInputHandling : MonoBehaviour
     private float unitSquareSize = 10.0f;
     public bool collisionOccurred = false;
     private bool _initialized = false;
-    private bool IslandTowerSelection = false;
+    private bool islandTowerSelection = false;
     public GameObject towerRig;
     private SpriteRenderer towerRigSprite;
     public SpriteRenderer rangeIndicator;
-    private Color rigColor;
+    
     public void Initialize()
     {
         Debug.Log("<color=cyan> INITIALIZAING </color>");
@@ -74,8 +79,8 @@ public class MouseInputHandling : MonoBehaviour
 
         if (distanceToCastle < minDistance)
         {
-            towerRigSprite.color = Color.red;
-            rangeIndicator.color = Color.red;
+            towerRigSprite.color = notPlaceable;
+            rangeIndicator.color = notPlaceable;
             return;
         }
         if (towerSelection.tower == 1)
@@ -190,28 +195,33 @@ public class MouseInputHandling : MonoBehaviour
                     }
 
                     SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
-                    if (!IslandTowerSelection)
+                    if (!islandTowerSelection)
                     {
                        currentTowerInstance.tag = "Placed";
                     }
                     if (towerRenderer != null)
                     {
-                        int orderInLayer = Wave.towersPlaced; 
+                        float baseValue = 1000;
+                        float orderInLayer = (baseValue - towerRig.transform.position.y); 
 
-                        if (orderInLayer <= 0)
+                        //if (orderInLayer <= 0)
                         {
-                            orderInLayer = 60;
+                           // orderInLayer = 60;
                         }
 
-                        towerRenderer.sortingOrder = orderInLayer--;
+                        towerRenderer.sortingOrder = ((int)orderInLayer);
+                        if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform") && towerSelection.tower != 4 && towerSelection.tower != 6 && towerSelection.tower != 3 && towerSelection.tower != 7)
+                        {
+                            towerRenderer.sortingOrder = 2501;
+                        }
                     }
                     towerSelection.SetSelectingTower(false);
                     Wave.IncrementTowersPlaced();
                     if (!Wave.collisionOccurred && towerSelection.tower != 7)
                     {
-                        currentTowerInstance.AddComponent<PositionUpdater>();
-
+                        currentTowerInstance.AddComponent<PositionUpdater>();                        
                     }
+                    
 
                 }
 
@@ -219,22 +229,22 @@ public class MouseInputHandling : MonoBehaviour
             }
             if (towerCollision)
             {                
-                towerRigSprite.color = Color.red;
-                rangeIndicator.color = Color.red;
+                towerRigSprite.color = notPlaceable;
+                rangeIndicator.color = notPlaceable;
             }
 
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
             {
                 if ((towerSelection.tower == 3) || (towerSelection.tower == 4) || (towerSelection.tower == 6) || (towerSelection.tower == 7))
                 {
-                    towerRigSprite.color = Color.gray;
-                    rangeIndicator.color = Color.gray;
+                    towerRigSprite.color = supportOnIsland;
+                    rangeIndicator.color = supportOnIsland;
                 }
                 else
                 {
-                    towerRigSprite.color = Color.yellow;
-                    rangeIndicator.color = Color.yellow;
-                    IslandTowerSelection = true;
+                    towerRigSprite.color = onIsland;
+                    rangeIndicator.color = onIsland;
+                    islandTowerSelection = true;
                 }
 
             }
@@ -244,7 +254,7 @@ public class MouseInputHandling : MonoBehaviour
                 towerRigSprite.color = Color.white;
                 rangeIndicator.color = rigColor;
             }
-            else { IslandTowerSelection = false; }
+            else { islandTowerSelection = false; }
         }  
         
         else if (currentTowerInstance != null && Input.GetMouseButtonDown(1))
@@ -254,8 +264,8 @@ public class MouseInputHandling : MonoBehaviour
         }
         else
         {
-            towerRigSprite.color = Color.red;
-            rangeIndicator.color = Color.red;
+            towerRigSprite.color = notPlaceable;
+            rangeIndicator.color = notPlaceable;
         }
     }
 
