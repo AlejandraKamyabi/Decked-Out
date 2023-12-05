@@ -52,58 +52,94 @@ MonoBehaviour:
   kaboomEnemy: 0
   healthSliderPrefab: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
   waves:
-  - numberOfEnemies: 5
-    timeBetweenEnemies: 1
+  - numberOfEnemies: 3
+    timeBetweenEnemies: 3
     timeBetweenWaves: 2.15
   - numberOfEnemies: 5
     timeBetweenEnemies: 3
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 20
+  - numberOfEnemies: 10
     timeBetweenEnemies: 2
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 30
+  - numberOfEnemies: 20
     timeBetweenEnemies: 1.5
     timeBetweenWaves: 2.12
   - numberOfEnemies: 40
-    timeBetweenEnemies: 0.75
+    timeBetweenEnemies: 1.25
     timeBetweenWaves: 2.12
   - numberOfEnemies: 50
-    timeBetweenEnemies: 0.75
+    timeBetweenEnemies: 1
     timeBetweenWaves: 2.12
   - numberOfEnemies: 75
+    timeBetweenEnemies: 0.95
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.9
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.85
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.8
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
     timeBetweenEnemies: 0.75
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.7
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.65
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.6
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.55
     timeBetweenWaves: 2.12
   - numberOfEnemies: 100
     timeBetweenEnemies: 0.5
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 125
-    timeBetweenEnemies: 0.5
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.45
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 150
-    timeBetweenEnemies: 0.5
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 175
-    timeBetweenEnemies: 0.5
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 200
+  - numberOfEnemies: 100
     timeBetweenEnemies: 0.4
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 200
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.4
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.35
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
     timeBetweenEnemies: 0.3
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 200
+  - numberOfEnemies: 100
     timeBetweenEnemies: 0.25
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 200
+  - numberOfEnemies: 100
     timeBetweenEnemies: 0.2
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 200
+  - numberOfEnemies: 100
     timeBetweenEnemies: 0.15
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 200
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.15
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
     timeBetweenEnemies: 0.1
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 200
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.09
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.08
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.07
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 500
     timeBetweenEnemies: 0.05
     timeBetweenWaves: 2.12
   towersLeftText: {fileID: 0}
