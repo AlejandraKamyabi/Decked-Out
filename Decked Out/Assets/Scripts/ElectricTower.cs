@@ -40,6 +40,7 @@ public class ElectricTower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        hasBeenBuffed = false;
     }
     public float damage
     {

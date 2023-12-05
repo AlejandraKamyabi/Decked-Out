@@ -110,6 +110,7 @@ public class ArcherTower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        hasBeenBuffed = false;
     }
 
     public float GetAttackRange()
