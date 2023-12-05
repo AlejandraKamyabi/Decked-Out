@@ -175,6 +175,13 @@ public class WaveManager : MonoBehaviour
             Destroy(tower);
 
         }
+        GameObject[] placedTowers = GameObject.FindGameObjectsWithTag("Placed");
+        foreach (GameObject placedTower in placedTowers)
+        {
+            ITower towerScript = placedTower.GetComponent<ITower>();
+            Destroy(placedTower);
+
+        }
         GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
         foreach (GameObject empty in Empties)
         {
