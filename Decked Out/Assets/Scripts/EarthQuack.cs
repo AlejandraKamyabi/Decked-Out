@@ -134,7 +134,7 @@ public class EarthQuack : MonoBehaviour, ITower
                 Color buffColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
                 spriteRenderer.color = buffColor;
             }
-
+            hasBeenBuffed = true;
         }
     }
 }
