@@ -212,6 +212,16 @@ public class WaveManager : MonoBehaviour
                 towerScript.health--;
             }
         }
+        GameObject[] PlacedTowers = GameObject.FindGameObjectsWithTag("Placed");
+        foreach (GameObject tower in towers)
+        {
+            ITower towerScript = tower.GetComponent<ITower>();
+
+            if (towerScript != null)
+            {
+                towerScript.health--;
+            }
+        }
         GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
         foreach (GameObject empty in Empties)
         {

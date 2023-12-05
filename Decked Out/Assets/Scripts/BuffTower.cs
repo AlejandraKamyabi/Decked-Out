@@ -11,7 +11,7 @@ public class BuffTower : MonoBehaviour, IBuffTower
     public float rateOfFireBuff = 0.2f;
     private List<ITower> towersInRange = new List<ITower>();
 
-    [SerializeField] private float Health = 2;
+    [SerializeField] private float Health;
 
     private void OnDrawGizmos()
     {
