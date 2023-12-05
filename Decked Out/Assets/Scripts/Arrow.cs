@@ -18,6 +18,10 @@ public class Arrow : MonoBehaviour
         Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
         transform.position = Vector2.MoveTowards(currentPosition, targetPosition, arrowSpeed * Time.deltaTime);
 
+        Vector2 direction = targetPosition - currentPosition;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
         if (Vector2.Distance(currentPosition, targetPosition) < 0.1f)
         {
             DealDamage(target.gameObject);
@@ -49,3 +53,4 @@ public class Arrow : MonoBehaviour
         }
     }
 }
+
