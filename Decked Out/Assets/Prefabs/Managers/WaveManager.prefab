@@ -73,16 +73,16 @@ MonoBehaviour:
   - numberOfEnemies: 75
     timeBetweenEnemies: 0.95
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 80
     timeBetweenEnemies: 0.9
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 85
     timeBetweenEnemies: 0.85
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 90
     timeBetweenEnemies: 0.8
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 95
     timeBetweenEnemies: 0.75
     timeBetweenWaves: 2.12
   - numberOfEnemies: 100
