@@ -41,6 +41,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card0IconImage;
     public int card0TowerID;
     public bool card0Used;
+    private int spell0Usage;
 
 
     [Header("Card 1 Data")]
@@ -51,6 +52,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card1IconImage;
     public int card1TowerID;
     public bool card1Used;
+    private int spell1Usage;
 
     [Header("Card 2 Data")]
     public TowerCardSO card2Data;
@@ -60,6 +62,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card2IconImage;
     public int card2TowerID;
     public bool card2Used;
+    private int spell2Usage;
 
     [Header("Card 3 Data")]
     public TowerCardSO card3Data;
@@ -69,6 +72,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card3IconImage;
     public int card3TowerID;
     public bool card3Used;
+    private int spell3Usage;
 
     [Header("Card 4 Data")]
     public TowerCardSO card4Data;
@@ -78,6 +82,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card4IconImage;
     public int card4TowerID;
     public bool card4Used;
+    private int spell4Usage;
 
 
 
@@ -93,6 +98,7 @@ public class CardRandoEngine : MonoBehaviour
     private bool isSelectingTower;
     private float timer;
     private bool timerOn = false;
+  
     float scale;
 
     private void Start()
@@ -108,7 +114,12 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace1.gameObject.SetActive(false);        
         cardSpace2.gameObject.SetActive(false);       
         cardSpace3.gameObject.SetActive(false);        
-        cardSpace4.gameObject.SetActive(false);        
+        spell0Usage=0;   
+        spell1Usage=0;
+        spell2Usage=0;
+        spell3Usage=0;
+        spell4Usage=0;
+    cardSpace4.gameObject.SetActive(false);        
         blockingButton.gameObject.SetActive(false);
         timerSlider.gameObject.SetActive(false);
         timer = delayTimer;        
@@ -210,6 +221,7 @@ public class CardRandoEngine : MonoBehaviour
         card4TowerImage.sprite = card4Data.image;
         card4IconImage.sprite = card4Data.icon;
         card4TowerID = card4Data.towerID;
+
        
     }  
 
@@ -217,41 +229,122 @@ public class CardRandoEngine : MonoBehaviour
     {
         towerSelection.SelectTower();
         towerSelection.tower = card0TowerID;
-        cardSpace0.gameObject.SetActive(false);
-        blockingButton.gameObject.SetActive(true);
-        card0Used = true;
+
+        if (card0TowerID != 7)
+        {
+            cardSpace0.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card0Used = true;
+        }
+        else if (card0TowerID == 7)
+        {
+            spell0Usage++;
+            if (spell0Usage == 4)
+            {
+
+                spell0Usage = 0;
+                cardSpace0.gameObject.SetActive(false);
+                blockingButton.gameObject.SetActive(true);
+                card0Used = true;
+            }
+        }
+
     }   
     public void Button1()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card1TowerID;
-        cardSpace1.gameObject.SetActive(false);
-        blockingButton.gameObject.SetActive(true);
-        card1Used = true;
+
+        if (card1TowerID != 7)
+        {
+            cardSpace1.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card1Used = true;
+        }
+        else if (card1TowerID == 7)
+        {
+            spell1Usage++;
+            if (spell1Usage == 4)
+            {
+                spell1Usage = 0;
+                cardSpace1.gameObject.SetActive(false);
+                blockingButton.gameObject.SetActive(true);
+                card1Used = true;
+            }
+        }
+ 
     }
     public void Button2()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card2TowerID;
-        cardSpace2.gameObject.SetActive(false);
-        blockingButton.gameObject.SetActive(true);
-        card2Used = true;
+
+        if (card2TowerID != 7)
+        {
+            cardSpace2.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card2Used = true;
+        }
+        else if (card2TowerID == 7)
+        {
+            spell2Usage++;
+            if (spell2Usage == 4)
+            {
+                spell2Usage = 0;
+                cardSpace2.gameObject.SetActive(false);
+                blockingButton.gameObject.SetActive(true);
+                card2Used = true;
+            }
+        }
+    
     }
     public void Button3()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card3TowerID;
-        cardSpace3.gameObject.SetActive(false);
-        blockingButton.gameObject.SetActive(true);
-        card3Used = true;
+
+        if (card3TowerID != 7)
+        {
+            cardSpace3.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card3Used = true;
+        }
+        else if (card3TowerID == 7)
+        {
+            spell3Usage++;
+            if (spell3Usage == 4)
+            {
+                spell3Usage = 0;
+                cardSpace3.gameObject.SetActive(false);
+                blockingButton.gameObject.SetActive(true);
+                card3Used = true;
+            }
+        }
+
     }
     public void Button4()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card4TowerID;
-        cardSpace4.gameObject.SetActive(false);
-        blockingButton.gameObject.SetActive(true);
-        card4Used = true;
+
+        if (card4TowerID != 7)
+        {
+            cardSpace4.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card4Used = true;
+        }
+        else if (card4TowerID == 7)
+        {
+            spell4Usage++;
+            if (spell4Usage == 4)
+            {
+                spell4Usage = 0;
+                cardSpace4.gameObject.SetActive(false);
+                blockingButton.gameObject.SetActive(true);
+                card4Used = true;
+            }
+        }
+  
 
     }
     public List<TowerCardSO> GetRandomizedCards(int count)

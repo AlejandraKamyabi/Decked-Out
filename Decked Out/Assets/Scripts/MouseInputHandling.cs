@@ -44,7 +44,7 @@ public class MouseInputHandling : MonoBehaviour
     {
         if (_initialized == false) { return; }
 
-        if (towerSelection.IsSelectingTower() && Wave.towersPlaced < 5)
+        if (towerSelection.IsSelectingTower())
         {
             
             HandleTowerPlacement();
