@@ -13,6 +13,7 @@ public class ElectricTower : MonoBehaviour, ITower
     private float initialDamage;
     private float initialRateOfFire;
     private GameObject towerGameObject;
+    private SpriteRenderer spriteRenderer;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
 
@@ -25,9 +26,14 @@ public class ElectricTower : MonoBehaviour, ITower
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
+        if (health == 0)
+        {
+            spriteRenderer.color = Color.red;
+        }
         FindAndShootTarget();
     }
     public void ResetTowerEffects()
@@ -73,9 +79,9 @@ public class ElectricTower : MonoBehaviour, ITower
                 RateOfFire = 0.1f;
             }
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
+            if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
                 spriteRenderer.color = buffColor;
             }
             hasBeenBuffed = true;

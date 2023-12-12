@@ -11,6 +11,7 @@ public class ArcherTower : MonoBehaviour, ITower
     [SerializeField] private float RateOfFire;
     [SerializeField] private float Health = 2;
     private GameObject towerGameObject;
+    private SpriteRenderer spriteRenderer;
     private float initialDamage;
     private float initialRateOfFire;
     private bool canAttack = true;
@@ -25,11 +26,16 @@ public class ArcherTower : MonoBehaviour, ITower
     private void Update()
     {
         FindAndShootTarget();
+        if (health == 0)
+        {
+            spriteRenderer.color = Color.red;
+        }
     }
     private void Start()
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public float damage
     {
@@ -62,9 +68,9 @@ public class ArcherTower : MonoBehaviour, ITower
                 RateOfFire = 0.1f;
             }
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
+            if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
                 spriteRenderer.color = buffColor;
             }
             hasBeenBuffed = true;

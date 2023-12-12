@@ -262,6 +262,7 @@ public class WaveManager : MonoBehaviour
         {
             ITower towerScript = tower.GetComponent<ITower>();
 
+           
             if (towerScript != null && towerScript.health <= 0)
             {
 
@@ -274,7 +275,7 @@ public class WaveManager : MonoBehaviour
         foreach (GameObject PlacedTower in PlacedTowers)
         {
             ITower towerScript = PlacedTower.GetComponent<ITower>();
-
+           
             if (towerScript != null && towerScript.health <= 0)
             {
 

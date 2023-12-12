@@ -105,7 +105,7 @@ public class EnemyKillTracker : MonoBehaviour
     {
         endGameEnemyCountText.text = "Kills: " + totalEnemiesDestroyed.ToString();
         endGameGemCountText.text = "Gems: " + totalGemsCollected.ToString();
-        endGameWave.text = "Wave: " + currentWave.ToString();
+        endGameWave.text = "Wave: ";// + .ToString();
 
         // Reset values when the game ends
         // You may choose to reset other things, but not gems
