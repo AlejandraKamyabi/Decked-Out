@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class LightningStrike : MonoBehaviour
 {
-    public float attackRange = 2f;
+    public float attackRange = 2f;    
     [SerializeField] private float damage;
 
     private void Start()
     {
-        Invoke("DealDamage", 0.5f);
+        Invoke("DealDamage", 0.5f);        
     }
 
     private void DealDamage()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
-
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Enemy"))

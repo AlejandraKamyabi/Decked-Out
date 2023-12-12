@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 public class CardRandoEngine : MonoBehaviour
@@ -27,6 +28,7 @@ public class CardRandoEngine : MonoBehaviour
 
     [Header("Hand Cards Data")]
     public int handSize;
+    public int spellUses = 4;
    
 
     [Header("Button Input Modifers")]
@@ -37,6 +39,7 @@ public class CardRandoEngine : MonoBehaviour
     public TowerCardSO card0Data;
     public Image cardSpace0Background;
     public string card0Name;
+    public TextMeshProUGUI card0SpellUsesText;
     public Image card0TowerImage;
     public Image card0IconImage;
     public int card0TowerID;
@@ -48,6 +51,7 @@ public class CardRandoEngine : MonoBehaviour
     public TowerCardSO card1Data;
     public Image cardSpace1Background;
     public string card1Name;
+    public TextMeshProUGUI card1SpellUsesText;
     public Image card1TowerImage;
     public Image card1IconImage;
     public int card1TowerID;
@@ -58,6 +62,7 @@ public class CardRandoEngine : MonoBehaviour
     public TowerCardSO card2Data;
     public Image cardSpace2Background;
     public string card2Name;
+    public TextMeshProUGUI card2SpellUsesText;
     public Image card2TowerImage;
     public Image card2IconImage;
     public int card2TowerID;
@@ -68,6 +73,7 @@ public class CardRandoEngine : MonoBehaviour
     public TowerCardSO card3Data;
     public Image cardSpace3Background;
     public string card3Name;
+    public TextMeshProUGUI card3SpellUsesText;
     public Image card3TowerImage;
     public Image card3IconImage;
     public int card3TowerID;
@@ -78,6 +84,7 @@ public class CardRandoEngine : MonoBehaviour
     public TowerCardSO card4Data;
     public Image cardSpace4Background;
     public string card4Name;
+    public TextMeshProUGUI card4SpellUsesText;
     public Image card4TowerImage;
     public Image card4IconImage;
     public int card4TowerID;
@@ -112,18 +119,20 @@ public class CardRandoEngine : MonoBehaviour
         transform.rotation = bottomSpot.rotation;
         cardSpace0.gameObject.SetActive(false);        
         cardSpace1.gameObject.SetActive(false);        
-        cardSpace2.gameObject.SetActive(false);       
+        cardSpace2.gameObject.SetActive(false);        
         cardSpace3.gameObject.SetActive(false);        
-        spell0Usage=0;   
+        cardSpace4.gameObject.SetActive(false);        
+        spell0Usage =0;   
         spell1Usage=0;
         spell2Usage=0;
         spell3Usage=0;
         spell4Usage=0;
-    cardSpace4.gameObject.SetActive(false);        
+          
         blockingButton.gameObject.SetActive(false);
         timerSlider.gameObject.SetActive(false);
         timer = delayTimer;        
         NewWave();
+        MoveToBottom();
     }
     private void Update()
     {
@@ -170,13 +179,19 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace1.gameObject.SetActive(true);
         cardSpace2.gameObject.SetActive(true);
         cardSpace3.gameObject.SetActive(true);
-        cardSpace4.gameObject.SetActive(true);      
+        cardSpace4.gameObject.SetActive(true);
         GetCards();
         card0Used = false;
+        spell0Usage = 0;
         card1Used = false;
+        spell1Usage = 0;
         card2Used = false;
+        spell2Usage = 0;
         card3Used = false;
+        spell3Usage = 0;
         card4Used = false;
+        spell4Usage = 0;
+        
     }
     public void GetCards()
     {       
@@ -201,28 +216,33 @@ public class CardRandoEngine : MonoBehaviour
         card0TowerImage.sprite = card0Data.image;
         card0IconImage.sprite = card0Data.icon;
         card0TowerID = card0Data.towerID;
+           
 
         cardSpace1Background.sprite = card1Data.background;
         card1TowerImage.sprite = card1Data.image;
         card1IconImage.sprite = card1Data.icon;
         card1TowerID = card1Data.towerID;
+       
 
         cardSpace2Background.sprite = card2Data.background;
         card2TowerImage.sprite = card2Data.image;
         card2IconImage.sprite = card2Data.icon;
         card2TowerID = card2Data.towerID;
+      
 
         cardSpace3Background.sprite = card3Data.background;
         card3TowerImage.sprite = card3Data.image;
         card3IconImage.sprite = card3Data.icon;
         card3TowerID = card3Data.towerID;
+        
 
         cardSpace4Background.sprite = card4Data.background;
         card4TowerImage.sprite = card4Data.image;
         card4IconImage.sprite = card4Data.icon;
         card4TowerID = card4Data.towerID;
+        
 
-       
+
     }  
 
     public void Button0()
@@ -239,6 +259,18 @@ public class CardRandoEngine : MonoBehaviour
         else if (card0TowerID == 7)
         {
             spell0Usage++;
+            if (spell0Usage == 1)
+            {
+                card0SpellUsesText.text = "III";
+            }
+            if (spell0Usage == 2)
+            {
+                card0SpellUsesText.text = "II";
+            }
+            if (spell0Usage == 3)
+            {
+                card0SpellUsesText.text = "I";
+            }
             if (spell0Usage == 4)
             {
 
@@ -264,6 +296,18 @@ public class CardRandoEngine : MonoBehaviour
         else if (card1TowerID == 7)
         {
             spell1Usage++;
+            if (spell1Usage == 1)
+            {
+                card1SpellUsesText.text = "III";
+            }
+            if (spell1Usage == 2)
+            {
+                card1SpellUsesText.text = "II";
+            }
+            if (spell1Usage == 3)
+            {
+                card1SpellUsesText.text = "I";
+            }
             if (spell1Usage == 4)
             {
                 spell1Usage = 0;
@@ -288,6 +332,18 @@ public class CardRandoEngine : MonoBehaviour
         else if (card2TowerID == 7)
         {
             spell2Usage++;
+            if (spell2Usage == 1)
+            {
+                card2SpellUsesText.text = "III";
+            }
+            if (spell2Usage == 2)
+            {
+                card2SpellUsesText.text = "II";
+            }
+            if (spell2Usage == 3)
+            {
+                card2SpellUsesText.text = "I";
+            }
             if (spell2Usage == 4)
             {
                 spell2Usage = 0;
@@ -312,6 +368,18 @@ public class CardRandoEngine : MonoBehaviour
         else if (card3TowerID == 7)
         {
             spell3Usage++;
+            if (spell3Usage == 1)
+            {
+                card3SpellUsesText.text = "III";
+            }
+            if (spell3Usage == 2)
+            {
+                card3SpellUsesText.text = "II";
+            }
+            if (spell3Usage == 3)
+            {
+                card3SpellUsesText.text = "I";
+            }
             if (spell3Usage == 4)
             {
                 spell3Usage = 0;
@@ -336,6 +404,18 @@ public class CardRandoEngine : MonoBehaviour
         else if (card4TowerID == 7)
         {
             spell4Usage++;
+            if (spell4Usage == 1)
+            {
+                card4SpellUsesText.text = "III";
+            }
+            if (spell4Usage == 2)
+            {
+                card4SpellUsesText.text = "II";
+            }
+            if (spell4Usage == 3)
+            {
+                card4SpellUsesText.text = "I";
+            }
             if (spell4Usage == 4)
             {
                 spell4Usage = 0;
@@ -423,6 +503,11 @@ public class CardRandoEngine : MonoBehaviour
         transform.position = leftSpot.position;
         transform.rotation = leftSpot.rotation;
         transform.localScale = leftSpotScale;
+        card0SpellUsesText.gameObject.SetActive(false);
+        card1SpellUsesText.gameObject.SetActive(false);
+        card2SpellUsesText.gameObject.SetActive(false);
+        card3SpellUsesText.gameObject.SetActive(false);
+        card4SpellUsesText.gameObject.SetActive(false);
     }
    
     public void MoveToBottom()
@@ -431,6 +516,56 @@ public class CardRandoEngine : MonoBehaviour
         transform.position = bottomSpot.position;
         transform.rotation = bottomSpot.rotation;
         transform.localScale = bottomSpotScale;
+        if (card0TowerID == 7)
+        {
+            card0SpellUsesText.text = "IV";
+            card0SpellUsesText.gameObject.SetActive(true);
+        }
+        else if (card0TowerID != 7)
+        {
+            card0SpellUsesText.text = "IV";
+            card0SpellUsesText.gameObject.SetActive(false);
+        }
+        if (card1TowerID == 7)
+        {
+            card1SpellUsesText.text = "IV";
+            card1SpellUsesText.gameObject.SetActive(true);
+        }
+        else if (card1TowerID != 7)
+        {
+            card1SpellUsesText.text = "IV";
+            card1SpellUsesText.gameObject.SetActive(false);
+        }
+        if (card2TowerID == 7)
+        {
+            card2SpellUsesText.text = "IV";
+            card2SpellUsesText.gameObject.SetActive(true);
+        }
+        else if (card2TowerID != 7)
+        {
+            card2SpellUsesText.text = "IV";
+            card2SpellUsesText.gameObject.SetActive(false);
+        }
+        if (card3TowerID == 7)
+        {
+            card3SpellUsesText.text = "IV";
+            card3SpellUsesText.gameObject.SetActive(true);
+        }
+        else if (card3TowerID != 7)
+        {
+            card3SpellUsesText.text = "IV";
+            card3SpellUsesText.gameObject.SetActive(false);
+        }
+        if (card4TowerID == 7)
+        {
+            card4SpellUsesText.text = "IV";
+            card4SpellUsesText.gameObject.SetActive(true);
+        }
+        else if (card4TowerID != 7)
+        {
+            card4SpellUsesText.text = "IV";
+            card4SpellUsesText.gameObject.SetActive(false);
+        }
     }    
    
    

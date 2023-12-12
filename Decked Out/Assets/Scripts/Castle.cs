@@ -36,8 +36,8 @@ public class Castle : MonoBehaviour
 
     private void Die()
     {
-        wave.StopWave();
         endGame.Death();
+        wave.StopWave();
 
     }
     public void ResetHealth()

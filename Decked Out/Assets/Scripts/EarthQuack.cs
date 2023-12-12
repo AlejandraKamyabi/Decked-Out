@@ -10,6 +10,7 @@ public class EarthQuack : MonoBehaviour, ITower
     public GameObject effect;
     [SerializeField] private float Health = 2;
     private GameObject towerGameObject;
+    private SpriteRenderer spriteRenderer;
     private float initialDamage;
     private float initialRateOfFire;
     private bool hasBeenBuffed = false;
@@ -24,10 +25,14 @@ public class EarthQuack : MonoBehaviour, ITower
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         StartCoroutine(DamageOverTime());
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
-
+        if (health == 0)
+        {
+            spriteRenderer.color = Color.red;
+        }
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
         foreach (Collider2D collider in colliders)
@@ -129,9 +134,9 @@ public class EarthQuack : MonoBehaviour, ITower
                 RateOfFire = 0.1f;
             }
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
+            if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
                 spriteRenderer.color = buffColor;
             }
             hasBeenBuffed = true;

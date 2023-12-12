@@ -145,6 +145,7 @@ public class MouseInputHandling : MonoBehaviour
 
         if (Mathf.Abs(towerPosition.x) <= unitSquareSize / 1 && Mathf.Abs(towerPosition.y) <= unitSquareSize / 2.5)
         {
+            
             Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePos, 0.1f);
             bool towerCollision = false;
 
@@ -152,8 +153,16 @@ public class MouseInputHandling : MonoBehaviour
             {
                 if (collider.CompareTag("Tower") || collider.CompareTag("Buffer") || collider.CompareTag("Placed"))
                 {
-                    towerCollision = true;                   
-                    break;
+                    if (towerSelection.tower != 7)
+                    {
+                        towerCollision = true;
+                        break;
+                    }
+                    else
+                    {
+                        towerCollision = false;
+                    }
+                    
                 }
                
             }
@@ -161,6 +170,7 @@ public class MouseInputHandling : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 towerRig.gameObject.SetActive(false);
+
 
 
                 if (!towerCollision)

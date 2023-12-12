@@ -45,5 +45,9 @@ public class MainMenuManager : MonoBehaviour
         scripturesPanel.SetActive(false);
         minimizeCollider.SetActive(false);
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
    
 }

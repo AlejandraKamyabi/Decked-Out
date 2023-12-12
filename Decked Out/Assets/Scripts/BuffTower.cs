@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class BuffTower : MonoBehaviour, IBuffTower
 {
-    public float buffRange = 2.0f;
-    public float damageBuff = 2.0f;
-    public float rateOfFireBuff = 0.2f;
+    public float buffRange;
+    public float damageBuff;
+    public float rateOfFireBuff;
     private List<ITower> towersInRange = new List<ITower>();
 
     [SerializeField] private float Health;

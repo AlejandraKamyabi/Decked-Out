@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public class LevelManager : MonoBehaviour
 {

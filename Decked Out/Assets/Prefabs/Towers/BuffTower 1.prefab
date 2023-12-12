@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5217ec4489bbef40acf9db3269b210e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffRange: 0.5
+  buffRange: 0.75
   damageBuff: 5
   rateOfFireBuff: 0.7
   Health: 5
