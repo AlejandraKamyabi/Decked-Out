@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7405903770306088364}
   - component: {fileID: 7405903770306088371}
   - component: {fileID: -8631973492879612246}
-  - component: {fileID: -2471690774220588196}
+  - component: {fileID: 405179405569602328}
   m_Layer: 6
-  m_Name: FlameThrower
-  m_TagString: Tower
+  m_Name: FrostThrower
+  m_TagString: Buffer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 60
-  m_Sprite: {fileID: 21300000, guid: 22e501a7e0d179b4aa93e38a4b00ebe6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cdea1b9c376640c4c9fe133e0b54cdce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.028621078}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.75, y: 3}
   m_EdgeRadius: 0
 --- !u!50 &-8631973492879612246
 Rigidbody2D:
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-2471690774220588196
+--- !u!114 &405179405569602328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,11 +143,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7405903770306088367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61eb04ba4da750e44a423a56b7112494, type: 3}
+  m_Script: {fileID: 11500000, guid: a7db567f871df4048acff2c7838388de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 4
-  Flame: {fileID: 3956206777213680668, guid: 182c1aafca12b4e4c881f8ad13344350, type: 3}
-  Damage: 3
-  RateOfFire: 2
-  Health: 6
+  attackRange: 2
+  Health: 4

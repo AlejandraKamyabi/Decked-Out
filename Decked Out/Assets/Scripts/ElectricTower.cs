@@ -7,15 +7,40 @@ public class ElectricTower : MonoBehaviour, ITower
 {
     public float attackRange;
     public GameObject zapPrefab;
-    [SerializeField] private float Damage = 10.0f;
-    [SerializeField] private float RateOfFire = 1.0f;
+    [SerializeField] private float Damage;
+    [SerializeField] private float RateOfFire;
     [SerializeField] private float Health = 2;
+    private float initialDamage;
+    private float initialRateOfFire;
     private GameObject towerGameObject;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+    private void Start()
+    {
+        initialDamage = Damage;
+        initialRateOfFire = RateOfFire;
+    }
     private void Update()
     {
         FindAndShootTarget();
+    }
+    public void ResetTowerEffects()
+    {
+        Damage = initialDamage;
+        RateOfFire = initialRateOfFire;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Color defaultColor = Color.white;
+            spriteRenderer.color = defaultColor;
+        }
+        hasBeenBuffed = false;
     }
     public float damage
     {
@@ -54,7 +79,6 @@ public class ElectricTower : MonoBehaviour, ITower
                 spriteRenderer.color = buffColor;
             }
             hasBeenBuffed = true;
-
         }
     }
     private void FindAndShootTarget()

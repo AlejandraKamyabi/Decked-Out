@@ -9,8 +9,19 @@ public class FrostTower : MonoBehaviour, ITower
     private float RateOfFire = 1.0f;
     [SerializeField] private float Health = 2;
     private GameObject towerGameObject;
+    private float initialDamage;
+    private float initialRateOfFire;
     private bool hasBeenBuffed = false;
-
+    private void Start()
+    {
+        initialDamage = Damage;
+        initialRateOfFire = RateOfFire;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
     private void Update()
     {
 
@@ -73,8 +84,20 @@ public class FrostTower : MonoBehaviour, ITower
                 Color buffColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
                 spriteRenderer.color = buffColor;
             }
-            hasBeenBuffed = true;
 
         }
+    }
+    public void ResetTowerEffects()
+    {
+        Damage = initialDamage;
+        RateOfFire = initialRateOfFire;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Color defaultColor = Color.white;
+            spriteRenderer.color = defaultColor;
+        }
+
+        hasBeenBuffed = false;
     }
 }

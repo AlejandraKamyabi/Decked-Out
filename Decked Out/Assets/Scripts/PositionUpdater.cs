@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PositionUpdater : MonoBehaviour
 {
-    private Transform platformTransform;
+    public Transform platformTransform;
     private Vector3 offset;
     private bool hasCollided = false;
     private WaveManager mouse;
@@ -29,7 +29,7 @@ public class PositionUpdater : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (gameObject.CompareTag("Buffer"))
+        if (gameObject.CompareTag("Buffer") || gameObject.CompareTag("Placed"))
         {
             return;
         }

@@ -41,11 +41,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3913288999114805958}
   - component: {fileID: 3913288999114805959}
+  - component: {fileID: 3913288999114805944}
   - component: {fileID: 1920306922376555978}
-  - component: {fileID: 7651664643644394062}
-  - component: {fileID: 4658380144572453347}
+  - component: {fileID: 6658792433454387541}
   m_Layer: 3
-  m_Name: Enemy kaboom
+  m_Name: Golem
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 3913288999114805945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.1, y: -1.32, z: 0}
-  m_LocalScale: {x: 0.031221177, y: 0.031221177, z: 0.031221177}
+  m_LocalScale: {x: 0.11164374, y: 0.11164374, z: 0.11164374}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3913288997857569340}
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: acdc1aed4fece444bae03ca7a96d761d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d23aa2d780ec3c458bbcc42677e80a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,6 +119,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3913288999114805944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e12011f114e443449fd63bdaa3bb628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
+  moveSpeed: 0.3
+  damage: 10
+  maxHealth: 350
+  healthSlider: {fileID: 956535979688031471, guid: 05d591599fa8af24b880994cfe2c8817, type: 3}
+  zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
+  isBurning: 0
+  isFrozen: 0
+  deathSound: {fileID: 8300000, guid: 754d75f5564d7dd45bf68235144d6def, type: 3}
 --- !u!70 &1920306922376555978
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -132,32 +153,10 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02993153, y: -1.317161}
-  m_Size: {x: 8.565657, y: 14.36}
+  m_Offset: {x: 0.02993159, y: -3.0399806}
+  m_Size: {x: 8.565657, y: 8.565657}
   m_Direction: 0
---- !u!114 &7651664643644394062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913288999114805945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56fb31dc08fe1024abce035b47b6a428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-  moveSpeed: 2
-  damage: 25
-  maxHealth: 50
-  healthSlider: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
-  zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
-  isBurning: 0
-  effect: {fileID: 5573567819655174200, guid: d526ccb5e04baa941acdce1105d46085, type: 3}
-  isFrozen: 0
-  deathSound: {fileID: 8300000, guid: f01c623f724825e44a923d1ae50256f2, type: 3}
---- !u!114 &4658380144572453347
+--- !u!114 &6658792433454387541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,4 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e259ba58349c84d9a4e59aa84dd08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDeathSound: {fileID: 8300000, guid: f01c623f724825e44a923d1ae50256f2, type: 3}
+  enemyDeathSound: {fileID: 8300000, guid: 754d75f5564d7dd45bf68235144d6def, type: 3}

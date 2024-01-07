@@ -175,6 +175,13 @@ public class WaveManager : MonoBehaviour
             Destroy(tower);
 
         }
+        GameObject[] placedTowers = GameObject.FindGameObjectsWithTag("Placed");
+        foreach (GameObject placedTower in placedTowers)
+        {
+            ITower towerScript = placedTower.GetComponent<ITower>();
+            Destroy(placedTower);
+
+        }
         GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
         foreach (GameObject empty in Empties)
         {
@@ -199,6 +206,16 @@ public class WaveManager : MonoBehaviour
         foreach (GameObject tower in towers)
         {
             ITower towerScript = tower.GetComponent<ITower>();
+
+            if (towerScript != null)
+            {
+                towerScript.health--;
+            }
+        }
+        GameObject[] PlacedTowers = GameObject.FindGameObjectsWithTag("Placed");
+        foreach (GameObject PlacedTower in PlacedTowers)
+        {
+            ITower towerScript = PlacedTower.GetComponent<ITower>();
 
             if (towerScript != null)
             {
@@ -249,6 +266,19 @@ public class WaveManager : MonoBehaviour
             {
 
                 Destroy(tower);
+
+            }
+
+        }
+        GameObject[] PlacedTowers = GameObject.FindGameObjectsWithTag("Placed");
+        foreach (GameObject PlacedTower in PlacedTowers)
+        {
+            ITower towerScript = PlacedTower.GetComponent<ITower>();
+
+            if (towerScript != null && towerScript.health <= 0)
+            {
+
+                Destroy(PlacedTower);
 
             }
 

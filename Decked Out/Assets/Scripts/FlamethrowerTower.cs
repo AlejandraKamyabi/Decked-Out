@@ -7,17 +7,30 @@ public class FlamethrowerTower : MonoBehaviour, ITower
 {
     public float attackRange;
     public GameObject Flame;
-    [SerializeField] private float Damage = 3.0f;
-    [SerializeField] private float RateOfFire = 1.0f;
+    [SerializeField] private float Damage;
+    [SerializeField] private float RateOfFire;
     [SerializeField] private float Health = 2;
     private GameObject towerGameObject;
     private float lastAttackTime;
+    private float initialDamage;
+    private float initialRateOfFire;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+    private void Start()
+    {
+        initialDamage = Damage;
+        initialRateOfFire = RateOfFire;
+    }
     private void Update()
     {
         FindAndShootTarget();
     }
+
     public float damage
     {
         get { return Damage; }
@@ -74,7 +87,18 @@ public class FlamethrowerTower : MonoBehaviour, ITower
             }
         }
     }
-
+    public void ResetTowerEffects()
+    {
+        Damage = initialDamage;
+        RateOfFire = initialRateOfFire;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Color defaultColor = Color.white;
+            spriteRenderer.color = defaultColor;
+        }
+        hasBeenBuffed = false;
+    }
     private void ShootArrow(Transform target)
     {
 

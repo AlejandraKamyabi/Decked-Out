@@ -2,17 +2,27 @@ using UnityEngine;
 
 public class MouseInputHandling : MonoBehaviour
 {
+    [Header("Range Colours")]
+    public Color rigColor;
+    public Color notPlaceable;
+    public Color onIsland;
+    public Color supportOnIsland;
     private TowerSelection towerSelection;
     private GameObject currentTowerInstance;
     public GameObject castleGameObject;
     public CardRandoEngine cardRandoEngine;
+    
     private WaveManager Wave;
     Vector3 mousePosition;
     float attackRange;
     private float unitSquareSize = 10.0f;
     public bool collisionOccurred = false;
     private bool _initialized = false;
-
+    private bool islandTowerSelection = false;
+    public GameObject towerRig;
+    private SpriteRenderer towerRigSprite;
+    public SpriteRenderer rangeIndicator;
+    
     public void Initialize()
     {
         Debug.Log("<color=cyan> INITIALIZAING </color>");
@@ -20,6 +30,8 @@ public class MouseInputHandling : MonoBehaviour
         castleGameObject = GameObject.Find("Main Castle");
         Wave = ServiceLocator.Get<WaveManager>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
+        towerRig.gameObject.SetActive(false);
+        rigColor = rangeIndicator.color;
         if (castleGameObject == null)
         {
             castleGameObject = GameObject.FindWithTag("Player");
@@ -32,8 +44,9 @@ public class MouseInputHandling : MonoBehaviour
     {
         if (_initialized == false) { return; }
 
-        if (towerSelection.IsSelectingTower() && Wave.towersPlaced < 5)
+        if (towerSelection.IsSelectingTower())
         {
+            
             HandleTowerPlacement();
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;           
@@ -50,34 +63,105 @@ public class MouseInputHandling : MonoBehaviour
 
     private void HandleTowerPlacement()
     {
-        if (Input.GetMouseButtonDown(0))
+        
+        towerRig.transform.position = mousePosition;
+        towerRigSprite = towerRig.GetComponent<SpriteRenderer>();
+        
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 towerPosition = mousePos;
+        mousePos.z = 0;
+        float minDistance = 1.0f;
+        Vector3 castlePosition = castleGameObject.transform.position;
+        float distanceToCastle = Vector3.Distance(mousePos, castlePosition);
+
+        Vector2 mouseRay = mousePos;
+        RaycastHit2D hit = Physics2D.Raycast(mouseRay, Vector2.zero);
+
+        if (distanceToCastle < minDistance)
         {
+            towerRigSprite.color = notPlaceable;
+            rangeIndicator.color = notPlaceable;
+            return;
+        }
+        if (towerSelection.tower == 1)
+        {
+            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
+            towerRigSprite.sprite = towerSelection.towerPrefab.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.towerPrefab.GetComponent<ArcherTower>().attackRange;
+            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
 
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 towerPosition = mousePos;
-            mousePos.z = 0;
-            float minDistance = 1.0f;
-            Vector3 castlePosition = castleGameObject.transform.position;
-            float distanceToCastle = Vector3.Distance(mousePos, castlePosition);
+        }
+        if (towerSelection.tower == 2)
+        {
+            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
+            towerRigSprite.sprite = towerSelection.towerPrefab1.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.towerPrefab1.GetComponent<FlamethrowerTower>().attackRange;
+            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+        }
+        if (towerSelection.tower == 3)
+        {
+            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
+            towerRigSprite.sprite = towerSelection.towerPrefab2.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.towerPrefab2.GetComponent<FrostTower>().attackRange;
+            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+        }
+        if (towerSelection.tower == 4)
+        {
+            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
+            towerRigSprite.sprite = towerSelection.towerPrefab3.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.towerPrefab3.GetComponent<BuffTower>().buffRange;
+            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+        }
+        if (towerSelection.tower == 5)
+        {
+            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
+            towerRigSprite.sprite = towerSelection.towerPrefab4.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.towerPrefab4.GetComponent<ElectricTower>().attackRange;
+            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+        }
 
-            if (distanceToCastle < minDistance)
+        if (towerSelection.tower == 6)
+        {
+            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
+            towerRigSprite.sprite = towerSelection.towerPrefab5.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.towerPrefab5.GetComponent<EarthQuack>().attackRange;
+            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+        }
+        if (towerSelection.tower == 7)
+        {
+            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
+            towerRigSprite.sprite = towerSelection.spellPrefab1.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.spellPrefab1.GetComponent<LightningStrike>().attackRange;
+            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+        }
+        towerRig.gameObject.SetActive(true);
+
+        if (Mathf.Abs(towerPosition.x) <= unitSquareSize / 1 && Mathf.Abs(towerPosition.y) <= unitSquareSize / 2.5)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePos, 0.1f);
+            bool towerCollision = false;
+
+            foreach (Collider2D collider in colliders)
             {
-                return;
-            }
-
-            if (Mathf.Abs(towerPosition.x) <= unitSquareSize / 1 && Mathf.Abs(towerPosition.y) <= unitSquareSize / 2.5)
-            {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePos, 0.1f);
-                bool towerCollision = false;
-
-                foreach (Collider2D collider in colliders)
+                if (collider.CompareTag("Tower") || collider.CompareTag("Buffer") || collider.CompareTag("Placed"))
                 {
-                    if (collider.CompareTag("Tower") || collider.CompareTag("Buffer"))
-                    {
-                        towerCollision = true;
-                        break;
-                    }
+                    towerCollision = true;                   
+                    break;
                 }
+               
+            }
+            
+            if (Input.GetMouseButtonUp(0))
+            {
+                towerRig.gameObject.SetActive(false);
+
 
                 if (!towerCollision)
                 {
@@ -105,30 +189,83 @@ public class MouseInputHandling : MonoBehaviour
                     {
                         currentTowerInstance = Instantiate(towerSelection.towerPrefab5, mousePos, Quaternion.identity);
                     }
+                    else if (towerSelection.tower == 7)
+                    {
+                        currentTowerInstance = Instantiate(towerSelection.spellPrefab1, mousePos, Quaternion.identity);
+                    }
 
                     SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
+                    if (!islandTowerSelection)
+                    {
+                       currentTowerInstance.tag = "Placed";
+                    }
                     if (towerRenderer != null)
                     {
-                        int orderInLayer = Wave.towersPlaced; 
-                        towerRenderer.sortingOrder -= orderInLayer;
+                        float baseValue = 1000;
+                        float orderInLayer = (baseValue - towerRig.transform.position.y); 
+
+                        //if (orderInLayer <= 0)
+                        {
+                           // orderInLayer = 60;
+                        }
+
+                        towerRenderer.sortingOrder = ((int)orderInLayer);
+                        if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform") && towerSelection.tower != 4 && towerSelection.tower != 6 && towerSelection.tower != 3 && towerSelection.tower != 7)
+                        {
+                            towerRenderer.sortingOrder = 2501;
+                        }
                     }
-
-
                     towerSelection.SetSelectingTower(false);
                     Wave.IncrementTowersPlaced();
-                    if (!Wave.collisionOccurred)
+                    if (!Wave.collisionOccurred && towerSelection.tower != 7)
                     {
-                        currentTowerInstance.AddComponent<PositionUpdater>();
-               
+                        currentTowerInstance.AddComponent<PositionUpdater>();                        
                     }
+                    
 
                 }
+
+
             }
-        }
+            if (towerCollision)
+            {                
+                towerRigSprite.color = notPlaceable;
+                rangeIndicator.color = notPlaceable;
+            }
+
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
+            {
+                if ((towerSelection.tower == 3) || (towerSelection.tower == 4) || (towerSelection.tower == 6) || (towerSelection.tower == 7))
+                {
+                    towerRigSprite.color = supportOnIsland;
+                    rangeIndicator.color = supportOnIsland;
+                }
+                else
+                {
+                    towerRigSprite.color = onIsland;
+                    rangeIndicator.color = onIsland;
+                    islandTowerSelection = true;
+                }
+
+            }
+
+            else if (!towerCollision)
+            {
+                towerRigSprite.color = Color.white;
+                rangeIndicator.color = rigColor;
+            }
+            else { islandTowerSelection = false; }
+        }  
+        
         else if (currentTowerInstance != null && Input.GetMouseButtonDown(1))
         {
             Destroy(currentTowerInstance);
             towerSelection.SetSelectingTower(false);
+        }
+        else
+        {
+            towerRigSprite.color = notPlaceable;
+            rangeIndicator.color = notPlaceable;
         }
     }
 

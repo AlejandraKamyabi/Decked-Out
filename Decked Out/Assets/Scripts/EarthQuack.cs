@@ -5,14 +5,24 @@ using UnityEngine;
 public class EarthQuack : MonoBehaviour, ITower
 {
     public float attackRange = 5.0f;
-    [SerializeField] private float Damage = 10.0f;
+    [SerializeField] private float Damage;
     private float RateOfFire = 1.0f;
     public GameObject effect;
     [SerializeField] private float Health = 2;
     private GameObject towerGameObject;
+    private float initialDamage;
+    private float initialRateOfFire;
     private bool hasBeenBuffed = false;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
     private void Start()
     {
+        initialDamage = Damage;
+        initialRateOfFire = RateOfFire;
         StartCoroutine(DamageOverTime());
     }
     private void Update()
@@ -43,6 +53,19 @@ public class EarthQuack : MonoBehaviour, ITower
                 }
             }
         }
+    }
+    public void ResetTowerEffects()
+    {
+        Damage = initialDamage;
+        RateOfFire = initialRateOfFire;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Color defaultColor = Color.white;
+            spriteRenderer.color = defaultColor;
+        }
+
+        hasBeenBuffed = false;
     }
     private IEnumerator DamageOverTime()
     {
@@ -112,7 +135,6 @@ public class EarthQuack : MonoBehaviour, ITower
                 spriteRenderer.color = buffColor;
             }
             hasBeenBuffed = true;
-
         }
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - Buffer
   - Empty
   - Health
+  - Placed
   layers:
   - Default
   - TransparentFX
