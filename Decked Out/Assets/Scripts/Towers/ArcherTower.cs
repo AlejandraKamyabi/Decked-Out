@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class ArcherTower : MonoBehaviour, ITower
 {
-    public float attackRange; 
-    public GameObject arrowPrefab;
+    [Header("Tower Stats")]
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] public float attackRange;
+    
     [SerializeField] private float Damage;
     [SerializeField] private float RateOfFire;
     [SerializeField] private float Health = 2;
+    [SerializeField] private AudioSource audioSource;
+
     private GameObject towerGameObject;
     private SpriteRenderer spriteRenderer;
     private float initialDamage;
     private float initialRateOfFire;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
-    public AudioSource audioSource;
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
