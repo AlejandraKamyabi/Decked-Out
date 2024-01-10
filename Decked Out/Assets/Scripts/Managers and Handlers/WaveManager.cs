@@ -16,6 +16,8 @@ public class Wave
 
 public class WaveManager : MonoBehaviour
 {
+    //Managing Wave
+
     public GameObject enemyPrefab;
     public GameObject KaboomPrefab;
     public GameObject GolemPrefab;
@@ -31,18 +33,24 @@ public class WaveManager : MonoBehaviour
     public int spawnGolemEnemyAfter = 10;
     private EnemyKillTracker EnemyKillTracker;
     private Coroutine spawningCoroutine;
-    public CardRandoEngine cardRandoEngine;    
-
+    public CardRandoEngine cardRandoEngine;
     private GameLoader _loader;    
-
     private Button startButton;
     public int towersPlaced = 0;
     public int currentWave = 0;
+
+
+
+    //Deck Building
+
+    private bool deckBuilding;
+
 
     public WaveManager Initialize()
     {
         //towersLeftText = FindObjectOfType<TMP_Text>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
+        
         Debug.Log("Wave Manager Initializing");
         EnemyKillTracker = FindObjectOfType<EnemyKillTracker>();       
         return this;
@@ -68,6 +76,7 @@ public class WaveManager : MonoBehaviour
     }
     private IEnumerator StartWave()
     {
+ 
         if (currentWave < waves.Count)
         {
             int numberOfEnemies = waves[currentWave].numberOfEnemies;
@@ -108,6 +117,8 @@ public class WaveManager : MonoBehaviour
 
             ToggleStartButton(true);
 
+            ShowCardSelectionUI();
+
             cardRandoEngine.MoveToBottom();
             towersPlaced = 0;
             TowersLeft = 5;
@@ -115,6 +126,22 @@ public class WaveManager : MonoBehaviour
             EnemyKillTracker.WaveUpdate();
         }
     }
+    private void ShowCardSelectionUI()
+    {
+        deckBuilding = true;
+    }
+    public void OnCardSelected()
+    {
+        deckBuilding = false;
+
+    }
+    public bool getDeckBuilding()
+    {
+
+        return deckBuilding;
+
+    }
+
     private void SpawnKaboomEnemy()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
