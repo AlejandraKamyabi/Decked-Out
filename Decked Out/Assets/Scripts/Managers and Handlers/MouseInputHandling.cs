@@ -14,7 +14,7 @@ public class MouseInputHandling : MonoBehaviour
     
     private WaveManager Wave;
     Vector3 mousePosition;
-    float attackRange;
+  
     private float unitSquareSize = 10.0f;
     public bool collisionOccurred = false;
     private bool _initialized = false;

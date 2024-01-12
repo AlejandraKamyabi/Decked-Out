@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class StartGameButton : MonoBehaviour
 {
     [SerializeField] private Button _startButton;
-    [SerializeField] private Text text;
 
     private GameLoader _loader;
 
@@ -18,7 +17,6 @@ public class StartGameButton : MonoBehaviour
     {
         var waveManager = ServiceLocator.Get<WaveManager>();
         waveManager.SetStartButton(_startButton);
-        waveManager.SetText(text);
     }
 
 }

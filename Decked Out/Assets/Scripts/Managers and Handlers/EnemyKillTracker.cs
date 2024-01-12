@@ -17,7 +17,6 @@ public class EnemyKillTracker : MonoBehaviour
     public float duration;
     public float gemDropChance = 0.01f;
     private GameLoader _loader;
-    private WaveManager mouse;
 
     private void Start()
     {
@@ -29,7 +28,6 @@ public class EnemyKillTracker : MonoBehaviour
     {
         UpdateEnemyCountText();
         UpdateGemCountText();
-        mouse = ServiceLocator.Get<WaveManager>();
     }
 
     public void EnemyDestroyed()

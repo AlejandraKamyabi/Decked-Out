@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 using TMPro;
 
 
@@ -34,7 +33,6 @@ public class WaveManager : MonoBehaviour
     private EnemyKillTracker EnemyKillTracker;
     private Coroutine spawningCoroutine;
     public CardRandoEngine cardRandoEngine;
-    private GameLoader _loader;    
     private Button startButton;
     public int towersPlaced = 0;
     public int currentWave = 0;
@@ -43,8 +41,24 @@ public class WaveManager : MonoBehaviour
 
     //Deck Building
 
-    private bool deckBuilding;
+    public Button buttonPrefab1;
+    public Button buttonPrefab2;
+    public Button buttonPrefab3;
 
+
+    private Button instantiatedButton1;
+    private Button instantiatedButton2;
+    private Button instantiatedButton3;
+
+
+    public Sprite greyCard;
+    public Sprite greenCard;
+    public Sprite blueCard;
+    public Sprite purpleCard;
+    public Sprite goldenCard;
+
+
+    private bool buttonsInstantiated = false;
 
     public WaveManager Initialize()
     {
@@ -63,17 +77,78 @@ public class WaveManager : MonoBehaviour
         spawningCoroutine = StartCoroutine(StartWave());
   
     }
+    private void UpdateButtonImages()
+    {
+        Sprite newImage = null;
+        switch (currentWave) 
+        {
+            case 1:
+                newImage = greyCard;
+                break;
+            case 2:
+                newImage = greenCard;
+                break;
+            case 3:
+                newImage = blueCard;
+                break;
+            case 4:
+                newImage = purpleCard;
+                break;
+            case 5:
+                newImage = goldenCard;
+                break;
+                // case 6:
+                //     Additional logic for wave 6
+        }
 
+        if (newImage != null)
+        {
+            instantiatedButton1.GetComponent<Image>().sprite = newImage;
+            instantiatedButton2.GetComponent<Image>().sprite = newImage;
+            instantiatedButton3.GetComponent<Image>().sprite = newImage;
+        }
+        else
+        {
+            Debug.LogError("Sprite for current wave not set");
+        }
+    }
     public void SetStartButton(Button button)
     {
         startButton = button;
         startButton.onClick.AddListener(StartWaves);
         ToggleStartButton(true); 
     }
-    public void SetText(Text text)
+    private void InstantiateButtonPrefabs()
     {
-        //towersLeftText.text = "Towers Left to Place: " + TowersLeft;
+        float buttonSpacing = 100; 
+        Vector3 centerPosition = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
+        
+        Vector3 position1 = new Vector3(centerPosition.x - buttonSpacing, centerPosition.y, centerPosition.z);
+        Vector3 position2 = new Vector3(centerPosition.x, centerPosition.y, centerPosition.z);
+        Vector3 position3 = new Vector3(centerPosition.x + buttonSpacing, centerPosition.y, centerPosition.z);
+
+     
+        instantiatedButton1 = Instantiate(buttonPrefab1, position1, Quaternion.identity).GetComponent<Button>();
+        instantiatedButton2 = Instantiate(buttonPrefab2, position2, Quaternion.identity).GetComponent<Button>();
+        instantiatedButton3 = Instantiate(buttonPrefab3, position3, Quaternion.identity).GetComponent<Button>();
+
+        buttonsInstantiated = true;
+
     }
+
+    public void ShowDeckBuildingOptions()
+    {
+        InstantiateButtonPrefabs();
+    }
+
+    public void ButtonClickedMethod()
+    {
+        instantiatedButton1.gameObject.SetActive(false);
+        instantiatedButton2.gameObject.SetActive(false);
+        instantiatedButton3.gameObject.SetActive(false);
+    }
+
     private IEnumerator StartWave()
     {
  
@@ -117,29 +192,20 @@ public class WaveManager : MonoBehaviour
 
             ToggleStartButton(true);
 
-            ShowCardSelectionUI();
-
+            if (!buttonsInstantiated)
+            {
+                InstantiateButtonPrefabs();
+            }
+            else
+            {
+                UpdateTowerHealth();
+            }
             cardRandoEngine.MoveToBottom();
             towersPlaced = 0;
             TowersLeft = 5;
             currentWave++;
             EnemyKillTracker.WaveUpdate();
         }
-    }
-    private void ShowCardSelectionUI()
-    {
-        deckBuilding = true;
-    }
-    public void OnCardSelected()
-    {
-        deckBuilding = false;
-
-    }
-    public bool getDeckBuilding()
-    {
-
-        return deckBuilding;
-
     }
 
     private void SpawnKaboomEnemy()

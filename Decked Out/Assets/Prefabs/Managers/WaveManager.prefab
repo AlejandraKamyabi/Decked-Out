@@ -149,3 +149,11 @@ MonoBehaviour:
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0
   currentWave: 0
+  buttonPrefab1: {fileID: 6313120196049931557, guid: 76de5aabdab190540bcc2e36bf90590d, type: 3}
+  buttonPrefab2: {fileID: 9143576714877646661, guid: fcc8ae870b634424fb19c64fddfdb957, type: 3}
+  buttonPrefab3: {fileID: 7495736493529718412, guid: 9b6b1c5d062099949a366f299570adf1, type: 3}
+  greyCard: {fileID: 21300000, guid: 22650383234d3e24ca9131310b52bf04, type: 3}
+  greenCard: {fileID: 21300000, guid: 22650383234d3e24ca9131310b52bf04, type: 3}
+  blueCard: {fileID: 21300000, guid: 7b276240032b8fa419849ff5eeba1a8e, type: 3}
+  purpleCard: {fileID: 21300000, guid: b8215b1c3f830234d816ee8a00fd84e2, type: 3}
+  goldenCard: {fileID: 21300000, guid: bc03351b8feb74c42a9cdef7c5ca01f5, type: 3}
