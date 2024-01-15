@@ -20,51 +20,42 @@ public class WaveManager : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject KaboomPrefab;
     public GameObject GolemPrefab;
+
+
     public float unitSquareSize = 10.0f;
     public float TowersLeft = 6;
     public bool kaboomEnemy = false;
     public Slider healthSliderPrefab;
+
     public List<Wave> waves = new List<Wave>();
     public TMP_Text towersLeftText;
     public bool collisionOccurred = false;
+
     private int enemiesSpawned = 0;
     public int spawnKaboomEnemyAfter = 4;
     public int spawnGolemEnemyAfter = 10;
+
     private EnemyKillTracker EnemyKillTracker;
     private Coroutine spawningCoroutine;
     public CardRandoEngine cardRandoEngine;
     private Button startButton;
+
+
     public int towersPlaced = 0;
     public int currentWave = 0;
 
 
-
     //Deck Building
 
-    public Button buttonPrefab1;
-    public Button buttonPrefab2;
-    public Button buttonPrefab3;
-
-
-    private Button instantiatedButton1;
-    private Button instantiatedButton2;
-    private Button instantiatedButton3;
-
-
-    public Sprite greyCard;
-    public Sprite greenCard;
-    public Sprite blueCard;
-    public Sprite purpleCard;
-    public Sprite goldenCard;
-
-
-    private bool buttonsInstantiated = false;
+    public CardHandling deck_Building;
 
     public WaveManager Initialize()
     {
         //towersLeftText = FindObjectOfType<TMP_Text>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
-        
+
+        deck_Building = FindObjectOfType<CardHandling>();
+
         Debug.Log("Wave Manager Initializing");
         EnemyKillTracker = FindObjectOfType<EnemyKillTracker>();       
         return this;
@@ -77,77 +68,14 @@ public class WaveManager : MonoBehaviour
         spawningCoroutine = StartCoroutine(StartWave());
   
     }
-    private void UpdateButtonImages()
-    {
-        Sprite newImage = null;
-        switch (currentWave) 
-        {
-            case 1:
-                newImage = greyCard;
-                break;
-            case 2:
-                newImage = greenCard;
-                break;
-            case 3:
-                newImage = blueCard;
-                break;
-            case 4:
-                newImage = purpleCard;
-                break;
-            case 5:
-                newImage = goldenCard;
-                break;
-                // case 6:
-                //     Additional logic for wave 6
-        }
 
-        if (newImage != null)
-        {
-            instantiatedButton1.GetComponent<Image>().sprite = newImage;
-            instantiatedButton2.GetComponent<Image>().sprite = newImage;
-            instantiatedButton3.GetComponent<Image>().sprite = newImage;
-        }
-        else
-        {
-            Debug.LogError("Sprite for current wave not set");
-        }
-    }
     public void SetStartButton(Button button)
     {
         startButton = button;
         startButton.onClick.AddListener(StartWaves);
         ToggleStartButton(true); 
     }
-    private void InstantiateButtonPrefabs()
-    {
-        float buttonSpacing = 100; 
-        Vector3 centerPosition = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
-        
-        Vector3 position1 = new Vector3(centerPosition.x - buttonSpacing, centerPosition.y, centerPosition.z);
-        Vector3 position2 = new Vector3(centerPosition.x, centerPosition.y, centerPosition.z);
-        Vector3 position3 = new Vector3(centerPosition.x + buttonSpacing, centerPosition.y, centerPosition.z);
-
-     
-        instantiatedButton1 = Instantiate(buttonPrefab1, position1, Quaternion.identity).GetComponent<Button>();
-        instantiatedButton2 = Instantiate(buttonPrefab2, position2, Quaternion.identity).GetComponent<Button>();
-        instantiatedButton3 = Instantiate(buttonPrefab3, position3, Quaternion.identity).GetComponent<Button>();
-
-        buttonsInstantiated = true;
-
-    }
-
-    public void ShowDeckBuildingOptions()
-    {
-        InstantiateButtonPrefabs();
-    }
-
-    public void ButtonClickedMethod()
-    {
-        instantiatedButton1.gameObject.SetActive(false);
-        instantiatedButton2.gameObject.SetActive(false);
-        instantiatedButton3.gameObject.SetActive(false);
-    }
 
     private IEnumerator StartWave()
     {
@@ -192,14 +120,9 @@ public class WaveManager : MonoBehaviour
 
             ToggleStartButton(true);
 
-            if (!buttonsInstantiated)
-            {
-                InstantiateButtonPrefabs();
-            }
-            else
-            {
-                UpdateTowerHealth();
-            }
+            deck_Building.doCardAnimation();
+
+
             cardRandoEngine.MoveToBottom();
             towersPlaced = 0;
             TowersLeft = 5;
