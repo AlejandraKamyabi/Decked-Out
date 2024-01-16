@@ -2,16 +2,24 @@ using UnityEngine;
 
 public class TowerSelection : MonoBehaviour
 {
-    public GameObject towerPrefab;
-    public GameObject towerPrefab1;
-    public GameObject towerPrefab2;
-    public GameObject towerPrefab3;
-    public GameObject towerPrefab4;
-    public GameObject towerPrefab5;
-    public GameObject spellPrefab1;
+
     public bool isSelectingTower = false;
     public bool supportTower;
     public int tower;
+
+
+    [Header("Towers")]
+    public GameObject ArcherTower;
+    public GameObject FlameTower;
+    public GameObject FrostTower;
+    public GameObject BuffTower;
+    public GameObject ElectricTower;
+    public GameObject EathQuack;
+
+    [Header("Spells")]
+    public GameObject lightning;
+
+
 
     public void SelectTower()
     {

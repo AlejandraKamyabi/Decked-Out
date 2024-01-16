@@ -85,59 +85,59 @@ public class MouseInputHandling : MonoBehaviour
         }
         if (towerSelection.tower == 1)
         {
-            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
-            towerRigSprite.sprite = towerSelection.towerPrefab.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.towerPrefab.GetComponent<ArcherTower>().attackRange;
+            towerRig.gameObject.transform.localScale = towerSelection.ArcherTower.transform.localScale;
+            towerRigSprite.sprite = towerSelection.ArcherTower.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.ArcherTower.GetComponent<ArcherTower>().attackRange;
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
 
         }
         if (towerSelection.tower == 2)
         {
-            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
-            towerRigSprite.sprite = towerSelection.towerPrefab1.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.towerPrefab1.GetComponent<FlamethrowerTower>().attackRange;
+            towerRig.gameObject.transform.localScale = towerSelection.FlameTower.transform.localScale;
+            towerRigSprite.sprite = towerSelection.FlameTower.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.FlameTower.GetComponent<FlamethrowerTower>().attackRange;
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
         }
         if (towerSelection.tower == 3)
         {
-            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
-            towerRigSprite.sprite = towerSelection.towerPrefab2.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.towerPrefab2.GetComponent<FrostTower>().attackRange;
+            towerRig.gameObject.transform.localScale = towerSelection.FrostTower.transform.localScale;
+            towerRigSprite.sprite = towerSelection.FrostTower.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.FrostTower.GetComponent<FrostTower>().attackRange;
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
         }
         if (towerSelection.tower == 4)
         {
-            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
-            towerRigSprite.sprite = towerSelection.towerPrefab3.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.towerPrefab3.GetComponent<BuffTower>().buffRange;
+            towerRig.gameObject.transform.localScale = towerSelection.BuffTower.transform.localScale;
+            towerRigSprite.sprite = towerSelection.BuffTower.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.BuffTower.GetComponent<BuffTower>().buffRange;
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
         }
         if (towerSelection.tower == 5)
         {
-            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
-            towerRigSprite.sprite = towerSelection.towerPrefab4.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.towerPrefab4.GetComponent<ElectricTower>().attackRange;
+            towerRig.gameObject.transform.localScale = towerSelection.ElectricTower.transform.localScale;
+            towerRigSprite.sprite = towerSelection.ElectricTower.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.ElectricTower.GetComponent<ElectricTower>().attackRange;
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
         }
 
         if (towerSelection.tower == 6)
         {
-            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
-            towerRigSprite.sprite = towerSelection.towerPrefab5.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.towerPrefab5.GetComponent<EarthQuack>().attackRange;
+            towerRig.gameObject.transform.localScale = towerSelection.EathQuack.transform.localScale;
+            towerRigSprite.sprite = towerSelection.EathQuack.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.EathQuack.GetComponent<EarthQuack>().attackRange;
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
         }
         if (towerSelection.tower == 7)
         {
-            towerRig.gameObject.transform.localScale = towerSelection.towerPrefab.transform.localScale;
-            towerRigSprite.sprite = towerSelection.spellPrefab1.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.spellPrefab1.GetComponent<LightningStrike>().attackRange;
+            towerRig.gameObject.transform.localScale = towerSelection.lightning.transform.localScale;
+            towerRigSprite.sprite = towerSelection.lightning.GetComponent<SpriteRenderer>().sprite;
+            float towerRange = towerSelection.lightning.GetComponent<LightningStrike>().attackRange;
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
         }
@@ -177,31 +177,31 @@ public class MouseInputHandling : MonoBehaviour
                 {
                     if (towerSelection.tower == 1)
                     {
-                        currentTowerInstance = Instantiate(towerSelection.towerPrefab, mousePos, Quaternion.identity);
+                        currentTowerInstance = Instantiate(towerSelection.ArcherTower, mousePos, Quaternion.identity);
                     }
                     else if (towerSelection.tower == 2)
                     {
-                        currentTowerInstance = Instantiate(towerSelection.towerPrefab1, mousePos, Quaternion.identity);
+                        currentTowerInstance = Instantiate(towerSelection.FlameTower, mousePos, Quaternion.identity);
                     }
                     else if (towerSelection.tower == 3)
                     {
-                        currentTowerInstance = Instantiate(towerSelection.towerPrefab2, mousePos, Quaternion.identity);
+                        currentTowerInstance = Instantiate(towerSelection.FrostTower, mousePos, Quaternion.identity);
                     }
                     else if (towerSelection.tower == 4)
                     {
-                        currentTowerInstance = Instantiate(towerSelection.towerPrefab3, mousePos, Quaternion.identity);
+                        currentTowerInstance = Instantiate(towerSelection.BuffTower, mousePos, Quaternion.identity);
                     }
                     else if (towerSelection.tower == 5)
                     {
-                        currentTowerInstance = Instantiate(towerSelection.towerPrefab4, mousePos, Quaternion.identity);
+                        currentTowerInstance = Instantiate(towerSelection.ElectricTower, mousePos, Quaternion.identity);
                     }
                     else if (towerSelection.tower == 6)
                     {
-                        currentTowerInstance = Instantiate(towerSelection.towerPrefab5, mousePos, Quaternion.identity);
+                        currentTowerInstance = Instantiate(towerSelection.EathQuack, mousePos, Quaternion.identity);
                     }
                     else if (towerSelection.tower == 7)
                     {
-                        currentTowerInstance = Instantiate(towerSelection.spellPrefab1, mousePos, Quaternion.identity);
+                        currentTowerInstance = Instantiate(towerSelection.lightning, mousePos, Quaternion.identity);
                     }
 
                     SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
