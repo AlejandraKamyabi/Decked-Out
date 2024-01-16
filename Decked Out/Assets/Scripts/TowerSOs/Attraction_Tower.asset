@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
-  m_Name: LightningSpell
+  m_Name: Attraction_Tower
   m_EditorClassIdentifier: 
-  towerName: Lightning
-  background: {fileID: 21300000, guid: b8215b1c3f830234d816ee8a00fd84e2, type: 3}
-  image: {fileID: 21300000, guid: 6309ea1de9f99bd4c83c872c28a88ce1, type: 3}
-  icon: {fileID: 21300000, guid: 99f7a47b58840d840879994ff1dc199a, type: 3}
+  towerName: AttractionTower
+  background: {fileID: 21300000, guid: c397d2a97e44f524789af0621caae778, type: 3}
+  image: {fileID: 21300000, guid: 4119217d7bedd5f4fa7914b8c64ba523, type: 3}
+  icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
   uses: 0
-  towerID: 7
-  rarityWeight: 15
+  towerID: 8
+  rarityWeight: 25

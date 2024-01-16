@@ -365,6 +365,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a594bc4f654a0324c9f522defa7f346b, type: 2}
   - {fileID: 11400000, guid: edeaafcae54913549a1514d0ec193284, type: 2}
   - {fileID: 11400000, guid: a17d7f6e4d56c2f499950572b877f0d9, type: 2}
+  - {fileID: 11400000, guid: 17a9b6996c9c2d84cbf57d27e5a7fda3, type: 2}
   - {fileID: 11400000, guid: aed80f7ecc88b744ba63fb298d661901, type: 2}
   cardsInHand: []
   cardShuffle: {fileID: 133661373}
@@ -3803,16 +3804,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cdcc3e1b7e4e543b83fdc3c335d4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 7405903770306088367, guid: 701360c609ace1640886a48c4f28bbf1, type: 3}
-  towerPrefab1: {fileID: 7405903770306088367, guid: 6867a10647dd9564199cce2e5c8bdf2c, type: 3}
-  towerPrefab2: {fileID: 7405903770306088367, guid: 7ff0f0660475d354db2ad64019aa29fb, type: 3}
-  towerPrefab3: {fileID: 7405903770306088367, guid: a75e815b98551d641a9295d6ed872483, type: 3}
-  towerPrefab4: {fileID: 7405903770306088367, guid: 6cc4e1f99b55745418aed0a7bb269caf, type: 3}
-  towerPrefab5: {fileID: 7405903770306088367, guid: 6eb559def213d1744aa533571eff06a0, type: 3}
-  spellPrefab1: {fileID: 7405903770306088367, guid: 676dba46ef94c9e44b10af88654eee7e, type: 3}
   isSelectingTower: 0
   supportTower: 0
   tower: 0
+  ArcherTower: {fileID: 7405903770306088367, guid: 701360c609ace1640886a48c4f28bbf1, type: 3}
+  FlameTower: {fileID: 7405903770306088367, guid: 6867a10647dd9564199cce2e5c8bdf2c, type: 3}
+  FrostTower: {fileID: 7405903770306088367, guid: 7ff0f0660475d354db2ad64019aa29fb, type: 3}
+  BuffTower: {fileID: 7405903770306088367, guid: a75e815b98551d641a9295d6ed872483, type: 3}
+  ElectricTower: {fileID: 7405903770306088367, guid: 6cc4e1f99b55745418aed0a7bb269caf, type: 3}
+  EathQuack: {fileID: 7405903770306088367, guid: 6eb559def213d1744aa533571eff06a0, type: 3}
+  attraction_Tower: {fileID: 7405903770306088367, guid: f4a8e82713f4edb4b945610bef38e553, type: 3}
+  lightning: {fileID: 7405903770306088367, guid: 676dba46ef94c9e44b10af88654eee7e, type: 3}
 --- !u!114 &1106663292
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -141,6 +141,14 @@ public class MouseInputHandling : MonoBehaviour
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
         }
+        if (towerSelection.tower == 8)
+        {
+            towerRig.gameObject.transform.localScale = towerSelection.attraction_Tower.transform.localScale;
+            towerRigSprite.sprite = towerSelection.attraction_Tower.GetComponent<SpriteRenderer>().sprite;
+           // float towerRange = towerSelection.attraction_Tower.GetComponent<LightningStrike>().attackRange;
+           // Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+           // rangeIndicator.transform.localScale = towerRangeScaling * 2;
+        }
         towerRig.gameObject.SetActive(true);
 
         if (Mathf.Abs(towerPosition.x) <= unitSquareSize / 1 && Mathf.Abs(towerPosition.y) <= unitSquareSize / 2.5)
@@ -175,36 +183,34 @@ public class MouseInputHandling : MonoBehaviour
 
                 if (!towerCollision)
                 {
-                    if (towerSelection.tower == 1)
+                    switch (towerSelection.tower)
                     {
-                        currentTowerInstance = Instantiate(towerSelection.ArcherTower, mousePos, Quaternion.identity);
+                        case 1:
+                            currentTowerInstance = Instantiate(towerSelection.ArcherTower, mousePos, Quaternion.identity);
+                            break;
+                        case 2:
+                            currentTowerInstance = Instantiate(towerSelection.FlameTower, mousePos, Quaternion.identity);
+                            break;
+                        case 3:
+                            currentTowerInstance = Instantiate(towerSelection.FrostTower, mousePos, Quaternion.identity);
+                            break;
+                        case 4:
+                            currentTowerInstance = Instantiate(towerSelection.BuffTower, mousePos, Quaternion.identity);
+                            break;
+                        case 5:
+                            currentTowerInstance = Instantiate(towerSelection.ElectricTower, mousePos, Quaternion.identity);
+                            break;
+                        case 6:
+                            currentTowerInstance = Instantiate(towerSelection.EathQuack, mousePos, Quaternion.identity);
+                            break;
+                        case 7:
+                            currentTowerInstance = Instantiate(towerSelection.lightning, mousePos, Quaternion.identity);
+                            break;
+                        case 8:
+                            currentTowerInstance = Instantiate(towerSelection.attraction_Tower, mousePos, Quaternion.identity);
+                            break;
                     }
-                    else if (towerSelection.tower == 2)
-                    {
-                        currentTowerInstance = Instantiate(towerSelection.FlameTower, mousePos, Quaternion.identity);
-                    }
-                    else if (towerSelection.tower == 3)
-                    {
-                        currentTowerInstance = Instantiate(towerSelection.FrostTower, mousePos, Quaternion.identity);
-                    }
-                    else if (towerSelection.tower == 4)
-                    {
-                        currentTowerInstance = Instantiate(towerSelection.BuffTower, mousePos, Quaternion.identity);
-                    }
-                    else if (towerSelection.tower == 5)
-                    {
-                        currentTowerInstance = Instantiate(towerSelection.ElectricTower, mousePos, Quaternion.identity);
-                    }
-                    else if (towerSelection.tower == 6)
-                    {
-                        currentTowerInstance = Instantiate(towerSelection.EathQuack, mousePos, Quaternion.identity);
-                    }
-                    else if (towerSelection.tower == 7)
-                    {
-                        currentTowerInstance = Instantiate(towerSelection.lightning, mousePos, Quaternion.identity);
-                    }
-
-                    SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
+                            SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
                     if (!islandTowerSelection)
                     {
                        currentTowerInstance.tag = "Placed";
