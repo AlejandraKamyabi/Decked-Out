@@ -1,3 +1,10 @@
+// =============================================================================
+// 
+// Every manager is registered here.
+// 
+//            
+// 
+// =============================================================================
 using System;
 using UnityEngine;
 //using static UnityEditor.PlayerSettings;

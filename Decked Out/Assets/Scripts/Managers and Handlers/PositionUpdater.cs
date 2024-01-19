@@ -1,3 +1,12 @@
+// =============================================================================
+// 
+// For placing towers on the island. updates the position.
+// 
+//            
+// 
+// =============================================================================
+
+
 using UnityEngine;
 
 public class PositionUpdater : MonoBehaviour

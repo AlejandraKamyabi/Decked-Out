@@ -1,3 +1,10 @@
+// =============================================================================
+// 
+// Any tower placing related stuff are all here :)
+// 
+//            
+// 
+// =============================================================================
 using UnityEngine;
 
 public class MouseInputHandling : MonoBehaviour
@@ -83,71 +90,74 @@ public class MouseInputHandling : MonoBehaviour
             rangeIndicator.color = notPlaceable;
             return;
         }
-        if (towerSelection.tower == 1)
+
+        // --------------------------- TowerRig ---------------------------
+
+        switch (towerSelection.tower)
         {
-            towerRig.gameObject.transform.localScale = towerSelection.ArcherTower.transform.localScale;
+            case 1:
+                towerRig.gameObject.transform.localScale = towerSelection.ArcherTower.transform.localScale;
             towerRigSprite.sprite = towerSelection.ArcherTower.GetComponent<SpriteRenderer>().sprite;
             float towerRange = towerSelection.ArcherTower.GetComponent<ArcherTower>().attackRange;
             Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                break;
 
-        }
-        if (towerSelection.tower == 2)
-        {
-            towerRig.gameObject.transform.localScale = towerSelection.FlameTower.transform.localScale;
+            case 2:
+                towerRig.gameObject.transform.localScale = towerSelection.FlameTower.transform.localScale;
             towerRigSprite.sprite = towerSelection.FlameTower.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.FlameTower.GetComponent<FlamethrowerTower>().attackRange;
-            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            towerRange = towerSelection.FlameTower.GetComponent<FlamethrowerTower>().attackRange;
+            towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
-        }
-        if (towerSelection.tower == 3)
-        {
-            towerRig.gameObject.transform.localScale = towerSelection.FrostTower.transform.localScale;
-            towerRigSprite.sprite = towerSelection.FrostTower.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.FrostTower.GetComponent<FrostTower>().attackRange;
-            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-        }
-        if (towerSelection.tower == 4)
-        {
-            towerRig.gameObject.transform.localScale = towerSelection.BuffTower.transform.localScale;
-            towerRigSprite.sprite = towerSelection.BuffTower.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.BuffTower.GetComponent<BuffTower>().buffRange;
-            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-        }
-        if (towerSelection.tower == 5)
-        {
-            towerRig.gameObject.transform.localScale = towerSelection.ElectricTower.transform.localScale;
-            towerRigSprite.sprite = towerSelection.ElectricTower.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.ElectricTower.GetComponent<ElectricTower>().attackRange;
-            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-        }
+                break;
 
-        if (towerSelection.tower == 6)
-        {
-            towerRig.gameObject.transform.localScale = towerSelection.EathQuack.transform.localScale;
+            case 3:
+                towerRig.gameObject.transform.localScale = towerSelection.FrostTower.transform.localScale;
+            towerRigSprite.sprite = towerSelection.FrostTower.GetComponent<SpriteRenderer>().sprite;
+             towerRange = towerSelection.FrostTower.GetComponent<FrostTower>().attackRange;
+            towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                break;
+
+            case 4:
+                towerRig.gameObject.transform.localScale = towerSelection.BuffTower.transform.localScale;
+            towerRigSprite.sprite = towerSelection.BuffTower.GetComponent<SpriteRenderer>().sprite;
+           towerRange = towerSelection.BuffTower.GetComponent<BuffTower>().buffRange;
+            towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                break;
+
+            case 5:
+                towerRig.gameObject.transform.localScale = towerSelection.ElectricTower.transform.localScale;
+            towerRigSprite.sprite = towerSelection.ElectricTower.GetComponent<SpriteRenderer>().sprite;
+             towerRange = towerSelection.ElectricTower.GetComponent<ElectricTower>().attackRange;
+             towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                break;
+
+            case 6:
+                towerRig.gameObject.transform.localScale = towerSelection.EathQuack.transform.localScale;
             towerRigSprite.sprite = towerSelection.EathQuack.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.EathQuack.GetComponent<EarthQuack>().attackRange;
-            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+             towerRange = towerSelection.EathQuack.GetComponent<EarthQuack>().attackRange;
+             towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
-        }
-        if (towerSelection.tower == 7)
-        {
-            towerRig.gameObject.transform.localScale = towerSelection.lightning.transform.localScale;
+                break;
+
+            case 7:
+                towerRig.gameObject.transform.localScale = towerSelection.lightning.transform.localScale;
             towerRigSprite.sprite = towerSelection.lightning.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.lightning.GetComponent<LightningStrike>().attackRange;
-            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+             towerRange = towerSelection.lightning.GetComponent<LightningStrike>().attackRange;
+             towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
-        }
-        if (towerSelection.tower == 8)
-        {
-            towerRig.gameObject.transform.localScale = towerSelection.attraction_Tower.transform.localScale;
+                break;
+
+            case 8:
+                towerRig.gameObject.transform.localScale = towerSelection.attraction_Tower.transform.localScale;
             towerRigSprite.sprite = towerSelection.attraction_Tower.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.attraction_Tower.GetComponent<AttractionTower>().attackRange;
-            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+             towerRange = towerSelection.attraction_Tower.GetComponent<AttractionTower>().attackRange;
+             towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
             rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                break;
         }
         towerRig.gameObject.SetActive(true);
 
@@ -180,6 +190,7 @@ public class MouseInputHandling : MonoBehaviour
                 towerRig.gameObject.SetActive(false);
 
 
+                // --------------------------- TowerInstantiate ---------------------------
 
                 if (!towerCollision)
                 {
