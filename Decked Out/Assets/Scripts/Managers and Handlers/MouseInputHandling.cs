@@ -145,9 +145,9 @@ public class MouseInputHandling : MonoBehaviour
         {
             towerRig.gameObject.transform.localScale = towerSelection.attraction_Tower.transform.localScale;
             towerRigSprite.sprite = towerSelection.attraction_Tower.GetComponent<SpriteRenderer>().sprite;
-           // float towerRange = towerSelection.attraction_Tower.GetComponent<LightningStrike>().attackRange;
-           // Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-           // rangeIndicator.transform.localScale = towerRangeScaling * 2;
+            float towerRange = towerSelection.attraction_Tower.GetComponent<AttractionTower>().attackRange;
+            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+            rangeIndicator.transform.localScale = towerRangeScaling * 2;
         }
         towerRig.gameObject.SetActive(true);
 
