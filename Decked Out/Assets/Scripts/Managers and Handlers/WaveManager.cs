@@ -266,6 +266,15 @@ public class WaveManager : MonoBehaviour
                 towerScript.health--;
             }
         }
+        GameObject[] Placed_buffer = GameObject.FindGameObjectsWithTag("Placed");
+        foreach (GameObject Placed_buffers in Placed_buffer)
+        {
+            IBuffTower towerScript = Placed_buffers.GetComponent<IBuffTower>();
+            if (towerScript != null)
+            {
+                towerScript.health--;
+            }
+        }
     }
 
     private void ToggleStartButton(bool isEnabled)
@@ -331,6 +340,18 @@ public class WaveManager : MonoBehaviour
             {
 
                 Destroy(buffers);
+
+            }
+        }
+        GameObject[] Placed_Buffer = GameObject.FindGameObjectsWithTag("Placed");
+        foreach (GameObject Placed_Buffers in Placed_Buffer)
+        {
+            IBuffTower towerScript = Placed_Buffers.GetComponent<IBuffTower>();
+
+            if (towerScript != null && towerScript.health <= 0)
+            {
+
+                Destroy(Placed_Buffers);
 
             }
         }
