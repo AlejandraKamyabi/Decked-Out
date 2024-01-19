@@ -26,6 +26,24 @@ public class CardRandoEngine : MonoBehaviour
     public GameObject cardSpace4; 
     public GameObject blockingButton;
 
+    [Header("Card Stats Panel")]
+    public GameObject cardStatsPanel;
+    public Image cardStatsBackground;
+    public Image cardStatsImage;
+    public Image cardStatsIcon;
+    public TextMeshProUGUI cardStatsTitleText;
+    public TextMeshProUGUI cardStatsInfoText;
+
+    public Slider dmgSlider;
+    public TextMeshProUGUI dmgText;
+    public Slider rangeSlider;
+    public TextMeshProUGUI rangeText;
+    public Slider rofSlider;
+    public TextMeshProUGUI rofText;
+    public Slider durationSlider;
+    public TextMeshProUGUI durationText;
+    public float sliderCheat;
+
     [Header("Hand Cards Data")]
     public int handSize;
     public int spellUses = 4;
@@ -105,6 +123,8 @@ public class CardRandoEngine : MonoBehaviour
     private bool isSelectingTower;
     private float timer;
     private bool timerOn = false;
+    private bool isButtonHeld = false;
+    private float buttonHeldTime = 0f;
   
     float scale;
 
@@ -165,7 +185,15 @@ public class CardRandoEngine : MonoBehaviour
                 MoveToLeft();
                 timer = delayTimer;
             }
-
+        }
+        if (isButtonHeld)
+        {
+            buttonHeldTime += Time.deltaTime;
+            Debug.Log("Button Held for:" + buttonHeldTime);
+            if (buttonHeldTime >= longPressDuration)
+            {
+                Button0Stats();
+            }
         }
        
     }
@@ -247,6 +275,42 @@ public class CardRandoEngine : MonoBehaviour
 
     public void Button0()
     {
+        Debug.Log("Button0 Clicked");
+        isButtonHeld = true;
+        buttonHeldTime = 0f;        
+    }   
+    public void Button0DragOff()
+    {
+        if (isButtonHeld && buttonHeldTime < longPressDuration)
+        {
+            PlaceButton0();
+            isButtonHeld = false;
+            buttonHeldTime = 0;
+        }
+    }
+    public void Button1()
+    {
+        
+ 
+    }
+    public void Button2()
+    {
+       
+    
+    }
+    public void Button3()
+    {
+       
+
+    }
+    public void Button4()
+    {
+        
+
+    }
+
+    public void PlaceButton0()
+    {      
         towerSelection.SelectTower();
         towerSelection.tower = card0TowerID;
 
@@ -280,9 +344,29 @@ public class CardRandoEngine : MonoBehaviour
                 card0Used = true;
             }
         }
+    }
+    public void Button0Stats()
+    {
+        cardStatsPanel.gameObject.SetActive(true);
+        isButtonHeld = false;
+        buttonHeldTime = 0;
+        cardStatsBackground.sprite = card0Data.background;
+        cardStatsImage.sprite = card0Data.image;
+        cardStatsIcon.sprite = card0Data.icon;
+        cardStatsTitleText.text = card0Data.name;
+        cardStatsInfoText.text = card0Data.towerInfo;
+        dmgSlider.value = (card0Data.damage / 25)  + sliderCheat;
+        dmgText.text = card0Data.damage.ToString();
+        rangeSlider.value = (card0Data.range / 5) + sliderCheat;
+        rangeText.text = card0Data.range.ToString();
+        rofSlider.value = (card0Data.rateOfFire / 10) + sliderCheat;
+        rofText.text = card0Data.rateOfFire.ToString();
+        durationSlider.value = (card0Data.duration / 10) + sliderCheat;
+        durationText.text = card0Data.duration.ToString();
 
-    }   
-    public void Button1()
+        Debug.Log("Card Stats Panel Open");
+    }
+    public void PlaceButton1()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card1TowerID;
@@ -316,9 +400,8 @@ public class CardRandoEngine : MonoBehaviour
                 card1Used = true;
             }
         }
- 
     }
-    public void Button2()
+    public void PlaceButton2()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card2TowerID;
@@ -352,9 +435,8 @@ public class CardRandoEngine : MonoBehaviour
                 card2Used = true;
             }
         }
-    
     }
-    public void Button3()
+    public void PlaceButton3()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card3TowerID;
@@ -388,9 +470,8 @@ public class CardRandoEngine : MonoBehaviour
                 card3Used = true;
             }
         }
-
     }
-    public void Button4()
+    public void PlaceButton4()
     {
         towerSelection.SelectTower();
         towerSelection.tower = card4TowerID;
@@ -424,9 +505,14 @@ public class CardRandoEngine : MonoBehaviour
                 card4Used = true;
             }
         }
-  
-
     }
+
+    public void ExitCardStatsPanel()
+    {
+        cardStatsPanel.gameObject.SetActive(false);
+    }
+ 
+
     public List<TowerCardSO> GetRandomizedCards(int count)
     {
         List<TowerCardSO> cardsToShuffle = new List<TowerCardSO>(towerCards);
