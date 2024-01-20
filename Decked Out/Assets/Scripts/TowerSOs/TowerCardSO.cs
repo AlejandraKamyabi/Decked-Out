@@ -10,9 +10,15 @@ public class TowerCardSO : ScriptableObject
     public Sprite background;
     public Sprite image;
     public Sprite icon;
+    public string towerInfo;
     public int uses;
 
     [Header("Internal Data")]
     public int towerID;
-    public float rarityWeight;      
+    public float rarityWeight;
+    public string rarity;
+    public float damage;
+    public float range;
+    public float rateOfFire;
+    public float duration;
 }
