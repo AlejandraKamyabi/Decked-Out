@@ -16,12 +16,9 @@ MonoBehaviour:
   background: {fileID: 21300000, guid: b8215b1c3f830234d816ee8a00fd84e2, type: 3}
   image: {fileID: 21300000, guid: 22e501a7e0d179b4aa93e38a4b00ebe6, type: 3}
   icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
-  towerInfo: Burn baby burn!
-  uses: 0
-  towerID: 2
-  rarityWeight: 15
-  rarity: 
-  damage: 0
+  dmg: 0
   range: 0
   rateOfFire: 0
   duration: 0
+  towerID: 2
+  rarityWeight: 15

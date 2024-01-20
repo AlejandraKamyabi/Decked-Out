@@ -12,17 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
   m_Name: Electric
   m_EditorClassIdentifier: 
-  towerName: Electric Tower
+  towerName: Frost Tower
   background: {fileID: 21300000, guid: bc03351b8feb74c42a9cdef7c5ca01f5, type: 3}
   image: {fileID: 21300000, guid: c68e73f3a63cc2845882c325e077fef1, type: 3}
   icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
-  towerInfo: Zip! Zap! Zop! Bounce between your foes like an angry little ball of
-    mayhem.
-  uses: 0
+  dmg: 0
+  range: 0
+  rateOfFire: 0
+  duration: 0
   towerID: 5
   rarityWeight: 5
-  rarity: Legendary
-  damage: 6
-  range: 3
-  rateOfFire: 0.8
-  duration: 7
