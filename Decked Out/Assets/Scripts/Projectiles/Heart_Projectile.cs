@@ -7,6 +7,11 @@ public class Heart_Projectile : MonoBehaviour
     private Transform target;
     public GameObject Heart_Pop;
 
+
+    //Attraction tower 
+
+    private Transform attractionTower; 
+
     private void Update()
     {
         if (target == null || target.gameObject == null)
@@ -41,7 +46,10 @@ public class Heart_Projectile : MonoBehaviour
     {
         target = newTarget;
     }
-
+    public void SetTower(Transform tower)
+    {
+        attractionTower = tower;
+    }
     private void DealDamage(GameObject enemy)
     {
         Enemy enemyScript = enemy.GetComponent<Enemy>();
@@ -49,11 +57,13 @@ public class Heart_Projectile : MonoBehaviour
 
         {
             enemyScript.TakeDamage(damage);
+            enemyScript.Attracted(attractionTower);
         }
         KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
         if (kaboom != null)
         {
             kaboom.TakeDamage(damage);
+            kaboom.Attracted(attractionTower);
         }
     }
 }
