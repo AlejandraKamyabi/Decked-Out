@@ -127,6 +127,7 @@ public class CardRandoEngine : MonoBehaviour
     private float buttonHeldTime = 0f;
   
     float scale;
+    private int current_Button_Held;
 
     private void Start()
     {
@@ -192,7 +193,25 @@ public class CardRandoEngine : MonoBehaviour
             Debug.Log("Button Held for:" + buttonHeldTime);
             if (buttonHeldTime >= longPressDuration)
             {
-                Button0Stats();
+                switch(current_Button_Held)
+                {
+                    case 0:
+                        Button0Stats();
+                        break;
+                    case 1:
+                        Button1Stats();
+                        break;
+                    case 2:
+                        Button2Stats();
+                        break;
+                    case 3:
+                        Button3Stats();
+                        break;
+                    case 4:
+                        Button4Stats();
+                        break;
+                }
+                
             }
         }
        
@@ -273,40 +292,88 @@ public class CardRandoEngine : MonoBehaviour
 
     }  
 
-    public void Button0()
-    {
-        Debug.Log("Button0 Clicked");
-        isButtonHeld = true;
-        buttonHeldTime = 0f;        
-    }   
+
     public void Button0DragOff()
     {
-        if (isButtonHeld && buttonHeldTime < longPressDuration)
+        if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 0)
         {
             PlaceButton0();
             isButtonHeld = false;
             buttonHeldTime = 0;
         }
     }
+    public void Button1ragOff()
+    {
+        if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 1)
+        {
+            PlaceButton1();
+            isButtonHeld = false;
+            buttonHeldTime = 0;
+        }
+    }
+    public void Button2DragOff()
+    {
+        if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 2)
+        {
+            PlaceButton2();
+            isButtonHeld = false;
+            buttonHeldTime = 0;
+        }
+    }
+    public void Button3DragOff()
+    {
+        if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 3)
+        {
+            PlaceButton3();
+            isButtonHeld = false;
+            buttonHeldTime = 0;
+        }
+    }
+    public void Button4DragOff()
+    {
+        if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 4)
+        {
+            PlaceButton4();
+            isButtonHeld = false;
+            buttonHeldTime = 0;
+        }
+    }
+
+    public void Button0()
+    {
+        Debug.Log("Button0 Clicked");
+        isButtonHeld = true;
+        buttonHeldTime = 0f;
+        current_Button_Held = 0;
+    }
+
     public void Button1()
     {
-        
- 
+        isButtonHeld = true;
+        buttonHeldTime = 0f;
+        current_Button_Held = 1;
+
     }
     public void Button2()
     {
-       
-    
+        isButtonHeld = true;
+        buttonHeldTime = 0f;
+        current_Button_Held = 2;
+
     }
     public void Button3()
     {
-       
+        isButtonHeld = true;
+        buttonHeldTime = 0f;
+        current_Button_Held = 3;
 
     }
     public void Button4()
     {
-        
 
+        isButtonHeld = true;
+        buttonHeldTime = 0f;
+        current_Button_Held = 4;
     }
 
     public void PlaceButton0()
@@ -345,6 +412,7 @@ public class CardRandoEngine : MonoBehaviour
             }
         }
     }
+
     public void Button0Stats()
     {
         cardStatsPanel.gameObject.SetActive(true);
@@ -363,6 +431,90 @@ public class CardRandoEngine : MonoBehaviour
         rofText.text = card0Data.rateOfFire.ToString();
         durationSlider.value = (card0Data.duration / 10) + sliderCheat;
         durationText.text = card0Data.duration.ToString();
+
+        Debug.Log("Card Stats Panel Open");
+    }
+    public void Button1Stats()
+    {
+        cardStatsPanel.gameObject.SetActive(true);
+        isButtonHeld = false;
+        buttonHeldTime = 0;
+        cardStatsBackground.sprite = card1Data.background;
+        cardStatsImage.sprite = card1Data.image;
+        cardStatsIcon.sprite = card1Data.icon;
+        cardStatsTitleText.text = card1Data.name;
+        cardStatsInfoText.text = card1Data.towerInfo;
+        dmgSlider.value = (card1Data.damage / 25) + sliderCheat;
+        dmgText.text = card1Data.damage.ToString();
+        rangeSlider.value = (card1Data.range / 5) + sliderCheat;
+        rangeText.text = card1Data.range.ToString();
+        rofSlider.value = (card1Data.rateOfFire / 10) + sliderCheat;
+        rofText.text = card1Data.rateOfFire.ToString();
+        durationSlider.value = (card1Data.duration / 10) + sliderCheat;
+        durationText.text = card1Data.duration.ToString();
+
+        Debug.Log("Card Stats Panel Open");
+    }
+    public void Button2Stats()
+    {
+        cardStatsPanel.gameObject.SetActive(true);
+        isButtonHeld = false;
+        buttonHeldTime = 0;
+        cardStatsBackground.sprite = card2Data.background;
+        cardStatsImage.sprite = card2Data.image;
+        cardStatsIcon.sprite = card2Data.icon;
+        cardStatsTitleText.text = card2Data.name;
+        cardStatsInfoText.text = card2Data.towerInfo;
+        dmgSlider.value = (card2Data.damage / 25) + sliderCheat;
+        dmgText.text = card2Data.damage.ToString();
+        rangeSlider.value = (card2Data.range / 5) + sliderCheat;
+        rangeText.text = card2Data.range.ToString();
+        rofSlider.value = (card2Data.rateOfFire / 10) + sliderCheat;
+        rofText.text = card2Data.rateOfFire.ToString();
+        durationSlider.value = (card2Data.duration / 10) + sliderCheat;
+        durationText.text = card2Data.duration.ToString();
+
+        Debug.Log("Card Stats Panel Open");
+    }
+    public void Button3Stats()
+    {
+        cardStatsPanel.gameObject.SetActive(true);
+        isButtonHeld = false;
+        buttonHeldTime = 0;
+        cardStatsBackground.sprite = card3Data.background;
+        cardStatsImage.sprite = card3Data.image;
+        cardStatsIcon.sprite = card3Data.icon;
+        cardStatsTitleText.text = card3Data.name;
+        cardStatsInfoText.text = card3Data.towerInfo;
+        dmgSlider.value = (card3Data.damage / 25) + sliderCheat;
+        dmgText.text = card3Data.damage.ToString();
+        rangeSlider.value = (card3Data.range / 5) + sliderCheat;
+        rangeText.text = card3Data.range.ToString();
+        rofSlider.value = (card3Data.rateOfFire / 10) + sliderCheat;
+        rofText.text = card3Data.rateOfFire.ToString();
+        durationSlider.value = (card3Data.duration / 10) + sliderCheat;
+        durationText.text = card3Data.duration.ToString();
+
+        Debug.Log("Card Stats Panel Open");
+    }
+    public void Button4Stats()
+    {
+        cardStatsPanel.gameObject.SetActive(true);
+        isButtonHeld = false;
+        buttonHeldTime = 0;
+        cardStatsBackground.sprite = card4Data.background;
+        cardStatsImage.sprite = card4Data.image;
+        cardStatsIcon.sprite = card4Data.icon;
+        cardStatsTitleText.text = card4Data.name;
+        cardStatsInfoText.text = card4Data.towerInfo;
+        dmgSlider.value = (card4Data.damage / 25) + sliderCheat;
+        dmgText.text = card4Data.damage.ToString();
+        rangeSlider.value = (card4Data.range / 5) + sliderCheat;
+        rangeText.text = card4Data.range.ToString();
+        rofSlider.value = (card4Data.rateOfFire / 10) + sliderCheat;
+        rofText.text = card4Data.rateOfFire.ToString();
+        durationSlider.value = (card4Data.duration / 10) + sliderCheat;
+        durationText.text = card4Data.duration.ToString();
 
         Debug.Log("Card Stats Panel Open");
     }

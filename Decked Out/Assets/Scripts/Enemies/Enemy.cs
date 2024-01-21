@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +20,11 @@ public class Enemy : MonoBehaviour
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker EnemyKillTracker;
 
+    //Attraction tower 
+
+    private Transform originalTarget;
+    private bool isAttracted;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -34,13 +38,13 @@ public class Enemy : MonoBehaviour
     {
         if (targetCastle != null)
         {
-            Vector3 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
+            Vector2 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
             if (healthSlider != null)
             {
-                Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-                healthSlider.transform.position = screenPosition + new Vector3(0, 70.0f, 0);
+                Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+                healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
             }
         }
         if (isBurning)
@@ -69,7 +73,23 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
+    public void Attracted(Transform attractionTower)
+    {
+        if (!isAttracted) 
+        {
+            originalTarget = targetCastle;
+            targetCastle = attractionTower;
+            isAttracted = true; 
+            StartCoroutine(ResetAttracted()); 
+        }
+    }
 
+    private IEnumerator ResetAttracted()
+    {
+        yield return new WaitForSeconds(5);
+        targetCastle = originalTarget;
+        isAttracted = false;
+    }
     private void Die()
     {
         deathSoundHandling.PlayDeathSound();

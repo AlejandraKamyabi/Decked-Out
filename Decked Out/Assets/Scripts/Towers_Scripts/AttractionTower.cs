@@ -17,6 +17,8 @@ public class AttractionTower : MonoBehaviour, ITower
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
     public AudioSource audioSource;
+
+    private List<GameObject> recentlyShotEnemies = new List<GameObject>();
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -82,11 +84,11 @@ public class AttractionTower : MonoBehaviour, ITower
         if (canAttack)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
-
             foreach (Collider2D collider in colliders)
             {
-                if (collider.CompareTag("Enemy"))
+                if (collider.CompareTag("Enemy") && !recentlyShotEnemies.Contains(collider.gameObject))
                 {
+                    recentlyShotEnemies.Add(collider.gameObject);
                     ShootHeart(collider.transform);
                     break;
                 }
@@ -100,7 +102,7 @@ public class AttractionTower : MonoBehaviour, ITower
         GameObject Heart = Instantiate(HeartPrefab, transform.position, Quaternion.identity);
         Heart_Projectile Heart_Script = Heart.GetComponent<Heart_Projectile>();
         Heart_Script.SetTarget(target);
-
+        Heart_Script.SetTower(this.transform);
         canAttack = false;
 
         Heart_Script.SetDamage(Damage);
