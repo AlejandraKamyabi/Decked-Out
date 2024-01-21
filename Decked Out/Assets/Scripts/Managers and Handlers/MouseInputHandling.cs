@@ -92,72 +92,80 @@ public class MouseInputHandling : MonoBehaviour
         }
 
         // --------------------------- TowerRig ---------------------------
-
-        switch (towerSelection.tower)
+        if (!towerSelection.IsSelectingSpell())
         {
-            case 1:
-                towerRig.gameObject.transform.localScale = towerSelection.ArcherTower.transform.localScale;
-            towerRigSprite.sprite = towerSelection.ArcherTower.GetComponent<SpriteRenderer>().sprite;
-            float towerRange = towerSelection.ArcherTower.GetComponent<ArcherTower>().attackRange;
-            Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-                break;
+            switch (towerSelection.towers)
+            {
+                case "Arrow Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.ArcherTower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.ArcherTower.GetComponent<SpriteRenderer>().sprite;
+                    float towerRange = towerSelection.ArcherTower.GetComponent<ArcherTower>().attackRange;
+                    Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
 
-            case 2:
-                towerRig.gameObject.transform.localScale = towerSelection.FlameTower.transform.localScale;
-            towerRigSprite.sprite = towerSelection.FlameTower.GetComponent<SpriteRenderer>().sprite;
-            towerRange = towerSelection.FlameTower.GetComponent<FlamethrowerTower>().attackRange;
-            towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-                break;
+                case "Flamethrower Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.FlameTower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.FlameTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.FlameTower.GetComponent<FlamethrowerTower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
 
-            case 3:
-                towerRig.gameObject.transform.localScale = towerSelection.FrostTower.transform.localScale;
-            towerRigSprite.sprite = towerSelection.FrostTower.GetComponent<SpriteRenderer>().sprite;
-             towerRange = towerSelection.FrostTower.GetComponent<FrostTower>().attackRange;
-            towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-                break;
+                case "Frost Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.FrostTower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.FrostTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.FrostTower.GetComponent<FrostTower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
 
-            case 4:
-                towerRig.gameObject.transform.localScale = towerSelection.BuffTower.transform.localScale;
-            towerRigSprite.sprite = towerSelection.BuffTower.GetComponent<SpriteRenderer>().sprite;
-           towerRange = towerSelection.BuffTower.GetComponent<BuffTower>().buffRange;
-            towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-                break;
+                case "Buff Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.BuffTower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.BuffTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.BuffTower.GetComponent<BuffTower>().buffRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
 
-            case 5:
-                towerRig.gameObject.transform.localScale = towerSelection.ElectricTower.transform.localScale;
-            towerRigSprite.sprite = towerSelection.ElectricTower.GetComponent<SpriteRenderer>().sprite;
-             towerRange = towerSelection.ElectricTower.GetComponent<ElectricTower>().attackRange;
-             towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-                break;
+                case "Electric Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.ElectricTower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.ElectricTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.ElectricTower.GetComponent<ElectricTower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
 
-            case 6:
-                towerRig.gameObject.transform.localScale = towerSelection.EathQuack.transform.localScale;
-            towerRigSprite.sprite = towerSelection.EathQuack.GetComponent<SpriteRenderer>().sprite;
-             towerRange = towerSelection.EathQuack.GetComponent<EarthQuack>().attackRange;
-             towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-                break;
+                case "Earthquake Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.EathQuack.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.EathQuack.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.EathQuack.GetComponent<EarthQuack>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
 
-            case 7:
-                towerRig.gameObject.transform.localScale = towerSelection.lightning.transform.localScale;
-            towerRigSprite.sprite = towerSelection.lightning.GetComponent<SpriteRenderer>().sprite;
-             towerRange = towerSelection.lightning.GetComponent<LightningStrike>().attackRange;
-             towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-                break;
 
-            case 8:
-                towerRig.gameObject.transform.localScale = towerSelection.attraction_Tower.transform.localScale;
-            towerRigSprite.sprite = towerSelection.attraction_Tower.GetComponent<SpriteRenderer>().sprite;
-             towerRange = towerSelection.attraction_Tower.GetComponent<AttractionTower>().attackRange;
-             towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-            rangeIndicator.transform.localScale = towerRangeScaling * 2;
-                break;
+                case "Attraction Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.attraction_Tower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.attraction_Tower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.attraction_Tower.GetComponent<AttractionTower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
+            }
+        }
+        else
+        {
+            switch (towerSelection.spells)
+            {
+                case "Lightning":
+                    towerRig.gameObject.transform.localScale = towerSelection.lightning.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.lightning.GetComponent<SpriteRenderer>().sprite;
+                    float towerRange = towerSelection.lightning.GetComponent<LightningStrike>().attackRange;
+                    Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
+            }
         }
         towerRig.gameObject.SetActive(true);
 
@@ -171,7 +179,7 @@ public class MouseInputHandling : MonoBehaviour
             {
                 if (collider.CompareTag("Tower") || collider.CompareTag("Buffer") || collider.CompareTag("Placed"))
                 {
-                    if (towerSelection.tower != 7)
+                    if (towerSelection.towers != "Lightning")
                     {
                         towerCollision = true;
                         break;
@@ -191,35 +199,47 @@ public class MouseInputHandling : MonoBehaviour
 
 
                 // --------------------------- TowerInstantiate ---------------------------
-
+                
                 if (!towerCollision)
                 {
-                    switch (towerSelection.tower)
+                    if (!towerSelection.IsSelectingSpell())
                     {
-                        case 1:
-                            currentTowerInstance = Instantiate(towerSelection.ArcherTower, mousePos, Quaternion.identity);
-                            break;
-                        case 2:
-                            currentTowerInstance = Instantiate(towerSelection.FlameTower, mousePos, Quaternion.identity);
-                            break;
-                        case 3:
-                            currentTowerInstance = Instantiate(towerSelection.FrostTower, mousePos, Quaternion.identity);
-                            break;
-                        case 4:
-                            currentTowerInstance = Instantiate(towerSelection.BuffTower, mousePos, Quaternion.identity);
-                            break;
-                        case 5:
-                            currentTowerInstance = Instantiate(towerSelection.ElectricTower, mousePos, Quaternion.identity);
-                            break;
-                        case 6:
-                            currentTowerInstance = Instantiate(towerSelection.EathQuack, mousePos, Quaternion.identity);
-                            break;
-                        case 7:
-                            currentTowerInstance = Instantiate(towerSelection.lightning, mousePos, Quaternion.identity);
-                            break;
-                        case 8:
-                            currentTowerInstance = Instantiate(towerSelection.attraction_Tower, mousePos, Quaternion.identity);
-                            break;
+
+                        switch (towerSelection.towers)
+                        {
+                            case "Arrow Tower":
+                                currentTowerInstance = Instantiate(towerSelection.ArcherTower, mousePos, Quaternion.identity);
+                                break;
+                            case "Flamethrower Tower":
+                                currentTowerInstance = Instantiate(towerSelection.FlameTower, mousePos, Quaternion.identity);
+                                break;
+                            case "Frost Tower":
+                                currentTowerInstance = Instantiate(towerSelection.FrostTower, mousePos, Quaternion.identity);
+                                break;
+                            case "Buff Tower":
+                                currentTowerInstance = Instantiate(towerSelection.BuffTower, mousePos, Quaternion.identity);
+                                break;
+                            case "Electric Tower":
+                                currentTowerInstance = Instantiate(towerSelection.ElectricTower, mousePos, Quaternion.identity);
+                                break;
+                            case "Earthquake Tower":
+                                currentTowerInstance = Instantiate(towerSelection.EathQuack, mousePos, Quaternion.identity);
+                                break;
+
+                            case "Attraction Tower":
+                                currentTowerInstance = Instantiate(towerSelection.attraction_Tower, mousePos, Quaternion.identity);
+                                break;
+                        }
+                    }
+                    else if (towerSelection.IsSelectingSpell())
+                    {
+                        switch (towerSelection.spells)
+                        {
+
+                            case "Lightning":
+                                currentTowerInstance = Instantiate(towerSelection.lightning, mousePos, Quaternion.identity);
+                                break;
+                        }
                     }
                             SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
                     if (!islandTowerSelection)
@@ -237,14 +257,15 @@ public class MouseInputHandling : MonoBehaviour
                         }
 
                         towerRenderer.sortingOrder = ((int)orderInLayer);
-                        if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform") && towerSelection.tower != 4 && towerSelection.tower != 6 && towerSelection.tower != 3 && towerSelection.tower != 7)
+                        if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform") && towerSelection.towers != "Buff Tower" && towerSelection.towers != "Earthquake Tower" && towerSelection.towers != "Frost Tower" && towerSelection.spells != "Lightning")
                         {
                             towerRenderer.sortingOrder = 2501;
                         }
                     }
                     towerSelection.SetSelectingTower(false);
+                    towerSelection.SetSelectingSpell(false);
                     Wave.IncrementTowersPlaced();
-                    if (!Wave.collisionOccurred && towerSelection.tower != 7)
+                    if (!Wave.collisionOccurred && towerSelection.towers != "Lightning")
                     {
                         currentTowerInstance.AddComponent<PositionUpdater>();                        
                     }
@@ -262,7 +283,7 @@ public class MouseInputHandling : MonoBehaviour
 
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
             {
-                if ((towerSelection.tower == 3) || (towerSelection.tower == 4) || (towerSelection.tower == 6) || (towerSelection.tower == 7))
+                if ((towerSelection.towers == "Frost Tower") || (towerSelection.towers == "Buff Tower") || (towerSelection.towers == "Earthquake Tower") || (towerSelection.spells == "Lightning"))
                 {
                     towerRigSprite.color = supportOnIsland;
                     rangeIndicator.color = supportOnIsland;
@@ -288,6 +309,7 @@ public class MouseInputHandling : MonoBehaviour
         {
             Destroy(currentTowerInstance);
             towerSelection.SetSelectingTower(false);
+            towerSelection.SetSelectingSpell(false);
         }
         else
         {

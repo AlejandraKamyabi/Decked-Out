@@ -5,8 +5,8 @@ public class TowerSelection : MonoBehaviour
 
     public bool isSelectingTower = false;
     public bool supportTower;
-    public int tower;
-
+    public string towers;
+    public string spells;
 
     [Header("Towers")]
     public GameObject ArcherTower;
@@ -19,20 +19,32 @@ public class TowerSelection : MonoBehaviour
 
     [Header("Spells")]
     public GameObject lightning;
-
+    public bool isSelectingSpell = false;
 
 
     public void SelectTower()
     {
         isSelectingTower = true;
     }
+    public void SelectSpells()
+    {
+        isSelectingSpell = true;
+    }
 
     public bool IsSelectingTower()
     {
         return isSelectingTower;
     }
+    public bool IsSelectingSpell()
+    {
+        return isSelectingSpell;
+    }
     public void SetSelectingTower(bool value)
     {
         isSelectingTower = value;
+    }
+    public void SetSelectingSpell(bool value)
+    {
+        isSelectingSpell = value;
     }
 }

@@ -5472,7 +5472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelectingTower: 0
   supportTower: 0
-  tower: 0
+  towers: 
+  spells: 
   ArcherTower: {fileID: 7405903770306088367, guid: 701360c609ace1640886a48c4f28bbf1, type: 3}
   FlameTower: {fileID: 7405903770306088367, guid: 6867a10647dd9564199cce2e5c8bdf2c, type: 3}
   FrostTower: {fileID: 7405903770306088367, guid: 7ff0f0660475d354db2ad64019aa29fb, type: 3}
@@ -5481,6 +5482,7 @@ MonoBehaviour:
   EathQuack: {fileID: 7405903770306088367, guid: 6eb559def213d1744aa533571eff06a0, type: 3}
   attraction_Tower: {fileID: 7405903770306088367, guid: f4a8e82713f4edb4b945610bef38e553, type: 3}
   lightning: {fileID: 7405903770306088367, guid: 676dba46ef94c9e44b10af88654eee7e, type: 3}
+  isSelectingSpell: 0
 --- !u!114 &1106663292
 MonoBehaviour:
   m_ObjectHideFlags: 0

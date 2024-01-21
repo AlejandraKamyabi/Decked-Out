@@ -14,7 +14,6 @@ public class TowerCardSO : ScriptableObject
     public int uses;
 
     [Header("Internal Data")]
-    public int towerID;
     public float rarityWeight;
     public string rarity;
     public float damage;
