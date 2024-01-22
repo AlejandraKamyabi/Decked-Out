@@ -28,7 +28,7 @@ public class CannonBall : MonoBehaviour
             Vector3 explosionPosition = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
             GameObject Explosion = Instantiate(effect, explosionPosition, Quaternion.identity);
             DealDamage(transform.position);
-            Destroy(Explosion, 0.5f);
+            Destroy(Explosion, 0.7f);
             Destroy(gameObject);
         }
     }
