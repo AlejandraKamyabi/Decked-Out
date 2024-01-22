@@ -10,6 +10,7 @@ public class TowerSelection : MonoBehaviour
 
     [Header("Towers")]
     public GameObject ArcherTower;
+    public GameObject CannonTower;
     public GameObject FlameTower;
     public GameObject FrostTower;
     public GameObject BuffTower;

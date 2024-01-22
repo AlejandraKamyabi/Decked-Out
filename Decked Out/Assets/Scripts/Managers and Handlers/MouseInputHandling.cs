@@ -103,6 +103,14 @@ public class MouseInputHandling : MonoBehaviour
                     Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
+                case "Cannon Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.CannonTower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.CannonTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.CannonTower.GetComponent<CannonTower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
+
 
                 case "Flamethrower Tower":
                     towerRig.gameObject.transform.localScale = towerSelection.FlameTower.transform.localScale;
@@ -209,6 +217,9 @@ public class MouseInputHandling : MonoBehaviour
                         {
                             case "Arrow Tower":
                                 currentTowerInstance = Instantiate(towerSelection.ArcherTower, mousePos, Quaternion.identity);
+                                break;
+                            case "Cannon Tower":
+                                currentTowerInstance = Instantiate(towerSelection.CannonTower, mousePos, Quaternion.identity);
                                 break;
                             case "Flamethrower Tower":
                                 currentTowerInstance = Instantiate(towerSelection.FlameTower, mousePos, Quaternion.identity);
