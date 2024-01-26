@@ -196,19 +196,19 @@ public class CardRandoEngine : MonoBehaviour
                 switch(current_Button_Held)
                 {
                     case 0:
-                        Button0Stats();
+                        ButtonStats(card0Data);
                         break;
                     case 1:
-                        Button1Stats();
+                        ButtonStats(card1Data);
                         break;
                     case 2:
-                        Button2Stats();
+                        ButtonStats(card2Data);
                         break;
                     case 3:
-                        Button3Stats();
+                        ButtonStats(card3Data);
                         break;
                     case 4:
-                        Button4Stats();
+                        ButtonStats(card4Data);
                         break;
                 }
                 
@@ -423,111 +423,50 @@ public class CardRandoEngine : MonoBehaviour
         }
     }
 
-    public void Button0Stats()
+    private void ButtonStats(TowerCardSO cardDataToShow)
     {
-        cardStatsPanel.gameObject.SetActive(true);
         isButtonHeld = false;
         buttonHeldTime = 0;
-        cardStatsBackground.sprite = card0Data.background;
-        cardStatsImage.sprite = card0Data.image;
-        cardStatsIcon.sprite = card0Data.icon;
-        cardStatsTitleText.text = card0Data.name;
-        cardStatsInfoText.text = card0Data.towerInfo;
-        dmgSlider.value = (card0Data.damage / 25)  + sliderCheat;
-        dmgText.text = card0Data.damage.ToString();
-        rangeSlider.value = (card0Data.range / 5) + sliderCheat;
-        rangeText.text = card0Data.range.ToString();
-        rofSlider.value = (card0Data.rateOfFire / 10) + sliderCheat;
-        rofText.text = card0Data.rateOfFire.ToString();
-        durationSlider.value = (card0Data.duration / 10) + sliderCheat;
-        durationText.text = card0Data.duration.ToString();
+
+        cardStatsPanel.gameObject.SetActive(true);
+
+        Image dmgFillImage = dmgSlider.fillRect.GetComponent<Image>();
+        Image rangeFillImage = rangeSlider.fillRect.GetComponent<Image>();
+        Image rofFillImage = rofSlider.fillRect.GetComponent<Image>();
+        Image durationFillImage = durationSlider.fillRect.GetComponent<Image>();
+
+
+        cardStatsBackground.sprite = cardDataToShow.background;
+        cardStatsImage.sprite = cardDataToShow.image;
+        cardStatsIcon.sprite = cardDataToShow.icon;
+        cardStatsTitleText.text = cardDataToShow.name;
+        cardStatsTitleText.color = cardDataToShow.rarityColor;
+        cardStatsInfoText.text = cardDataToShow.towerInfo;
+        cardStatsInfoText.color = cardDataToShow.rarityColor;
+
+        dmgSlider.value = (cardDataToShow.damage / 25) + sliderCheat;
+        dmgText.text = cardDataToShow.damage.ToString();
+        dmgFillImage.color = cardDataToShow.rarityColor;
+        dmgText.color = cardDataToShow.rarityColor;
+
+        rangeSlider.value = (cardDataToShow.range / 5) + sliderCheat;
+        rangeText.text = cardDataToShow.range.ToString();
+        rangeFillImage.color = cardDataToShow.rarityColor;
+        rangeText.color = cardDataToShow.rarityColor;
+
+        rofSlider.value = (cardDataToShow.rateOfFire / 10) + sliderCheat;
+        rofText.text = cardDataToShow.rateOfFire.ToString();
+        rofFillImage.color = cardDataToShow.rarityColor;
+        rofText.color = cardDataToShow.rarityColor;
+
+        durationSlider.value = (cardDataToShow.duration / 10) + sliderCheat;
+        durationText.text = cardDataToShow.duration.ToString();
+        durationFillImage.color = cardDataToShow.rarityColor;
+        durationText.color = cardDataToShow.rarityColor;
 
         Debug.Log("Card Stats Panel Open");
     }
-    public void Button1Stats()
-    {
-        cardStatsPanel.gameObject.SetActive(true);
-        isButtonHeld = false;
-        buttonHeldTime = 0;
-        cardStatsBackground.sprite = card1Data.background;
-        cardStatsImage.sprite = card1Data.image;
-        cardStatsIcon.sprite = card1Data.icon;
-        cardStatsTitleText.text = card1Data.name;
-        cardStatsInfoText.text = card1Data.towerInfo;
-        dmgSlider.value = (card1Data.damage / 25) + sliderCheat;
-        dmgText.text = card1Data.damage.ToString();
-        rangeSlider.value = (card1Data.range / 5) + sliderCheat;
-        rangeText.text = card1Data.range.ToString();
-        rofSlider.value = (card1Data.rateOfFire / 10) + sliderCheat;
-        rofText.text = card1Data.rateOfFire.ToString();
-        durationSlider.value = (card1Data.duration / 10) + sliderCheat;
-        durationText.text = card1Data.duration.ToString();
-
-        Debug.Log("Card Stats Panel Open");
-    }
-    public void Button2Stats()
-    {
-        cardStatsPanel.gameObject.SetActive(true);
-        isButtonHeld = false;
-        buttonHeldTime = 0;
-        cardStatsBackground.sprite = card2Data.background;
-        cardStatsImage.sprite = card2Data.image;
-        cardStatsIcon.sprite = card2Data.icon;
-        cardStatsTitleText.text = card2Data.name;
-        cardStatsInfoText.text = card2Data.towerInfo;
-        dmgSlider.value = (card2Data.damage / 25) + sliderCheat;
-        dmgText.text = card2Data.damage.ToString();
-        rangeSlider.value = (card2Data.range / 5) + sliderCheat;
-        rangeText.text = card2Data.range.ToString();
-        rofSlider.value = (card2Data.rateOfFire / 10) + sliderCheat;
-        rofText.text = card2Data.rateOfFire.ToString();
-        durationSlider.value = (card2Data.duration / 10) + sliderCheat;
-        durationText.text = card2Data.duration.ToString();
-
-        Debug.Log("Card Stats Panel Open");
-    }
-    public void Button3Stats()
-    {
-        cardStatsPanel.gameObject.SetActive(true);
-        isButtonHeld = false;
-        buttonHeldTime = 0;
-        cardStatsBackground.sprite = card3Data.background;
-        cardStatsImage.sprite = card3Data.image;
-        cardStatsIcon.sprite = card3Data.icon;
-        cardStatsTitleText.text = card3Data.name;
-        cardStatsInfoText.text = card3Data.towerInfo;
-        dmgSlider.value = (card3Data.damage / 25) + sliderCheat;
-        dmgText.text = card3Data.damage.ToString();
-        rangeSlider.value = (card3Data.range / 5) + sliderCheat;
-        rangeText.text = card3Data.range.ToString();
-        rofSlider.value = (card3Data.rateOfFire / 10) + sliderCheat;
-        rofText.text = card3Data.rateOfFire.ToString();
-        durationSlider.value = (card3Data.duration / 10) + sliderCheat;
-        durationText.text = card3Data.duration.ToString();
-
-        Debug.Log("Card Stats Panel Open");
-    }
-    public void Button4Stats()
-    {
-        cardStatsPanel.gameObject.SetActive(true);
-        isButtonHeld = false;
-        buttonHeldTime = 0;
-        cardStatsBackground.sprite = card4Data.background;
-        cardStatsImage.sprite = card4Data.image;
-        cardStatsIcon.sprite = card4Data.icon;
-        cardStatsTitleText.text = card4Data.name;
-        cardStatsInfoText.text = card4Data.towerInfo;
-        dmgSlider.value = (card4Data.damage / 25) + sliderCheat;
-        dmgText.text = card4Data.damage.ToString();
-        rangeSlider.value = (card4Data.range / 5) + sliderCheat;
-        rangeText.text = card4Data.range.ToString();
-        rofSlider.value = (card4Data.rateOfFire / 10) + sliderCheat;
-        rofText.text = card4Data.rateOfFire.ToString();
-        durationSlider.value = (card4Data.duration / 10) + sliderCheat;
-        durationText.text = card4Data.duration.ToString();
-
-        Debug.Log("Card Stats Panel Open");
-    }
+   
     public void PlaceButton1()
     {
         if (card1Name == "Lightning")
@@ -701,7 +640,8 @@ public class CardRandoEngine : MonoBehaviour
                 card4Used = true;
             }
         }
-    }
+    }    
+  
 
     public void ExitCardStatsPanel()
     {
