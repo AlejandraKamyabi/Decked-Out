@@ -1,0 +1,70 @@
+using UnityEngine;
+
+public class Heart_Projectile : MonoBehaviour
+{
+    public float HeartSpeed = 10.0f;
+    private float damage;
+    private Transform target;
+    public GameObject Heart_Pop;
+
+
+    //Attraction tower 
+
+    private Transform attractionTower; 
+
+    private void Update()
+    {
+        if (target == null || target.gameObject == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Vector2 currentPosition = new Vector2(transform.position.x, transform.position.y);
+        Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
+        transform.position = Vector2.MoveTowards(currentPosition, targetPosition, HeartSpeed * Time.deltaTime);
+
+        Vector2 direction = targetPosition - currentPosition;
+
+
+        if (Vector2.Distance(currentPosition, targetPosition) < 0.1f)
+        {
+            DealDamage(target.gameObject);
+            GameObject Heart_Effect = Instantiate(Heart_Pop, transform.position, Quaternion.identity);
+            DealDamage(target.gameObject);
+            Destroy(Heart_Effect, 2f);
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetDamage(float value)
+    {
+        damage = value;
+    }
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+    public void SetTower(Transform tower)
+    {
+        attractionTower = tower;
+    }
+    private void DealDamage(GameObject enemy)
+    {
+        Enemy enemyScript = enemy.GetComponent<Enemy>();
+        if (enemyScript != null)
+
+        {
+            enemyScript.TakeDamage(damage);
+            enemyScript.Attracted(attractionTower);
+        }
+        KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
+        if (kaboom != null)
+        {
+            kaboom.TakeDamage(damage);
+            kaboom.Attracted(attractionTower);
+        }
+    }
+}
+
