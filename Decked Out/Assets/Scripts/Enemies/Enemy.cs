@@ -62,7 +62,18 @@ public class Enemy : MonoBehaviour
             moveSpeed = 0.39f;
         }
     }
+    public void ApplyPushback(float duration, float reducedSpeed)
+    {
+        StartCoroutine(TemporarySpeedReduction(duration, reducedSpeed));
+    }
 
+    private IEnumerator TemporarySpeedReduction(float duration, float reducedSpeed)
+    {
+        float originalSpeed = moveSpeed;
+        moveSpeed = reducedSpeed;
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalSpeed;
+    }
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
