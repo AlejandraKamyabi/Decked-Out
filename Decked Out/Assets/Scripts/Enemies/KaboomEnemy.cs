@@ -74,7 +74,18 @@ public class KaboomEnemy : MonoBehaviour
             StartCoroutine(ResetAttracted());
         }
     }
+    public void ApplyPushback(float duration, float reducedSpeed)
+    {
+        StartCoroutine(TemporarySpeedReduction(duration, reducedSpeed));
+    }
 
+    private IEnumerator TemporarySpeedReduction(float duration, float reducedSpeed)
+    {
+        float originalSpeed = moveSpeed;
+        moveSpeed = reducedSpeed;
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalSpeed;
+    }
     private IEnumerator ResetAttracted()
     {
         yield return new WaitForSeconds(5);

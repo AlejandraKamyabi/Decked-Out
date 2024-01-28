@@ -19,6 +19,8 @@ public class Wave_Tower : MonoBehaviour, ITower
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
     public AudioSource audioSource;
+
+    private List<GameObject> recentlyShotEnemies = new List<GameObject>();
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -83,15 +85,37 @@ public class Wave_Tower : MonoBehaviour, ITower
     {
         if (canAttack)
         {
+            List<GameObject> newTargets = new List<GameObject>();
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
             foreach (Collider2D collider in colliders)
             {
                 if (collider.CompareTag("Enemy"))
                 {
-                    ShootWave(collider.transform);
-                    break;
+                    if (!recentlyShotEnemies.Contains(collider.gameObject))
+                    {
+                        newTargets.Add(collider.gameObject);
+                    }
                 }
+            }
+
+            GameObject target = null;
+            if (newTargets.Count > 0)
+            {
+
+                target = newTargets[0];
+                recentlyShotEnemies.Add(target);
+            }
+            else if (recentlyShotEnemies.Count > 0)
+            {
+
+                target = recentlyShotEnemies[0];
+                recentlyShotEnemies.RemoveAt(0);
+            }
+
+            if (target != null)
+            {
+                ShootWave(target.transform);
             }
         }
     }

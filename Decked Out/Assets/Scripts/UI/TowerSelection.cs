@@ -17,6 +17,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject ElectricTower;
     public GameObject EathQuack;
     public GameObject attraction_Tower;
+    public GameObject Wave_Tower;
 
     [Header("Spells")]
     public GameObject lightning;

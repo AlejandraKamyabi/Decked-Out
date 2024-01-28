@@ -127,6 +127,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
+                case "Wave Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.Wave_Tower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.Wave_Tower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.Wave_Tower.GetComponent<Wave_Tower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
 
                 case "Buff Tower":
                     towerRig.gameObject.transform.localScale = towerSelection.BuffTower.transform.localScale;
@@ -239,6 +246,9 @@ public class MouseInputHandling : MonoBehaviour
 
                             case "Attraction Tower":
                                 currentTowerInstance = Instantiate(towerSelection.attraction_Tower, mousePos, Quaternion.identity);
+                                break;
+                            case "Wave Tower":
+                                currentTowerInstance = Instantiate(towerSelection.Wave_Tower, mousePos, Quaternion.identity);
                                 break;
                         }
                     }
