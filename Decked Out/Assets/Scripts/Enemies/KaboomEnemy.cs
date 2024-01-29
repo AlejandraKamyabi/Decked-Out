@@ -27,6 +27,9 @@ public class KaboomEnemy : MonoBehaviour
 
     private Transform originalTarget;
     private bool isAttracted;
+    //Wave_Tower
+    public bool isBeingPushed = false;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -74,17 +77,29 @@ public class KaboomEnemy : MonoBehaviour
             StartCoroutine(ResetAttracted());
         }
     }
-    public void ApplyPushback(float duration, float reducedSpeed)
-    {
-        StartCoroutine(TemporarySpeedReduction(duration, reducedSpeed));
-    }
 
-    private IEnumerator TemporarySpeedReduction(float duration, float reducedSpeed)
+    public void HandleWaveImpact(Vector2 direction ,float duration, float distance)
     {
-        float originalSpeed = moveSpeed;
-        moveSpeed = reducedSpeed;
-        yield return new WaitForSeconds(duration);
-        moveSpeed = originalSpeed;
+        if (!isBeingPushed)
+        {
+            Vector2 oppositeDirection = -direction.normalized;
+            isBeingPushed = true;
+            StartCoroutine(ManualPushback(oppositeDirection, duration, distance));
+        }
+    }
+    public IEnumerator ManualPushback(Vector2 direction, float duration, float distance)
+    {
+        Vector2 startPosition = transform.position;
+        Vector2 endPosition = startPosition - direction.normalized * distance;
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector2.Lerp(startPosition, endPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        isBeingPushed = false;
     }
     private IEnumerator ResetAttracted()
     {
