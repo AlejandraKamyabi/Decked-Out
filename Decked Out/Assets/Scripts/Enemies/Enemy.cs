@@ -25,6 +25,11 @@ public class Enemy : MonoBehaviour
     private Transform originalTarget;
     private bool isAttracted;
 
+    //Wave_Tower
+    public bool isBeingPushed = false;
+
+
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -62,17 +67,28 @@ public class Enemy : MonoBehaviour
             moveSpeed = 0.39f;
         }
     }
-    public void ApplyPushback(float duration, float reducedSpeed)
+    public void HandleWaveImpact(Vector2 direction, float duration, float distance)
     {
-        StartCoroutine(TemporarySpeedReduction(duration, reducedSpeed));
+        if (!isBeingPushed)
+        {
+            Vector2 oppositeDirection = -direction.normalized;
+            isBeingPushed = true;
+            StartCoroutine(ManualPushback(oppositeDirection, duration, distance));
+        }
     }
-
-    private IEnumerator TemporarySpeedReduction(float duration, float reducedSpeed)
+    public IEnumerator ManualPushback(Vector2 direction, float duration, float distance)
     {
-        float originalSpeed = moveSpeed;
-        moveSpeed = reducedSpeed;
-        yield return new WaitForSeconds(duration);
-        moveSpeed = originalSpeed;
+        Vector2 startPosition = transform.position;
+        Vector2 endPosition = startPosition - direction.normalized * distance;
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector2.Lerp(startPosition, endPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        isBeingPushed = false;
     }
     public void TakeDamage(float damage)
     {

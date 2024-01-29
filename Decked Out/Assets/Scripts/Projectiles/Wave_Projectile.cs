@@ -5,11 +5,12 @@ public class Wave_Projectile : MonoBehaviour
 {
     public float waveSpeed = 10.0f;
     private float damage;
-    [SerializeField] private float pushForce; 
     private Transform target;
-    private HashSet<GameObject> pushedEnemies = new HashSet<GameObject>();
     private bool shouldRotate = true;
+    private bool hasHit = false;
 
+    [SerializeField] private float force;
+    [SerializeField] private float duration;
     private void Update()
     {
         if (target == null || target.gameObject == null)
@@ -35,9 +36,14 @@ public class Wave_Projectile : MonoBehaviour
 
         if (Vector2.Distance(currentPosition, offsetPosition) < stopDistance)
         {
-            DealDamage(target.gameObject);
-            PushEnemy(target.gameObject, direction);
-            shouldRotate = false; 
+            if (!hasHit) 
+            {
+                DealDamage(target.gameObject);
+                PushEnemy(target.gameObject, direction);
+                hasHit = true;
+            }
+
+            shouldRotate = false;
             Destroy(gameObject, 2f);
         }
     
@@ -55,25 +61,15 @@ public class Wave_Projectile : MonoBehaviour
 
     private void PushEnemy(GameObject enemy, Vector2 direction)
     {
-        if (!pushedEnemies.Contains(enemy))
+        Enemy enemyScript = enemy.GetComponent<Enemy>();
+        if (enemyScript != null)
         {
-            Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
-            if (enemyRb != null)
-            {
-                enemyRb.AddForce(direction.normalized * pushForce, ForceMode2D.Impulse);
-                pushedEnemies.Add(enemy);
-
-                Enemy enemyScript = enemy.GetComponent<Enemy>();
-                if (enemyScript != null)
-                {
-                    enemyScript.ApplyPushback(2f, 0f); 
-                }
-                KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
-                if (kaboom != null)
-                {
-                    kaboom.ApplyPushback(2f, 0f);
-                }
-            }
+            enemyScript.HandleWaveImpact(direction, duration, force);
+        }
+        KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
+        if (kaboom != null)
+        {
+            kaboom.HandleWaveImpact(direction ,duration, force);
         }
     }
     private void DealDamage(GameObject enemy)
