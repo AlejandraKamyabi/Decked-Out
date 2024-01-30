@@ -119,6 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 028e8ffaa9294cf43bb9115ad2916d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonSpeed: 10
+  cannonSpeed: 8
   effect: {fileID: 5600610290312254772, guid: 853de82af1453014ca73c787bdac7ca7, type: 3}
   aoeRadius: 5
