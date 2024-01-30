@@ -190,7 +190,7 @@ public class CardRandoEngine : MonoBehaviour
         if (isButtonHeld)
         {
             buttonHeldTime += Time.deltaTime;
-            Debug.Log("Button Held for:" + buttonHeldTime);
+            //Debug.Log("Button Held for:" + buttonHeldTime);
             if (buttonHeldTime >= longPressDuration)
             {
                 switch(current_Button_Held)
@@ -341,7 +341,7 @@ public class CardRandoEngine : MonoBehaviour
 
     public void Button0()
     {
-        Debug.Log("Button0 Clicked");
+        //Debug.Log("Button0 Clicked");
         isButtonHeld = true;
         buttonHeldTime = 0f;
         current_Button_Held = 0;
@@ -464,7 +464,7 @@ public class CardRandoEngine : MonoBehaviour
         durationFillImage.color = cardDataToShow.rarityColor;
         durationText.color = cardDataToShow.rarityColor;
 
-        Debug.Log("Card Stats Panel Open");
+        //Debug.Log("Card Stats Panel Open");
     }
    
     public void PlaceButton1()
@@ -658,8 +658,8 @@ public class CardRandoEngine : MonoBehaviour
             totalWeight += card.rarityWeight;
         }
 
-        Debug.Log("Cards in Deck: " + cardsToShuffle.Count);
-        Debug.Log("Total Weight: " + totalWeight);
+        //Debug.Log("Cards in Deck: " + cardsToShuffle.Count);
+        //Debug.Log("Total Weight: " + totalWeight);
 
         for (int i = 0; i < count; i++)
         {            
@@ -667,7 +667,7 @@ public class CardRandoEngine : MonoBehaviour
             cardsInHand.Add(randomCard);
         }
 
-        Debug.Log(cardsInHand.Count);
+        //Debug.Log(cardsInHand.Count);
         return cardsInHand;
     }
     private TowerCardSO SelectRandomWeightedCard(List<TowerCardSO> _cardsToShuffle)
@@ -675,14 +675,14 @@ public class CardRandoEngine : MonoBehaviour
         if (totalWeight > 162.5)
         {
             scale = totalWeight / 162.5f;
-            Debug.Log("Scale: " + scale);
+            //Debug.Log("Scale: " + scale);
         }
         else if (totalWeight <= 162.5)
         {
             scale = 1;
         }
         float randomValue = Random.Range(0f, totalWeight);
-        Debug.Log("Random: " + randomValue);
+        //Debug.Log("Random: " + randomValue);
 
         foreach (TowerCardSO card in _cardsToShuffle)
         {
@@ -690,7 +690,7 @@ public class CardRandoEngine : MonoBehaviour
 
             if (randomValue <= scaledWeight)
             {
-                Debug.Log(card.towerName + " selected with a weight of:  " + scaledWeight);
+                //Debug.Log(card.towerName + " selected with a weight of:  " + scaledWeight);
                 return card;
                 
             }

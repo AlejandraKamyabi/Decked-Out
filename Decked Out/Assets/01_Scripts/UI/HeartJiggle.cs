@@ -34,7 +34,7 @@ public class HeartJiggle : MonoBehaviour
     }
     public void StartJiggle(float health)
     {
-        Debug.Log("jiggling");
+        //Debug.Log("jiggling");
         _lastHealth = _currentHealth;
         _jiggleMagnitude = 1f;
 
