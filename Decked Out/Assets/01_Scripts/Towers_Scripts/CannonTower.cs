@@ -1,5 +1,6 @@
 
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,11 @@ public class CannonTower : MonoBehaviour, ITower
     private float initialRateOfFire;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+    private Animator animator;
     public AudioSource audioSource;
+
+    private float _cannonTowerAnimLength = 1.0f;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -37,7 +42,17 @@ public class CannonTower : MonoBehaviour, ITower
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        foreach (var clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name.Equals("Cannon_Tower"))
+            {
+                _cannonTowerAnimLength = clip.length;
+                break;
+            }
+        }
     }
     public float damage
     {
@@ -98,16 +113,31 @@ public class CannonTower : MonoBehaviour, ITower
 
     private void ShootCannon(Transform target)
     {
-       // audioSource.Play();
+        // audioSource.Play();
+        animator.SetBool("IsShooting", true);
+        canAttack = false;
+
+        StartCoroutine(ShootCannonBall(target));
+        StartCoroutine(DeactivateAnimation());
+        StartCoroutine(AttackCooldown());
+    }
+
+    private IEnumerator ShootCannonBall(Transform target)
+    {
+        float offset = 0.25f;
+        yield return new WaitForSeconds(_cannonTowerAnimLength - offset);
         GameObject cannonBall = Instantiate(CannonBall, transform.position, Quaternion.identity);
         CannonBall cannonBallScript = cannonBall.GetComponent<CannonBall>();
         cannonBallScript.SetTarget(target);
-
-        canAttack = false;
         cannonBallScript.SetDamage(Damage);
-        StartCoroutine(AttackCooldown());
-
     }
+
+    private IEnumerator DeactivateAnimation()
+    {
+        yield return new WaitForSeconds(_cannonTowerAnimLength);
+        animator.SetBool("IsShooting", false);
+    }
+
     public void ResetTowerEffects()
     {
         Damage = initialDamage;
