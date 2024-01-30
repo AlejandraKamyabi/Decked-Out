@@ -246,6 +246,6 @@ MonoBehaviour:
   attackRange: 3.5
   HeartPrefab: {fileID: 3956206777213680668, guid: 0764381f63e9fd843b02599af8fd8c64, type: 3}
   Damage: 5
-  RateOfFire: 1
-  Health: 2
+  RateOfFire: 1.5
+  Health: 3
   audioSource: {fileID: 0}
