@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -8631973492879612246}
   - component: {fileID: -4882260772056868227}
   - component: {fileID: 3703952735399911143}
+  - component: {fileID: 3609362550652666270}
   m_Layer: 6
   m_Name: Cannon_Tower
   m_TagString: Tower
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 60
-  m_Sprite: {fileID: 21300000, guid: c1619f1b49e09d2428318a01365779fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f71f02788d70774682764f334df2277, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +106,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
+    oldSize: {x: 2.968116, y: 2.968116}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -249,3 +250,23 @@ MonoBehaviour:
   RateOfFire: 3
   Health: 3
   audioSource: {fileID: 0}
+--- !u!95 &3609362550652666270
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 20dadf16a5a2d854a80dcb670e4c2902, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
