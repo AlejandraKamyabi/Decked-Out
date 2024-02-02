@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +9,23 @@ public class Wave_Projectile : MonoBehaviour
     private Transform target;
     private bool shouldRotate = true;
     private bool hasHit = false;
-
+    private bool canMove = false;
     [SerializeField] private float force;
     [SerializeField] private float duration;
+    void Start()
+    {
+        StartCoroutine(EnableMovementAfterDelay(0.8f)); 
+
+    }
+    private IEnumerator EnableMovementAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        canMove = true; 
+    }
+
     private void Update()
     {
+        if (!canMove) return;
         if (target == null || target.gameObject == null)
         {
             Destroy(gameObject);
@@ -22,7 +35,7 @@ public class Wave_Projectile : MonoBehaviour
         Vector2 currentPosition = new Vector2(transform.position.x, transform.position.y);
         Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
         Vector2 directionToTarget = (targetPosition - currentPosition).normalized;
-        float stopDistance = 0.3f;  
+        float stopDistance = 0.7f;  
         Vector2 offsetPosition = targetPosition - (directionToTarget * stopDistance);
 
         transform.position = Vector2.MoveTowards(currentPosition, offsetPosition, waveSpeed * Time.deltaTime);
@@ -44,7 +57,7 @@ public class Wave_Projectile : MonoBehaviour
             }
 
             shouldRotate = false;
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 1.5f);
         }
     
 }
