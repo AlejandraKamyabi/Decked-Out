@@ -82,9 +82,10 @@ public class MouseInputHandling : MonoBehaviour
         float distanceToCastle = Vector3.Distance(mousePos, castlePosition);
 
         Vector2 mouseRay = mousePos;
-        RaycastHit2D hit = Physics2D.Raycast(mouseRay, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(mouseRay, Vector2.zero);                       
 
         if (distanceToCastle < minDistance)
+            
         {
             towerRigSprite.color = notPlaceable;
             rangeIndicator.color = notPlaceable;
@@ -164,6 +165,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRig.gameObject.transform.localScale = towerSelection.attraction_Tower.transform.localScale;
                     towerRigSprite.sprite = towerSelection.attraction_Tower.GetComponent<SpriteRenderer>().sprite;
                     towerRange = towerSelection.attraction_Tower.GetComponent<AttractionTower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
+                case "Force Field Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.Force_Field_Tower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.Force_Field_Tower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.Force_Field_Tower.GetComponent<Force_Field_Tower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
@@ -249,6 +257,9 @@ public class MouseInputHandling : MonoBehaviour
                                 break;
                             case "Wave Tower":
                                 currentTowerInstance = Instantiate(towerSelection.Wave_Tower, mousePos, Quaternion.identity);
+                                break;
+                            case "Force Field Tower":
+                                currentTowerInstance = Instantiate(towerSelection.Force_Field_Tower, mousePos, Quaternion.identity);
                                 break;
                         }
                     }

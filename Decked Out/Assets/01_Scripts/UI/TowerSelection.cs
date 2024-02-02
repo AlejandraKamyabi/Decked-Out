@@ -8,16 +8,18 @@ public class TowerSelection : MonoBehaviour
     public string towers;
     public string spells;
 
+
     [Header("Towers")]
     public GameObject ArcherTower;
     public GameObject CannonTower;
-    public GameObject FlameTower;
+    public GameObject FlameTower; 
     public GameObject FrostTower;
     public GameObject BuffTower;
     public GameObject ElectricTower;
     public GameObject EathQuack;
     public GameObject attraction_Tower;
     public GameObject Wave_Tower;
+    public GameObject Force_Field_Tower;
 
     [Header("Spells")]
     public GameObject lightning;
