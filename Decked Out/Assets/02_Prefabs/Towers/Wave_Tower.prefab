@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.014166325}
+  m_Offset: {x: 0, y: -0.09201747}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.33, y: 2}
+  m_Size: {x: 1.33, y: 2.3416348}
   m_EdgeRadius: 0
 --- !u!50 &-8631973492879612246
 Rigidbody2D:
@@ -243,9 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90e09db59be3ce42a9fe4e631f6209e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
+  attackRange: 3
   Wave_Slash_Prefab: {fileID: 3956206777213680668, guid: d644c6acf3613904cb39de323eb6ec7d, type: 3}
-  Damage: 5
-  RateOfFire: 4
+  Damage: 10
+  RateOfFire: 5
   Health: 4
   audioSource: {fileID: 0}

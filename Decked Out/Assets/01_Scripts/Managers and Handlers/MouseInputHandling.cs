@@ -91,7 +91,13 @@ public class MouseInputHandling : MonoBehaviour
             return;
         }
 
-        // --------------------------- TowerRig ---------------------------
+        // =============================================================================
+        // 
+        // TOWER RIG
+        // 
+        //            
+        // 
+        // =============================================================================
         if (!towerSelection.IsSelectingSpell())
         {
             switch (towerSelection.towers)
@@ -167,10 +173,18 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
+    
             }
         }
         else
         {
+            // =============================================================================
+            // 
+            // SPELL RIG
+            // 
+            //            
+            // 
+            // =============================================================================
             switch (towerSelection.spells)
             {
                 case "Lightning":
@@ -180,6 +194,7 @@ public class MouseInputHandling : MonoBehaviour
                     Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
+  
             }
         }
         towerRig.gameObject.SetActive(true);
@@ -212,9 +227,14 @@ public class MouseInputHandling : MonoBehaviour
             {
                 towerRig.gameObject.SetActive(false);
 
+                // =============================================================================
+                // 
+                //tower inst
+                // 
+                //            
+                // 
+                // =============================================================================
 
-                // --------------------------- TowerInstantiate ---------------------------
-                
                 if (!towerCollision)
                 {
                     if (!towerSelection.IsSelectingSpell())
@@ -254,6 +274,13 @@ public class MouseInputHandling : MonoBehaviour
                     }
                     else if (towerSelection.IsSelectingSpell())
                     {
+                        // =============================================================================
+                        // 
+                        // SPELL INST
+                        // 
+                        //            
+                        // 
+                        // =============================================================================
                         switch (towerSelection.spells)
                         {
 

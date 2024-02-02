@@ -56,87 +56,87 @@ MonoBehaviour:
     timeBetweenEnemies: 3
     timeBetweenWaves: 2.15
   - numberOfEnemies: 5
-    timeBetweenEnemies: 3
+    timeBetweenEnemies: 2.75
     timeBetweenWaves: 2.12
   - numberOfEnemies: 10
+    timeBetweenEnemies: 2.5
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 15
     timeBetweenEnemies: 2
     timeBetweenWaves: 2.12
   - numberOfEnemies: 20
+    timeBetweenEnemies: 2
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 25
+    timeBetweenEnemies: 2
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 30
+    timeBetweenEnemies: 1.5
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 35
     timeBetweenEnemies: 1.5
     timeBetweenWaves: 2.12
   - numberOfEnemies: 40
+    timeBetweenEnemies: 1.5
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 45
+    timeBetweenEnemies: 1.5
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 1.5
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 1.45
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 1.4
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 1.35
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 1.3
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
     timeBetweenEnemies: 1.25
     timeBetweenWaves: 2.12
   - numberOfEnemies: 50
+    timeBetweenEnemies: 1.2
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 1.15
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 1.1
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 1.05
+    timeBetweenWaves: 2.12
+  - numberOfEnemies: 100
     timeBetweenEnemies: 1
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 75
-    timeBetweenEnemies: 0.95
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 80
-    timeBetweenEnemies: 0.9
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 85
-    timeBetweenEnemies: 0.85
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 90
-    timeBetweenEnemies: 0.8
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 95
-    timeBetweenEnemies: 0.75
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.7
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.65
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.6
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.55
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.5
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.45
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.4
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.4
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.35
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.3
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 50
     timeBetweenEnemies: 0.25
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 50
     timeBetweenEnemies: 0.2
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 50
     timeBetweenEnemies: 0.15
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 50
     timeBetweenEnemies: 0.15
     timeBetweenWaves: 2.12
   - numberOfEnemies: 100
     timeBetweenEnemies: 0.1
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 50
     timeBetweenEnemies: 0.09
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 50
     timeBetweenEnemies: 0.08
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
+  - numberOfEnemies: 50
     timeBetweenEnemies: 0.07
     timeBetweenWaves: 2.12
   - numberOfEnemies: 500
@@ -149,11 +149,4 @@ MonoBehaviour:
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0
   currentWave: 0
-  buttonPrefab1: {fileID: 6313120196049931557, guid: 76de5aabdab190540bcc2e36bf90590d, type: 3}
-  buttonPrefab2: {fileID: 9143576714877646661, guid: fcc8ae870b634424fb19c64fddfdb957, type: 3}
-  buttonPrefab3: {fileID: 7495736493529718412, guid: 9b6b1c5d062099949a366f299570adf1, type: 3}
-  greyCard: {fileID: 21300000, guid: 22650383234d3e24ca9131310b52bf04, type: 3}
-  greenCard: {fileID: 21300000, guid: 22650383234d3e24ca9131310b52bf04, type: 3}
-  blueCard: {fileID: 21300000, guid: 7b276240032b8fa419849ff5eeba1a8e, type: 3}
-  purpleCard: {fileID: 21300000, guid: b8215b1c3f830234d816ee8a00fd84e2, type: 3}
-  goldenCard: {fileID: 21300000, guid: bc03351b8feb74c42a9cdef7c5ca01f5, type: 3}
+  deck_Building: {fileID: 0}
