@@ -6,7 +6,7 @@ using TMPro;
 
 public class CardToPick : MonoBehaviour
 {
-    [SerializeField] TowerCardSO _card;
+    public TowerCardSO _card;
 
     [Header("Card Display")]
     [SerializeField] Image _background;
@@ -17,16 +17,37 @@ public class CardToPick : MonoBehaviour
 
     private void Start()
     {
-        UpdateUI();
     }
 
     public void UpdateUI()
     {
+        if (_card == null)
+        {
+            _background.enabled = false;
+            _image.enabled = false;
+            _icon.enabled = false;
+            _name.enabled = false;
+        }
+        else
+        {
+            _background.enabled = true;
+            _image.enabled = true;
+            _icon.enabled = true;
+            _name.enabled = true;
+        }       
+
         _background.sprite = _card.background;
         _image.sprite = _card.image;
         _icon.sprite = _card.icon;
         _name.text = _card.name;
         _name.color = _card.rarityColor;
+        
+    }
+
+    public void SetCard(TowerCardSO card)
+    {
+        _card = card;
+        UpdateUI();
     }
 
     public void SlotIn()
