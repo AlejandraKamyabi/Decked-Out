@@ -23,6 +23,7 @@ public class TowerSelection : MonoBehaviour
 
     [Header("Spells")]
     public GameObject lightning;
+    public GameObject Fireball;
     public bool isSelectingSpell = false;
 
 
