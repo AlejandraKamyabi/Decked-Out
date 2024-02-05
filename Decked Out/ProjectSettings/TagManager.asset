@@ -13,6 +13,8 @@ TagManager:
   - Health
   - Deck
   - Placed
+  - Field
+  - Card Blank
   layers:
   - Default
   - TransparentFX
