@@ -21,7 +21,7 @@ public class Apostate : MonoBehaviour
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker EnemyKillTracker;
     [SerializeField] private CircleCollider2D circleCollider;
-    public float detectionRadius = 2f;
+    public float detectionRadius;
     private HashSet<GameObject> previouslyDetected = new HashSet<GameObject>();
 
     //Attraction tower 
