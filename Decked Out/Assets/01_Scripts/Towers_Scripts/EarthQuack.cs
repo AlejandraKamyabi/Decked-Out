@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class EarthQuack : MonoBehaviour, ITower
     [SerializeField] private float Damage;
     private float RateOfFire = 1.0f;
     public GameObject effect;
+    public GameObject buff_prefab;
+    private GameObject buffed;
+
     [SerializeField] private float Health = 2;
     private GameObject towerGameObject;
     private SpriteRenderer spriteRenderer;
@@ -41,6 +45,7 @@ public class EarthQuack : MonoBehaviour, ITower
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
                 KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
+                Apostate apostate = collider.GetComponent<Apostate>();
 
                 if (enemy != null)
                 {
@@ -51,6 +56,12 @@ public class EarthQuack : MonoBehaviour, ITower
 
                 }
                 if (kaboom != null)
+                {
+                    kaboom.ApplyFreeze();
+
+
+                }
+                if (apostate != null)
                 {
                     kaboom.ApplyFreeze();
 
@@ -69,7 +80,7 @@ public class EarthQuack : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
-
+        Destroy(buffed);
         hasBeenBuffed = false;
     }
     private IEnumerator DamageOverTime()
@@ -85,6 +96,7 @@ public class EarthQuack : MonoBehaviour, ITower
                 {
                     Enemy enemy = collider.GetComponent<Enemy>();
                     KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
+                    Apostate apostate = collider.GetComponent<Apostate>();
 
                     if (enemy != null)
                     {
@@ -95,6 +107,13 @@ public class EarthQuack : MonoBehaviour, ITower
                     if (kaboom != null)
                     {
                         kaboom.TakeDamage(Damage);
+                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
+                        Destroy(deathEffect, 0.5f);
+                    }
+
+                    if (apostate != null)
+                    {
+                        apostate.TakeDamage(Damage);
                         GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
                         Destroy(deathEffect, 0.5f);
                     }
@@ -136,8 +155,7 @@ public class EarthQuack : MonoBehaviour, ITower
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
-                spriteRenderer.color = buffColor;
+                buffed = Instantiate(buff_prefab, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
         }

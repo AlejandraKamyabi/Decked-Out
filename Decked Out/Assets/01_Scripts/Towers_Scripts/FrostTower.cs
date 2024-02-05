@@ -11,6 +11,8 @@ public class FrostTower : MonoBehaviour, ITower
     private GameObject towerGameObject;
     private SpriteRenderer spriteRenderer;
     private float initialDamage;
+    public GameObject effect;
+    private GameObject buffed;
     private float initialRateOfFire;
     private bool hasBeenBuffed = false;
     private void Start()
@@ -38,6 +40,7 @@ public class FrostTower : MonoBehaviour, ITower
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
                 KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
+                Apostate apostate = collider.GetComponent<Apostate>();
 
                 if (enemy != null)
                 {
@@ -48,6 +51,11 @@ public class FrostTower : MonoBehaviour, ITower
                 if (kaboom != null)
                 {
                     kaboom.ApplyFreeze();
+
+                }
+                if (apostate != null)
+                {
+                    apostate.ApplyFreeze();
 
                 }
             }
@@ -86,8 +94,7 @@ public class FrostTower : MonoBehaviour, ITower
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
-                spriteRenderer.color = buffColor;
+                buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
 
         }
@@ -102,7 +109,7 @@ public class FrostTower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
-
+        Destroy(buffed);
         hasBeenBuffed = false;
     }
 }

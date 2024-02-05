@@ -16,6 +16,8 @@ public class AttractionTower : MonoBehaviour, ITower
     private float initialRateOfFire;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+    public GameObject effect;
+    private GameObject buffed;
     public AudioSource audioSource;
 
     private List<GameObject> recentlyShotEnemies = new List<GameObject>();
@@ -72,8 +74,7 @@ public class AttractionTower : MonoBehaviour, ITower
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
-                spriteRenderer.color = buffColor;
+                buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
 
@@ -120,6 +121,7 @@ public class AttractionTower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        Destroy(buffed);
         hasBeenBuffed = false;
     }
 

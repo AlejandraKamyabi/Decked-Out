@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class ElectricTower : MonoBehaviour, ITower
     private float initialRateOfFire;
     private GameObject towerGameObject;
     private SpriteRenderer spriteRenderer;
+    public GameObject effect;
+    private GameObject buffed;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
 
@@ -46,6 +49,7 @@ public class ElectricTower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        Destroy(buffed);
         hasBeenBuffed = false;
     }
     public float damage
@@ -81,8 +85,7 @@ public class ElectricTower : MonoBehaviour, ITower
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
-                spriteRenderer.color = buffColor;
+                buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
         }

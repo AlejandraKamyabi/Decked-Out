@@ -16,6 +16,8 @@ public class CannonTower : MonoBehaviour, ITower
     private GameObject towerGameObject;
     private SpriteRenderer spriteRenderer;
     private float initialDamage;
+    public GameObject effect;
+    private GameObject buffed;
     private float initialRateOfFire;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
@@ -87,8 +89,7 @@ public class CannonTower : MonoBehaviour, ITower
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
-                spriteRenderer.color = buffColor;
+                buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
 
@@ -148,6 +149,7 @@ public class CannonTower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        Destroy(buffed);
         hasBeenBuffed = false;
     }
 

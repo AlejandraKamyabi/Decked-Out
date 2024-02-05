@@ -249,6 +249,7 @@ MonoBehaviour:
   Damage: 25
   RateOfFire: 1.8
   Health: 3
+  effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: 0}
 --- !u!95 &6949480750402724477
 Animator:

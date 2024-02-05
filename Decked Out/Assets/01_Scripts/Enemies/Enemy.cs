@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker EnemyKillTracker;
+    [SerializeField] private CircleCollider2D circleCollider;
 
     //Attraction tower 
 
@@ -117,6 +118,10 @@ public class Enemy : MonoBehaviour
         targetCastle = originalTarget;
         isAttracted = false;
     }
+    private IEnumerator reset_Field()
+    {
+        yield return new WaitForSeconds(2);
+    }
     private void Die()
     {
         deathSoundHandling.PlayDeathSound();
@@ -141,8 +146,32 @@ public class Enemy : MonoBehaviour
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
         }
-    }
+        if (circleCollider == null) {
 
+          // if (collision.gameObject.CompareTag("Field"))
+          // {
+          //     Field force_Field = collision.gameObject.GetComponent<Field>();
+          //     force_Field.StartFlickerEffect();
+          //     StartCoroutine(reset_Field());
+          //     force_Field.ResetFieldPrefabChanges();
+          // }
+
+            return; } 
+
+        if (collision.gameObject.CompareTag("Field"))
+        {
+            circleCollider.enabled = true;                
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (circleCollider == null) return; 
+
+        if (collision.gameObject.CompareTag("Field"))
+        {
+            circleCollider.enabled = false; 
+        }
+    }
     private void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;

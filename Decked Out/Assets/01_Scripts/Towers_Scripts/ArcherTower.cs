@@ -16,6 +16,8 @@ public class ArcherTower : MonoBehaviour, ITower
     private SpriteRenderer spriteRenderer;
     private float initialDamage;
     private float initialRateOfFire;
+    public GameObject effect;
+    private GameObject buffed;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
     public AudioSource audioSource;
@@ -72,8 +74,7 @@ public class ArcherTower : MonoBehaviour, ITower
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
-                spriteRenderer.color = buffColor;
+                buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
 
@@ -118,6 +119,7 @@ public class ArcherTower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        Destroy(buffed);
         hasBeenBuffed = false;
     }
 

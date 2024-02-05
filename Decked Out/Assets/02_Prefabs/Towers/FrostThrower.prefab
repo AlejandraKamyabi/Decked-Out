@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 2
   Health: 4
+  effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}

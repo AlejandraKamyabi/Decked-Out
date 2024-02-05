@@ -47,6 +47,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 3913288999114805945, guid: 59d3508bbaa1f8340a03f638ecfcc487, type: 3}
   KaboomPrefab: {fileID: 3913288999114805945, guid: f1862827c278b8f4ba6d1c6eebc4b423, type: 3}
   GolemPrefab: {fileID: 3913288999114805945, guid: 245fe243352756e46944c4a8c4be652b, type: 3}
+  Apostate_Prefab: {fileID: 3913288999114805945, guid: c70a52559804d664e90af3b6f01d409b, type: 3}
   unitSquareSize: 20
   TowersLeft: 5
   kaboomEnemy: 0

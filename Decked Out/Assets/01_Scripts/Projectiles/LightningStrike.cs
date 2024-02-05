@@ -27,6 +27,12 @@ public class LightningStrike : MonoBehaviour
                 {
                     kaboom.TakeDamage(damage);
                 }
+                Apostate apostate = collider.GetComponent<Apostate>();
+                if (apostate != null)
+                {
+                    apostate.TakeDamage(damage);
+             
+                }
             }
         }
 

@@ -244,8 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 2
-  force_field_Prefab: {fileID: 0}
+  force_field_Prefab: {fileID: 768669603021752526, guid: 5edf7111a372921448d00aa5b65a5401, type: 3}
   Damage: 0
   RateOfFire: 2
   Health: 2
+  effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: 0}

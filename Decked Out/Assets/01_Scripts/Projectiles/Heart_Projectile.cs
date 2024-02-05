@@ -65,6 +65,12 @@ public class Heart_Projectile : MonoBehaviour
             kaboom.TakeDamage(damage);
             kaboom.Attracted(attractionTower);
         }
+        Apostate apostate = enemy.GetComponent<Apostate>();
+        if (apostate != null)
+        {
+            apostate.TakeDamage(damage);
+            apostate.Attracted(attractionTower);
+        }
     }
 }
 

@@ -84,6 +84,13 @@ public class Wave_Projectile : MonoBehaviour
         {
             kaboom.HandleWaveImpact(direction ,duration, force);
         }
+        Apostate apostate = enemy.GetComponent<Apostate>();
+        if (apostate != null)
+        {
+            apostate.HandleWaveImpact(direction, duration, force);
+            
+        }
+
     }
     private void DealDamage(GameObject enemy)
     {

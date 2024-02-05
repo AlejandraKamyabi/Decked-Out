@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7405903770306088371}
   - component: {fileID: -8631973492879612246}
   - component: {fileID: -6971673905459097849}
+  - component: {fileID: 185589295745262477}
   m_Layer: 6
   m_Name: BuffTower 1
   m_TagString: Buffer
@@ -150,3 +151,23 @@ MonoBehaviour:
   damageBuff: 5
   rateOfFireBuff: 0.7
   Health: 3
+--- !u!95 &185589295745262477
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a6ebcb71e9b118459aac0ee6204ff97, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

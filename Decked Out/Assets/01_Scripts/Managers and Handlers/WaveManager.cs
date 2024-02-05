@@ -28,6 +28,7 @@ public class WaveManager : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject KaboomPrefab;
     public GameObject GolemPrefab;
+    public GameObject Apostate_Prefab;
 
 
     public float unitSquareSize = 10.0f;
@@ -105,6 +106,7 @@ public class WaveManager : MonoBehaviour
                 if (enemiesSpawned == spawnKaboomEnemyAfter)
                 {
                     SpawnGolemEnemy();
+                    SpawnApostateEnemy();
                     kaboomEnemy = true;
                     enemiesSpawned -=6;
                 }
@@ -166,6 +168,20 @@ public class WaveManager : MonoBehaviour
         newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
         newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
         newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
+    }
+    private void SpawnApostateEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
+
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = newEnemy.GetComponent<Apostate>().maxHealth;
+        newEnemy.GetComponent<Apostate>().SetHealthSlider(newHealthSlider);
     }
     public void StopWave()
     {

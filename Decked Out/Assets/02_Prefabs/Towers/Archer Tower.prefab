@@ -131,6 +131,7 @@ MonoBehaviour:
   Damage: 12
   RateOfFire: 1
   Health: 3
+  effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: -4882260772056868227}
 --- !u!50 &-8631973492879612246
 Rigidbody2D:
