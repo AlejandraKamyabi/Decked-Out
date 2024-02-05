@@ -16,6 +16,8 @@ public class FlamethrowerTower : MonoBehaviour, ITower
     private float initialDamage;
     private float initialRateOfFire;
     private bool canAttack = true;
+    public GameObject effect;
+    private GameObject buffed;
     private bool hasBeenBuffed = false;
     private void OnDrawGizmos()
     {
@@ -47,6 +49,7 @@ public class FlamethrowerTower : MonoBehaviour, ITower
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
+
     GameObject ITower.gameObject
     {
         get { return towerGameObject; }
@@ -67,11 +70,10 @@ public class FlamethrowerTower : MonoBehaviour, ITower
             {
                 RateOfFire = 0.1f;
             }
-            
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
-                spriteRenderer.color = buffColor;
+                buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
 
@@ -103,6 +105,7 @@ public class FlamethrowerTower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        Destroy(buffed);
         hasBeenBuffed = false;
     }
     private void ShootArrow(Transform target)

@@ -17,6 +17,8 @@ public class Wave_Tower : MonoBehaviour, ITower
     private float initialDamage;
     private float initialRateOfFire;
     private bool canAttack = true;
+    public GameObject effect;
+    private GameObject buffed;
     private bool hasBeenBuffed = false;
     public AudioSource audioSource;
 
@@ -74,8 +76,7 @@ public class Wave_Tower : MonoBehaviour, ITower
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
-                spriteRenderer.color = buffColor;
+                buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
 
@@ -142,6 +143,7 @@ public class Wave_Tower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        Destroy(buffed);
         hasBeenBuffed = false;
     }
 

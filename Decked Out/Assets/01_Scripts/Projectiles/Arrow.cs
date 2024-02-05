@@ -51,6 +51,11 @@ public class Arrow : MonoBehaviour
         {
             kaboom.TakeDamage(damage);
         }
+        Apostate apostate = enemy.GetComponent<Apostate>();
+        if (apostate != null)
+        {
+            apostate.TakeDamage(damage);
+        }
     }
 }
 

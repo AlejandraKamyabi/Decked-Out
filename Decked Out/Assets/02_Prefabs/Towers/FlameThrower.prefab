@@ -151,3 +151,4 @@ MonoBehaviour:
   Damage: 3
   RateOfFire: 2
   Health: 6
+  effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}

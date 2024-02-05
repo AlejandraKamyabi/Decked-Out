@@ -49,5 +49,11 @@ public class FlamesEffect : MonoBehaviour
             kaboom.TakeDamage(damage);
             kaboom.setBurning();
         }
+        Apostate apostate = enemy.GetComponent<Apostate>();
+        if (apostate != null)
+        {
+            apostate.TakeDamage(damage);
+            apostate.setBurning();
+        }
     }
 }

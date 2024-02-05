@@ -1,8 +1,7 @@
 
-
-using System.Collections;
 using UnityEngine;
 
+using System.Collections;
 
 public class Force_Field_Tower : MonoBehaviour, ITower
 {
@@ -13,9 +12,11 @@ public class Force_Field_Tower : MonoBehaviour, ITower
     [SerializeField] private float Health = 2;
     private GameObject towerGameObject;
     private SpriteRenderer spriteRenderer;
+    private GameObject instantiatedForceFieldPrefab;
     private float initialDamage;
     private float initialRateOfFire;
-    private bool canAttack = true;
+    public GameObject effect;
+    private GameObject buffed;
     private bool hasBeenBuffed = false;
     public AudioSource audioSource;
     private void OnDrawGizmos()
@@ -30,12 +31,69 @@ public class Force_Field_Tower : MonoBehaviour, ITower
         {
             spriteRenderer.color = Color.red;
         }
+
     }
     private void Start()
     {
+        float towerRange = attackRange;
+        Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+        force_field_Prefab.transform.localScale = towerRangeScaling / 4;
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Vector3 positionWithOffset = new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z);
+        instantiatedForceFieldPrefab = Instantiate(force_field_Prefab, positionWithOffset, Quaternion.identity);
+    }
+    private void OnDestroy()
+    {
+        if (instantiatedForceFieldPrefab != null)
+        {
+            Destroy(instantiatedForceFieldPrefab);
+        }
+    }
+    public IEnumerator StartFlickerEffect()
+    {
+        SpriteRenderer sr = instantiatedForceFieldPrefab.GetComponent<SpriteRenderer>();
+        Collider2D col = instantiatedForceFieldPrefab.GetComponent<Collider2D>();
+
+        // Check if components are not null
+        if (sr == null || col == null) yield break;
+
+        // Flicker effect
+        for (int i = 0; i < 5; i++) 
+        {
+            sr.enabled = !sr.enabled;
+            yield return new WaitForSeconds(0.2f); // Flicker speed
+        }
+
+        yield return new WaitForSeconds(2); // Wait for 2 seconds
+
+        
+        sr.enabled = true; 
+        col.isTrigger = true; 
+
+        // Lower the opacity
+        Color tempColor = sr.color;
+        tempColor.a = 0.5f; 
+        sr.color = tempColor;
+    }
+    public void ResetFieldPrefabChanges()
+    {
+        if (instantiatedForceFieldPrefab == null) return;
+
+        SpriteRenderer sr = instantiatedForceFieldPrefab.GetComponent<SpriteRenderer>();
+        Collider2D col = instantiatedForceFieldPrefab.GetComponent<Collider2D>();
+
+
+        if (sr != null && col != null)
+        {
+
+            Color tempColor = sr.color;
+            tempColor.a = 1f; 
+            sr.color = tempColor;
+
+            col.isTrigger = false;
+        }
     }
     public float damage
     {
@@ -70,8 +128,7 @@ public class Force_Field_Tower : MonoBehaviour, ITower
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
-                Color buffColor = new Color(1.0f, 0.768f, 0.290f, 1.0f);
-                spriteRenderer.color = buffColor;
+                buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
 
@@ -88,6 +145,7 @@ public class Force_Field_Tower : MonoBehaviour, ITower
             Color defaultColor = Color.white;
             spriteRenderer.color = defaultColor;
         }
+        Destroy(buffed);
         hasBeenBuffed = false;
     }
 

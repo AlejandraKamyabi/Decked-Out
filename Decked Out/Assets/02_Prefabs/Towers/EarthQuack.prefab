@@ -149,4 +149,5 @@ MonoBehaviour:
   attackRange: 2
   Damage: 10
   effect: {fileID: 7953254493702069685, guid: 7a4d86962636c9a47b759ab77dcb7a41, type: 3}
+  buff_prefab: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   Health: 4

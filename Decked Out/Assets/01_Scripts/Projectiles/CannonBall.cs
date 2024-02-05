@@ -58,6 +58,11 @@ public class CannonBall : MonoBehaviour
             {
                 kaboom.TakeDamage(damage);
             }
+            Apostate apostate = hitCollider.GetComponent<Apostate>();
+            if (apostate != null)
+            {
+                apostate.TakeDamage(damage);
+            }
         }
     }
 }

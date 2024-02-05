@@ -55,5 +55,13 @@ public class ZapProjectile : MonoBehaviour
             kaboom.ResetZapFlag();
 
         }
+        Apostate apostate = enemy.GetComponent<Apostate>();
+        if (apostate != null)
+        {  
+            apostate.TakeDamage(damage);
+            apostate.Zap();
+            apostate.ResetZapFlag();
+
+        }
     }
 }

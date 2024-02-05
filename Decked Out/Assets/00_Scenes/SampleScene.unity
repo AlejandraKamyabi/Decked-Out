@@ -5333,6 +5333,7 @@ MonoBehaviour:
   EathQuack: {fileID: 7405903770306088367, guid: 6eb559def213d1744aa533571eff06a0, type: 3}
   attraction_Tower: {fileID: 7405903770306088367, guid: f4a8e82713f4edb4b945610bef38e553, type: 3}
   Wave_Tower: {fileID: 7405903770306088367, guid: a7932129be76c854b884a92dc799e7b7, type: 3}
+  Force_Field_Tower: {fileID: 0}
   lightning: {fileID: 7405903770306088367, guid: 676dba46ef94c9e44b10af88654eee7e, type: 3}
   isSelectingSpell: 0
 --- !u!114 &1106663292
