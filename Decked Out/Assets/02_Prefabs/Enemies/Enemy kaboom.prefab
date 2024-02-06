@@ -97,10 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a291c089b84479d46b98f89337d56571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _squishFactor: 0.15
+  _squishFactor: 0.06
   _squishSpeed: 1
-  _rotate: 5
-  _rotateSpeed: 2
+  _rotate: 4
+  _rotateSpeed: 1.5
 --- !u!1 &3913288999114805945
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +114,6 @@ GameObject:
   - component: {fileID: 7651664643644394062}
   - component: {fileID: 4658380144572453347}
   - component: {fileID: 131239190853023437}
-  - component: {fileID: 1007481482347389645}
   m_Layer: 3
   m_Name: Enemy kaboom
   m_TagString: Enemy
@@ -211,19 +210,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1007481482347389645
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913288999114805945}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 94307fab68801ae41b61e35cc7d09f03, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
