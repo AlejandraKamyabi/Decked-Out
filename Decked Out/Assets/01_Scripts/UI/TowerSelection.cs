@@ -20,6 +20,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject attraction_Tower;
     public GameObject Wave_Tower;
     public GameObject Force_Field_Tower;
+    public GameObject Ballista_Tower;
 
     [Header("Spells")]
     public GameObject lightning;

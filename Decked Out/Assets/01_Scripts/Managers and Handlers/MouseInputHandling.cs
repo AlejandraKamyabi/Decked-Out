@@ -175,6 +175,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
+                case "Ballista Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.Ballista_Tower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.Ballista_Tower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.Ballista_Tower.GetComponent<Ballista_Tower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
             }
         }
         else
@@ -288,6 +295,9 @@ public class MouseInputHandling : MonoBehaviour
                                 break;
                             case "Force Field Tower":
                                 currentTowerInstance = Instantiate(towerSelection.Force_Field_Tower, mousePos, Quaternion.identity);
+                                break;
+                            case "Ballista Tower":
+                                currentTowerInstance = Instantiate(towerSelection.Ballista_Tower, mousePos, Quaternion.identity);
                                 break;
                         }
                     }

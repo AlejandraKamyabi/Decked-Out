@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: -7672974679039879729}
   - component: {fileID: 5728615593586163833}
   - component: {fileID: -6209553455341248833}
-  - component: {fileID: 7284752423825905154}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -160,7 +159,7 @@ MonoBehaviour:
   isBurning: 0
   isFrozen: 0
   deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
-  circleCollider: {fileID: 7284752423825905154}
+  circleCollider: {fileID: 0}
   isBeingPushed: 0
 --- !u!70 &1920306922376555978
 CapsuleCollider2D:
@@ -308,19 +307,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &7284752423825905154
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913288999114805945}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 94307fab68801ae41b61e35cc7d09f03, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.00571239, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.35147762

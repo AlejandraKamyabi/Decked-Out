@@ -114,7 +114,6 @@ GameObject:
   - component: {fileID: 7651664643644394062}
   - component: {fileID: 4658380144572453347}
   - component: {fileID: 131239190853023437}
-  - component: {fileID: 1007481482347389645}
   m_Layer: 3
   m_Name: Enemy kaboom
   m_TagString: Enemy
@@ -211,19 +210,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1007481482347389645
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913288999114805945}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 94307fab68801ae41b61e35cc7d09f03, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
