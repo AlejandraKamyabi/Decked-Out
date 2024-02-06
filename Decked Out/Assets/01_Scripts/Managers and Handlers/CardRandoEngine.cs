@@ -46,7 +46,6 @@ public class CardRandoEngine : MonoBehaviour
 
     [Header("Hand Cards Data")]
     public int handSize;
-    public int spellUses = 4;
 
 
     [Header("Button Input Modifers")]
@@ -405,15 +404,15 @@ public class CardRandoEngine : MonoBehaviour
             {
                 card0SpellUsesText.text = "III";
             }
-            if (spell0Usage == 2)
+            else if (spell0Usage == 2)
             {
                 card0SpellUsesText.text = "II";
             }
-            if (spell0Usage == 3)
+            else if (spell0Usage == 3)
             {
                 card0SpellUsesText.text = "I";
             }
-            if (spell0Usage == 4)
+            else if (spell0Usage == 4)
             {
 
                 spell0Usage = 0;
@@ -495,15 +494,15 @@ public class CardRandoEngine : MonoBehaviour
             {
                 card1SpellUsesText.text = "III";
             }
-            if (spell1Usage == 2)
+            else if (spell1Usage == 2)
             {
                 card1SpellUsesText.text = "II";
             }
-            if (spell1Usage == 3)
+            else if (spell1Usage == 3)
             {
                 card1SpellUsesText.text = "I";
             }
-            if (spell1Usage == 4)
+            else if (spell1Usage == 4)
             {
                 spell1Usage = 0;
                 cardSpace1.gameObject.SetActive(false);
@@ -538,15 +537,15 @@ public class CardRandoEngine : MonoBehaviour
             {
                 card2SpellUsesText.text = "III";
             }
-            if (spell2Usage == 2)
+            else if (spell2Usage == 2)
             {
                 card2SpellUsesText.text = "II";
             }
-            if (spell2Usage == 3)
+            else if (spell2Usage == 3)
             {
                 card2SpellUsesText.text = "I";
             }
-            if (spell2Usage == 4)
+            else if (spell2Usage == 4)
             {
                 spell2Usage = 0;
                 cardSpace2.gameObject.SetActive(false);
@@ -581,15 +580,15 @@ public class CardRandoEngine : MonoBehaviour
             {
                 card3SpellUsesText.text = "III";
             }
-            if (spell3Usage == 2)
+            else if (spell3Usage == 2)
             {
                 card3SpellUsesText.text = "II";
             }
-            if (spell3Usage == 3)
+            else if (spell3Usage == 3)
             {
                 card3SpellUsesText.text = "I";
             }
-            if (spell3Usage == 4)
+            else if (spell3Usage == 4)
             {
                 spell3Usage = 0;
                 cardSpace3.gameObject.SetActive(false);
@@ -600,7 +599,7 @@ public class CardRandoEngine : MonoBehaviour
     }
     public void PlaceButton4()
     {
-        if (card4Name == "Fireball" ||card4Name == "Fireball")
+        if (card4Name == "Lightning" ||card4Name == "Fireball")
         {
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
@@ -625,15 +624,15 @@ public class CardRandoEngine : MonoBehaviour
             {
                 card4SpellUsesText.text = "III";
             }
-            if (spell4Usage == 2)
+            else if (spell4Usage == 2)
             {
                 card4SpellUsesText.text = "II";
             }
-            if (spell4Usage == 3)
+            else if (spell4Usage == 3)
             {
                 card4SpellUsesText.text = "I";
             }
-            if (spell4Usage == 4)
+            else if (spell4Usage == 4)
             {
                 spell4Usage = 0;
                 cardSpace4.gameObject.SetActive(false);
