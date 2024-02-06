@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
-  m_Name: Ballista Tower
+  m_Name: Arrow Tower
   m_EditorClassIdentifier: 
-  towerName: Ballista Tower
-  background: {fileID: 21300000, guid: 22650383234d3e24ca9131310b52bf04, type: 3}
-  image: {fileID: 21300000, guid: 1e7dcef36f540e24392f53d2cbb61b26, type: 3}
+  towerName: Arrow Tower
+  background: {fileID: 21300000, guid: c397d2a97e44f524789af0621caae778, type: 3}
+  image: {fileID: 21300000, guid: f72f36eff16faf844a167820e993d724, type: 3}
   icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
-  rarityColor: {r: 0.1137255, g: 0.49803925, b: 0.3803922, a: 1}
-  towerInfo: It's like cupid's arrow on steroids.
+  rarityColor: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
+  towerInfo: Shoots pointy things at bad guys!
   uses: 0
-  rarityWeight: 12.5
-  damage: 8
-  range: 3
+  rarityWeight: 35
+  damage: 12
+  range: 3.5
   rateOfFire: 1
-  duration: 5
+  duration: 3

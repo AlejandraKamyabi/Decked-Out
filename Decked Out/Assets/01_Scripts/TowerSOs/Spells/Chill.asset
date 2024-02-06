@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
-  m_Name: Arrow Tower
+  m_Name: Chill
   m_EditorClassIdentifier: 
-  towerName: Arrow Tower
+  towerName: Chill
   background: {fileID: 21300000, guid: c397d2a97e44f524789af0621caae778, type: 3}
-  image: {fileID: 21300000, guid: f72f36eff16faf844a167820e993d724, type: 3}
-  icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
+  image: {fileID: 21300000, guid: 8a2a2a1e8726e9a48b13644b703dea51, type: 3}
+  icon: {fileID: 21300000, guid: 99f7a47b58840d840879994ff1dc199a, type: 3}
   rarityColor: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
-  towerInfo: Shoots pointy things at bad guys!
-  uses: 0
-  rarityWeight: 25
-  damage: 12
-  range: 3.5
-  rateOfFire: 1
-  duration: 3
+  towerInfo: Honey where's my super suit?!
+  uses: 3
+  rarityWeight: 35
+  damage: 15
+  range: 2
+  rateOfFire: 0
+  duration: 4

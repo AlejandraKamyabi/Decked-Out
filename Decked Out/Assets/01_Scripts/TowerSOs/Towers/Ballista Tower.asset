@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
-  m_Name: Earthquake Tower
+  m_Name: Ballista Tower
   m_EditorClassIdentifier: 
-  towerName: Earthquake Tower
+  towerName: Ballista Tower
   background: {fileID: 21300000, guid: 22650383234d3e24ca9131310b52bf04, type: 3}
-  image: {fileID: 21300000, guid: d401af8b67a999e468fce44def95582e, type: 3}
-  icon: {fileID: 21300000, guid: 3a850c90f79c14f47bc19e23774b7763, type: 3}
+  image: {fileID: 21300000, guid: 1e7dcef36f540e24392f53d2cbb61b26, type: 3}
+  icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
   rarityColor: {r: 0.1137255, g: 0.49803925, b: 0.3803922, a: 1}
-  towerInfo: Shake the Earth! Slow and hurt all before you!
+  towerInfo: It's like cupid's arrow on steroids.
   uses: 0
-  rarityWeight: 12.5
+  rarityWeight: 25
   damage: 8
   range: 3
   rateOfFire: 1

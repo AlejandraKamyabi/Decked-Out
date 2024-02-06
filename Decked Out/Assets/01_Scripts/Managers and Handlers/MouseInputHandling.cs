@@ -195,6 +195,35 @@ public class MouseInputHandling : MonoBehaviour
                     Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
+
+                case "Fireball":
+                    towerRig.gameObject.transform.localScale = towerSelection.fireball.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.fireball.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.fireball.GetComponent<Fireball>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
+                case "Nuke":
+                    towerRig.gameObject.transform.localScale = towerSelection.nuke.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.nuke.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.nuke.GetComponent<Nuke>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
+                case "Big Bomb":
+                    towerRig.gameObject.transform.localScale = towerSelection.bigBomb.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.bigBomb.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.bigBomb.GetComponent<BigBomb>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
+                case "Chill":
+                    towerRig.gameObject.transform.localScale = towerSelection.chill.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.chill.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.chill.GetComponent<Chill>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
             }
         }
         towerRig.gameObject.SetActive(true);
@@ -258,7 +287,6 @@ public class MouseInputHandling : MonoBehaviour
                             case "Earthquake Tower":
                                 currentTowerInstance = Instantiate(towerSelection.EathQuack, mousePos, Quaternion.identity);
                                 break;
-
                             case "Attraction Tower":
                                 currentTowerInstance = Instantiate(towerSelection.attraction_Tower, mousePos, Quaternion.identity);
                                 break;
@@ -280,6 +308,22 @@ public class MouseInputHandling : MonoBehaviour
 
                             case "Lightning":
                                 currentTowerInstance = Instantiate(towerSelection.lightning, mousePos, Quaternion.identity);
+                                break;
+
+                            case "Fireball":
+                                currentTowerInstance = Instantiate(towerSelection.fireball, mousePos, Quaternion.identity);
+                                break;
+
+                            case "Nuke":
+                                currentTowerInstance = Instantiate(towerSelection.nuke, mousePos, Quaternion.identity);
+                                break;
+
+                            case "Big Bomb":
+                                currentTowerInstance = Instantiate(towerSelection.bigBomb, mousePos, Quaternion.identity);
+                                break;
+
+                            case "Chill":
+                                currentTowerInstance = Instantiate(towerSelection.chill, mousePos, Quaternion.identity);
                                 break;
                         }
                     }

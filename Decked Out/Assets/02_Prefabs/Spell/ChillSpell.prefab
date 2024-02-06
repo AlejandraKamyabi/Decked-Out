@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 7405903770306088371}
   - component: {fileID: -8631973492879612246}
   - component: {fileID: 2923858789539996126}
-  - component: {fileID: -1448956457892992410}
   - component: {fileID: -145709283384004902}
+  - component: {fileID: 8500994471481972494}
   m_Layer: 6
-  m_Name: LightningSpell
+  m_Name: ChillSpell
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,20 +156,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-1448956457892992410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7405903770306088367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d935201924f208b448a11e1e1b73ee96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 2
-  damage: 70
 --- !u!82 &-145709283384004902
 AudioSource:
   m_ObjectHideFlags: 0
@@ -266,3 +252,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8500994471481972494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada1bd71518138f4fa67b636c0bd8b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 2
+  damage: 0
