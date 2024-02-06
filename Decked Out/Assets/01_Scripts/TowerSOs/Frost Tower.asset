@@ -19,7 +19,7 @@ MonoBehaviour:
   rarityColor: {r: 0.1137255, g: 0.49803925, b: 0.3803922, a: 1}
   towerInfo: Brrr! That's cold man, ice cold.
   uses: 0
-  rarityWeight: 12.5
+  rarityWeight: 25
   damage: 0
   range: 2
   rateOfFire: 99

@@ -19,7 +19,7 @@ MonoBehaviour:
   rarityColor: {r: 0.20000002, g: 0.34117648, b: 0.7176471, a: 1}
   towerInfo: Gets your towers to the gym!
   uses: 0
-  rarityWeight: 15
+  rarityWeight: 20
   damage: 0
   range: 3
   rateOfFire: 99

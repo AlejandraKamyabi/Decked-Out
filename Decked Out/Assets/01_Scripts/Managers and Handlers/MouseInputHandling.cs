@@ -190,10 +190,10 @@ public class MouseInputHandling : MonoBehaviour
                     break;
 
                 case "Fireball":
-                    towerRig.gameObject.transform.localScale = towerSelection.Fireball.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.Fireball.GetComponent<SpriteRenderer>().sprite;
-                    float towerRange = towerSelection.Fireball.GetComponent<LightningStrike>().attackRange;
-                    Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    towerRig.gameObject.transform.localScale = towerSelection.fireball.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.fireball.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.fireball.GetComponent<Fireball>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
             }
@@ -281,7 +281,7 @@ public class MouseInputHandling : MonoBehaviour
                                 break;
 
                             case "Fireball":
-                                currentTowerInstance = Instantiate(towerSelection.lightning, mousePos, Quaternion.identity);
+                                currentTowerInstance = Instantiate(towerSelection.fireball, mousePos, Quaternion.identity);
                                 break;
                         }
                     }

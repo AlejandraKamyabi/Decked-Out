@@ -19,7 +19,7 @@ MonoBehaviour:
   rarityColor: {r: 0.3529412, g: 0.3529412, b: 0.3529412, a: 1}
   towerInfo: A cannon tower, literally.
   uses: 0
-  rarityWeight: 25
+  rarityWeight: 35
   damage: 12
   range: 3.5
   rateOfFire: 1

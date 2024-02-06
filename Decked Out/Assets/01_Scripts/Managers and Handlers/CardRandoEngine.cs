@@ -379,25 +379,26 @@ public class CardRandoEngine : MonoBehaviour
     public void PlaceButton0()
     {      
       
-        if (card0Name == "Lightning")
+        if (card0Name == "Lightning" || card0Name == "Fireball" )
         {
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card0Name;
         }
+
         else
         {
             towerSelection.SelectTower();
             towerSelection.towers = card0Name;
         }
 
-        if (card0Name != "Lightning")
+        if (card0Name != "Lightning" || card0Name != "Fireball")
         {
             cardSpace0.gameObject.SetActive(false);
             blockingButton.gameObject.SetActive(true);
             card0Used = true;
         }
-        else if (card0Name == "Lightning")
+        else if (card0Name == "Lightning" || card0Name == "Fireball")
         {
             spell0Usage++;
             if (spell0Usage == 1)
@@ -672,12 +673,12 @@ public class CardRandoEngine : MonoBehaviour
     }
     private TowerCardSO SelectRandomWeightedCard(List<TowerCardSO> _cardsToShuffle)
     {         
-        if (totalWeight > 162.5)
+        if (totalWeight > 260)
         {
-            scale = totalWeight / 162.5f;
+            scale = totalWeight / 260f;
             //Debug.Log("Scale: " + scale);
         }
-        else if (totalWeight <= 162.5)
+        else if (totalWeight <= 260)
         {
             scale = 1;
         }

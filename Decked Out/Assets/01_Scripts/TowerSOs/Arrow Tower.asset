@@ -19,7 +19,7 @@ MonoBehaviour:
   rarityColor: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
   towerInfo: Shoots pointy things at bad guys!
   uses: 0
-  rarityWeight: 25
+  rarityWeight: 35
   damage: 12
   range: 3.5
   rateOfFire: 1

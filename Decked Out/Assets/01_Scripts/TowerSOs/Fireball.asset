@@ -17,10 +17,10 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 6309ea1de9f99bd4c83c872c28a88ce1, type: 3}
   icon: {fileID: 21300000, guid: 99f7a47b58840d840879994ff1dc199a, type: 3}
   rarityColor: {r: 0.11372549, g: 0.49803922, b: 0.38039216, a: 1}
-  towerInfo: Lightning never strikes twice, unless you want it to.
-  uses: 4
-  rarityWeight: 15
-  damage: 70
+  towerInfo: Blast and Burn a man's bestfriend
+  uses: 2
+  rarityWeight: 25
+  damage: 40
   range: 2
   rateOfFire: 0
   duration: 4
