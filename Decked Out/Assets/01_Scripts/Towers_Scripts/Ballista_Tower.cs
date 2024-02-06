@@ -1,65 +1,45 @@
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrostTower : MonoBehaviour, ITower
+
+public class Ballista_Tower : MonoBehaviour, ITower
 {
-    public float attackRange = 5.0f;
-    private float Damage = 10.0f;
-    private float RateOfFire = 1.0f;
+    public float attackRange;
+    public GameObject arrowPrefab;
+    [SerializeField] private float Damage;
+    [SerializeField] private float RateOfFire;
     [SerializeField] private float Health = 2;
     private GameObject towerGameObject;
     private SpriteRenderer spriteRenderer;
     private float initialDamage;
+    private float initialRateOfFire;
     public GameObject effect;
     private GameObject buffed;
-    private float initialRateOfFire;
+    private bool canAttack = true;
     private bool hasBeenBuffed = false;
-    private void Start()
-    {
-        initialDamage = Damage;
-        initialRateOfFire = RateOfFire;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    public AudioSource audioSource;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
     private void Update()
     {
+        FindAndShootTarget();
         if (health == 0)
         {
             spriteRenderer.color = Color.red;
         }
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
-
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.CompareTag("Enemy"))
-            {
-                Enemy enemy = collider.GetComponent<Enemy>();
-                KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
-                Apostate apostate = collider.GetComponent<Apostate>();
-
-                if (enemy != null)
-                {
-                  
-                    enemy.ApplyFreeze();
-
-                }
-                if (kaboom != null)
-                {
-                    kaboom.ApplyFreeze();
-
-                }
-                if (apostate != null)
-                {
-                    apostate.ApplyFreeze();
-
-                }
-            }
-        }
+    }
+    private void Start()
+    {
+        initialDamage = Damage;
+        initialRateOfFire = RateOfFire;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public float damage
     {
@@ -71,15 +51,15 @@ public class FrostTower : MonoBehaviour, ITower
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
-    public float health
-    {
-        get { return Health; }
-        set { Health = value; }
-    }
     GameObject ITower.gameObject
     {
         get { return towerGameObject; }
         set { towerGameObject = value; }
+    }
+    public float health
+    {
+        get { return Health; }
+        set { Health = value; }
     }
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
@@ -100,6 +80,35 @@ public class FrostTower : MonoBehaviour, ITower
 
         }
     }
+    private void FindAndShootTarget()
+    {
+        if (canAttack)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Enemy"))
+                {
+                    ShootArrow(collider.transform);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void ShootArrow(Transform target)
+    {
+        audioSource.Play();
+        GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+        Ballista_Arrow arrowScript = arrow.GetComponent<Ballista_Arrow>();
+        arrowScript.SetTarget(target);
+
+        canAttack = false;
+        arrowScript.SetDamage(Damage);
+        StartCoroutine(AttackCooldown());
+
+    }
     public void ResetTowerEffects()
     {
         Damage = initialDamage;
@@ -113,4 +122,21 @@ public class FrostTower : MonoBehaviour, ITower
         Destroy(buffed);
         hasBeenBuffed = false;
     }
+
+    public float GetAttackRange()
+    {
+        return attackRange;
+    }
+   
+    private IEnumerator AttackCooldown()
+    {
+        float actualRateOfFire = RateOfFire;
+
+        while (!canAttack)
+        {
+            yield return new WaitForSeconds(actualRateOfFire);
+            canAttack = true;
+        }
+    }
+
 }
