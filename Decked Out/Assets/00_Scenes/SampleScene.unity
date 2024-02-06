@@ -421,6 +421,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aed80f7ecc88b744ba63fb298d661901, type: 2}
   - {fileID: 11400000, guid: 76fa049d1c07f7846bc3999051be13b4, type: 2}
   - {fileID: 11400000, guid: c48d9ae1dbf14914e8dffa026e662845, type: 2}
+  - {fileID: 11400000, guid: 91acd756c25e2a24c9617b9c8aba9fa8, type: 2}
   cardsInHand: []
   cardShuffle: {fileID: 133661373}
 --- !u!82 &133661373
@@ -5335,6 +5336,7 @@ MonoBehaviour:
   Wave_Tower: {fileID: 7405903770306088367, guid: a7932129be76c854b884a92dc799e7b7, type: 3}
   Force_Field_Tower: {fileID: 0}
   lightning: {fileID: 7405903770306088367, guid: 676dba46ef94c9e44b10af88654eee7e, type: 3}
+  fireball: {fileID: 7405903770306088367, guid: 99463ee7e03f7f14abfe170532e27598, type: 3}
   isSelectingSpell: 0
 --- !u!114 &1106663292
 MonoBehaviour:
