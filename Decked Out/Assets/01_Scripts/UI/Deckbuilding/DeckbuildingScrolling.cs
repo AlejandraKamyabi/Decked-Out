@@ -20,6 +20,7 @@ public class DeckbuildingScrolling : MonoBehaviour
         _scrollbar.onValueChanged.AddListener(OnScrollbarValueChange);
         _miniScrollbar.onValueChanged.AddListener(OnMiniScrollbarValueChange);
     }
+
     private void Update()
     {
         float yPOs = Mathf.Lerp(maxY, minY, 1 - _scrollbar.value);

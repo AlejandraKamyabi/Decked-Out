@@ -120,6 +120,8 @@ public class CardRandoEngine : MonoBehaviour
     public AudioSource cardShuffle;
 
     private GameLoader _loader;
+    private DeckbuildingManager _deckManager;
+
     private bool isSelectingTower;
     private float timer;
     private bool timerOn = false;
@@ -135,7 +137,9 @@ public class CardRandoEngine : MonoBehaviour
         _loader.CallOnComplete(Initialize);        
     }
     private void Initialize()
-    {        
+    {
+        _deckManager = ServiceLocator.Get<DeckbuildingManager>();
+
         transform.position = bottomSpot.position;
         transform.rotation = bottomSpot.rotation;
         cardSpace0.gameObject.SetActive(false);        

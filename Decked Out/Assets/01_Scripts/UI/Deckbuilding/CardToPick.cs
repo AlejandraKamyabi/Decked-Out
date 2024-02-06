@@ -14,28 +14,16 @@ public class CardToPick : MonoBehaviour
     [SerializeField] Image _icon;
     [SerializeField] TextMeshProUGUI _name;
 
-
-    private void Start()
-    {
-    }
-
     public void UpdateUI()
     {
-        if (_card == null)
+        if (_card != null)
         {
-            _background.enabled = false;
-            _image.enabled = false;
-            _icon.enabled = false;
-            _name.enabled = false;
+            _image.enabled = true;
         }
         else
         {
-            _background.enabled = true;
-            _image.enabled = true;
-            _icon.enabled = true;
-            _name.enabled = true;
-        }       
-
+            _image.enabled = false;
+        }
         _background.sprite = _card.background;
         _image.sprite = _card.image;
         _icon.sprite = _card.icon;

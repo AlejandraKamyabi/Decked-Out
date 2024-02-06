@@ -34,7 +34,14 @@ public class SelectedCard : MonoBehaviour
 
     public TowerCardSO card { get { return _card; } }
     public bool slottedIn { get { return _slottedIn; } }
+
+    GameLoader _loader;
     private void Start()
+    {
+        _loader = ServiceLocator.Get<GameLoader>();
+        _loader.CallOnComplete(Initialize);
+    }
+    private void Initialize()
     {
         _dmgFill = _dmgSlider.fillRect.GetComponent<Image>();
         _rangeFill = _rangeSlider.fillRect.GetComponent<Image>();
