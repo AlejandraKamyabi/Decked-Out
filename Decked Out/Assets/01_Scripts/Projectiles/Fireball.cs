@@ -21,17 +21,20 @@ public class Fireball : MonoBehaviour
                 if (enemyScript != null)
                 {
                     enemyScript.TakeDamage(damage);
+                    enemyScript.setBurning();
                 }
                 KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
                 if (kaboom != null)
                 {
                     kaboom.TakeDamage(damage);
+                    enemyScript.setBurning();
                 }
                 Apostate apostate = collider.GetComponent<Apostate>();
                 if (apostate != null)
                 {
                     apostate.TakeDamage(damage);
-             
+                    enemyScript.setBurning();
+
                 }
             }
         }

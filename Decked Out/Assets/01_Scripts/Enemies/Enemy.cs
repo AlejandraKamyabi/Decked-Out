@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
             if (timeSinceLastDamage >= damageTimer)
             {
                 timeSinceLastDamage = 0.0f; 
-                TakeDamage(20.0f); 
+                TakeDamage(10.0f); 
             }
         }
         if (isFrozen)

@@ -97,10 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a291c089b84479d46b98f89337d56571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _squishFactor: 0.15
+  _squishFactor: 0.06
   _squishSpeed: 1
-  _rotate: 5
-  _rotateSpeed: 2
+  _rotate: 4
+  _rotateSpeed: 1.5
 --- !u!1 &3913288999114805945
 GameObject:
   m_ObjectHideFlags: 0

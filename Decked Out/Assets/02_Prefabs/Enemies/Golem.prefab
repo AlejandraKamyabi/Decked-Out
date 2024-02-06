@@ -97,10 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a291c089b84479d46b98f89337d56571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _squishFactor: 0.15
-  _squishSpeed: 1
-  _rotate: 5
-  _rotateSpeed: 2
+  _squishFactor: 0.05
+  _squishSpeed: 0.5
+  _rotate: 3
+  _rotateSpeed: 1.5
 --- !u!1 &3913288999114805945
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +158,7 @@ MonoBehaviour:
   isBurning: 0
   isFrozen: 0
   deathSound: {fileID: 8300000, guid: 754d75f5564d7dd45bf68235144d6def, type: 3}
+  circleCollider: {fileID: 0}
   isBeingPushed: 0
 --- !u!70 &1920306922376555978
 CapsuleCollider2D:
