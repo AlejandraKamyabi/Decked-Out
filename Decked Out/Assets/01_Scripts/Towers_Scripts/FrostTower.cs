@@ -96,6 +96,7 @@ public class FrostTower : MonoBehaviour, ITower
             {
                 buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
+            hasBeenBuffed = true;
 
         }
     }
