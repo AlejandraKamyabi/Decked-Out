@@ -61,7 +61,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card0IconImage;
     public int card0TowerID;
     public bool card0Used;
-    private int spell0Usage;
+    public int spell0Usage;
 
 
     [Header("Card 1 Data")]
@@ -73,7 +73,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card1IconImage;
     public int card1TowerID;
     public bool card1Used;
-    private int spell1Usage;
+    public int spell1Usage;
 
     [Header("Card 2 Data")]
     public TowerCardSO card2Data;
@@ -84,7 +84,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card2IconImage;
     public int card2TowerID;
     public bool card2Used;
-    private int spell2Usage;
+    public int spell2Usage;
 
     [Header("Card 3 Data")]
     public TowerCardSO card3Data;
@@ -95,7 +95,7 @@ public class CardRandoEngine : MonoBehaviour
     public Image card3IconImage;
     public int card3TowerID;
     public bool card3Used;
-    private int spell3Usage;
+    public int spell3Usage;
 
     [Header("Card 4 Data")]
     public TowerCardSO card4Data;
@@ -383,22 +383,6 @@ public class CardRandoEngine : MonoBehaviour
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card0Name;
-        }
-
-        else
-        {
-            towerSelection.SelectTower();
-            towerSelection.towers = card0Name;
-        }
-
-        if (card0Name != "Lightning" || card0Name != "Fireball")
-        {
-            cardSpace0.gameObject.SetActive(false);
-            blockingButton.gameObject.SetActive(true);
-            card0Used = true;
-        }
-        else if (card0Name == "Lightning" || card0Name == "Fireball")
-        {
             spell0Usage++;
             if (spell0Usage == 1)
             {
@@ -421,6 +405,18 @@ public class CardRandoEngine : MonoBehaviour
                 card0Used = true;
             }
         }
+
+        else
+        {
+            towerSelection.SelectTower();
+            towerSelection.towers = card0Name;
+            Debug.Log("Card Used & Not Spell");
+            cardSpace0.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card0Used = true;
+        }
+
+       
     }
 
     private void ButtonStats(TowerCardSO cardDataToShow)
@@ -474,21 +470,6 @@ public class CardRandoEngine : MonoBehaviour
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card1Name;
-        }
-        else
-        {
-            towerSelection.SelectTower();
-            towerSelection.towers = card1Name;
-        }
-
-        if (card1Name != "Lightning" || card1Name != "Fireball")
-        {
-            cardSpace1.gameObject.SetActive(false);
-            blockingButton.gameObject.SetActive(true);
-            card1Used = true;
-        }
-        else if (card1Name == "Lightning" || card1Name == "Fireball")
-        {
             spell1Usage++;
             if (spell1Usage == 1)
             {
@@ -510,6 +491,16 @@ public class CardRandoEngine : MonoBehaviour
                 card1Used = true;
             }
         }
+        else
+        {
+            towerSelection.SelectTower();
+            towerSelection.towers = card1Name;
+            Debug.Log("Card Used & Not Spell");
+            cardSpace1.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card1Used = true;
+        }
+
     }
     public void PlaceButton2()
     {
@@ -518,20 +509,6 @@ public class CardRandoEngine : MonoBehaviour
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card2Name;
-        }
-        else
-        {
-            towerSelection.SelectTower();
-            towerSelection.towers = card2Name;
-        }
-        if (card2Name != "Lightning" ||card2Name != "Fireball")
-        {
-            cardSpace2.gameObject.SetActive(false);
-            blockingButton.gameObject.SetActive(true);
-            card2Used = true;
-        }
-        else if (card2Name == "Lightning" || card2Name == "Fireball")
-        {
             spell2Usage++;
             if (spell2Usage == 1)
             {
@@ -553,6 +530,16 @@ public class CardRandoEngine : MonoBehaviour
                 card2Used = true;
             }
         }
+        else
+        {
+            towerSelection.SelectTower();
+            towerSelection.towers = card2Name;
+            Debug.Log("Card Used & Not Spell");
+            cardSpace2.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card2Used = true;
+        }
+     
     }
     public void PlaceButton3()
     {
@@ -561,20 +548,6 @@ public class CardRandoEngine : MonoBehaviour
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card3Name;
-        }
-        else
-        {
-            towerSelection.SelectTower();
-            towerSelection.towers = card3Name;
-        }
-        if (card3Name != "Lightning" ||card3Name != "Fireball")
-        {
-            cardSpace3.gameObject.SetActive(false);
-            blockingButton.gameObject.SetActive(true);
-            card3Used = true;
-        }
-        else if (card3Name == "Lightning" ||card3Name == "Fireball")
-        {
             spell3Usage++;
             if (spell3Usage == 1)
             {
@@ -596,6 +569,17 @@ public class CardRandoEngine : MonoBehaviour
                 card3Used = true;
             }
         }
+        else
+        {
+            towerSelection.SelectTower();
+            towerSelection.towers = card3Name;
+            Debug.Log("Card Used & Not Spell");
+            cardSpace3.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card3Used = true;
+
+        }
+    
     }
     public void PlaceButton4()
     {
@@ -604,21 +588,6 @@ public class CardRandoEngine : MonoBehaviour
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card4Name;
-        }
-        else
-        {
-            towerSelection.SelectTower();
-            towerSelection.towers = card4Name;
-        }
-
-        if (card4Name != "Lightning" || card4Name != "Fireball")
-        {
-            cardSpace4.gameObject.SetActive(false);
-            blockingButton.gameObject.SetActive(true);
-            card4Used = true;
-        }
-        else if (card4Name == "Fireball" || card4Name == "Lightning")
-        {
             spell4Usage++;
             if (spell4Usage == 1)
             {
@@ -640,6 +609,17 @@ public class CardRandoEngine : MonoBehaviour
                 card4Used = true;
             }
         }
+        else
+        {
+            towerSelection.SelectTower();
+            towerSelection.towers = card4Name;
+            Debug.Log("Card Used & Not Spell");
+            cardSpace4.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card4Used = true;
+        }
+
+        
     }    
   
 
