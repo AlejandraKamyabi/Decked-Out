@@ -422,6 +422,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76fa049d1c07f7846bc3999051be13b4, type: 2}
   - {fileID: 11400000, guid: c48d9ae1dbf14914e8dffa026e662845, type: 2}
   - {fileID: 11400000, guid: cbd0ddcb700ad3042ba0e9fc9e4af57c, type: 2}
+  - {fileID: 11400000, guid: c1bd809c41365af4d9b313a92d95a864, type: 2}
+  - {fileID: 11400000, guid: 4103427755180534d9dc8166028842a2, type: 2}
+  - {fileID: 11400000, guid: 91acd756c25e2a24c9617b9c8aba9fa8, type: 2}
+  - {fileID: 11400000, guid: 8983d8cb0b0b65e449ea0efb6c25d2d7, type: 2}
   cardsInHand: []
   cardShuffle: {fileID: 133661373}
 --- !u!82 &133661373
@@ -5337,6 +5341,10 @@ MonoBehaviour:
   Force_Field_Tower: {fileID: 0}
   Ballista_Tower: {fileID: 7405903770306088367, guid: fb8accea86df60049b36eba9687a120f, type: 3}
   lightning: {fileID: 7405903770306088367, guid: 676dba46ef94c9e44b10af88654eee7e, type: 3}
+  fireball: {fileID: 7405903770306088367, guid: 99463ee7e03f7f14abfe170532e27598, type: 3}
+  nuke: {fileID: 7405903770306088367, guid: 6d954bab85fc16d409534418fe528b4e, type: 3}
+  bigBomb: {fileID: 7405903770306088367, guid: 20df06ac93255b04d84da333b0470f06, type: 3}
+  chill: {fileID: 7405903770306088367, guid: 30bb0e51b0b50c34599acf1bdeaa99f1, type: 3}
   isSelectingSpell: 0
 --- !u!114 &1106663292
 MonoBehaviour:
