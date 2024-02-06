@@ -378,7 +378,7 @@ public class CardRandoEngine : MonoBehaviour
     public void PlaceButton0()
     {
 
-        if (card0Name == "Lightning" || card0Name == "Fireball")
+        if (card0Name == "Lightning" || card0Name == "Fireball" || card0Name == "Big Bomb" || card0Name == "Chill" || card0Name == "Nuke")
         {
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
@@ -465,7 +465,7 @@ public class CardRandoEngine : MonoBehaviour
 
     public void PlaceButton1()
     {
-        if (card1Name == "Lightning" || card1Name == "Fireball")
+        if (card1Name == "Lightning" || card1Name == "Fireball" || card1Name == "Big Bomb" || card1Name == "Chill" || card1Name == "Nuke")
         {
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
@@ -504,7 +504,7 @@ public class CardRandoEngine : MonoBehaviour
     }
     public void PlaceButton2()
     {
-        if (card2Name == "Lightning" || card2Name == "Fireball")
+        if (card2Name == "Lightning" || card2Name == "Fireball" || card2Name == "Big Bomb" || card2Name == "Chill" || card2Name == "Nuke")
         {
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
@@ -543,7 +543,7 @@ public class CardRandoEngine : MonoBehaviour
     }
     public void PlaceButton3()
     {
-        if (card3Name == "Lightning" ||card3Name == "Fireball")
+        if (card3Name == "Lightning" || card3Name == "Fireball" || card3Name == "Big Bomb" || card3Name == "Chill" || card3Name == "Nuke")
         {
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
@@ -583,7 +583,7 @@ public class CardRandoEngine : MonoBehaviour
     }
     public void PlaceButton4()
     {
-        if (card4Name == "Lightning" ||card4Name == "Fireball")
+        if (card4Name == "Lightning" || card4Name == "Fireball" || card4Name == "Big Bomb" || card4Name == "Chill" || card4Name == "Nuke")
         {
             towerSelection.SelectTower();
             towerSelection.SelectSpells();
@@ -652,12 +652,12 @@ public class CardRandoEngine : MonoBehaviour
     }
     private TowerCardSO SelectRandomWeightedCard(List<TowerCardSO> _cardsToShuffle)
     {         
-        if (totalWeight > 260)
+        if (totalWeight > 340)
         {
-            scale = totalWeight / 260f;
+            scale = totalWeight / 340f;
             //Debug.Log("Scale: " + scale);
         }
-        else if (totalWeight <= 260)
+        else if (totalWeight <= 340)
         {
             scale = 1;
         }
@@ -718,52 +718,52 @@ public class CardRandoEngine : MonoBehaviour
         transform.position = bottomSpot.position;
         transform.rotation = bottomSpot.rotation;
         transform.localScale = bottomSpotScale;
-        if (card0Name == "Lightning" || card0Name == "Fireball")
+        if (card0Name == "Lightning" || card0Name == "Fireball" || card0Name == "Big Bomb" || card0Name == "Chill" || card0Name == "Nuke")
         {
             card0SpellUsesText.text = "IV";
             card0SpellUsesText.gameObject.SetActive(true);
         }
-        else if (card0Name != "Lightning" || card0Name != "Fireball")
+        else if (card0Name != "Lightning" || card0Name != "Fireball" || card0Name != "Big Bomb" || card0Name != "Chill" || card0Name != "Nuke")
         {
             card0SpellUsesText.text = "IV";
             card0SpellUsesText.gameObject.SetActive(false);
         }
-        if (card1Name == "Lightning" || card1Name == "Fireball")
+        if (card1Name == "Lightning" || card1Name == "Fireball" || card1Name == "Big Bomb" || card1Name == "Chill" || card1Name == "Nuke")
         {
             card1SpellUsesText.text = "IV";
             card1SpellUsesText.gameObject.SetActive(true);
         }
-        else if (card1Name != "Lightning" || card1Name != "Fireball")
+        else if (card1Name != "Lightning" || card1Name != "Fireball" || card1Name != "Big Bomb" || card1Name != "Chill" || card1Name != "Nuke")
         {
             card1SpellUsesText.text = "IV";
             card1SpellUsesText.gameObject.SetActive(false);
         }
-        if (card2Name == "Lightning" || card2Name == "Fireball")
+        if (card2Name == "Lightning" || card2Name == "Fireball" || card2Name == "Big Bomb" || card2Name == "Chill" || card2Name == "Nuke")
         {
             card2SpellUsesText.text = "IV";
             card2SpellUsesText.gameObject.SetActive(true);
         }
-        else if (card2Name != "Lightning" || card2Name != "Fireball")
+        else if (card2Name != "Lightning" || card2Name != "Fireball" || card2Name != "Big Bomb" || card2Name != "Chill" || card2Name != "Nuke")
         {
             card2SpellUsesText.text = "IV";
             card2SpellUsesText.gameObject.SetActive(false);
         }
-        if (card3Name == "Lightning" || card3Name == "Fireball")
+        if (card3Name == "Lightning" || card3Name == "Fireball" || card3Name == "Big Bomb" || card3Name == "Chill" || card3Name == "Nuke")
         {
             card3SpellUsesText.text = "IV";
             card3SpellUsesText.gameObject.SetActive(true);
         }
-        else if (card3Name != "Lightning" || card3Name != "Fireball")
+        else if (card3Name != "Lightning" || card3Name != "Fireball" || card3Name != "Big Bomb" || card3Name != "Chill" || card3Name != "Nuke")
         {
             card3SpellUsesText.text = "IV";
             card3SpellUsesText.gameObject.SetActive(false);
         }
-        if (card4Name == "Lightning" || card4Name == "Fireball")
+        if (card4Name == "Lightning" || card4Name == "Fireball" || card4Name == "Big Bomb" || card4Name == "Chill" || card4Name == "Nuke")
         {
             card4SpellUsesText.text = "IV";
             card4SpellUsesText.gameObject.SetActive(true);
         }
-        else if (card4Name != "Lightning" || card4Name != "Fireball")
+        else if (card4Name != "Lightning" || card4Name != "Fireball" || card4Name != "Big Bomb" || card4Name != "Chill" || card4Name != "Nuke")
         {
             card4SpellUsesText.text = "IV";
             card4SpellUsesText.gameObject.SetActive(false);
