@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private CardRandoEngine CardRando = null;
     [SerializeField] private Castle castle = null;
     [SerializeField] private EndGameSplashManager _endGameSplash = null;
+    [SerializeField] private DeckbuildingManager _deckbuilingManager = null;
 
 
     private GameLoader _loader;

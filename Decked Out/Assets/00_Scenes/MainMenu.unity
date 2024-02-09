@@ -2180,7 +2180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34b7e97919046140bd4d2eba25a55e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene: SampleScene
+  gameScene: DeckBuilding
   scripturesPanel: {fileID: 1575117536}
   settingsPanel: {fileID: 700955520}
   minimizeCollider: {fileID: 1076946718}
