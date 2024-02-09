@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 2
-  damage: 70
+  damage: 75
 --- !u!82 &-145709283384004902
 AudioSource:
   m_ObjectHideFlags: 0

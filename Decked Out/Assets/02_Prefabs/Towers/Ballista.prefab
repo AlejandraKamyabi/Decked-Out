@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 5
   arrowPrefab: {fileID: 3956206777213680668, guid: b48fc72758d4da24b88cf4e903800d1c, type: 3}
-  Damage: 40
+  Damage: 50
   RateOfFire: 3
   Health: 2
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
