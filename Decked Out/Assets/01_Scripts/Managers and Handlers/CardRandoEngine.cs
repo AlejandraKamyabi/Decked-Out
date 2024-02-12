@@ -657,12 +657,12 @@ public class CardRandoEngine : MonoBehaviour
     }
     private TowerCardSO SelectRandomWeightedCard(List<TowerCardSO> _cardsToShuffle)
     {
-        if (totalWeight > 345)
+        if (totalWeight > 365)
         {
-            scale = totalWeight / 345f;
+            scale = totalWeight / 365f;
             //Debug.Log("Scale: " + scale);
         }
-        else if (totalWeight <= 345)
+        else if (totalWeight <= 365)
         {
             scale = 1;
         }

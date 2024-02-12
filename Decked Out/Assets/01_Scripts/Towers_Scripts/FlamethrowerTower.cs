@@ -136,5 +136,11 @@ public class FlamethrowerTower : MonoBehaviour, ITower
             canAttack = true;
         }
     }
-
+    private void OnDestroy()
+    {
+        if (buffed != null)
+        {
+            Destroy(buffed);
+        }
+    }
 }

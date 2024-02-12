@@ -168,10 +168,10 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
-                case "Force Field Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.Force_Field_Tower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.Force_Field_Tower.GetComponent<SpriteRenderer>().sprite;
-                    towerRange = towerSelection.Force_Field_Tower.GetComponent<Force_Field_Tower>().attackRange;
+                case "Poison Tower":
+                    towerRig.gameObject.transform.localScale = towerSelection.Poison_Tower.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.Poison_Tower.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.Poison_Tower.GetComponent<Poison_tower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
@@ -293,8 +293,8 @@ public class MouseInputHandling : MonoBehaviour
                             case "Wave Tower":
                                 currentTowerInstance = Instantiate(towerSelection.Wave_Tower, mousePos, Quaternion.identity);
                                 break;
-                            case "Force Field Tower":
-                                currentTowerInstance = Instantiate(towerSelection.Force_Field_Tower, mousePos, Quaternion.identity);
+                            case "Poison Tower":
+                                currentTowerInstance = Instantiate(towerSelection.Poison_Tower, mousePos, Quaternion.identity);
                                 break;
                             case "Ballista Tower":
                                 currentTowerInstance = Instantiate(towerSelection.Ballista_Tower, mousePos, Quaternion.identity);
@@ -328,10 +328,7 @@ public class MouseInputHandling : MonoBehaviour
                         }
                     }
                             SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
-                    if (!islandTowerSelection)
-                    {
-                       currentTowerInstance.tag = "Placed";
-                    }
+   
                     if (towerRenderer != null)
                     {
                         float baseValue = 1000;
@@ -351,6 +348,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerSelection.SetSelectingTower(false);
                     towerSelection.SetSelectingSpell(false);
                     Wave.IncrementTowersPlaced();
+                    if (!islandTowerSelection)
+                    {
+                        if (!towerSelection.IsSelectingSpell())
+                        {
+                            currentTowerInstance.tag = "Placed";
+                        }
+                    }
                     if (!Wave.collisionOccurred && towerSelection.towers != "Lightning")
                     {
                         currentTowerInstance.AddComponent<PositionUpdater>();                        
