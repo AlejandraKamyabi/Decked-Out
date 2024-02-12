@@ -19,7 +19,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject EathQuack;
     public GameObject attraction_Tower;
     public GameObject Wave_Tower;
-    public GameObject Force_Field_Tower;
+    public GameObject Poison_Tower;
     public GameObject Ballista_Tower;
 
     [Header("Spells")]

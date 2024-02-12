@@ -113,4 +113,11 @@ public class FrostTower : MonoBehaviour, ITower
         Destroy(buffed);
         hasBeenBuffed = false;
     }
+    private void OnDestroy()
+    {
+        if (buffed != null)
+        {
+            Destroy(buffed);
+        }
+    }
 }
