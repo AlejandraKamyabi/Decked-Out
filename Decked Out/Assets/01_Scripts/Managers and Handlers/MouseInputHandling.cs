@@ -328,7 +328,13 @@ public class MouseInputHandling : MonoBehaviour
                         }
                     }
                             SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
-   
+                    if (!islandTowerSelection)
+                    {
+                        if (!towerSelection.IsSelectingSpell())
+                        {
+                            currentTowerInstance.tag = "Placed";
+                        }
+                    }
                     if (towerRenderer != null)
                     {
                         float baseValue = 1000;
@@ -348,13 +354,7 @@ public class MouseInputHandling : MonoBehaviour
                     towerSelection.SetSelectingTower(false);
                     towerSelection.SetSelectingSpell(false);
                     Wave.IncrementTowersPlaced();
-                    if (!islandTowerSelection)
-                    {
-                        if (!towerSelection.IsSelectingSpell())
-                        {
-                            currentTowerInstance.tag = "Placed";
-                        }
-                    }
+        
                     if (!Wave.collisionOccurred && towerSelection.towers != "Lightning")
                     {
                         currentTowerInstance.AddComponent<PositionUpdater>();                        
