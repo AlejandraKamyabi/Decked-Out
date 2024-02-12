@@ -160,4 +160,11 @@ public class EarthQuack : MonoBehaviour, ITower
             hasBeenBuffed = true;
         }
     }
+    private void OnDestroy()
+    {
+        if (buffed != null)
+        {
+            Destroy(buffed);
+        }
+    }
 }
