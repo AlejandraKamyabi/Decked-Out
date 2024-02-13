@@ -265,4 +265,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 2
-  damage: 120
+  damage: 100
