@@ -5415,6 +5415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e639d152c4328bc44af377e046d06b1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <GlobalDeltaTIme>k__BackingField: 0
+  _lastFrameTime: 0
 --- !u!1 &1147148213
 GameObject:
   m_ObjectHideFlags: 0

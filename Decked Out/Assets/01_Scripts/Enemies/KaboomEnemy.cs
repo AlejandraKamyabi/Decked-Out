@@ -138,7 +138,11 @@ public class KaboomEnemy : MonoBehaviour
     {
         deathSoundHandling.PlayDeathSound();
         GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
-       
+
+        if (enemyKillTracker != null)
+        {
+            enemyKillTracker.EnemyKilled();
+        }
 
         DealAOEDamage();
 
@@ -146,10 +150,6 @@ public class KaboomEnemy : MonoBehaviour
         Destroy(gameObject);
         Destroy(deathEffect, 4.0f);
 
-        if (enemyKillTracker != null)
-        {
-            enemyKillTracker.EnemyKilled();
-        }
 
     }
 
@@ -162,11 +162,12 @@ public class KaboomEnemy : MonoBehaviour
             {
                 castle.TakeDamage(damage);
             }
+            enemyKillTracker.EnemyDestroyed();
             GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
             Destroy(deathEffect, 4.0f);
-            enemyKillTracker.EnemyDestroyed();
+            
         }
 
     }
