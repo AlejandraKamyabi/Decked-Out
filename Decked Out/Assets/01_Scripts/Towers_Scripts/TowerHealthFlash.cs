@@ -40,7 +40,8 @@ public class TowerHealthFlash : MonoBehaviour
             if (_towerScript.health <= _flashThreshold)
             {
                 //Debug.Log("Tower Below Threshold");
-                _timer += Time.deltaTime;
+                float delta = GlobalTimeManager.Instance.GlobalDeltaTIme;
+                _timer += delta;
                 if (_timer >= (_flashDelay + _flashDuration))
                 {
                     //Debug.Log("Tower Reset");
