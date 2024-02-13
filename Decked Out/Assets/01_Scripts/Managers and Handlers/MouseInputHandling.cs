@@ -387,13 +387,6 @@ public class MouseInputHandling : MonoBehaviour
             }
             else { islandTowerSelection = false; }
         }  
-        
-        else if (currentTowerInstance != null && Input.GetMouseButtonDown(1))
-        {
-            Destroy(currentTowerInstance);
-            towerSelection.SetSelectingTower(false);
-            towerSelection.SetSelectingSpell(false);
-        }
         else
         {
             towerRigSprite.color = notPlaceable;
@@ -401,7 +394,37 @@ public class MouseInputHandling : MonoBehaviour
         }
     }
 
-
+    public void ClearRig()
+    {
+        towerRig.gameObject.SetActive(false);
+    }
+    public float SpellSlotCheck()
+    {
+        if (cardRandoEngine._lastCardSlot == cardRandoEngine.cardSpace0)
+        {
+            return 0;
+        }
+        else if (cardRandoEngine._lastCardSlot == cardRandoEngine.cardSpace1)
+        {
+            return 1;
+        }
+        else if (cardRandoEngine._lastCardSlot == cardRandoEngine.cardSpace2)
+        {
+            return 2;
+        }
+        else if (cardRandoEngine._lastCardSlot == cardRandoEngine.cardSpace3)
+        {
+            return 3;
+        }
+        else if (cardRandoEngine._lastCardSlot == cardRandoEngine.cardSpace4)
+        {
+            return 4;
+        }
+        else
+        {
+            return float.NaN;
+        }
+    }
     public void setCollision()
     {
         collisionOccurred = true;
