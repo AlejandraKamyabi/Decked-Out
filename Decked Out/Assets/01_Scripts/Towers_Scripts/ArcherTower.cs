@@ -8,7 +8,7 @@ using UnityEngine;
 public class ArcherTower : MonoBehaviour, ITower
 {
     public float attackRange; 
-    public GameObject poision_prefab;
+    public GameObject arrowPrefab;
     [SerializeField] private float Damage;
     [SerializeField] private float RateOfFire;
     [SerializeField] private float Health = 2;
@@ -96,7 +96,7 @@ public class ArcherTower : MonoBehaviour, ITower
     private void ShootArrow(Transform target)
     {
         audioSource.Play();
-        GameObject arrow = Instantiate(poision_prefab, transform.position, Quaternion.identity);
+        GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         arrowScript.SetTarget(target);
 
