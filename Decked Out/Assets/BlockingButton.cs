@@ -25,16 +25,19 @@ public class BlockingButton : MonoBehaviour, IPointerEnterHandler
         Debug.Log("Pointer Entry");
         if (_towerSelection.isSelectingTower == true)
         {
+            Debug.Log("Putting Tower Back");
             _towerSelection.SetSelectingTower(false);
             _mouseInput.ClearRig();
             PutCardBack();
         }
         else if (_towerSelection.isSelectingSpell == true)
         {
-            _towerSelection.SetSelectingSpell(false);
+            Debug.Log("Putting Spell Back");
             _mouseInput.ClearRig();
-            _lastSpellSlot = _randoEngine.SpellSlotCheck();
+            _randoEngine.SpellSlotCheck();
             PutCardBack();
+            _towerSelection.SetSelectingSpell(false);          
+
         }
         else
         {
