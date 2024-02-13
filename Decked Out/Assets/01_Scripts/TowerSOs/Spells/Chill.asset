@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Chill
   background: {fileID: 21300000, guid: c397d2a97e44f524789af0621caae778, type: 3}
-  image: {fileID: 21300000, guid: 8a2a2a1e8726e9a48b13644b703dea51, type: 3}
+  image: {fileID: 21300000, guid: c578f426f87d22847a4e2dcc6e9c0c43, type: 3}
   icon: {fileID: 21300000, guid: 99f7a47b58840d840879994ff1dc199a, type: 3}
   rarityColor: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
   towerInfo: Honey where's my super suit?!
