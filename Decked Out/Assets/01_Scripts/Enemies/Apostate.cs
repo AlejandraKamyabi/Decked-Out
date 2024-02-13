@@ -19,7 +19,7 @@ public class Apostate : MonoBehaviour
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
-    private EnemyKillTracker EnemyKillTracker;
+    private EnemyKillTracker _killTracker;
     [SerializeField] private CircleCollider2D circleCollider;
     public float detectionRadius;
     private HashSet<GameObject> previouslyDetected = new HashSet<GameObject>();
@@ -40,7 +40,7 @@ public class Apostate : MonoBehaviour
         timeSinceLastDamage = damageTimer;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         deathSoundHandling.enemyDeathSound = deathSound;
-        EnemyKillTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
+        _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
     }
 
     private void Update()
@@ -172,9 +172,9 @@ public class Apostate : MonoBehaviour
         Destroy(healthSlider.gameObject);
         Destroy(gameObject);
 
-        if (EnemyKillTracker != null)
+        if (_killTracker != null)
         {
-            EnemyKillTracker.EnemyDestroyed();
+            _killTracker.EnemyKilled();
         }
     }
 
@@ -189,6 +189,7 @@ public class Apostate : MonoBehaviour
             }
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
+            _killTracker.EnemyDestroyed();
         }
         if (collision.gameObject.CompareTag("Placed"))
         {

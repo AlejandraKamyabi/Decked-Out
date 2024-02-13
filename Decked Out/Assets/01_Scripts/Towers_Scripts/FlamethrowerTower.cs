@@ -33,10 +33,7 @@ public class FlamethrowerTower : MonoBehaviour, ITower
     private void Update()
     {
         FindAndShootTarget();
-        if (health == 0)
-        {
-            spriteRenderer.color = Color.red;
-        }
+
     }
 
     public float damage

@@ -148,7 +148,7 @@ public class KaboomEnemy : MonoBehaviour
 
         if (enemyKillTracker != null)
         {
-            enemyKillTracker.EnemyDestroyed();
+            enemyKillTracker.EnemyKilled();
         }
 
     }
@@ -166,6 +166,7 @@ public class KaboomEnemy : MonoBehaviour
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
             Destroy(deathEffect, 4.0f);
+            enemyKillTracker.EnemyDestroyed();
         }
 
     }

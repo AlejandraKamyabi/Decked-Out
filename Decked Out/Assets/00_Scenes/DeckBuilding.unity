@@ -2642,6 +2642,7 @@ MonoBehaviour:
   - {fileID: 354093570}
   _cardsOfRarity:
   - {fileID: 11400000, guid: a594bc4f654a0324c9f522defa7f346b, type: 2}
+  - {fileID: 11400000, guid: 8983d8cb0b0b65e449ea0efb6c25d2d7, type: 2}
 --- !u!1001 &661333716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3254,6 +3255,7 @@ MonoBehaviour:
   - {fileID: 354093570}
   _cardsOfRarity:
   - {fileID: 11400000, guid: beb6c0bf0cacdb545ac0a525d40c9432, type: 2}
+  - {fileID: 11400000, guid: c1bd809c41365af4d9b313a92d95a864, type: 2}
 --- !u!1 &806407947
 GameObject:
   m_ObjectHideFlags: 0
@@ -3802,6 +3804,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a17d7f6e4d56c2f499950572b877f0d9, type: 2}
   - {fileID: 11400000, guid: edeaafcae54913549a1514d0ec193284, type: 2}
   - {fileID: 11400000, guid: c48d9ae1dbf14914e8dffa026e662845, type: 2}
+  - {fileID: 11400000, guid: cbd0ddcb700ad3042ba0e9fc9e4af57c, type: 2}
 --- !u!1 &938981236
 GameObject:
   m_ObjectHideFlags: 0
@@ -4256,6 +4259,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8430b8eca9945e34cbcdec8e2ff926ba, type: 2}
   - {fileID: 11400000, guid: aed80f7ecc88b744ba63fb298d661901, type: 2}
   - {fileID: 11400000, guid: 76fa049d1c07f7846bc3999051be13b4, type: 2}
+  - {fileID: 11400000, guid: 4103427755180534d9dc8166028842a2, type: 2}
 --- !u!1 &1033743474 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 527230130669368719, guid: 8787d373d463a9540a40266457567c91, type: 3}
@@ -4529,6 +4533,66 @@ MonoBehaviour:
       - m_Target: {fileID: 817826480}
         m_TargetAssemblyTypeName: DeckbuildingManager, Assembly-CSharp
         m_MethodName: OnStartButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1009700342}
+        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
+        m_MethodName: SaveCards
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 876393313}
+        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
+        m_MethodName: SaveCards
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 785592423}
+        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
+        m_MethodName: SaveCards
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2108980451}
+        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
+        m_MethodName: SaveCards
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 638760147}
+        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
+        m_MethodName: SaveCards
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7121,7 +7185,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

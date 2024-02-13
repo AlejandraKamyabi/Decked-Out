@@ -27,10 +27,7 @@ public class Force_Field_Tower : MonoBehaviour, ITower
 
     private void Update()
     {
-        if (health == 0)
-        {
-            spriteRenderer.color = Color.red;
-        }
+
 
     }
     private void Start()

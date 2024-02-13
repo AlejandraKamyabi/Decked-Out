@@ -28,10 +28,7 @@ public class FrostTower : MonoBehaviour, ITower
     }
     private void Update()
     {
-        if (health == 0)
-        {
-            spriteRenderer.color = Color.red;
-        }
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
         foreach (Collider2D collider in colliders)

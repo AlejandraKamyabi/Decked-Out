@@ -145,8 +145,9 @@ MonoBehaviour:
     timeBetweenWaves: 2.12
   towersLeftText: {fileID: 0}
   collisionOccurred: 0
-  spawnKaboomEnemyAfter: 4
-  spawnGolemEnemyAfter: 10
+  wavesBetweenKaboomSpawn: 4
+  wavesBetweenGolemSpawn: 6
+  wavesBetweenApostateSpawn: 8
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0
   currentWave: 0
