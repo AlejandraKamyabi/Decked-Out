@@ -168,14 +168,15 @@ public class Apostate : MonoBehaviour
     }
     private void Die()
     {
-        deathSoundHandling.PlayDeathSound();
-        Destroy(healthSlider.gameObject);
-        Destroy(gameObject);
-
         if (_killTracker != null)
         {
             _killTracker.EnemyKilled();
         }
+        deathSoundHandling.PlayDeathSound();
+        Destroy(healthSlider.gameObject);
+        Destroy(gameObject);
+
+     
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -125,13 +125,14 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         deathSoundHandling.PlayDeathSound();
-        Destroy(healthSlider.gameObject);
-        Destroy(gameObject);
-
         if (_killTracker != null)
         {
             _killTracker.EnemyKilled();
         }
+        Destroy(healthSlider.gameObject);
+        Destroy(gameObject);
+
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -143,9 +144,10 @@ public class Enemy : MonoBehaviour
             {
                 castle.TakeDamage(damage);
             }
+            _killTracker.EnemyDestroyed();
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
-            _killTracker.EnemyDestroyed();
+
            
         }
         if (circleCollider == null) {
