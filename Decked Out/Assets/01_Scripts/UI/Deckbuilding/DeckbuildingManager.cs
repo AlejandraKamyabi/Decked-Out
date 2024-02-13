@@ -39,6 +39,7 @@ public class DeckbuildingManager : MonoBehaviour
 
     public void OnStartButtonClicked()
     {
+        
         var loadSceneTask = SceneManager.LoadSceneAsync(nextSceneName);
     }
 

@@ -16,7 +16,13 @@ public class EnemyKillTracker : MonoBehaviour
     public int currentWave = 1;
     public float duration;
     public float gemDropChance = 0.01f;
+
+    private WaveManager _waveManager;
     private GameLoader _loader;
+    private CardRandoEngine _randoEngine;
+    //Enemy Number Tracking
+    int _enemiesInWave;
+    int _enemiesDestroyedThisWave;
 
     private void Start()
     {
@@ -26,13 +32,22 @@ public class EnemyKillTracker : MonoBehaviour
 
     private void Initialize()
     {
+        _randoEngine = FindObjectOfType<CardRandoEngine>();
+        _waveManager = FindObjectOfType<WaveManager>();
         UpdateEnemyCountText();
         UpdateGemCountText();
     }
 
-    public void EnemyDestroyed()
+    public void EnemyKilled()
     {
         totalEnemiesDestroyed++;
+        _enemiesDestroyedThisWave++;
+        if (_enemiesDestroyedThisWave == _enemiesInWave)
+        {
+            _randoEngine.NewWave();
+            WaveUpdate();
+            AllEnemiesInWaveDestroyed();
+        }
         UpdateEnemyCountText();
 
         // Check for gem drop
@@ -40,6 +55,25 @@ public class EnemyKillTracker : MonoBehaviour
         {
             CollectGem();
         }
+    }
+    public void EnemyDestroyed()
+    {
+        _enemiesDestroyedThisWave++;
+        if (_enemiesDestroyedThisWave == _enemiesInWave)
+        {
+            _randoEngine.NewWave();
+            WaveUpdate();
+            AllEnemiesInWaveDestroyed();
+        }
+    }
+    public void NumbersOfEnemiesInWave(int enemies)
+    {        
+        _enemiesInWave = enemies;
+    }
+    public void AllEnemiesInWaveDestroyed()
+    {
+        _waveManager.AllEnemiesInWaveDestroyed();
+        _enemiesDestroyedThisWave = 0;
     }
 
     private void CollectGem()

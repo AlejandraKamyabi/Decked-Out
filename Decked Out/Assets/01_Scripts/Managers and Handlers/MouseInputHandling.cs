@@ -58,13 +58,6 @@ public class MouseInputHandling : MonoBehaviour
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;           
         }
-        int enemy = Wave.GetEnemies();
-        if (enemy <= 0)
-        {
-            Debug.Log("All Enemies Dead");
-            cardRandoEngine.cardsInHand.Clear();
-            cardRandoEngine.NewWave();
-        }
     }
 
 

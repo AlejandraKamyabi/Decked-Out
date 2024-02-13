@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -8631973492879612246}
   - component: {fileID: -4882260772056868227}
   - component: {fileID: 5504842860396415455}
+  - component: {fileID: -2459782676629322120}
   m_Layer: 6
   m_Name: Ballista
   m_TagString: Tower
@@ -250,3 +251,19 @@ MonoBehaviour:
   Health: 2
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: -4882260772056868227}
+--- !u!114 &-2459782676629322120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deaa893ecd58724eba6f6ebd5ff3b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashDelay: 1.25
+  _flashDuration: 0.75
+  _flashColour: {r: 1, g: 0, b: 0, a: 1}
+  _flashThreshold: 1

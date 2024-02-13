@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7405903770306088371}
   - component: {fileID: -8631973492879612246}
   - component: {fileID: 7282082332460377577}
+  - component: {fileID: -5626848965590160088}
   m_Layer: 6
   m_Name: ElectricTower
   m_TagString: Tower
@@ -152,3 +153,19 @@ MonoBehaviour:
   RateOfFire: 0.8
   Health: 7
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
+--- !u!114 &-5626848965590160088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deaa893ecd58724eba6f6ebd5ff3b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashDelay: 1.25
+  _flashDuration: 0.75
+  _flashColour: {r: 1, g: 0, b: 0, a: 1}
+  _flashThreshold: 1

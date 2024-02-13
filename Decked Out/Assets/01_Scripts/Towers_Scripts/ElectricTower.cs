@@ -33,10 +33,7 @@ public class ElectricTower : MonoBehaviour, ITower
     }
     private void Update()
     {
-        if (health == 0)
-        {
-            spriteRenderer.color = Color.red;
-        }
+
         FindAndShootTarget();
     }
     public void ResetTowerEffects()

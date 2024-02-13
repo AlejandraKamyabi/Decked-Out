@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.EventSystems;
+using System.Linq;
 
 public class CardRandoEngine : MonoBehaviour
 {
@@ -130,6 +129,8 @@ public class CardRandoEngine : MonoBehaviour
   
     float scale;
     private int current_Button_Held;
+    private float _startUpDelay = 1f;
+    private bool _startup = true;
 
     private void Start()
     {
@@ -155,12 +156,24 @@ public class CardRandoEngine : MonoBehaviour
           
         blockingButton.gameObject.SetActive(false);
         timerSlider.gameObject.SetActive(false);
-        timer = delayTimer;        
-        NewWave();
-        MoveToBottom();
+        timer = delayTimer;
+
+        _startup = true;
     }
+
     private void Update()
     {
+        if (_startup)
+        {
+            _startUpDelay -= Time.deltaTime;
+            if (_startUpDelay >= 0)
+            {
+                NewWave();
+                MoveToBottom();
+                _startup = false;
+                _startUpDelay = 0;
+            }
+        }
         isSelectingTower = towerSelection.isSelectingTower;
         if (!isSelectingTower)
         {
@@ -223,6 +236,7 @@ public class CardRandoEngine : MonoBehaviour
 
     public void NewWave()
     {
+        Debug.Log("New Wave Called");
         cardsInHand.Clear();
         blockingButton.gameObject.SetActive(true);
         PlayCardSuffleSound();
@@ -657,38 +671,28 @@ public class CardRandoEngine : MonoBehaviour
     }
     private TowerCardSO SelectRandomWeightedCard(List<TowerCardSO> _cardsToShuffle)
     {
-        if (totalWeight > 365)
-        {
-            scale = totalWeight / 365f;
-            //Debug.Log("Scale: " + scale);
-        }
-        else if (totalWeight <= 365)
-        {
-            scale = 1;
-        }
-        float randomValue = Random.Range(0f, totalWeight);
-        //Debug.Log("Random: " + randomValue);
+        // Calculate totalWeight for normalization if it doesn't already sum to 100
+        float totalWeight = _cardsToShuffle.Sum(card => card.rarityWeight);
 
+        // Generate a random value between 0 and 100 (assuming totalWeight is normalized to 100)
+        float randomValue = Random.Range(0f, 100f); // Use 100f to represent 100%
 
         foreach (TowerCardSO card in _cardsToShuffle)
         {
-            float scaledWeight = card.rarityWeight * scale;
+            // Normalize card weight to a percentage if totalWeight is not 100
+            float normalizedWeight = (card.rarityWeight / totalWeight) * 100; // Only needed if totalWeight != 100
 
-            if (randomValue <= scaledWeight)
+            if (randomValue <= normalizedWeight)
             {
-                //Debug.Log(card.towerName + " selected with a weight of:  " + scaledWeight);
                 return card;
-
             }
-            else if (randomValue > scaledWeight)
+            else
             {
-                //Debug.Log(card.towerName + "NOT selected with a weight of: " + scaledWeight);
-                randomValue -= scaledWeight;
+                randomValue -= normalizedWeight;
             }
-
         }
 
-        return null;
+        return null; // Fallback in case no card is selected, should not happen if weights are normalized correctly
     }
     public void PlayCardSuffleSound()
     {

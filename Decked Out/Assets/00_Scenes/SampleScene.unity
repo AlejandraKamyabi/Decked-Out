@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 133661370}
   - component: {fileID: 133661372}
   - component: {fileID: 133661373}
+  - component: {fileID: 133661374}
   m_Layer: 5
   m_Name: Card Hand Panel
   m_TagString: Untagged
@@ -410,23 +411,7 @@ MonoBehaviour:
   card4TowerID: 0
   card4Used: 0
   totalWeight: 0
-  towerCards:
-  - {fileID: 11400000, guid: 8430b8eca9945e34cbcdec8e2ff926ba, type: 2}
-  - {fileID: 11400000, guid: beb6c0bf0cacdb545ac0a525d40c9432, type: 2}
-  - {fileID: 11400000, guid: f3b9932f60e217e4f8da4b2bc39894f2, type: 2}
-  - {fileID: 11400000, guid: a594bc4f654a0324c9f522defa7f346b, type: 2}
-  - {fileID: 11400000, guid: edeaafcae54913549a1514d0ec193284, type: 2}
-  - {fileID: 11400000, guid: a17d7f6e4d56c2f499950572b877f0d9, type: 2}
-  - {fileID: 11400000, guid: 17a9b6996c9c2d84cbf57d27e5a7fda3, type: 2}
-  - {fileID: 11400000, guid: aed80f7ecc88b744ba63fb298d661901, type: 2}
-  - {fileID: 11400000, guid: 76fa049d1c07f7846bc3999051be13b4, type: 2}
-  - {fileID: 11400000, guid: c48d9ae1dbf14914e8dffa026e662845, type: 2}
-  - {fileID: 11400000, guid: cbd0ddcb700ad3042ba0e9fc9e4af57c, type: 2}
-  - {fileID: 11400000, guid: c1bd809c41365af4d9b313a92d95a864, type: 2}
-  - {fileID: 11400000, guid: 4103427755180534d9dc8166028842a2, type: 2}
-  - {fileID: 11400000, guid: 91acd756c25e2a24c9617b9c8aba9fa8, type: 2}
-  - {fileID: 11400000, guid: 8983d8cb0b0b65e449ea0efb6c25d2d7, type: 2}
-  - {fileID: 11400000, guid: 87f541c0cb5314c48a564edae7fe8510, type: 2}
+  towerCards: []
   cardsInHand: []
   cardShuffle: {fileID: 133661373}
 --- !u!82 &133661373
@@ -525,6 +510,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &133661374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133661368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de315d79cb97274aa9fa5fd09eaa8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardsList: []
 --- !u!1 &178983081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,7 +1631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &390537506
 Transform:
   m_ObjectHideFlags: 0

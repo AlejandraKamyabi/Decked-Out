@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -4882260772056868227}
   - component: {fileID: 3703952735399911143}
   - component: {fileID: 3609362550652666270}
+  - component: {fileID: 3183191852196926945}
   m_Layer: 6
   m_Name: Cannon_Tower
   m_TagString: Tower
@@ -271,3 +272,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3183191852196926945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deaa893ecd58724eba6f6ebd5ff3b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashDelay: 1.25
+  _flashDuration: 0.75
+  _flashColour: {r: 1, g: 0, b: 0, a: 1}
+  _flashThreshold: 1

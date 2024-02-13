@@ -41,10 +41,14 @@ public class WaveManager : MonoBehaviour
     public bool collisionOccurred = false;
 
     private int enemiesSpawned = 0;
-    public int spawnKaboomEnemyAfter = 4;
-    public int spawnGolemEnemyAfter = 10;
+    [Range(1, 25)]
+    public int enemiesBetweenKaboomSpawns = 4;
+    [Range(1, 25)]
+    public int enemiesBetweenGolemSpawns = 6;
+    [Range(1, 25)]
+    public int enemiesBetweenApostateSpawns = 8;
 
-    private EnemyKillTracker EnemyKillTracker;
+    private EnemyKillTracker _killTracker;
     private Coroutine spawningCoroutine;
     public CardRandoEngine cardRandoEngine;
     private Button startButton;
@@ -66,7 +70,12 @@ public class WaveManager : MonoBehaviour
         deck_Building = FindObjectOfType<CardHandling>();
 
         Debug.Log("Wave Manager Initializing");
-        EnemyKillTracker = FindObjectOfType<EnemyKillTracker>();       
+        _killTracker = FindObjectOfType<EnemyKillTracker>();
+
+        //Sets number to human readable
+        enemiesBetweenApostateSpawns--;
+        enemiesBetweenGolemSpawns--;
+        enemiesBetweenKaboomSpawns--;
         return this;
     }
 
@@ -88,57 +97,54 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator StartWave()
     {
- 
-        if (currentWave < waves.Count)
-        {
-            int numberOfEnemies = waves[currentWave].numberOfEnemies;
 
-            for (int i = 0; i < numberOfEnemies; i++)
+        int numberOfEnemies = waves[currentWave].numberOfEnemies;
+        _killTracker.NumbersOfEnemiesInWave(GetEnemies());
+        enemiesSpawned = 0;
+        for (int i = 0; i < numberOfEnemies; i++)
+            {
+            if (enemiesSpawned % enemiesBetweenKaboomSpawns == 0 && enemiesSpawned != 0)
+            {
+                SpawnKaboomEnemy();
+                enemiesSpawned++;
+                //kaboomEnemy = true;
+                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
+                continue;
+            }
+            else if (enemiesSpawned % enemiesBetweenGolemSpawns == 0 && enemiesSpawned != 0)
+            {
+                SpawnGolemEnemy();
+                enemiesSpawned++;
+                //kaboomEnemy = true;
+                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
+                continue;
+            }
+            else if (enemiesSpawned % enemiesBetweenApostateSpawns == 0 && enemiesSpawned != 0)
+            {
+                SpawnApostateEnemy();
+                enemiesSpawned++;
+                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
+                continue;
+            }
+            else
             {
                 SpawnEnemy();
                 enemiesSpawned++;
-
-                if (enemiesSpawned == spawnKaboomEnemyAfter)
-                {
-                    SpawnKaboomEnemy(); 
-                    kaboomEnemy = true;
-                }
-                if (enemiesSpawned == spawnKaboomEnemyAfter)
-                {
-                    SpawnGolemEnemy();
-                    SpawnApostateEnemy();
-                    kaboomEnemy = true;
-                    enemiesSpawned -=6;
-                }
-
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
+                continue;
             }
-            while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
-            {
-                if (!cardRandoEngine.cardsOnLeft)
-                {
-                    cardRandoEngine.StartMoveToLeft();
-                }
-                else if (cardRandoEngine.cardsOnLeft)
-                {
-                    cardRandoEngine.NewWave();
-                }
-                yield return null;
-            }            
-
-            UpdateTowerHealth();
-
-            ToggleStartButton(true);
-
-            deck_Building.doCardAnimation();
-
-
-            cardRandoEngine.MoveToBottom();
-            towersPlaced = 0;
-            TowersLeft = 5;
-            currentWave++;
-            EnemyKillTracker.WaveUpdate();
+            
         }
+    }
+    public void AllEnemiesInWaveDestroyed()
+    {
+        UpdateTowerHealth();
+
+        ToggleStartButton(true);
+
+        towersPlaced = 0;
+        TowersLeft = 5;
+        currentWave++;
     }
 
     private void SpawnKaboomEnemy()
@@ -188,7 +194,7 @@ public class WaveManager : MonoBehaviour
         towersPlaced = 0;
         TowersLeft = 5;
         currentWave = 0;
-        EnemyKillTracker.resetWave();
+        _killTracker.resetWave();
         ToggleStartButton(true);
         if (spawningCoroutine != null)
         {
