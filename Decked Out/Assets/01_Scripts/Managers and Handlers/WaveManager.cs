@@ -103,11 +103,10 @@ public class WaveManager : MonoBehaviour
         enemiesSpawned = 0;
         for (int i = 0; i < numberOfEnemies; i++)
             {
-            if (enemiesSpawned % enemiesBetweenKaboomSpawns == 0 && enemiesSpawned != 0)
+            if (enemiesSpawned % enemiesBetweenApostateSpawns == 0 && enemiesSpawned != 0)
             {
-                SpawnKaboomEnemy();
+                SpawnApostateEnemy();
                 enemiesSpawned++;
-                //kaboomEnemy = true;
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
                 continue;
             }
@@ -119,10 +118,11 @@ public class WaveManager : MonoBehaviour
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
                 continue;
             }
-            else if (enemiesSpawned % enemiesBetweenApostateSpawns == 0 && enemiesSpawned != 0)
+            else if (enemiesSpawned % enemiesBetweenKaboomSpawns == 0 && enemiesSpawned != 0)
             {
-                SpawnApostateEnemy();
+                SpawnKaboomEnemy();
                 enemiesSpawned++;
+                //kaboomEnemy = true;
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
                 continue;
             }
