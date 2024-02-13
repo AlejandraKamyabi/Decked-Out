@@ -3978,68 +3978,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1489383117142098684, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
   m_PrefabInstance: {fileID: 1489383117861147257}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &892063880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892063877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a21a9913d636c54cadc4ef26c87fcef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthSlider: {fileID: 1520267743}
-  endGame: {fileID: 0}
---- !u!50 &892063882
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892063877}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 8.9
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &892063887
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892063877}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.040600836, y: -1.8351574}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 5.5}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.2239141, y: 1.6348014}
-  m_EdgeRadius: 0
 --- !u!114 &892063888 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -8565322880100771210, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
@@ -10690,29 +10628,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1106663293}
     - target: {fileID: -8565322880100771210, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -8565322880100771210, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1520267743}
-    - target: {fileID: -681814362487597853, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_Size.y
-      value: 2.1025085
-      objectReference: {fileID: 0}
-    - target: {fileID: -681814362487597853, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.5512544
-      objectReference: {fileID: 0}
-    - target: {fileID: -681814362487597853, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -681814362487597853, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 5.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1489383117142098684, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
       propertyPath: m_Name
       value: Main Castle
@@ -10721,25 +10639,9 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1489383117142098684, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.4571376
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.4571376
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.4571376
       objectReference: {fileID: 0}
     - target: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10781,28 +10683,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1489383117142098687, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 55a83f33a0639774091540a610e4d5ab, type: 3}
-    - target: {fileID: 1489383117142098687, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_Color.b
-      value: 1
+    - target: {fileID: 0}
+      propertyPath: m_Size.y
+      value: 2.1025085
       objectReference: {fileID: 0}
-    - target: {fileID: 1489383117142098687, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_Color.g
-      value: 1
+    - target: {fileID: 0}
+      propertyPath: m_Offset.y
+      value: 0.5512544
       objectReference: {fileID: 0}
-    - target: {fileID: 1489383117142098687, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_Color.r
-      value: 1
+    - target: {fileID: 0}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1489383117142098687, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-      propertyPath: m_SortingOrder
-      value: 999
+    - target: {fileID: 0}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 5.5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -681814362487597853, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
 --- !u!1001 &5754171761519075883
 PrefabInstance:

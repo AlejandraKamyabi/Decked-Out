@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Castle : MonoBehaviour
 {
     public float maxHealth = 100.0f;
-    private float currentHealth;
+    public float currentHealth;
 
     public Slider healthSlider;
     public EndGameSplashManager endGame;
