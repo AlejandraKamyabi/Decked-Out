@@ -24,3 +24,4 @@ MonoBehaviour:
   range: 50
   rateOfFire: 0
   duration: 4
+  spell: 1
