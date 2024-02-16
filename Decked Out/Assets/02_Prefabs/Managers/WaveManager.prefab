@@ -146,8 +146,8 @@ MonoBehaviour:
   towersLeftText: {fileID: 0}
   collisionOccurred: 0
   enemiesBetweenKaboomSpawns: 4
-  enemiesBetweenGolemSpawns: 6
-  enemiesBetweenApostateSpawns: 8
+  enemiesBetweenGolemSpawns: 7
+  enemiesBetweenApostateSpawns: 10
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0
   currentWave: 0

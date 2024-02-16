@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-  moveSpeed: 1.25
+  moveSpeed: 0.8
   damage: 5
   maxHealth: 80
   healthSlider: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
@@ -306,5 +306,5 @@ MonoBehaviour:
   isFrozen: 0
   deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
   circleCollider: {fileID: 0}
-  detectionRadius: 3.5
+  detectionRadius: 2.75
   isBeingPushed: 0
