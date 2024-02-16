@@ -14,6 +14,12 @@ public class CardToPick : MonoBehaviour
     [SerializeField] Image _icon;
     [SerializeField] TextMeshProUGUI _name;
 
+    [Header("Card To Drag Around")]
+    [SerializeField] GameObject _cardRig;
+    [SerializeField] float _cardHoldTime;
+
+    bool _isPressed = false;
+    float _timer;
     public void UpdateUI()
     {
         if (_card != null)
@@ -37,10 +43,26 @@ public class CardToPick : MonoBehaviour
         _card = card;
         UpdateUI();
     }
+    public void Clicked()
+    {
+        _isPressed = true;
+    }
+    private void Update()
+    {
+        if (_isPressed)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= _cardHoldTime)
+            {
+                DragOff();
+            }
+        }
+    }
 
     public void SlotIn()
     {
         SelectedCard[] selectedCardsArray = FindObjectsOfType<SelectedCard>();
+        _isPressed = false;
         foreach (SelectedCard selectedCard in selectedCardsArray)
         {
             if (!selectedCard.slottedIn)
@@ -53,5 +75,16 @@ public class CardToPick : MonoBehaviour
             }
             break;
         }
+    }
+    public void DragOff()
+    {
+        if (_isPressed)
+        {
+            Debug.Log("Dragged Off");
+            GameObject cardRig = Instantiate(_cardRig, Input.mousePosition, Quaternion.identity);
+            CardRig cardRigScript = cardRig.GetComponent<CardRig>();
+            cardRigScript.SetCard(_card);
+        }
+        
     }
 }
