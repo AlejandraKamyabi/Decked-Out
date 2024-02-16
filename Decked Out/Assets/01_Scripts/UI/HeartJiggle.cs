@@ -7,10 +7,13 @@ public class HeartJiggle : MonoBehaviour
 {
     [SerializeField] GameObject _castleSprite;
     [SerializeField] float _jiggleDuration = 0.25f;
+    [Range(0, 1)]
     [SerializeField] float[] _jiggleMagnitudes;
+    [SerializeField] AudioClip _hitSound;
     
 
     Castle _castleScript;
+    AudioSource _audioSource;
     Vector3 _originalPOS;
     private GameLoader _loader;
 
@@ -31,40 +34,46 @@ public class HeartJiggle : MonoBehaviour
         _maxHealth = _castleScript.maxHealth;
         _currentHealth = _castleScript.health;
         _lastHealth = _currentHealth;
+        _audioSource = GetComponent<AudioSource>();
     }
     public void StartJiggle(float health)
     {
-        if (_jiggleTimer <= 0)
+        _lastHealth = _currentHealth;
+        float difference = Mathf.Abs(_lastHealth - health);
+        int multipleOfFive = Mathf.FloorToInt(difference / 5);
+
+        switch (multipleOfFive)
         {
-            _jiggleTimer = _jiggleDuration;
-            //Debug.Log("jiggling");
-            _lastHealth = _currentHealth;
-            float difference = Mathf.Abs(_lastHealth - health);
-            int multipleOfFive = Mathf.FloorToInt(difference / 5);
-            switch (multipleOfFive)
-            {
-                case 0:
-                    _jiggleMagnitude = _jiggleMagnitudes[0];
-                    break;
-                case 1:
-                    _jiggleMagnitude = _jiggleMagnitudes[1];
-                    break;
-                case 2:
-                    _jiggleMagnitude = _jiggleMagnitudes[2];
-                    break;
-                case 3:
-                    _jiggleMagnitude = _jiggleMagnitudes[3];
-                    break;
-                case 4:
-                    _jiggleMagnitude = _jiggleMagnitudes[4];
-                    break;
-                case 5:
-                    _jiggleMagnitude = _jiggleMagnitudes[5];
-                    break;
-            }
-            _currentHealth = health;
+            case 0:
+                _jiggleMagnitude = _jiggleMagnitudes[0];
+                break;
+            case 1:
+                _jiggleMagnitude = _jiggleMagnitudes[1];
+                break;
+            case 2:
+                _jiggleMagnitude = _jiggleMagnitudes[2];
+                break;
+            case 3:
+                _jiggleMagnitude = _jiggleMagnitudes[3];
+                break;
+            case 4:
+                _jiggleMagnitude = _jiggleMagnitudes[4];
+                break;
+            case 5:
+                _jiggleMagnitude = _jiggleMagnitudes[5];
+                break;
         }
-        
+
+        if (_jiggleTimer <= 0)
+            
+        {
+            _jiggleTimer = _jiggleDuration; 
+        }
+
+        _currentHealth = health;
+        _audioSource.volume = _jiggleMagnitude * 4;
+        _audioSource.PlayOneShot(_hitSound);
+
     }
     private void Update()
     {
