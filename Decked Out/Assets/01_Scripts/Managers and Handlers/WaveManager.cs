@@ -81,8 +81,7 @@ public class WaveManager : MonoBehaviour
 
     private void StartWaves()
     {
-        ToggleStartButton(false);
-        DestroyTowers();
+        ToggleStartButton(false);        
         spawningCoroutine = StartCoroutine(StartWave());
   
     }
@@ -139,7 +138,7 @@ public class WaveManager : MonoBehaviour
     public void AllEnemiesInWaveDestroyed()
     {
         UpdateTowerHealth();
-
+        DestroyTowers();
         ToggleStartButton(true);
 
         towersPlaced = 0;
