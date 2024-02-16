@@ -630,8 +630,8 @@ public class CardRandoEngine : MonoBehaviour
         {
             if (spellUses[i] > 0)
             {
-                cardSpaces[i].SetActive(true); // Ensure the card space is active for uses > 0
-                spellUsesTexts[i].gameObject.SetActive(true);
+                //spellUsesTexts[i].gameObject.SetActive(true);
+                cardSpaces[i].SetActive(true);
                 spellUsesTexts[i].text = spellUsesToRoman[spellUses[i]];
             }
             else if ((spellUses[i] <= 0) && (cardData[i].spell == true))
@@ -674,7 +674,7 @@ public class CardRandoEngine : MonoBehaviour
                         spell4Uses++;
                         Debug.Log(spell4Uses);
                         break;
-                }
+                }                
                 ChangeSpellText(); // Reflect the changes
                 return; // Exit the method after updating
             }
@@ -684,41 +684,23 @@ public class CardRandoEngine : MonoBehaviour
 
     public void LoadSpellText()
     {
-        if (card0Name == "Lightning" || card0Name == "Fireball" || card0Name == "Big Bomb" || card0Name == "Chill" || card0Name == "Nuke")
+        TowerCardSO[] cardDatas = { card0Data, card1Data, card2Data, card3Data, card4Data };
+        TextMeshProUGUI[] spellUsesTexts = { card0SpellUsesText, card1SpellUsesText, card2SpellUsesText, card3SpellUsesText, card4SpellUsesText };
+        GameObject[] cardSpaces = { cardSpace0, cardSpace1, cardSpace2, cardSpace3, cardSpace4 };
+        for (int i = 0; i < cardDatas.Length; i++)
         {
-            ChangeSpellText();
+            cardSpaces[i].gameObject.SetActive(true);
+            if (cardDatas[i].spell == false)
+            {
+                spellUsesTexts[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                spellUsesTexts[i].gameObject.SetActive(true);
+                ChangeSpellText();
+            }
         }
-        else if (card0Name != "Lightning" || card0Name != "Fireball" || card0Name != "Big Bomb" || card0Name != "Chill" || card0Name != "Nuke")
-        {
-        }
-        if (card1Name == "Lightning" || card1Name == "Fireball" || card1Name == "Big Bomb" || card1Name == "Chill" || card1Name == "Nuke")
-        {
-            ChangeSpellText();
-        }
-        else if (card1Name != "Lightning" || card1Name != "Fireball" || card1Name != "Big Bomb" || card1Name != "Chill" || card1Name != "Nuke")
-        {
-        }
-        if (card2Name == "Lightning" || card2Name == "Fireball" || card2Name == "Big Bomb" || card2Name == "Chill" || card2Name == "Nuke")
-        {
-            ChangeSpellText();
-        }
-        else if (card2Name != "Lightning" || card2Name != "Fireball" || card2Name != "Big Bomb" || card2Name != "Chill" || card2Name != "Nuke")
-        {
-        }
-        if (card3Name == "Lightning" || card3Name == "Fireball" || card3Name == "Big Bomb" || card3Name == "Chill" || card3Name == "Nuke")
-        {
-            ChangeSpellText();
-        }
-        else if (card3Name != "Lightning" || card3Name != "Fireball" || card3Name != "Big Bomb" || card3Name != "Chill" || card3Name != "Nuke")
-        {
-        }
-        if (card4Name == "Lightning" || card4Name == "Fireball" || card4Name == "Big Bomb" || card4Name == "Chill" || card4Name == "Nuke")
-        {
-            ChangeSpellText();
-        }
-        else if (card4Name != "Lightning" || card4Name != "Fireball" || card4Name != "Big Bomb" || card4Name != "Chill" || card4Name != "Nuke")
-        {
-        }
+       
     }
 
 
