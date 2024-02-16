@@ -10528,5 +10528,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Slider
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2804010890484304992, guid: 3f66af8e5379c7847bf5c6fb615db128, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f66af8e5379c7847bf5c6fb615db128, type: 3}
