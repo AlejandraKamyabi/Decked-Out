@@ -22,31 +22,28 @@ public class BlockingButton : MonoBehaviour, IPointerEnterHandler
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Pointer Entry");
-        if (_towerSelection.isSelectingTower == true)
-        {
-            _towerSelection.SetSelectingTower(false);
-            _mouseInput.ClearRig();
-            PutCardBack();
-        }
-        else if (_towerSelection.isSelectingSpell == true)
-        {
-            _towerSelection.SetSelectingSpell(false);
-            _mouseInput.ClearRig();
-            _lastSpellSlot = _randoEngine.SpellSlotCheck();
-            PutCardBack();
-        }
-        else
-        {
-           Debug.LogError("Blocking Button up but Tower Selection is not selecting a tower");
-        }
+        PutCardBack();        
     }
     private void PutCardBack()
     {
-        if (_randoEngine._lastCardSlot.activeInHierarchy == false)
+        Debug.Log(_randoEngine._lastCardSlot);
+        _mouseInput.ClearRig();
+        if (_towerSelection.isSelectingSpell == true && _towerSelection.isSelectingSpell == true)
         {
+            Debug.Log("Putting Spell Back");
+            _randoEngine.SpellSlotCheck();
+            _towerSelection.SetSelectingSpell(false);
+            _towerSelection.SetSelectingTower(false);
+            _towerSelection.towers = null;
+            _towerSelection.spells = null;
+        }
+        else if (_towerSelection.isSelectingTower == true && _towerSelection.isSelectingSpell != true)
+        {
+            Debug.Log("Putting Tower Back");
             _randoEngine._lastCardSlot.SetActive(true);
-            _randoEngine._lastCardSlot = null;
+            _towerSelection.SetSelectingTower(false);
+            _towerSelection.towers = null;
+            _towerSelection.spells = null;
         }
     }
 

@@ -20,4 +20,5 @@ public class TowerCardSO : ScriptableObject
     public float range;
     public float rateOfFire;
     public float duration;
+    public bool spell;
 }

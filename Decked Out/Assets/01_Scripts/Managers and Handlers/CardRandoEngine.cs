@@ -141,12 +141,7 @@ public class CardRandoEngine : MonoBehaviour
         _deckManager = ServiceLocator.Get<DeckbuildingManager>();
 
         transform.position = bottomSpot.position;
-        transform.rotation = bottomSpot.rotation;
-        cardSpace0.gameObject.SetActive(false);        
-        cardSpace1.gameObject.SetActive(false);        
-        cardSpace2.gameObject.SetActive(false);        
-        cardSpace3.gameObject.SetActive(false);        
-        cardSpace4.gameObject.SetActive(false);        
+        transform.rotation = bottomSpot.rotation;       
         spell0Uses =0;   
         spell1Uses=0;
         spell2Uses=0;
@@ -170,7 +165,6 @@ public class CardRandoEngine : MonoBehaviour
             if (_startUpDelay >= 0)
             {
                 NewWave();
-                LoadSpellText();
                 _startup = false;
                 _startUpDelay = 0;
             }
@@ -234,6 +228,7 @@ public class CardRandoEngine : MonoBehaviour
         GetRandomizedCards(handSize);
         GetCardData();
         ButtonData();
+        LoadSpellText();
     }
 
     public void GetCardData()
@@ -386,31 +381,7 @@ public class CardRandoEngine : MonoBehaviour
         current_Button_Held = 4;
     }
 
-    public void PlaceButton0()
-    {
-        _lastCardSlot = cardSpace0;
-        if (card0Name == "Lightning" || card0Name == "Fireball" || card0Name == "Big Bomb" || card0Name == "Chill" || card0Name == "Nuke")
-        {
-            towerSelection.SelectTower();
-            towerSelection.SelectSpells();
-            towerSelection.spells = card0Name;
-            blockingButton.gameObject.SetActive(true);
-            spell0Uses--;
-            ChangeSpellText();
-        }
-
-        else
-        {
-            towerSelection.SelectTower();
-            towerSelection.towers = card0Name;
-            Debug.Log("Card Used & Not Spell");
-            cardSpace0.gameObject.SetActive(false);
-            blockingButton.gameObject.SetActive(true);
-            card0Used = true;
-        }
-
-
-    }
+ 
 
     private void ButtonStats(TowerCardSO cardDataToShow)
     {
@@ -455,17 +426,42 @@ public class CardRandoEngine : MonoBehaviour
 
         //Debug.Log("Card Stats Panel Open");
     }
+    public void PlaceButton0()
+    {
+        _lastCardSlot = cardSpace0;
+        if (card0Data.spell == true)
+        {
+          //  towerSelection.SelectTower();
+            towerSelection.SelectSpells();
+            towerSelection.spells = card0Name;
+            blockingButton.gameObject.SetActive(true);
+            spell0Uses--;
+            ChangeSpellText();
+        }
+
+        else
+        {
+            towerSelection.SelectTower();
+            towerSelection.towers = card0Name;
+            Debug.Log("Card Used & Not Spell");
+            cardSpace0.gameObject.SetActive(false);
+            blockingButton.gameObject.SetActive(true);
+            card0Used = true;
+        }
+
+
+    }
 
     public void PlaceButton1()
     {
         _lastCardSlot = cardSpace1;
-        if (card1Name == "Lightning" || card1Name == "Fireball" || card1Name == "Big Bomb" || card1Name == "Chill" || card1Name == "Nuke")
+        if (card1Data.spell == true)
         {
-            towerSelection.SelectTower();
+          //  towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card1Name;
             blockingButton.gameObject.SetActive(true);
-            spell1Uses+=1;
+            spell1Uses--;
             ChangeSpellText();
         }
         else
@@ -482,13 +478,13 @@ public class CardRandoEngine : MonoBehaviour
     public void PlaceButton2()
     {
         _lastCardSlot = cardSpace2;
-        if (card2Name == "Lightning" || card2Name == "Fireball" || card2Name == "Big Bomb" || card2Name == "Chill" || card2Name == "Nuke")
+        if (card2Data.spell == true)
         {
-            towerSelection.SelectTower();
+          //  towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card2Name;
             blockingButton.gameObject.SetActive(true);
-            spell2Uses+=1;
+            spell2Uses--;
             ChangeSpellText();
         }
         else
@@ -505,13 +501,13 @@ public class CardRandoEngine : MonoBehaviour
     public void PlaceButton3()
     {
         _lastCardSlot = cardSpace3;
-        if (card3Name == "Lightning" || card3Name == "Fireball" || card3Name == "Big Bomb" || card3Name == "Chill" || card3Name == "Nuke")
+        if (card3Data.spell == true)
         {
-            towerSelection.SelectTower();
+           // towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card3Name;
             blockingButton.gameObject.SetActive(true);
-            spell3Uses+=1;
+            spell3Uses--;
             ChangeSpellText();
         }
         else
@@ -529,13 +525,13 @@ public class CardRandoEngine : MonoBehaviour
     public void PlaceButton4()
     {
         _lastCardSlot = cardSpace4;
-        if (card4Name == "Lightning" || card4Name == "Fireball" || card4Name == "Big Bomb" || card4Name == "Chill" || card4Name == "Nuke")
+        if (card4Data.spell == true)
         {
-            towerSelection.SelectTower();
+            //towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card4Name;
             blockingButton.gameObject.SetActive(true);
-            spell4Uses+=1;
+            spell4Uses--;
             ChangeSpellText();
         }
         else
@@ -613,142 +609,75 @@ public class CardRandoEngine : MonoBehaviour
     }
     private void ChangeSpellText()
     {
-        if (spell0Uses == 4)
-        {
-            card0SpellUsesText.text = "IV";
-        }
-        else if (spell0Uses == 3)
-        {
-            card0SpellUsesText.text = "III";
-        }
-        else if (spell0Uses == 2)
-        {
-            card0SpellUsesText.text = "II";
-        }
-        else if (spell0Uses == 1)
-        {         
-            card0SpellUsesText.text = "I";
-        }
-        else if (spell0Uses == 0)
-        {
-            cardSpace0.gameObject.SetActive(false);
-            card0Used = true;
-        }
+        // Mapping of spell uses to Roman numerals
+        Dictionary<int, string> spellUsesToRoman = new Dictionary<int, string>()
+    {
+        {0, ""}, // Handle the case of 0 separately to deactivate the card space
+        {1, "I"},
+        {2, "II"},
+        {3, "III"},
+        {4, "IV"}
+    };
 
-        if (spell1Uses == 1)
-        {
-            card1SpellUsesText.text = "III";
-        }
-        else if (spell1Uses == 2)
-        {
-            card1SpellUsesText.text = "II";
-        }
-        else if (spell1Uses == 3)
-        {
-            card1SpellUsesText.text = "I";
-        }
-        else if (spell1Uses == 4)
-        {
-            spell1Uses = 0;
-            cardSpace1.gameObject.SetActive(false);
+        // Assuming you have an array or similar structure for cardSpaces, cardUsed flags, and spellUsesTexts
+        GameObject[] cardSpaces = { cardSpace0, cardSpace1, cardSpace2, cardSpace3, cardSpace4 };
+        bool[] cardUsed = { card0Used, card1Used, card2Used, card3Used, card4Used };
+        TowerCardSO[] cardData = { card0Data, card1Data, card2Data, card3Data, card4Data };
+        TextMeshProUGUI[] spellUsesTexts = { card0SpellUsesText, card1SpellUsesText, card2SpellUsesText, card3SpellUsesText, card4SpellUsesText };
+        int[] spellUses = { spell0Uses, spell1Uses, spell2Uses, spell3Uses, spell4Uses };
 
-            card1Used = true;
-        }
-
-        if (spell2Uses == 1)
+        for (int i = 0; i < spellUses.Length; i++)
         {
-            card2SpellUsesText.text = "III";
-        }
-        else if (spell2Uses == 2)
-        {
-            card2SpellUsesText.text = "II";
-        }
-        else if (spell2Uses == 3)
-        {
-            card2SpellUsesText.text = "I";
-        }
-        else if (spell2Uses == 4)
-        {
-            spell2Uses = 0;
-            cardSpace2.gameObject.SetActive(false);
-
-            card2Used = true;
-        }
-
-        if (spell3Uses == 1)
-        {
-            card3SpellUsesText.text = "III";
-        }
-        else if (spell3Uses == 2)
-        {
-            card3SpellUsesText.text = "II";
-        }
-        else if (spell3Uses == 3)
-        {
-            card3SpellUsesText.text = "I";
-        }
-        else if (spell3Uses == 4)
-        {
-            spell3Uses = 0;
-            cardSpace3.gameObject.SetActive(false);
-
-            card3Used = true;
-        }
-
-        if (spell4Uses == 1)
-        {
-            card4SpellUsesText.text = "III";
-        }
-        else if (spell4Uses == 2)
-        {
-            card4SpellUsesText.text = "II";
-        }
-        else if (spell4Uses == 3)
-        {
-            card4SpellUsesText.text = "I";
-        }
-        else if (spell4Uses == 4)
-        {
-            spell4Uses = 0;
-            cardSpace4.gameObject.SetActive(false);
-            card4Used = true;
+            if (spellUses[i] > 0)
+            {
+                cardSpaces[i].SetActive(true); // Ensure the card space is active for uses > 0
+                spellUsesTexts[i].gameObject.SetActive(true);
+                spellUsesTexts[i].text = spellUsesToRoman[spellUses[i]];
+            }
+            else if ((spellUses[i] <= 0) && (cardData[i].spell == true))
+            {
+                cardSpaces[i].SetActive(false);
+                cardUsed[i] = true;
+            }
+            
         }
     }
-    public float SpellSlotCheck()
+    public void SpellSlotCheck()
     {
-        if (_lastCardSlot == cardSpace0)
+        GameObject[] cardSpaces = { cardSpace0, cardSpace1, cardSpace2, cardSpace3, cardSpace4 };
+        // Directly work with the spell uses variables inside the loop
+        Debug.Log("Spell Slot Checked");
+        for (int i = 0; i < cardSpaces.Length; i++)
         {
-            spell0Uses+=1;
-            ChangeSpellText();
-            return 0;
-        }
-        else if (_lastCardSlot == cardSpace1)
-        {
-            spell1Uses+=1;
-            ChangeSpellText();
-            return 1;
-        }
-        else if (_lastCardSlot == cardSpace2)
-        {
-            spell2Uses+=1;
-            ChangeSpellText();
-            return 2;
-        }
-        else if (_lastCardSlot == cardSpace3)
-        {
-            spell3Uses+=1;
-            ChangeSpellText();
-            return 3;
-        }
-        else if (_lastCardSlot == cardSpace4)
-        {
-            spell4Uses+=1;
-            ChangeSpellText();
-            return 4;
-        }
-        else
-        {
-            return float.NaN;
+            if (_lastCardSlot == cardSpaces[i])
+            {
+                // Increment the corresponding spellUses variable directly
+                switch (i)
+                {
+                    case 0:
+                        spell0Uses++;
+                        Debug.Log(spell0Uses);
+                        break;
+                    case 1:
+                        spell1Uses++;
+                        Debug.Log(spell1Uses);
+                        break;
+                    case 2:
+                        spell2Uses++;
+                        Debug.Log(spell2Uses);
+                        break;
+                    case 3:
+                        spell3Uses++;
+                        Debug.Log(spell3Uses);
+                        break;
+                    case 4:
+                        spell4Uses++;
+                        Debug.Log(spell4Uses);
+                        break;
+                }
+                ChangeSpellText(); // Reflect the changes
+                return; // Exit the method after updating
+            }
         }
     }
 
@@ -758,47 +687,37 @@ public class CardRandoEngine : MonoBehaviour
         if (card0Name == "Lightning" || card0Name == "Fireball" || card0Name == "Big Bomb" || card0Name == "Chill" || card0Name == "Nuke")
         {
             ChangeSpellText();
-            card0SpellUsesText.gameObject.SetActive(true);
         }
         else if (card0Name != "Lightning" || card0Name != "Fireball" || card0Name != "Big Bomb" || card0Name != "Chill" || card0Name != "Nuke")
         {
-            card0SpellUsesText.gameObject.SetActive(false);
         }
         if (card1Name == "Lightning" || card1Name == "Fireball" || card1Name == "Big Bomb" || card1Name == "Chill" || card1Name == "Nuke")
         {
             ChangeSpellText();
-            card1SpellUsesText.gameObject.SetActive(true);
         }
         else if (card1Name != "Lightning" || card1Name != "Fireball" || card1Name != "Big Bomb" || card1Name != "Chill" || card1Name != "Nuke")
         {
-            card1SpellUsesText.gameObject.SetActive(false);
         }
         if (card2Name == "Lightning" || card2Name == "Fireball" || card2Name == "Big Bomb" || card2Name == "Chill" || card2Name == "Nuke")
         {
             ChangeSpellText();
-            card2SpellUsesText.gameObject.SetActive(true);
         }
         else if (card2Name != "Lightning" || card2Name != "Fireball" || card2Name != "Big Bomb" || card2Name != "Chill" || card2Name != "Nuke")
         {
-            card2SpellUsesText.gameObject.SetActive(false);
         }
         if (card3Name == "Lightning" || card3Name == "Fireball" || card3Name == "Big Bomb" || card3Name == "Chill" || card3Name == "Nuke")
         {
             ChangeSpellText();
-            card3SpellUsesText.gameObject.SetActive(true);
         }
         else if (card3Name != "Lightning" || card3Name != "Fireball" || card3Name != "Big Bomb" || card3Name != "Chill" || card3Name != "Nuke")
         {
-            card3SpellUsesText.gameObject.SetActive(false);
         }
         if (card4Name == "Lightning" || card4Name == "Fireball" || card4Name == "Big Bomb" || card4Name == "Chill" || card4Name == "Nuke")
         {
             ChangeSpellText();
-            card4SpellUsesText.gameObject.SetActive(true);
         }
         else if (card4Name != "Lightning" || card4Name != "Fireball" || card4Name != "Big Bomb" || card4Name != "Chill" || card4Name != "Nuke")
         {
-            card4SpellUsesText.gameObject.SetActive(false);
         }
     }
 

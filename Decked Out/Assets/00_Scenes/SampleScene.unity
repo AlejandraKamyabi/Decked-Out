@@ -366,6 +366,7 @@ MonoBehaviour:
   handSize: 5
   spellUses: 4
   buttons: []
+  _lastCardSlot: {fileID: 0}
   longPressDuration: 1
   card0Data: {fileID: 0}
   cardSpace0Background: {fileID: 530677683}
@@ -375,6 +376,7 @@ MonoBehaviour:
   card0IconImage: {fileID: 423347175}
   card0TowerID: 0
   card0Used: 0
+  spell0Uses: 0
   card1Data: {fileID: 0}
   cardSpace1Background: {fileID: 2069204440}
   card1Name: 
@@ -383,6 +385,7 @@ MonoBehaviour:
   card1IconImage: {fileID: 1682088743}
   card1TowerID: 0
   card1Used: 0
+  spell1Uses: 0
   card2Data: {fileID: 0}
   cardSpace2Background: {fileID: 1625380165}
   card2Name: 
@@ -391,6 +394,7 @@ MonoBehaviour:
   card2IconImage: {fileID: 1770121884}
   card2TowerID: 0
   card2Used: 0
+  spell2Uses: 0
   card3Data: {fileID: 0}
   cardSpace3Background: {fileID: 1510496463}
   card3Name: 
@@ -399,6 +403,7 @@ MonoBehaviour:
   card3IconImage: {fileID: 126111618}
   card3TowerID: 0
   card3Used: 0
+  spell3Uses: 0
   card4Data: {fileID: 0}
   cardSpace4Background: {fileID: 1073442147}
   card4Name: 
@@ -407,6 +412,7 @@ MonoBehaviour:
   card4IconImage: {fileID: 1013344015}
   card4TowerID: 0
   card4Used: 0
+  spell4Uses: 0
   totalWeight: 0
   towerCards:
   - {fileID: 11400000, guid: 8430b8eca9945e34cbcdec8e2ff926ba, type: 2}
@@ -5052,7 +5058,6 @@ GameObject:
   - component: {fileID: 1106663292}
   - component: {fileID: 1106663293}
   - component: {fileID: 1106663294}
-  - component: {fileID: 1106663295}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -5184,18 +5189,6 @@ MonoBehaviour:
   currentWave: 1
   duration: 0
   gemDropChance: 0.1
---- !u!114 &1106663295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106663286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e639d152c4328bc44af377e046d06b1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1147148213
 GameObject:
   m_ObjectHideFlags: 0

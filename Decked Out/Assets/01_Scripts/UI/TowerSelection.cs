@@ -37,6 +37,7 @@ public class TowerSelection : MonoBehaviour
     }
     public void SelectSpells()
     {
+        isSelectingTower = true;
         isSelectingSpell = true;
     }
 
