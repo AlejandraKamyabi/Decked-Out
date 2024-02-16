@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class TowerHealthFlash : MonoBehaviour
 {
-    [SerializeField] float _flashDelay;
-    [SerializeField] float _flashDuration;
-    [SerializeField] Color _flashColour;
-    [SerializeField] float _flashThreshold;
+    [SerializeField] Color _flashColour = Color.red;
+    [SerializeField] float _healthThreshold = 1;
 
     float _timer;
     ITower _towerScript;
@@ -31,58 +29,57 @@ public class TowerHealthFlash : MonoBehaviour
             Debug.LogError("No Tower Found - Check for Interface on Script");
         }
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _timer = _flashDelay;
     }
     private void Update()
     {
-        if (_tower)
+        if (_tower || _buffTower)
         {
-            if (_towerScript.health <= _flashThreshold)
+            if (_towerScript != null)
             {
-                //Debug.Log("Tower Below Threshold");
-                _timer += Time.deltaTime;
-                if (_timer >= (_flashDelay + _flashDuration))
+                if (_towerScript.health <= _healthThreshold)
                 {
-                    //Debug.Log("Tower Reset");
-                    _spriteRenderer.color = Color.white;
-                    _timer = 0;
-
+                    if (GlobalFlashTimer.Instance.IsFlashing())
+                    {
+                        // Tower Flashed
+                        _spriteRenderer.color = _flashColour;
+                    }
+                    else
+                    {
+                        // Reset to default color if not in flashing window
+                        _spriteRenderer.color = Color.white;
+                    }
                 }
-                else if (_timer >= _flashDelay)
-                {
-                    //Debug.Log("Tower Flashed");
-                    _spriteRenderer.color = _flashColour;
-                }
+               
             }
+
+            else if (_buffTowerScript != null && _buffTowerScript.health < _healthThreshold)
+            {
+                if (_buffTowerScript.health <= _healthThreshold)
+                {
+                    if (GlobalFlashTimer.Instance.IsFlashing())
+                    {
+                        // Tower Flashed
+                        _spriteRenderer.color = _flashColour;
+                    }
+                    else
+                    {
+                        // Reset to default color if not in flashing window
+                        _spriteRenderer.color = Color.white;
+                    }
+                }
+                
+            }
+
             else
             {
-                _timer = 0;
+                _spriteRenderer.color = Color.white; // Ensure it is white if health is above threshold
             }
+          
         }
-        else if (_buffTower)
-        {
-            if (_buffTowerScript.health <= _flashThreshold)
-            {
-                //Debug.Log("Tower Below Threshold");
-                _timer += Time.deltaTime;
-                if (_timer >= (_flashDelay + _flashDuration))
-                {
-                    //Debug.Log("Tower Reset");
-                    _spriteRenderer.color = Color.white;
-                    _timer = 0;
 
-                }
-                else if (_timer >= _flashDelay)
-                {
-                    //Debug.Log("Tower Flashed");
-                    _spriteRenderer.color = _flashColour;
-                }
-            }
-            else
-            {
-                _timer = 0;
-            }
+        else
+        {
+            Debug.LogError("Tower Script Not Found");
         }
-       
     }
 }
