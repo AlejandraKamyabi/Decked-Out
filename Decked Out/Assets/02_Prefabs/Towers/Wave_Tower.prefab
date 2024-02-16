@@ -248,7 +248,7 @@ MonoBehaviour:
   Wave_Slash_Prefab: {fileID: 3956206777213680668, guid: d644c6acf3613904cb39de323eb6ec7d, type: 3}
   Damage: 10
   RateOfFire: 2.5
-  Health: 4
+  Health: 6
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: 0}
 --- !u!114 &-7690440995744898684

@@ -244,11 +244,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d4dce590d490d4f8bfc0d0f11b84b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 4
+  attackRange: 2.5
   poision_prefab: {fileID: 3956206777213680668, guid: 06dc731b2125f1f4c8117b6bed94ab57, type: 3}
-  Damage: 6
-  RateOfFire: 2
-  Health: 2
+  Damage: 15
+  RateOfFire: 3
+  Health: 7
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: 0}
 --- !u!114 &4038709758504006284

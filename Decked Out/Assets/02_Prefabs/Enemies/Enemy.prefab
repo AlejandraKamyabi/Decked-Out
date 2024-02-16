@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _squishFactor: 0.1
-  _squishSpeed: 1
+  _squishSpeed: 1.3
   _rotate: 4
   _rotateSpeed: 2
 --- !u!1 &3913288999114805945
