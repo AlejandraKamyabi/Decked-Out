@@ -59,6 +59,24 @@ public class Apostate : MonoBehaviour
                     SetScriptsEnabled(hit.gameObject, false);
                 }
             }
+            if (hit.CompareTag("Tower"))
+            {
+                currentlyDetected.Add(hit.gameObject);
+                // If not previously detected, disable scripts
+                if (!previouslyDetected.Contains(hit.gameObject))
+                {
+                    SetScriptsEnabled(hit.gameObject, false);
+                }
+            }
+            if (hit.CompareTag("Buffer"))
+            {
+                currentlyDetected.Add(hit.gameObject);
+                // If not previously detected, disable scripts
+                if (!previouslyDetected.Contains(hit.gameObject))
+                {
+                    SetScriptsEnabled(hit.gameObject, false);
+                }
+            }
         }
 
         // Enable scripts on objects that were previously detected but are no longer within range

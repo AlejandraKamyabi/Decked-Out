@@ -162,7 +162,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7deaa893ecd58724eba6f6ebd5ff3b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _flashDelay: 1.25
-  _flashDuration: 0.75
   _flashColour: {r: 1, g: 0, b: 0, a: 1}
-  _flashThreshold: 1
+  _healthThreshold: 1

@@ -38,13 +38,13 @@ public class PositionUpdater : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (gameObject.CompareTag("Buffer") || gameObject.CompareTag("Placed"))
+        if (gameObject.CompareTag("Buffer") || gameObject.CompareTag("Placed") || gameObject.CompareTag("Spell"))
         {
             return;
         }
 
         gameObject.tag = "Empty";
-        if (other.CompareTag("Empty") || other.CompareTag("Tower") )
+        if (other.CompareTag("Empty") || other.CompareTag("Tower") || other.CompareTag("Placed") || other.CompareTag("Spell"))
         {
             return;
         }

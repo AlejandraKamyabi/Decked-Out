@@ -5058,6 +5058,7 @@ GameObject:
   - component: {fileID: 1106663292}
   - component: {fileID: 1106663293}
   - component: {fileID: 1106663294}
+  - component: {fileID: 1106663295}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -5189,6 +5190,20 @@ MonoBehaviour:
   currentWave: 1
   duration: 0
   gemDropChance: 0.1
+--- !u!114 &1106663295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106663286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd8653acfda0cf47997855567fab796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDelay: 1
+  flashDuration: 1
 --- !u!1 &1147148213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6587,7 +6602,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 58373c397420bf243b32d274a38f72c8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10513,5 +10528,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Slider
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2804010890484304992, guid: 3f66af8e5379c7847bf5c6fb615db128, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f66af8e5379c7847bf5c6fb615db128, type: 3}

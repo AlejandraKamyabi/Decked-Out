@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class HeartJiggle : MonoBehaviour
 {
-    [SerializeField] Slider _slider;
+    [SerializeField] GameObject _castleSprite;
     [SerializeField] float _jiggleDuration = 0.25f;
+    [Range(0, 1)]
     [SerializeField] float[] _jiggleMagnitudes;
+    [SerializeField] AudioClip _hitSound;
     
 
     Castle _castleScript;
+    AudioSource _audioSource;
     Vector3 _originalPOS;
     private GameLoader _loader;
 
@@ -31,15 +34,14 @@ public class HeartJiggle : MonoBehaviour
         _maxHealth = _castleScript.maxHealth;
         _currentHealth = _castleScript.health;
         _lastHealth = _currentHealth;
+        _audioSource = GetComponent<AudioSource>();
     }
     public void StartJiggle(float health)
     {
-        //Debug.Log("jiggling");
         _lastHealth = _currentHealth;
-        _jiggleMagnitude = 1f;
-
         float difference = Mathf.Abs(_lastHealth - health);
         int multipleOfFive = Mathf.FloorToInt(difference / 5);
+
         switch (multipleOfFive)
         {
             case 0:
@@ -58,26 +60,34 @@ public class HeartJiggle : MonoBehaviour
                 _jiggleMagnitude = _jiggleMagnitudes[4];
                 break;
             case 5:
-                _jiggleMagnitude = _jiggleMagnitudes[5]; 
+                _jiggleMagnitude = _jiggleMagnitudes[5];
                 break;
         }
+
+        if (_jiggleTimer <= 0)
+            
+        {
+            _jiggleTimer = _jiggleDuration; 
+        }
+
         _currentHealth = health;
-        _jiggleDuration = 1f;
-        _jiggleTimer = _jiggleDuration;
+        _audioSource.volume = _jiggleMagnitude * 4;
+        _audioSource.PlayOneShot(_hitSound);
+
     }
     private void Update()
     {
         if (_jiggleTimer > 0)
         {
             _jiggleTimer -= Time.deltaTime;
-            float jiggleFactorX = Mathf.Sin(Time.time * Mathf.PI * 2 + Random.Range(-1f, 1f)) * _jiggleMagnitude;
-            float jiggleFactorY = Mathf.Sin(Time.time * Mathf.PI * 2 + Random.Range(-1f, 1f)) * _jiggleMagnitude;
+            float jiggleFactorX = Mathf.Sin(Time.time * Mathf.PI * 2 + Random.Range(-.75f, .75f)) * _jiggleMagnitude;
+            float jiggleFactorY = Mathf.Sin(Time.time * Mathf.PI * 2 + Random.Range(-.75f, .75f)) * _jiggleMagnitude;
 
-            _slider.transform.localPosition = _originalPOS + new Vector3(jiggleFactorX, jiggleFactorY, 0);
+            _castleSprite.transform.localPosition = _originalPOS + new Vector3(jiggleFactorX, jiggleFactorY, 0);
         }
         else
         {
-            _slider.transform.localPosition = _originalPOS;
+            _castleSprite.transform.localPosition = _originalPOS;
         }
     }
 
