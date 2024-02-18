@@ -60,7 +60,7 @@ public class EarthQuack : MonoBehaviour, ITower
                 }
                 if (apostate != null)
                 {
-                    kaboom.ApplyFreeze();
+                    apostate.ApplyFreeze();
 
 
                 }
