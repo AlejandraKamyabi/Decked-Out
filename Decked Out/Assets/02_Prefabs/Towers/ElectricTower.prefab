@@ -151,7 +151,7 @@ MonoBehaviour:
   zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
   Damage: 6
   RateOfFire: 0.8
-  Health: 9
+  Health: 8
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
 --- !u!114 &-5626848965590160088
 MonoBehaviour:
