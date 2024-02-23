@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker _killTracker;
     [SerializeField] private CircleCollider2D circleCollider;
+    Animator animator;
 
     //Attraction tower 
 
@@ -40,6 +41,7 @@ public class Enemy : MonoBehaviour
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -126,13 +128,16 @@ public class Enemy : MonoBehaviour
     }
     private void Die()
     {
+        moveSpeed = 0;
         deathSoundHandling.PlayDeathSound();
+        animator.Play("EnemyDead");
+
         if (_killTracker != null)
         {
             _killTracker.EnemyKilled();
         }
-        Destroy(healthSlider.gameObject);
-        Destroy(gameObject);
+        Destroy(healthSlider.gameObject, animator.GetCurrentAnimatorStateInfo(0).length + 0.1f);
+        Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length + 0.1f);
 
        
     }
