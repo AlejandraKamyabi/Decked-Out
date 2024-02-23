@@ -83,8 +83,8 @@ MonoBehaviour:
   - numberOfEnemies: 45
     timeBetweenEnemies: 1.5
     timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 1.5
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 1
     timeBetweenWaves: 2.12
   - numberOfEnemies: 50
     timeBetweenEnemies: 1.45
@@ -99,7 +99,7 @@ MonoBehaviour:
     timeBetweenEnemies: 1.3
     timeBetweenWaves: 2.12
   - numberOfEnemies: 100
-    timeBetweenEnemies: 1.25
+    timeBetweenEnemies: 0.75
     timeBetweenWaves: 2.12
   - numberOfEnemies: 50
     timeBetweenEnemies: 1.2
@@ -114,7 +114,7 @@ MonoBehaviour:
     timeBetweenEnemies: 1.05
     timeBetweenWaves: 2.12
   - numberOfEnemies: 100
-    timeBetweenEnemies: 1
+    timeBetweenEnemies: 0.5
     timeBetweenWaves: 2.12
   - numberOfEnemies: 50
     timeBetweenEnemies: 0.25
@@ -141,13 +141,13 @@ MonoBehaviour:
     timeBetweenEnemies: 0.07
     timeBetweenWaves: 2.12
   - numberOfEnemies: 500
-    timeBetweenEnemies: 0.05
+    timeBetweenEnemies: 0.03
     timeBetweenWaves: 2.12
   towersLeftText: {fileID: 0}
   collisionOccurred: 0
   enemiesBetweenKaboomSpawns: 4
-  enemiesBetweenGolemSpawns: 6
-  enemiesBetweenApostateSpawns: 8
+  enemiesBetweenGolemSpawns: 7
+  enemiesBetweenApostateSpawns: 10
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0
   currentWave: 0

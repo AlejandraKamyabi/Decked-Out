@@ -147,11 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a2e98ca3b656b4aa096374838c55fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2.5
+  attackRange: 3
   zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
   Damage: 6
   RateOfFire: 0.8
-  Health: 9
+  Health: 8
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
 --- !u!114 &-5626848965590160088
 MonoBehaviour:
