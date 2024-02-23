@@ -306,5 +306,5 @@ MonoBehaviour:
   isFrozen: 0
   deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
   circleCollider: {fileID: 0}
-  detectionRadius: 3
+  detectionRadius: 3.25
   isBeingPushed: 0
