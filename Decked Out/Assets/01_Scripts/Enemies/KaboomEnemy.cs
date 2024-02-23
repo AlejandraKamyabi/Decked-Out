@@ -7,6 +7,7 @@ public class KaboomEnemy : MonoBehaviour
 {
     public UnityEngine.Transform targetCastle;
     public float moveSpeed = 1f;
+    private float original_Speed;
     public float damage = 10.0f;
     public float maxHealth = 100.0f;
     private float currentHealth;
@@ -33,6 +34,7 @@ public class KaboomEnemy : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        original_Speed = moveSpeed;
         timeSinceLastDamage = damageTimer;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         deathSoundHandling.enemyDeathSound = deathSound;
@@ -197,7 +199,7 @@ public class KaboomEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isFrozen = false;
-        moveSpeed = 1.0f;
+        moveSpeed = original_Speed;
     }
     public void Zap()
     {

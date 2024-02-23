@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public UnityEngine.Transform targetCastle;
     public float moveSpeed = 1f;
+    private float original_moveSpeed;
     public float damage = 10.0f;
     public float maxHealth;
     private float currentHealth;
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         timeSinceLastDamage = damageTimer;
+        original_moveSpeed = moveSpeed;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
@@ -191,6 +193,7 @@ public class Enemy : MonoBehaviour
     }
     public void ApplyFreeze()
     {
+
         if (!isFrozen) 
         {
             isFrozen = true;
@@ -201,7 +204,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isFrozen = false; 
-        moveSpeed = 1.0f; 
+        moveSpeed = original_moveSpeed; 
     }
     public void Zap()
     {

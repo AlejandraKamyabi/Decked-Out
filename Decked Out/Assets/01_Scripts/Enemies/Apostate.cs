@@ -7,6 +7,7 @@ public class Apostate : MonoBehaviour
 {
     public UnityEngine.Transform targetCastle;
     public float moveSpeed = 1f;
+    private float original_speed;
     public float damage = 10.0f;
     public float maxHealth;
     private float currentHealth;
@@ -38,6 +39,7 @@ public class Apostate : MonoBehaviour
     {
         currentHealth = maxHealth;
         timeSinceLastDamage = damageTimer;
+        original_speed = moveSpeed;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
@@ -51,6 +53,24 @@ public class Apostate : MonoBehaviour
         foreach (var hit in hits)
         {
             if (hit.CompareTag("Placed"))
+            {
+                currentlyDetected.Add(hit.gameObject);
+                // If not previously detected, disable scripts
+                if (!previouslyDetected.Contains(hit.gameObject))
+                {
+                    SetScriptsEnabled(hit.gameObject, false);
+                }
+            }
+            if (hit.CompareTag("Tower"))
+            {
+                currentlyDetected.Add(hit.gameObject);
+                // If not previously detected, disable scripts
+                if (!previouslyDetected.Contains(hit.gameObject))
+                {
+                    SetScriptsEnabled(hit.gameObject, false);
+                }
+            }
+            if (hit.CompareTag("Buffer"))
             {
                 currentlyDetected.Add(hit.gameObject);
                 // If not previously detected, disable scripts
@@ -250,7 +270,7 @@ public class Apostate : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isFrozen = false;
-        moveSpeed = 1.0f;
+        moveSpeed = original_speed;
     }
     public void Zap()
     {
