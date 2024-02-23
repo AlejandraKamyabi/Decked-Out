@@ -107,20 +107,20 @@ public class EnemyKillTracker : MonoBehaviour
     {
         if (enemyCountText != null)
         {
-            enemyCountText.text = "Kills: " + totalEnemiesDestroyed.ToString();
+            enemyCountText.text = totalEnemiesDestroyed.ToString();
             if (totalEnemiesDestroyed > 0)
             {
                 StartCoroutine(ChangeTextColour(duration));
             }
         }
-        wave.text = "Wave: " + currentWave.ToString();
+        wave.text = currentWave.ToString();
     }
 
     private void UpdateGemCountText()
     {
         if (gemCountText != null)
         {
-            gemCountText.text = "Gems: " + totalGemsCollected.ToString();
+            gemCountText.text = totalGemsCollected.ToString();
         }
     }
 
