@@ -24,7 +24,8 @@ public class CardRig : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = Input.mousePosition;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = mousePos;
     }
 
 }

@@ -54,7 +54,11 @@ public class CardToPick : MonoBehaviour
             _timer += Time.deltaTime;
             if (_timer >= _cardHoldTime)
             {
-                DragOff();
+                //DragOff();
+            }
+            else
+            {
+                SlotIn();
             }
         }
     }
@@ -81,7 +85,12 @@ public class CardToPick : MonoBehaviour
         if (_isPressed)
         {
             Debug.Log("Dragged Off");
-            GameObject cardRig = Instantiate(_cardRig, Input.mousePosition, Quaternion.identity);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            GameObject cardRig = Instantiate(_cardRig, mousePos, Quaternion.identity, FindObjectOfType<Canvas>().transform);
+            if (cardRig.activeInHierarchy)
+            {
+                _isPressed = false;
+            }
             CardRig cardRigScript = cardRig.GetComponent<CardRig>();
             cardRigScript.SetCard(_card);
         }
