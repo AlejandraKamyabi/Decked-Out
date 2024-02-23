@@ -33,6 +33,7 @@ public class Apostate : MonoBehaviour
     //Wave_Tower
     public bool isBeingPushed = false;
 
+    bool _isDead = false;
 
 
     private void Start()
@@ -164,7 +165,7 @@ public class Apostate : MonoBehaviour
         currentHealth -= damage;
         UpdateEnemyHealthUI();
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !_isDead)
         {
             Die();
         }
@@ -188,6 +189,7 @@ public class Apostate : MonoBehaviour
     }
     private void Die()
     {
+        _isDead = true;
         if (_killTracker != null)
         {
             _killTracker.EnemyKilled();

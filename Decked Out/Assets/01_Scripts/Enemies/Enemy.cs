@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker _killTracker;
     [SerializeField] private CircleCollider2D circleCollider;
-    Animator animator;
 
     //Attraction tower 
 
@@ -30,8 +29,9 @@ public class Enemy : MonoBehaviour
 
     //Wave_Tower
     public bool isBeingPushed = false;
-
-
+    EnemyDeathAnimation _enemyDeathAnimation;
+    CapsuleCollider2D _capsuleCollider;
+    bool _isDead = false;
 
     private void Start()
     {
@@ -39,9 +39,10 @@ public class Enemy : MonoBehaviour
         timeSinceLastDamage = damageTimer;
         original_moveSpeed = moveSpeed;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
-        animator = GetComponent<Animator>();
+        _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
     }
 
     private void Update()
@@ -100,7 +101,7 @@ public class Enemy : MonoBehaviour
         currentHealth -= damage;
         UpdateEnemyHealthUI();
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0  && !_isDead)
         {
             Die();
         }
@@ -128,18 +129,18 @@ public class Enemy : MonoBehaviour
     }
     private void Die()
     {
+        _isDead = true;
         moveSpeed = 0;
+        _capsuleCollider.enabled = false;
         deathSoundHandling.PlayDeathSound();
-        animator.Play("EnemyDead");
-
         if (_killTracker != null)
         {
             _killTracker.EnemyKilled();
         }
-        Destroy(healthSlider.gameObject, animator.GetCurrentAnimatorStateInfo(0).length + 0.1f);
-        Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length + 0.1f);
-
-       
+        float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
+        healthSlider.gameObject.SetActive(false);
+        Destroy(healthSlider.gameObject, deathAnimationDuration);
+        Destroy(gameObject, deathAnimationDuration);       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

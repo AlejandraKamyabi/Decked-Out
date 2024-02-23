@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 5728615593586163833}
   - component: {fileID: -6209553455341248833}
   - component: {fileID: 1576830264657842908}
+  - component: {fileID: 3341973020179541167}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -328,3 +329,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3341973020179541167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d15d9026212814fb67b628475d05a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathAnmationStateName: EnemyDead

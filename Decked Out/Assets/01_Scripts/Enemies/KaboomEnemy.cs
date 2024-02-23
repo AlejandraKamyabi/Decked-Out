@@ -30,7 +30,7 @@ public class KaboomEnemy : MonoBehaviour
     private bool isAttracted;
     //Wave_Tower
     public bool isBeingPushed = false;
-
+    bool _isDead = false;
     private void Start()
     {
         currentHealth = maxHealth;
@@ -130,7 +130,7 @@ public class KaboomEnemy : MonoBehaviour
         currentHealth -= damage;
         UpdateEnemyHealthUI();
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !_isDead)
         {
             Die();
         }
@@ -138,6 +138,7 @@ public class KaboomEnemy : MonoBehaviour
 
     private void Die()
     {
+        _isDead = true;
         deathSoundHandling.PlayDeathSound();
         GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
 

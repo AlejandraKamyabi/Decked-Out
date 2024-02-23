@@ -40,6 +40,7 @@ public class EnemyKillTracker : MonoBehaviour
 
     public void EnemyKilled()
     {
+        Debug.Log("Enemy Killed");
         totalEnemiesDestroyed++;
         _enemiesDestroyedThisWave++;
         if (_enemiesDestroyedThisWave == _enemiesInWave)
@@ -58,6 +59,7 @@ public class EnemyKillTracker : MonoBehaviour
     }
     public void EnemyDestroyed()
     {
+        Debug.Log("Enemy Destroyed");
         _enemiesDestroyedThisWave++;
         if (_enemiesDestroyedThisWave == _enemiesInWave)
         {
@@ -69,6 +71,7 @@ public class EnemyKillTracker : MonoBehaviour
     public void NumbersOfEnemiesInWave(int enemies)
     {        
         _enemiesInWave = enemies;
+        Debug.Log("Enemies In Wave " + _waveManager.currentWave + ": " + _enemiesInWave);
     }
     public void AllEnemiesInWaveDestroyed()
     {

@@ -102,7 +102,12 @@ public class WaveManager : MonoBehaviour
         enemiesSpawned = 0;
         for (int i = 0; i < numberOfEnemies; i++)
             {
-            if (enemiesSpawned % enemiesBetweenApostateSpawns == 0 && enemiesSpawned != 0)
+            if (enemiesSpawned >= numberOfEnemies)
+            {
+                Debug.LogError("Trying to spawn more enemies than allowed");
+                break;
+            }
+            else if (enemiesSpawned % enemiesBetweenApostateSpawns == 0 && enemiesSpawned != 0)
             {
                 SpawnApostateEnemy();
                 enemiesSpawned++;
