@@ -344,14 +344,15 @@ public class MouseInputHandling : MonoBehaviour
                             towerRenderer.sortingOrder = 2501;
                         }
                     }
+                    if (!Wave.collisionOccurred && !towerSelection.IsSelectingSpell())
+                    {
+                        currentTowerInstance.AddComponent<PositionUpdater>();
+                    }
                     towerSelection.SetSelectingTower(false);
                     towerSelection.SetSelectingSpell(false);
                     Wave.IncrementTowersPlaced();
         
-                    if (!Wave.collisionOccurred && towerSelection.towers != "Lightning")
-                    {
-                        currentTowerInstance.AddComponent<PositionUpdater>();                        
-                    }
+        
                     
 
                 }
