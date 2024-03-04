@@ -15,6 +15,12 @@ TagManager:
   - Placed
   - Field
   - Card Blank
+  - Spell
+  - Acolyte
+  - Kaboom
+  - Apostate
+  - Golem
+  - Necromancer
   layers:
   - Default
   - TransparentFX
