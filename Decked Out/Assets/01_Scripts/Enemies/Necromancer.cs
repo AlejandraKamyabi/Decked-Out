@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Apostate : MonoBehaviour
+public class Necromancer : MonoBehaviour
 {
     public UnityEngine.Transform targetCastle;
     public float moveSpeed = 1f;
-    private float original_speed;
+    private float original_moveSpeed;
     public float damage = 10.0f;
     public float maxHealth;
     private float currentHealth;
@@ -15,16 +15,16 @@ public class Apostate : MonoBehaviour
     public GameObject zapPrefab;
     public bool isBurning = false;
     private bool hasBeenZapped = false;
+    public float detectionRadius;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
+    public GameObject deathEffectPrefab;
+    private HashSet<GameObject> detectedEnemy = new HashSet<GameObject>();
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
-    public GameObject deathEffectPrefab;
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker _killTracker;
     [SerializeField] private CircleCollider2D circleCollider;
-    public float detectionRadius;
-    private HashSet<GameObject> previouslyDetected = new HashSet<GameObject>();
 
     //Attraction tower 
 
@@ -33,67 +33,34 @@ public class Apostate : MonoBehaviour
 
     //Wave_Tower
     public bool isBeingPushed = false;
-
+    EnemyDeathAnimation _enemyDeathAnimation;
+    CapsuleCollider2D _capsuleCollider;
     bool _isDead = false;
 
+
+    private WaveManager wave;
+    private GameLoader _loader;
 
     private void Start()
     {
         currentHealth = maxHealth;
         timeSinceLastDamage = damageTimer;
-        original_speed = moveSpeed;
+        original_moveSpeed = moveSpeed;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
+        _loader = ServiceLocator.Get<GameLoader>();
+        _loader.CallOnComplete(Initialize);
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
+        _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
     }
-
+    public void Initialize()
+    {
+        wave = ServiceLocator.Get<WaveManager>();
+    }
     private void Update()
     {
-        HashSet<GameObject> currentlyDetected = new HashSet<GameObject>();
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
-
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Placed"))
-            {
-                currentlyDetected.Add(hit.gameObject);
-                // If not previously detected, disable scripts
-                if (!previouslyDetected.Contains(hit.gameObject))
-                {
-                    SetScriptsEnabled(hit.gameObject, false);
-                }
-            }
-            if (hit.CompareTag("Tower"))
-            {
-                currentlyDetected.Add(hit.gameObject);
-                // If not previously detected, disable scripts
-                if (!previouslyDetected.Contains(hit.gameObject))
-                {
-                    SetScriptsEnabled(hit.gameObject, false);
-                }
-            }
-            if (hit.CompareTag("Buffer"))
-            {
-                currentlyDetected.Add(hit.gameObject);
-                // If not previously detected, disable scripts
-                if (!previouslyDetected.Contains(hit.gameObject))
-                {
-                    SetScriptsEnabled(hit.gameObject, false);
-                }
-            }
-        }
-
-        // Enable scripts on objects that were previously detected but are no longer within range
-        foreach (var obj in previouslyDetected)
-        {
-            if (!currentlyDetected.Contains(obj))
-            {
-                SetScriptsEnabled(obj, true);
-            }
-        }
-
-        previouslyDetected = currentlyDetected;
-    
+        DetectAndAddAcolyte();
         if (targetCastle != null)
         {
             Vector2 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
@@ -112,30 +79,13 @@ public class Apostate : MonoBehaviour
             if (timeSinceLastDamage >= damageTimer)
             {
                 timeSinceLastDamage = 0.0f;
-                TakeDamage(20.0f);
+                TakeDamage(10.0f);
             }
         }
+     
         if (isFrozen)
         {
             moveSpeed = 0.39f;
-        }
-    }
-    void OnDestroy()
-    {
-        foreach (var obj in previouslyDetected)
-        {
-            if (obj != null) // Check if the object hasn't been destroyed
-            {
-                SetScriptsEnabled(obj, true);
-            }
-        }
-    }
-    void SetScriptsEnabled(GameObject obj, bool enabled)
-    {
-        MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
-        foreach (var script in scripts)
-        {
-            script.enabled = enabled;
         }
     }
     public void HandleWaveImpact(Vector2 direction, float duration, float distance)
@@ -171,6 +121,44 @@ public class Apostate : MonoBehaviour
             Die();
         }
     }
+    private void DetectAndAddAcolyte()
+    {
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+        foreach (var collider in detectedObjects)
+        {
+            if (collider.CompareTag("Acolyte") && !detectedEnemy.Contains(collider.gameObject))
+            {
+                detectedEnemy.Add(collider.gameObject);
+                wave.AddEnemyToCurrentWave("Acolyte", collider.transform.position);
+            }
+            else if (collider.CompareTag("Kaboom") && !detectedEnemy.Contains(collider.gameObject))
+            {
+                detectedEnemy.Add(collider.gameObject);
+                wave.AddEnemyToCurrentWave("Kaboom", collider.transform.position);
+            }
+            else if (collider.CompareTag("Golem") && !detectedEnemy.Contains(collider.gameObject))
+            {
+                detectedEnemy.Add(collider.gameObject);
+                wave.AddEnemyToCurrentWave("Golem", collider.transform.position);
+            }
+            else if (collider.CompareTag("Apostate") && !detectedEnemy.Contains(collider.gameObject))
+            {
+                detectedEnemy.Add(collider.gameObject);
+                wave.AddEnemyToCurrentWave("Apostate", collider.transform.position);
+            }
+            else if (collider.CompareTag("Necromancer") && !detectedEnemy.Contains(collider.gameObject))
+            {
+                detectedEnemy.Add(collider.gameObject);
+                wave.AddEnemyToCurrentWave("Necromancer", collider.transform.position);
+            }
+
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
     public void Attracted(Transform attractionTower)
     {
         if (!isAttracted)
@@ -188,21 +176,26 @@ public class Apostate : MonoBehaviour
         targetCastle = originalTarget;
         isAttracted = false;
     }
+    private IEnumerator reset_Field()
+    {
+        yield return new WaitForSeconds(2);
+    }
     private void Die()
     {
         _isDead = true;
+        moveSpeed = 0;
+        _capsuleCollider.enabled = false;
+        deathSoundHandling.PlayDeathSound();
         if (_killTracker != null)
         {
             _killTracker.EnemyKilled();
         }
-        deathSoundHandling.PlayDeathSound();
-
-        Destroy(healthSlider.gameObject);
-        GameObject deathEffect_prefab = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
-        Destroy(deathEffect_prefab, 10f);
-        Destroy(gameObject);
-
-     
+        float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
+        healthSlider.gameObject.SetActive(false);
+        Destroy(healthSlider.gameObject, deathAnimationDuration);
+        GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+        Destroy(deathEffect, 10f);
+        Destroy(gameObject, deathAnimationDuration);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -214,20 +207,25 @@ public class Apostate : MonoBehaviour
             {
                 castle.TakeDamage(damage);
             }
+            _killTracker.EnemyDestroyed();
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
-            _killTracker.EnemyDestroyed();
-        }
-        if (collision.gameObject.CompareTag("Placed"))
-        {
-            MonoBehaviour[] scripts = collision.gameObject.GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour script in scripts)
-            {
-                script.enabled = false; 
-            }
-        }
 
-        if (circleCollider == null) return;
+
+        }
+        if (circleCollider == null)
+        {
+
+            // if (collision.gameObject.CompareTag("Field"))
+            // {
+            //     Field force_Field = collision.gameObject.GetComponent<Field>();
+            //     force_Field.StartFlickerEffect();
+            //     StartCoroutine(reset_Field());
+            //     force_Field.ResetFieldPrefabChanges();
+            // }
+
+            return;
+        }
 
         if (collision.gameObject.CompareTag("Field"))
         {
@@ -236,14 +234,6 @@ public class Apostate : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Placed"))
-        {
-            MonoBehaviour[] scripts = collision.gameObject.GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour script in scripts)
-            {
-                script.enabled = true; 
-            }
-        }
         if (circleCollider == null) return;
 
         if (collision.gameObject.CompareTag("Field"))
@@ -266,6 +256,7 @@ public class Apostate : MonoBehaviour
     }
     public void ApplyFreeze()
     {
+
         if (!isFrozen)
         {
             isFrozen = true;
@@ -276,7 +267,7 @@ public class Apostate : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isFrozen = false;
-        moveSpeed = original_speed;
+        moveSpeed = original_moveSpeed;
     }
     public void Zap()
     {

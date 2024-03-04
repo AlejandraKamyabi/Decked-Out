@@ -16,6 +16,7 @@ public class KaboomEnemy : MonoBehaviour
     private bool hasBeenZapped = false;
     public bool isBurning = false;
     public GameObject effect;
+    public GameObject deathEffectPrefab;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
     private float timeSinceLastDamage = 0.0f;
@@ -150,6 +151,8 @@ public class KaboomEnemy : MonoBehaviour
         DealAOEDamage();
 
         Destroy(healthSlider.gameObject);
+        GameObject deathEffect_prefab = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+        Destroy(deathEffect_prefab, 10f);
         Destroy(gameObject);
         Destroy(deathEffect, 4.0f);
 

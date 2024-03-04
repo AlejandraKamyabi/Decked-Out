@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 
 
 [System.Serializable]
@@ -29,6 +30,7 @@ public class WaveManager : MonoBehaviour
     public GameObject KaboomPrefab;
     public GameObject GolemPrefab;
     public GameObject Apostate_Prefab;
+    public GameObject necromancer;
 
 
     public float unitSquareSize = 10.0f;
@@ -47,6 +49,8 @@ public class WaveManager : MonoBehaviour
     public int enemiesBetweenGolemSpawns = 6;
     [Range(1, 25)]
     public int enemiesBetweenApostateSpawns = 8;
+    [Range(1, 25)]
+    public int enemiesBetweenNecromancerSpawns = 10;
 
     private EnemyKillTracker _killTracker;
     private Coroutine spawningCoroutine;
@@ -76,6 +80,7 @@ public class WaveManager : MonoBehaviour
         enemiesBetweenApostateSpawns--;
         enemiesBetweenGolemSpawns--;
         enemiesBetweenKaboomSpawns--;
+        enemiesBetweenNecromancerSpawns--;
         return this;
     }
 
@@ -130,6 +135,14 @@ public class WaveManager : MonoBehaviour
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
                 continue;
             }
+            else if (enemiesSpawned % enemiesBetweenNecromancerSpawns == 0 && enemiesSpawned != 0)
+            {
+                Spawn_Necromancer();
+                enemiesSpawned++;
+                //kaboomEnemy = true;
+                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
+                continue;
+            }
             else
             {
                 SpawnEnemy();
@@ -165,7 +178,21 @@ public class WaveManager : MonoBehaviour
         newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
         newEnemy.GetComponent<KaboomEnemy>().SetHealthSlider(newHealthSlider);
     }
-        private void SpawnGolemEnemy()
+    private void Spawn_Necromancer()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
+
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = newEnemy.GetComponent<Necromancer>().maxHealth;
+        newEnemy.GetComponent<Necromancer>().SetHealthSlider(newHealthSlider);
+    }
+    private void SpawnGolemEnemy()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
         GameObject newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
@@ -308,12 +335,84 @@ public class WaveManager : MonoBehaviour
         startButton.interactable = isEnabled;
         startButton.gameObject.SetActive(isEnabled);
     }
-    private void Update()
+    public void AddEnemyToCurrentWave(string enemyType, Vector3 spawnPosition)
     {
+      
 
-        //towersLeftText.text = "Towers Left to Place: " + TowersLeft;
+        switch (enemyType)
+        {
+            case "Acolyte":
+               
+                GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+                Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+                Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+                newHealthSlider.transform.position = sliderPosition;
+
+                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+                newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
+                break;
+            case "Kaboom":
+               
+                newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider = Instantiate(healthSliderPrefab);
+
+                sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+                newHealthSlider.transform.position = sliderPosition;
+
+                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
+                newEnemy.GetComponent<KaboomEnemy>().SetHealthSlider(newHealthSlider);
+
+                break;
+            case "Apostate":
+           
+                newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
+                newHealthSlider = Instantiate(healthSliderPrefab);
+
+                 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+                newHealthSlider.transform.position = sliderPosition;
+
+                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Apostate>().maxHealth;
+                newEnemy.GetComponent<Apostate>().SetHealthSlider(newHealthSlider);
+                break;
+            case "Golem":
+               
+                newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider = Instantiate(healthSliderPrefab);
+
+                sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
+                newHealthSlider.transform.position = sliderPosition;
+
+                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+                newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
+                break;
+            case "Necromancer":
+            
+                newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
+                newHealthSlider = Instantiate(healthSliderPrefab);
+
+                sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+                newHealthSlider.transform.position = sliderPosition;
+
+                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Necromancer>().maxHealth;
+                newEnemy.GetComponent<Necromancer>().SetHealthSlider(newHealthSlider);
+                break;
+            default:
+                Debug.LogError("Unknown enemy type: " + enemyType);
+                return;
+        }
+
+        if (enemyPrefab != null)
+        {
+            waves[currentWave].numberOfEnemies++;
+        }
+
     }
-
     private void DestroyTowers()
     {
         GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");

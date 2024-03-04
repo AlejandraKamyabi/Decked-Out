@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private bool hasBeenZapped = false;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
+    public GameObject deathEffectPrefab;
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
@@ -140,6 +141,8 @@ public class Enemy : MonoBehaviour
         float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
         healthSlider.gameObject.SetActive(false);
         Destroy(healthSlider.gameObject, deathAnimationDuration);
+        GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+        Destroy(deathEffect, 10f);
         Destroy(gameObject, deathAnimationDuration);       
     }
 
