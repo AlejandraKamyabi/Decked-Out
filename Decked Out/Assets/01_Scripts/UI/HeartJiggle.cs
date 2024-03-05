@@ -10,7 +10,7 @@ public class HeartJiggle : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] float[] _jiggleMagnitudes;
     [SerializeField] AudioClip _hitSound;
-    
+
 
     Castle _castleScript;
     AudioSource _audioSource;
@@ -38,14 +38,14 @@ public class HeartJiggle : MonoBehaviour
     }
     public void StartJiggle(float health)
     {
-        _lastHealth = _currentHealth;
+        _lastHealth = _currentHealth;      
         float difference = Mathf.Abs(_lastHealth - health);
         int multipleOfFive = Mathf.FloorToInt(difference / 5);
 
         switch (multipleOfFive)
         {
             case 0:
-                _jiggleMagnitude = _jiggleMagnitudes[0];
+                _jiggleMagnitude = _jiggleMagnitudes[0];                
                 break;
             case 1:
                 _jiggleMagnitude = _jiggleMagnitudes[1];
@@ -63,6 +63,15 @@ public class HeartJiggle : MonoBehaviour
                 _jiggleMagnitude = _jiggleMagnitudes[5];
                 break;
         }
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            Vibrate(_jiggleMagnitude);
+            Debug.Log("Vibrating");
+        }
+        else if (Application.isEditor)
+        {
+            Debug.Log("Would be Vibrating");
+        }
 
         if (_jiggleTimer <= 0)
             
@@ -75,14 +84,19 @@ public class HeartJiggle : MonoBehaviour
         _audioSource.PlayOneShot(_hitSound);
 
     }
+    private void Vibrate(float duration)
+    {
+        long miliseconds = (long) (duration * 1000);
+        Debug.LogFormat(miliseconds.ToString());
+        VibratorManager.Vibrate(miliseconds);
+    }
     private void Update()
     {
         if (_jiggleTimer > 0)
         {
             _jiggleTimer -= Time.deltaTime;
             float jiggleFactorX = Mathf.Sin(Time.time * Mathf.PI * 2 + Random.Range(-.75f, .75f)) * _jiggleMagnitude;
-            float jiggleFactorY = Mathf.Sin(Time.time * Mathf.PI * 2 + Random.Range(-.75f, .75f)) * _jiggleMagnitude;
-
+            float jiggleFactorY = Mathf.Sin(Time.time * Mathf.PI * 2 + Random.Range(-.75f, .75f)) * _jiggleMagnitude;            
             _castleSprite.transform.localPosition = _originalPOS + new Vector3(jiggleFactorX, jiggleFactorY, 0);
         }
         else
