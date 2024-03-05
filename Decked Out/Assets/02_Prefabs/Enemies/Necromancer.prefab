@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: -6209553455341248833}
   - component: {fileID: -805646326839572185}
   - component: {fileID: 7440110450952643477}
+  - component: {fileID: 9023067014002223078}
   m_Layer: 3
   m_Name: Necromancer
   m_TagString: Enemy
@@ -323,3 +324,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathAnmationStateName: EnemyDead
+--- !u!95 &9023067014002223078
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 53f961652eff67d439437b49589083ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

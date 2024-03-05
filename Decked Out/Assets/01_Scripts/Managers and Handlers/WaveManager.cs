@@ -390,21 +390,6 @@ public class WaveManager : MonoBehaviour
                 newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
                 newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
                 break;
-            case "Necromancer":
-            
-                newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
-                newHealthSlider = Instantiate(healthSliderPrefab);
-
-                sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-                newHealthSlider.transform.position = sliderPosition;
-
-                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Necromancer>().maxHealth;
-                newEnemy.GetComponent<Necromancer>().SetHealthSlider(newHealthSlider);
-                break;
-            default:
-                Debug.LogError("Unknown enemy type: " + enemyType);
-                return;
         }
 
         if (enemyPrefab != null)

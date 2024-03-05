@@ -143,7 +143,7 @@ public class Enemy : MonoBehaviour
         Destroy(healthSlider.gameObject, deathAnimationDuration);
         GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
         Destroy(deathEffect, 10f);
-        Destroy(gameObject, deathAnimationDuration);       
+        Destroy(gameObject, 0.4f);       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
