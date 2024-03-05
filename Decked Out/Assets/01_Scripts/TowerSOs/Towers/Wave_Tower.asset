@@ -20,7 +20,8 @@ MonoBehaviour:
   towerInfo: Wash away...
   uses: 0
   rarityWeight: 25
-  damage: 0
+  damage: 10
   range: 2
-  rateOfFire: 99
+  rateOfFire: 4
   duration: 4
+  spell: 0

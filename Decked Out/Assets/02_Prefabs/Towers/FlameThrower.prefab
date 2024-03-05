@@ -150,7 +150,7 @@ MonoBehaviour:
   attackRange: 4
   Flame: {fileID: 3956206777213680668, guid: 182c1aafca12b4e4c881f8ad13344350, type: 3}
   Damage: 15
-  RateOfFire: 2
+  RateOfFire: 1.75
   Health: 7
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
 --- !u!114 &7156473582087064823

@@ -20,7 +20,8 @@ MonoBehaviour:
   towerInfo: Gets your towers to the gym!
   uses: 0
   rarityWeight: 20
-  damage: 0
-  range: 3
-  rateOfFire: 99
-  duration: 5
+  damage: 15
+  range: 2.5
+  rateOfFire: 3
+  duration: 6
+  spell: 0

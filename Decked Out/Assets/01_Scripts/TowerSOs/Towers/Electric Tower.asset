@@ -24,4 +24,5 @@ MonoBehaviour:
   damage: 6
   range: 3
   rateOfFire: 0.8
-  duration: 7
+  duration: 8
+  spell: 0
