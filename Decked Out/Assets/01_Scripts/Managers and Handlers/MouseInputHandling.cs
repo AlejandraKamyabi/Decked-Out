@@ -231,7 +231,7 @@ public class MouseInputHandling : MonoBehaviour
             {
                 if (collider.CompareTag("Tower") || collider.CompareTag("Buffer") || collider.CompareTag("Placed"))
                 {
-                    if (towerSelection.towers != "Lightning")
+                    if (!towerSelection.IsSelectingSpell())
                     {
                         towerCollision = true;
                         break;
@@ -339,7 +339,7 @@ public class MouseInputHandling : MonoBehaviour
                         }
 
                         towerRenderer.sortingOrder = ((int)orderInLayer);
-                        if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform") && towerSelection.towers != "Buff Tower" && towerSelection.towers != "Earthquake Tower" && towerSelection.towers != "Frost Tower" && towerSelection.spells != "Lightning")
+                        if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform") && towerSelection.towers != "Buff Tower" && towerSelection.towers != "Earthquake Tower" && towerSelection.towers != "Frost Tower" && !towerSelection.IsSelectingSpell())
                         {
                             towerRenderer.sortingOrder = 2501;
                         }
@@ -367,7 +367,7 @@ public class MouseInputHandling : MonoBehaviour
 
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
             {
-                if ((towerSelection.towers == "Frost Tower") || (towerSelection.towers == "Buff Tower") || (towerSelection.towers == "Earthquake Tower") || (towerSelection.spells == "Lightning"))
+                if ((towerSelection.towers == "Frost Tower") || (towerSelection.towers == "Buff Tower") || (towerSelection.towers == "Earthquake Tower") || (towerSelection.spells== "Lightning") || (towerSelection.spells == "Fireball") || (towerSelection.spells == "Nuke") || (towerSelection.spells == "Big Bomb") || (towerSelection.spells == "Chill")) 
                 {
                     towerRigSprite.color = supportOnIsland;
                     rangeIndicator.color = supportOnIsland;
