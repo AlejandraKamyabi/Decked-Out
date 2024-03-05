@@ -62,6 +62,11 @@ public class Ballista_Arrow : MonoBehaviour
         {
             apostate.TakeDamage(damage);
         }
+        Necromancer necromancer = enemy.GetComponent<Necromancer>();
+        if (necromancer != null)
+        {
+            necromancer.TakeDamage(damage);
+        }
     }
 }
 

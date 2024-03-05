@@ -33,6 +33,12 @@ public class LightningStrike : MonoBehaviour
                     apostate.TakeDamage(damage);
              
                 }
+                Necromancer necromancer = collider.GetComponent<Necromancer>();
+                if (necromancer != null)
+                {
+                    necromancer.TakeDamage(damage);
+       
+                }
             }
         }
 

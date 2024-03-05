@@ -71,6 +71,12 @@ public class Heart_Projectile : MonoBehaviour
             apostate.TakeDamage(damage);
             apostate.Attracted(attractionTower);
         }
+        Necromancer necromancer = enemy.GetComponent<Necromancer>();
+        if (necromancer != null)
+        {
+            necromancer.TakeDamage(damage);
+            necromancer.Attracted(attractionTower);
+        }
     }
 }
 

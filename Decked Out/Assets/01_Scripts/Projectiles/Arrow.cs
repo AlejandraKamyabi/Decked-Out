@@ -56,6 +56,11 @@ public class Arrow : MonoBehaviour
         {
             apostate.TakeDamage(damage);
         }
+        Necromancer necromancer = enemy.GetComponent<Necromancer>();
+        if (necromancer != null)
+        {
+            necromancer.TakeDamage(damage);
+        }
     }
 }
 

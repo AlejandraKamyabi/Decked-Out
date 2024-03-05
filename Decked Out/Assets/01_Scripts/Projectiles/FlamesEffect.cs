@@ -55,5 +55,11 @@ public class FlamesEffect : MonoBehaviour
             apostate.TakeDamage(damage);
             apostate.setBurning();
         }
+        Necromancer necromancer = enemy.GetComponent<Necromancer>();
+        if (necromancer != null)
+        {
+            necromancer.TakeDamage(damage);
+            necromancer.setBurning();
+        }
     }
 }

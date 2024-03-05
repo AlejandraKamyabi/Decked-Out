@@ -104,6 +104,17 @@ public class Wave_Projectile : MonoBehaviour
         {
             kaboom.TakeDamage(damage);
         }
+        Apostate apostate = enemy.GetComponent<Apostate>();
+        if (apostate != null)
+        {
+            apostate.TakeDamage(damage);
+        }
+        Necromancer necromancer = enemy.GetComponent<Necromancer>();
+        if (necromancer != null)
+        {
+            necromancer.TakeDamage(damage);
+          
+        }
     }
 }
 

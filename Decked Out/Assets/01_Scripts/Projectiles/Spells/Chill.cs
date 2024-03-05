@@ -36,6 +36,12 @@ public class Chill : MonoBehaviour
                     apostate.ApplyFreeze();
 
                 }
+                Necromancer necromancer = collider.GetComponent<Necromancer>();
+                if (necromancer != null)
+                {
+                    necromancer.TakeDamage(damage);
+                    necromancer.ApplyFreeze();
+                }
             }
         }
 

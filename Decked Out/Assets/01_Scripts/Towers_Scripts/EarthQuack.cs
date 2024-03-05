@@ -94,6 +94,7 @@ public class EarthQuack : MonoBehaviour, ITower
                     Enemy enemy = collider.GetComponent<Enemy>();
                     KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
                     Apostate apostate = collider.GetComponent<Apostate>();
+                    Necromancer necromancer = collider.GetComponent<Necromancer>();
 
                     if (enemy != null)
                     {
@@ -114,6 +115,13 @@ public class EarthQuack : MonoBehaviour, ITower
                         GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
                         Destroy(deathEffect, 0.5f);
                     }
+                    if (necromancer != null)
+                    {
+                        necromancer.TakeDamage(Damage);
+                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
+                        Destroy(deathEffect, 0.5f);
+                    }
+
                 }
             }
             yield return new WaitForSeconds(2.0f);

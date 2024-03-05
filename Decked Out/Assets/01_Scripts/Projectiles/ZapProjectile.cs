@@ -63,5 +63,12 @@ public class ZapProjectile : MonoBehaviour
             apostate.ResetZapFlag();
 
         }
+        Necromancer necromancer = enemy.GetComponent<Necromancer>();
+        if (necromancer != null)
+        {
+            necromancer.TakeDamage(damage);
+            necromancer.Zap();
+            necromancer.ResetZapFlag();
+        }
     }
 }

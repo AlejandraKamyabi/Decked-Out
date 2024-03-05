@@ -62,6 +62,12 @@ public class Poison : MonoBehaviour
                 apostate.TakeDamage(damage);
 
             }
+            Necromancer necromancer = enemy.GetComponent<Necromancer>();
+            if (necromancer != null)
+            {
+                necromancer.TakeDamage(damage);
+             
+            }
             canAttack = false;
             StartCoroutine(AttackCooldown());
     }
