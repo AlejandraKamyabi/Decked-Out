@@ -137,6 +137,7 @@ MonoBehaviour:
   currentHealth: 0
   healthSlider: {fileID: 5754171760604926964, guid: 3f66af8e5379c7847bf5c6fb615db128, type: 3}
   endGame: {fileID: 0}
+  _deathVibrationDuration: 1250
 --- !u!50 &8532043123039659786
 Rigidbody2D:
   serializedVersion: 4

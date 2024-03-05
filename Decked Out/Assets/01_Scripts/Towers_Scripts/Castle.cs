@@ -8,6 +8,8 @@ public class Castle : MonoBehaviour
 
     public Slider healthSlider;
     public EndGameSplashManager endGame;
+    [Range(0, 2500)]
+    [SerializeField] long _deathVibrationDuration;
     private GameLoader _loader;
     private WaveManager wave;
 
@@ -41,6 +43,7 @@ public class Castle : MonoBehaviour
 
     private void Die()
     {
+        VibratorManager.Vibrate(_deathVibrationDuration);
         endGame.Death();
         wave.StopWave();
 
