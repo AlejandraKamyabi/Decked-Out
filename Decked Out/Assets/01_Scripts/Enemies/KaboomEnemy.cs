@@ -23,7 +23,8 @@ public class KaboomEnemy : MonoBehaviour
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker enemyKillTracker;
-
+    float _yPos;
+    SpriteRenderer _spriteRenderer;
 
     //Attraction tower 
 
@@ -40,6 +41,7 @@ public class KaboomEnemy : MonoBehaviour
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         deathSoundHandling.enemyDeathSound = deathSound;
         enemyKillTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -69,6 +71,13 @@ public class KaboomEnemy : MonoBehaviour
         {
             moveSpeed = 0.39f;
         }
+        UpdateSortingLayer();
+    }
+    private void UpdateSortingLayer()
+    {
+        _yPos = transform.position.y;
+        _yPos = -_yPos;
+        _spriteRenderer.sortingOrder = (int)(_yPos * 100);
     }
     public void Attracted(Transform attractionTower)
     {

@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker _killTracker;
     [SerializeField] private CircleCollider2D circleCollider;
+    float _yPos;
+    SpriteRenderer _spriteRenderer;
 
     //Attraction tower 
 
@@ -44,6 +46,8 @@ public class Enemy : MonoBehaviour
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
         _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
     }
 
     private void Update()
@@ -73,6 +77,14 @@ public class Enemy : MonoBehaviour
         {
             moveSpeed = 0.39f;
         }
+
+        UpdateSortingLayer();        
+    }
+    private void UpdateSortingLayer()
+    {
+        _yPos = transform.position.y;
+        _yPos = -_yPos;
+        _spriteRenderer.sortingOrder = (int)(_yPos * 100);
     }
     public void HandleWaveImpact(Vector2 direction, float duration, float distance)
     {
