@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class DeckbuildingManager : MonoBehaviour
 {
@@ -39,8 +40,17 @@ public class DeckbuildingManager : MonoBehaviour
 
     public void OnStartButtonClicked()
     {
+        bool allTiersHaveCard = new[] {_common, _uncommon, _rare, _epic, _legendary}.All(array => array.Length > 0);
+        if (allTiersHaveCard)
+        {
+            var loadSceneTask = SceneManager.LoadSceneAsync(nextSceneName);
+        }
+        else
+        {
+            Debug.Log("Need a card slotted in each tier");
+        }
         
-        var loadSceneTask = SceneManager.LoadSceneAsync(nextSceneName);
+
     }
 
     public bool CheckCurrentTier(string tier)
