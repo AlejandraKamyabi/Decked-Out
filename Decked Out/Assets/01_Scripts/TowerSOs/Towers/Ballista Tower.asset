@@ -20,7 +20,8 @@ MonoBehaviour:
   towerInfo: It's like cupid's arrow on steroids.
   uses: 0
   rarityWeight: 25
-  damage: 8
-  range: 3
-  rateOfFire: 1
+  damage: 40
+  range: 4
+  rateOfFire: 3
   duration: 5
+  spell: 0

@@ -20,7 +20,8 @@ MonoBehaviour:
   towerInfo: Burn baby burn!
   uses: 0
   rarityWeight: 15
-  damage: 2
+  damage: 15
   range: 4
-  rateOfFire: 3
-  duration: 5
+  rateOfFire: 1.75
+  duration: 7
+  spell: 0

@@ -20,7 +20,8 @@ MonoBehaviour:
   towerInfo: A cannon tower, literally.
   uses: 0
   rarityWeight: 35
-  damage: 12
-  range: 3.5
-  rateOfFire: 1
-  duration: 3
+  damage: 25
+  range: 2.5
+  rateOfFire: 2.25
+  duration: 4
+  spell: 0

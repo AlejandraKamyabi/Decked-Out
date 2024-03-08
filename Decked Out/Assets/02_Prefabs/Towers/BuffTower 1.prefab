@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffRange: 1.5
-  damageBuff: 5
+  damageBuff: 7
   rateOfFireBuff: 0.7
   Health: 6
 --- !u!95 &185589295745262477
