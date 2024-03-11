@@ -25,6 +25,8 @@ public class Apostate : MonoBehaviour
     [SerializeField] private CircleCollider2D circleCollider;
     public float detectionRadius;
     private HashSet<GameObject> previouslyDetected = new HashSet<GameObject>();
+    float _yPos;
+    SpriteRenderer _spriteRenderer;
 
     //Attraction tower 
 
@@ -45,6 +47,7 @@ public class Apostate : MonoBehaviour
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -119,7 +122,15 @@ public class Apostate : MonoBehaviour
         {
             moveSpeed = 0.39f;
         }
+        UpdateSortingLayer();
     }
+    private void UpdateSortingLayer()
+    {
+        _yPos = transform.position.y;
+        _yPos = -_yPos;
+        _spriteRenderer.sortingOrder = (int)(_yPos * 100);
+    }
+
     void OnDestroy()
     {
         foreach (var obj in previouslyDetected)

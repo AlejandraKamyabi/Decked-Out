@@ -330,8 +330,8 @@ public class MouseInputHandling : MonoBehaviour
                     }
                     if (towerRenderer != null)
                     {
-                        float baseValue = 1000;
-                        float orderInLayer = (baseValue - towerRig.transform.position.y); 
+                        float orderInLayer = (towerRig.transform.position.y * 100);
+                        orderInLayer = -orderInLayer;
 
                         //if (orderInLayer <= 0)
                         {
