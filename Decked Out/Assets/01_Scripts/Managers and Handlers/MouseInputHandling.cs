@@ -175,6 +175,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 2;
                     break;
+                case "Mystery":
+                    towerRig.gameObject.transform.localScale = towerSelection.Mystery.transform.localScale;
+                    towerRigSprite.sprite = towerSelection.Mystery.GetComponent<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.Mystery.GetComponent<Mystery>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    break;
             }
         }
         else
@@ -292,6 +299,25 @@ public class MouseInputHandling : MonoBehaviour
                             case "Ballista Tower":
                                 currentTowerInstance = Instantiate(towerSelection.Ballista_Tower, mousePos, Quaternion.identity);
                                 break;
+                            case "Mystery":
+                                GameObject[] towers = new GameObject[] {
+        towerSelection.ArcherTower,
+        towerSelection.CannonTower,
+        towerSelection.FlameTower,
+        towerSelection.FrostTower,
+        towerSelection.Wave_Tower,
+        towerSelection.BuffTower,
+        towerSelection.ElectricTower,
+        towerSelection.EathQuack,
+        towerSelection.attraction_Tower,
+        towerSelection.Poison_Tower,
+        towerSelection.Ballista_Tower
+    };
+
+             int randomIndex = Random.Range(0, towers.Length);
+             GameObject selectedTower = towers[randomIndex];
+             currentTowerInstance = Instantiate(selectedTower, mousePos, Quaternion.identity);
+             break;
                         }
                     }
                     else if (towerSelection.IsSelectingSpell())
