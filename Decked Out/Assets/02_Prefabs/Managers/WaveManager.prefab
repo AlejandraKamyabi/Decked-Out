@@ -149,7 +149,7 @@ MonoBehaviour:
   enemiesBetweenKaboomSpawns: 4
   enemiesBetweenGolemSpawns: 7
   enemiesBetweenApostateSpawns: 10
-  enemiesBetweenNecromancerSpawns: 9
+  enemiesBetweenNecromancerSpawns: 17
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0
   currentWave: 0
