@@ -39,6 +39,11 @@ public class Apostate : MonoBehaviour
 
     bool _isDead = false;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
 
     private void Start()
     {
