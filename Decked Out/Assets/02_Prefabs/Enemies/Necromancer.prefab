@@ -299,13 +299,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-  moveSpeed: 1
+  moveSpeed: 0.65
   damage: 10
-  maxHealth: 100
+  maxHealth: 150
   healthSlider: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
   zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
   isBurning: 0
-  detectionRadius: 2.13
+  detectionRadius: 4
   isFrozen: 0
   deathEffectPrefab: {fileID: 3161217357562407052, guid: 0cf2463afee714c41bed90fde5f36542, type: 3}
   deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
