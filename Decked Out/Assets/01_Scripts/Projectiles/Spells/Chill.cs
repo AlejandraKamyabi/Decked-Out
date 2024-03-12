@@ -7,7 +7,7 @@ public class Chill : MonoBehaviour
 
     private void Start()
     {
-        Invoke("DealDamage", 0.5f);        
+        Invoke("DealDamage", 0.9f);        
     }
 
     private void DealDamage()
@@ -45,7 +45,7 @@ public class Chill : MonoBehaviour
             }
         }
 
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.8f);
     }
 
     private void OnDrawGizmos()
