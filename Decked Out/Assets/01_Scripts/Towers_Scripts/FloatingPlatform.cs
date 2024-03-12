@@ -7,11 +7,13 @@ public class FloatingPlatform : MonoBehaviour
     public float unitSquareSize = 10.0f;
 
     private Camera _cam;
+    private FloatingPlatformHalo _halo;
 
 
     private void Awake()
     {
         _cam = Camera.main;
+        _halo = GetComponentInChildren<FloatingPlatformHalo>();
     }
 
     private void Update()
@@ -20,6 +22,7 @@ public class FloatingPlatform : MonoBehaviour
 
         if (isDragging)
         {
+            _halo.IsDragging(true);
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
 
@@ -27,6 +30,10 @@ public class FloatingPlatform : MonoBehaviour
             mousePos.y = Mathf.Clamp(mousePos.y, -unitSquareSize / 3, unitSquareSize / 3);
 
             transform.position = mousePos + offset;
+        }
+        else
+        {
+            _halo.IsDragging(false);
         }
     }
 

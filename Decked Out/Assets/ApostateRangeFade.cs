@@ -10,7 +10,6 @@ public class ApostateRangeFade : MonoBehaviour
     [Range(0.1f, 1f)]
     [SerializeField] float _minAlpha = 0.75f;
 
-    float _timer;
     float _alpha;
     SpriteRenderer _spriteRenderer;
 
