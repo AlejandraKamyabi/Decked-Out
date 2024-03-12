@@ -23,6 +23,7 @@ public class KaboomEnemy : MonoBehaviour
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker enemyKillTracker;
+    private EnemyHealthFlash healthFlash;
     float _yPos;
     SpriteRenderer _spriteRenderer;
 
@@ -42,6 +43,7 @@ public class KaboomEnemy : MonoBehaviour
         deathSoundHandling.enemyDeathSound = deathSound;
         enemyKillTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        healthFlash = GetComponent<EnemyHealthFlash>();
     }
 
     private void Update()
@@ -190,6 +192,7 @@ public class KaboomEnemy : MonoBehaviour
     private void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
+        healthFlash.TakeDamage(currentHealth);
     }
 
     public void SetHealthSlider(Slider slider)

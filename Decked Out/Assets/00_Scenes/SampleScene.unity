@@ -3026,7 +3026,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.58433104, g: 0, b: 1, a: 0.49019608}
+  m_Color: {r: 0.1875, g: 0.75, b: 0.2955882, a: 0.49019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5059,8 +5059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigColor: {r: 1, g: 1, b: 1, a: 0.39215687}
   notPlaceable: {r: 1, g: 0, b: 0, a: 0.6862745}
-  onIsland: {r: 1, g: 0.7322525, b: 0, a: 0.6862745}
-  supportOnIsland: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 0.6862745}
+  onIsland: {r: 0.4392157, g: 0.27450982, b: 0.5019608, a: 0.6862745}
+  supportOnIsland: {r: 1, g: 0, b: 0, a: 0.6901961}
   castleGameObject: {fileID: 892063877}
   cardRandoEngine: {fileID: 0}
   collisionOccurred: 0

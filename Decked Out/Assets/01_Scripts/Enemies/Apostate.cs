@@ -27,6 +27,7 @@ public class Apostate : MonoBehaviour
     private HashSet<GameObject> previouslyDetected = new HashSet<GameObject>();
     float _yPos;
     SpriteRenderer _spriteRenderer;
+    EnemyHealthFlash healthFlash;
 
     //Attraction tower 
 
@@ -48,6 +49,7 @@ public class Apostate : MonoBehaviour
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        healthFlash = GetComponent<EnemyHealthFlash>();
     }
 
     private void Update()
@@ -264,6 +266,7 @@ public class Apostate : MonoBehaviour
     private void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
+        healthFlash.TakeDamage(currentHealth);
     }
 
     public void SetHealthSlider(Slider slider)

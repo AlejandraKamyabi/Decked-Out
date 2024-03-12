@@ -24,6 +24,7 @@ public class Necromancer : MonoBehaviour
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker _killTracker;
+    private EnemyHealthFlash healthFlash;
     [SerializeField] private CircleCollider2D circleCollider;
 
     //Attraction tower 
@@ -53,6 +54,7 @@ public class Necromancer : MonoBehaviour
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
         _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
+        healthFlash = GetComponent<EnemyHealthFlash>();
     }
     public void Initialize()
     {
@@ -244,6 +246,7 @@ public class Necromancer : MonoBehaviour
     private void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
+        healthFlash.TakeDamage(currentHealth);
     }
 
     public void SetHealthSlider(Slider slider)

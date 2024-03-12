@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: -6209553455341248833}
   - component: {fileID: 1576830264657842908}
   - component: {fileID: 3341973020179541167}
+  - component: {fileID: 3896669677113779306}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -343,3 +344,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathAnmationStateName: EnemyDead
+--- !u!114 &3896669677113779306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9be491809b69c4aa3e134e09bdf199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashDuration: 0.15
+  _flashColour: {r: 1, g: 0, b: 0, a: 1}

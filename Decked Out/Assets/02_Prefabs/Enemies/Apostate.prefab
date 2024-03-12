@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 5728615593586163833}
   - component: {fileID: -6209553455341248833}
   - component: {fileID: 4704783627426132583}
+  - component: {fileID: 7221288351236234424}
   m_Layer: 3
   m_Name: Apostate
   m_TagString: Enemy
@@ -309,3 +310,17 @@ MonoBehaviour:
   circleCollider: {fileID: 0}
   detectionRadius: 3.25
   isBeingPushed: 0
+--- !u!114 &7221288351236234424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9be491809b69c4aa3e134e09bdf199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashDuration: 0.15
+  _flashColour: {r: 1, g: 0, b: 0, a: 1}

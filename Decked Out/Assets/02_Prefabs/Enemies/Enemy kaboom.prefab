@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 7651664643644394062}
   - component: {fileID: 4658380144572453347}
   - component: {fileID: 131239190853023437}
+  - component: {fileID: 6398081963327324177}
   m_Layer: 3
   m_Name: Enemy kaboom
   m_TagString: Enemy
@@ -211,3 +212,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6398081963327324177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9be491809b69c4aa3e134e09bdf199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashDuration: 0.15
+  _flashColour: {r: 1, g: 0, b: 0, a: 1}

@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
     //Wave_Tower
     public bool isBeingPushed = false;
     EnemyDeathAnimation _enemyDeathAnimation;
+    EnemyHealthFlash _healthFlash;
     CapsuleCollider2D _capsuleCollider;
     bool _isDead = false;
 
@@ -47,7 +48,7 @@ public class Enemy : MonoBehaviour
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
         _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
+        _healthFlash = GetComponent<EnemyHealthFlash>();
     }
 
     private void Update()
@@ -202,6 +203,8 @@ public class Enemy : MonoBehaviour
     private void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
+        _healthFlash.TakeDamage(currentHealth);
+        
     }
 
     public void SetHealthSlider(Slider slider)
