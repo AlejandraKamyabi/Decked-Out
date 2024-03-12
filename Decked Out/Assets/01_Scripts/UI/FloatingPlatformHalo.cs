@@ -14,15 +14,19 @@ public class FloatingPlatformHalo : MonoBehaviour
 
     float _scaleUpTimer;
     float _scaleDownTimer;
-    float _currentScale;
+    float _currentScale = 1f;
     float _alpha;
     SpriteRenderer _spriteRenderer;
     bool _isDragging;
+    bool _wasDragging;
+    float _startScale = 1f;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _alpha = _spriteRenderer.color.a;
+        _currentScale = 1f; // Set initial scale to 1
+        _spriteRenderer.transform.localScale = new Vector3(_currentScale, _currentScale, _currentScale);
     }
 
     public void IsDragging(bool isDragging)
@@ -40,30 +44,45 @@ public class FloatingPlatformHalo : MonoBehaviour
             Color newColor = new Color(_spriteRenderer.color.r, _spriteRenderer.color.g, _spriteRenderer.color.b, _alpha);
             _spriteRenderer.color = newColor;
         }
+        // Assuming you have a bool to track when the dragging state changes
+        if (_wasDragging != _isDragging)
+        {
+            // Capture the current scale as the starting point for the lerp
+            _startScale = _currentScale;
+            // Reset the appropriate timer based on the new state
+            if (_isDragging)
+            {
+                _scaleDownTimer = 0.0f; // Start counting up for scale up
+            }
+            else
+            {
+                _scaleUpTimer = 0.0f; // Start counting down for scale down
+            }
+            _wasDragging = _isDragging;
+        }
+
         if (_isDragging)
         {
-            // Reset scale down timer when starting to drag
-            _scaleDownTimer = 0.0f;
             if (_currentScale < _dragScale)
             {
                 _scaleUpTimer += Time.deltaTime;
+                // Calculate t based on the captured start scale
                 float t = Mathf.Clamp01(_scaleUpTimer / _scaleDuration);
-                _currentScale = Mathf.Lerp(1, _dragScale, t);
+                _currentScale = Mathf.Lerp(_startScale, _dragScale, t);
             }
         }
         else
         {
-            // Reset scale up timer when stopping dragging
-            _scaleUpTimer = 0.0f;
             if (_currentScale > 1.0f)
             {
                 _scaleDownTimer += Time.deltaTime;
+                // Calculate t based on the captured start scale
                 float t = Mathf.Clamp01(_scaleDownTimer / _scaleDuration);
-                _currentScale = Mathf.Lerp(_dragScale, 1, t);
+                _currentScale = Mathf.Lerp(_startScale, 1, t);
             }
         }
 
-        // Apply the scaling outside the conditions to ensure smooth transition
+        // Apply the scaling
         _spriteRenderer.transform.localScale = new Vector3(_currentScale, _currentScale, _currentScale);
     }
 }
