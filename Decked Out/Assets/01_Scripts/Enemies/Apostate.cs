@@ -86,10 +86,9 @@ public class Apostate : MonoBehaviour
             }
         }
 
-        // Enable scripts on objects that were previously detected but are no longer within range
         foreach (var obj in previouslyDetected)
         {
-            if (!currentlyDetected.Contains(obj))
+            if (obj != null && !currentlyDetected.Contains(obj)) 
             {
                 SetScriptsEnabled(obj, true);
             }
