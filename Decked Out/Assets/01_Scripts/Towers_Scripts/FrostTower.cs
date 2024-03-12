@@ -68,6 +68,11 @@ public class FrostTower : MonoBehaviour, ITower
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
+    public float range
+    {
+        get { return attackRange; }
+        set { attackRange = value; }
+    }
     public float health
     {
         get { return Health; }

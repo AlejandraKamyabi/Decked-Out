@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IBuffTower
 {
     float health { get; set; }
+    float range { get; set; }
 }

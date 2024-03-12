@@ -57,6 +57,11 @@ public class Ballista_Tower : MonoBehaviour, ITower
         get { return Health; }
         set { Health = value; }
     }
+    public float range
+    {
+        get { return attackRange; }
+        set { attackRange = value; }
+    }
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
         if (!hasBeenBuffed && !gameObject.CompareTag("Empty"))

@@ -22,6 +22,12 @@ public class BuffTower : MonoBehaviour, IBuffTower
     {
         get { return Health; }
         set { Health = value; }
+
+    }
+    public float range
+    {
+        get { return buffRange; }
+        set { buffRange = value; }
     }
     private void Update()
     {

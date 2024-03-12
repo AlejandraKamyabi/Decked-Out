@@ -142,6 +142,11 @@ public class EarthQuack : MonoBehaviour, ITower
         get { return Health; }
         set { Health = value; }
     }
+    public float range
+    {
+        get { return attackRange; }
+        set { attackRange = value; }
+    }
     GameObject ITower.gameObject
     {
         get { return towerGameObject; }

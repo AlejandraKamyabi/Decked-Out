@@ -59,6 +59,11 @@ public class ElectricTower : MonoBehaviour, ITower
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
+    public float range
+    {
+        get { return attackRange; }
+        set { attackRange = value; }
+    }
     GameObject ITower.gameObject
     {
         get { return towerGameObject; }
