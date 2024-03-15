@@ -3,17 +3,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using System.Collections;
 
 public class CardRandoEngine : MonoBehaviour
 {
     [Header("Game Tool")]
     public WaveManager waveManager;
-    public TowerSelection towerSelection;
-    public Transform leftSpot;
-    public Vector3 leftSpotScale;
-    public Transform bottomSpot;
+    public TowerSelection towerSelection;    
+    public Vector3 leftSpotScale;    
     public Vector3 bottomSpotScale;
     public bool cardsOnLeft;
+    public GameObject cardHandPanel;
+    public Transform bottomSpot;
+    public Transform upperSpot;
+    public float moveDuration;
 
     [Header("Card Spaces")]
     public GameObject cardSpace0;   
@@ -209,6 +212,7 @@ public class CardRandoEngine : MonoBehaviour
         Debug.Log("New Wave Called");
         cardsInHand.Clear();
         blockingButton.gameObject.SetActive(true);
+        MoveCardHandPanel(false);
         PlayCardSuffleSound();
         cardSpace0.gameObject.SetActive(true);
         cardSpace1.gameObject.SetActive(true);
@@ -303,6 +307,7 @@ public class CardRandoEngine : MonoBehaviour
         if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 0)
         {
             PlaceButton0();
+            MoveCardHandPanel(true);
             isButtonHeld = false;
             buttonHeldTime = 0;
         }
@@ -312,6 +317,7 @@ public class CardRandoEngine : MonoBehaviour
         if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 1)
         {
             PlaceButton1();
+            MoveCardHandPanel(true);
             isButtonHeld = false;
             buttonHeldTime = 0;
         }
@@ -321,6 +327,7 @@ public class CardRandoEngine : MonoBehaviour
         if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 2)
         {
             PlaceButton2();
+            MoveCardHandPanel(true);
             isButtonHeld = false;
             buttonHeldTime = 0;
         }
@@ -330,6 +337,7 @@ public class CardRandoEngine : MonoBehaviour
         if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 3)
         {
             PlaceButton3();
+            MoveCardHandPanel(true);
             isButtonHeld = false;
             buttonHeldTime = 0;
         }
@@ -339,9 +347,32 @@ public class CardRandoEngine : MonoBehaviour
         if (isButtonHeld && buttonHeldTime < longPressDuration && current_Button_Held == 4)
         {
             PlaceButton4();
+            MoveCardHandPanel(true);
             isButtonHeld = false;
             buttonHeldTime = 0;
         }
+    }
+
+    public void MoveCardHandPanel(bool lowering)
+    {
+        StopAllCoroutines(); // Stop ongoing movements to prevent overlaps
+        StartCoroutine(MovePanelToPosition(lowering ? bottomSpot.localPosition : upperSpot.localPosition));
+    }
+
+    private IEnumerator MovePanelToPosition(Vector3 targetPosition)
+    {
+        float elapsedTime = 0;
+        float moveDuration = 0.5f; // Duration of the movement in seconds, adjust as needed
+        Vector3 startPosition = cardHandPanel.transform.localPosition;
+
+        while (elapsedTime < moveDuration)
+        {
+            cardHandPanel.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, elapsedTime / moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        cardHandPanel.transform.localPosition = targetPosition; // Ensure it's exactly at the target at the end
     }
 
     public void Button0()

@@ -88,7 +88,7 @@ public class CannonTower : MonoBehaviour, ITower
             {
                 RateOfFire = 0.1f;
             }
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
                 buffed = Instantiate(effect, transform.position, Quaternion.identity);
@@ -145,7 +145,7 @@ public class CannonTower : MonoBehaviour, ITower
     {
         Damage = initialDamage;
         RateOfFire = initialRateOfFire;
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             Color defaultColor = Color.white;
