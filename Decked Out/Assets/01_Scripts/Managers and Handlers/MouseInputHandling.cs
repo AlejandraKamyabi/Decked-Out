@@ -29,7 +29,11 @@ public class MouseInputHandling : MonoBehaviour
     public GameObject towerRig;
     private SpriteRenderer towerRigSprite;
     public SpriteRenderer rangeIndicator;
-    
+
+    private float _scallingFactor1 = 0.75f;
+    private float _scallingFactor2 = 0.6f;
+    private float _spellScallingFactor = 0.5f;
+
     public void Initialize()
     {
         Debug.Log("<color=cyan> INITIALIZAING </color>");
@@ -65,7 +69,7 @@ public class MouseInputHandling : MonoBehaviour
     {
         
         towerRig.transform.position = mousePosition;
-        towerRigSprite = towerRig.GetComponent<SpriteRenderer>();
+        towerRigSprite = towerRig.GetComponentInChildren<SpriteRenderer>();
         
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 towerPosition = mousePos;
@@ -91,96 +95,96 @@ public class MouseInputHandling : MonoBehaviour
             switch (towerSelection.towers)
             {
                 case "Arrow Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.ArcherTower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.ArcherTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.sprite = towerSelection.ArcherTower.GetComponentInChildren<SpriteRenderer>().sprite;
                     float towerRange = towerSelection.ArcherTower.GetComponent<ArcherTower>().attackRange;
                     Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
                 case "Cannon Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.CannonTower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.CannonTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.sprite = towerSelection.CannonTower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.CannonTower.GetComponent<CannonTower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
 
 
                 case "Flamethrower Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.FlameTower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.FlameTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
+                    towerRigSprite.sprite = towerSelection.FlameTower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.FlameTower.GetComponent<FlamethrowerTower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
 
                 case "Frost Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.FrostTower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.FrostTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
+                    towerRigSprite.sprite = towerSelection.FrostTower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.FrostTower.GetComponent<FrostTower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
                 case "Wave Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.Wave_Tower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.Wave_Tower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
+                    towerRigSprite.sprite = towerSelection.Wave_Tower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.Wave_Tower.GetComponent<Wave_Tower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
 
                 case "Buff Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.BuffTower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.BuffTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
+                    towerRigSprite.sprite = towerSelection.BuffTower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.BuffTower.GetComponent<BuffTower>().buffRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
 
                 case "Electric Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.ElectricTower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.ElectricTower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
+                    towerRigSprite.sprite = towerSelection.ElectricTower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.ElectricTower.GetComponent<ElectricTower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
 
                 case "Earthquake Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.EathQuack.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.EathQuack.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.sprite = towerSelection.EathQuack.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.EathQuack.GetComponent<EarthQuack>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
 
 
                 case "Attraction Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.attraction_Tower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.attraction_Tower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
+                    towerRigSprite.sprite = towerSelection.attraction_Tower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.attraction_Tower.GetComponent<AttractionTower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
                 case "Poison Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.Poison_Tower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.Poison_Tower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.sprite = towerSelection.Poison_Tower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.Poison_Tower.GetComponent<Poison_tower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
                 case "Ballista Tower":
-                    towerRig.gameObject.transform.localScale = towerSelection.Ballista_Tower.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.Ballista_Tower.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.sprite = towerSelection.Ballista_Tower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.Ballista_Tower.GetComponent<Ballista_Tower>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
                 case "Mystery":
-                    towerRig.gameObject.transform.localScale = towerSelection.Mystery.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.Mystery.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.sprite = towerSelection.Mystery.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.Mystery.GetComponent<Mystery>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
             }
         }
@@ -189,40 +193,40 @@ public class MouseInputHandling : MonoBehaviour
             switch (towerSelection.spells)
             {
                 case "Lightning":
-                    towerRig.gameObject.transform.localScale = towerSelection.lightning.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.lightning.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
+                    towerRigSprite.sprite = towerSelection.lightning.GetComponentInChildren<SpriteRenderer>().sprite;
                     float towerRange = towerSelection.lightning.GetComponent<LightningStrike>().attackRange;
                     Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
 
                 case "Fireball":
-                    towerRig.gameObject.transform.localScale = towerSelection.fireball.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.fireball.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
+                    towerRigSprite.sprite = towerSelection.fireball.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.fireball.GetComponent<Fireball>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
                 case "Nuke":
-                    towerRig.gameObject.transform.localScale = towerSelection.nuke.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.nuke.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
+                    towerRigSprite.sprite = towerSelection.nuke.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.nuke.GetComponent<Nuke>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
                 case "Big Bomb":
-                    towerRig.gameObject.transform.localScale = towerSelection.bigBomb.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.bigBomb.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
+                    towerRigSprite.sprite = towerSelection.bigBomb.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.bigBomb.GetComponent<BigBomb>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
                 case "Chill":
-                    towerRig.gameObject.transform.localScale = towerSelection.chill.transform.localScale;
-                    towerRigSprite.sprite = towerSelection.chill.GetComponent<SpriteRenderer>().sprite;
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
+                    towerRigSprite.sprite = towerSelection.chill.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.chill.GetComponent<Chill>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
-                    rangeIndicator.transform.localScale = towerRangeScaling * 2;
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
             }
         }

@@ -28,7 +28,7 @@ public class TowerHealthFlash : MonoBehaviour
         {
             Debug.LogError("No Tower Found - Check for Interface on Script");
         }
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     private void Update()
     {
