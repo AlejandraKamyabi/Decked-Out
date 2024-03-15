@@ -22,7 +22,8 @@ public class BlockingButton : MonoBehaviour, IPointerEnterHandler
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        PutCardBack();        
+        PutCardBack();
+        _randoEngine.MoveCardHandPanel(false);
     }
     private void PutCardBack()
     {

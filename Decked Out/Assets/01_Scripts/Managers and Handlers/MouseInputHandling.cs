@@ -150,7 +150,7 @@ public class MouseInputHandling : MonoBehaviour
                     break;
 
                 case "Earthquake Tower":
-                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
                     towerRigSprite.sprite = towerSelection.EathQuack.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.EathQuack.GetComponent<EarthQuack>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
@@ -381,6 +381,7 @@ public class MouseInputHandling : MonoBehaviour
                     towerSelection.SetSelectingTower(false);
                     towerSelection.SetSelectingSpell(false);
                     Wave.IncrementTowersPlaced();
+                    cardRandoEngine.MoveCardHandPanel(false);
         
         
                     

@@ -19,7 +19,7 @@ public class FrostTower : MonoBehaviour, ITower
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     private void OnDrawGizmos()
     {
@@ -93,7 +93,7 @@ public class FrostTower : MonoBehaviour, ITower
             {
                 RateOfFire = 0.1f;
             }
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
                 buffed = Instantiate(effect, transform.position, Quaternion.identity);
@@ -106,7 +106,7 @@ public class FrostTower : MonoBehaviour, ITower
     {
         Damage = initialDamage;
         RateOfFire = initialRateOfFire;
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             Color defaultColor = Color.white;

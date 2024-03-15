@@ -29,7 +29,7 @@ public class EarthQuack : MonoBehaviour, ITower
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         StartCoroutine(DamageOverTime());
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     private void Update()
     {
@@ -71,7 +71,7 @@ public class EarthQuack : MonoBehaviour, ITower
     {
         Damage = initialDamage;
         RateOfFire = initialRateOfFire;
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             Color defaultColor = Color.white;
@@ -162,7 +162,7 @@ public class EarthQuack : MonoBehaviour, ITower
             {
                 RateOfFire = 0.1f;
             }
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
                 buffed = Instantiate(buff_prefab, transform.position, Quaternion.identity);

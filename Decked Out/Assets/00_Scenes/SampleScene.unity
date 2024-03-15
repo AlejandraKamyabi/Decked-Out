@@ -337,11 +337,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveManager: {fileID: 0}
   towerSelection: {fileID: 1106663290}
-  leftSpot: {fileID: 1193590668}
   leftSpotScale: {x: 1, y: 1, z: 1}
-  bottomSpot: {fileID: 1147148214}
   bottomSpotScale: {x: 1, y: 1, z: 1}
   cardsOnLeft: 0
+  cardHandPanel: {fileID: 133661368}
+  bottomSpot: {fileID: 1193590668}
+  upperSpot: {fileID: 1147148214}
+  moveDuration: 1
   cardSpace0: {fileID: 530677681}
   cardSpace1: {fileID: 2069204438}
   cardSpace2: {fileID: 1625380163}
@@ -5178,7 +5180,7 @@ MonoBehaviour:
   Poison_Tower: {fileID: 7405903770306088367, guid: df6b3cf9edc79e84ab757534356af86c, type: 3}
   Ballista_Tower: {fileID: 7405903770306088367, guid: fb8accea86df60049b36eba9687a120f, type: 3}
   Mystery: {fileID: 7405903770306088367, guid: 21f92544c958cd54fba9ddaaf0eff28c, type: 3}
-  lightning: {fileID: 7405903770306088367, guid: 676dba46ef94c9e44b10af88654eee7e, type: 3}
+  lightning: {fileID: 7405903770306088367, guid: fc70580715f6256409ac743977334c56, type: 3}
   fireball: {fileID: 7405903770306088367, guid: 99463ee7e03f7f14abfe170532e27598, type: 3}
   nuke: {fileID: 7405903770306088367, guid: 6d954bab85fc16d409534418fe528b4e, type: 3}
   bigBomb: {fileID: 7405903770306088367, guid: 20df06ac93255b04d84da333b0470f06, type: 3}
@@ -5275,7 +5277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1147148214}
   m_Layer: 5
-  m_Name: Card Hand Bottom Spot
+  m_Name: Card Hand Upper Spot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5289,17 +5291,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147148213}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1547120668}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1385, y: 215}
+  m_SizeDelta: {x: 955, y: 215}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1149384996
 GameObject:
@@ -5638,7 +5640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1193590668}
   m_Layer: 5
-  m_Name: Card Hand Left Spot
+  m_Name: Card Hand Bottom Spot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5652,17 +5654,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193590667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1547120668}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: -125.00012}
-  m_SizeDelta: {x: -1385, y: 215}
+  m_SizeDelta: {x: 955, y: 215}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1230803799
 GameObject:
@@ -10660,11 +10662,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1240338777844722756, guid: ee48560f86e7892458ff882e0edacfd3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 23.179993
+      value: 23.18
       objectReference: {fileID: 0}
     - target: {fileID: 1240338777844722756, guid: ee48560f86e7892458ff882e0edacfd3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 182
+      value: 93
       objectReference: {fileID: 0}
     - target: {fileID: 1240338777844722756, guid: ee48560f86e7892458ff882e0edacfd3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10700,7 +10702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1240338777844722756, guid: ee48560f86e7892458ff882e0edacfd3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: 46.5
       objectReference: {fileID: 0}
     - target: {fileID: 1240338777844722756, guid: ee48560f86e7892458ff882e0edacfd3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

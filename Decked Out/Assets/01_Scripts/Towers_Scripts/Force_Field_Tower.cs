@@ -37,7 +37,7 @@ public class Force_Field_Tower : MonoBehaviour, ITower
         force_field_Prefab.transform.localScale = towerRangeScaling / 4;
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         Vector3 positionWithOffset = new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z);
         instantiatedForceFieldPrefab = Instantiate(force_field_Prefab, positionWithOffset, Quaternion.identity);
     }
@@ -50,7 +50,7 @@ public class Force_Field_Tower : MonoBehaviour, ITower
     }
     public IEnumerator StartFlickerEffect()
     {
-        SpriteRenderer sr = instantiatedForceFieldPrefab.GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = instantiatedForceFieldPrefab.GetComponentInChildren<SpriteRenderer>();
         Collider2D col = instantiatedForceFieldPrefab.GetComponent<Collider2D>();
 
         // Check if components are not null
@@ -78,7 +78,7 @@ public class Force_Field_Tower : MonoBehaviour, ITower
     {
         if (instantiatedForceFieldPrefab == null) return;
 
-        SpriteRenderer sr = instantiatedForceFieldPrefab.GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = instantiatedForceFieldPrefab.GetComponentInChildren<SpriteRenderer>();
         Collider2D col = instantiatedForceFieldPrefab.GetComponent<Collider2D>();
 
 
@@ -127,7 +127,7 @@ public class Force_Field_Tower : MonoBehaviour, ITower
             {
                 RateOfFire = 0.1f;
             }
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             if (spriteRenderer != null && health != 0)
             {
                 buffed = Instantiate(effect, transform.position, Quaternion.identity);
@@ -141,7 +141,7 @@ public class Force_Field_Tower : MonoBehaviour, ITower
     {
         Damage = initialDamage;
         RateOfFire = initialRateOfFire;
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             Color defaultColor = Color.white;
