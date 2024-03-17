@@ -8429,6 +8429,7 @@ MonoBehaviour:
   _cardsOfRarity:
   - {fileID: 11400000, guid: f3b9932f60e217e4f8da4b2bc39894f2, type: 2}
   - {fileID: 11400000, guid: 17a9b6996c9c2d84cbf57d27e5a7fda3, type: 2}
+  - {fileID: 11400000, guid: 3c5fd7efffdca614b9d28c8c74fec86d, type: 2}
 --- !u!1 &2134072048
 GameObject:
   m_ObjectHideFlags: 0

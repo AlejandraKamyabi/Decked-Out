@@ -179,6 +179,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
+                case "Mortar":
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.sprite = towerSelection.Mortar.GetComponentInChildren<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.Mortar.GetComponent<Mortar_Tower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
+                    break;
                 case "Mystery":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
                     towerRigSprite.sprite = towerSelection.Mystery.GetComponentInChildren<SpriteRenderer>().sprite;
@@ -302,6 +309,9 @@ public class MouseInputHandling : MonoBehaviour
                                 break;
                             case "Ballista Tower":
                                 currentTowerInstance = Instantiate(towerSelection.Ballista_Tower, mousePos, Quaternion.identity);
+                                break;
+                            case "Mortar":
+                                currentTowerInstance = Instantiate(towerSelection.Mortar, mousePos, Quaternion.identity);
                                 break;
                             case "Mystery":
                                 GameObject[] towers = new GameObject[] {

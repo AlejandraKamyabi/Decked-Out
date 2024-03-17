@@ -21,6 +21,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject Wave_Tower;
     public GameObject Poison_Tower;
     public GameObject Ballista_Tower;
+    public GameObject Mortar;
     public GameObject Mystery;
 
     [Header("Spells")]
