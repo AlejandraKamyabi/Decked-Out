@@ -10,10 +10,11 @@ using UnityEngine;
 public class MouseInputHandling : MonoBehaviour
 {
     [Header("Range Colours")]
-    public Color rigColor;
-    public Color notPlaceable;
-    public Color onIsland;
-    public Color supportOnIsland;
+    public Color notPlaceableColour;
+    public Color onIslandColour;
+    public Sprite placeableRange;
+    public Sprite onPlatformRange;
+    public Sprite notPlaceableRange;
     private TowerSelection towerSelection;
     private GameObject currentTowerInstance;
     public GameObject castleGameObject;
@@ -42,7 +43,6 @@ public class MouseInputHandling : MonoBehaviour
         Wave = ServiceLocator.Get<WaveManager>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
         towerRig.gameObject.SetActive(false);
-        rigColor = rangeIndicator.color;
         if (castleGameObject == null)
         {
             castleGameObject = GameObject.FindWithTag("Player");
@@ -84,8 +84,8 @@ public class MouseInputHandling : MonoBehaviour
         if (distanceToCastle < minDistance)
             
         {
-            towerRigSprite.color = notPlaceable;
-            rangeIndicator.color = notPlaceable;
+            towerRigSprite.color = notPlaceableColour;
+            rangeIndicator.sprite = notPlaceableRange;
             return;
         }
 
@@ -398,21 +398,21 @@ public class MouseInputHandling : MonoBehaviour
             }
             if (towerCollision)
             {                
-                towerRigSprite.color = notPlaceable;
-                rangeIndicator.color = notPlaceable;
+                towerRigSprite.color = notPlaceableColour;
+                rangeIndicator.sprite = notPlaceableRange;
             }
 
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform"))
             {
                 if ((towerSelection.towers == "Frost Tower") || (towerSelection.towers == "Buff Tower") || (towerSelection.towers == "Earthquake Tower") || (towerSelection.spells== "Lightning") || (towerSelection.spells == "Fireball") || (towerSelection.spells == "Nuke") || (towerSelection.spells == "Big Bomb") || (towerSelection.spells == "Chill")) 
                 {
-                    towerRigSprite.color = supportOnIsland;
-                    rangeIndicator.color = supportOnIsland;
+                    towerRigSprite.color = notPlaceableColour;
+                    rangeIndicator.sprite = notPlaceableRange;
                 }
                 else
                 {
-                    towerRigSprite.color = onIsland;
-                    rangeIndicator.color = onIsland;
+                    towerRigSprite.color = onIslandColour;
+                    rangeIndicator.sprite = onPlatformRange;
                     islandTowerSelection = true;
                 }
 
@@ -421,14 +421,14 @@ public class MouseInputHandling : MonoBehaviour
             else if (!towerCollision)
             {
                 towerRigSprite.color = Color.white;
-                rangeIndicator.color = rigColor;
+                rangeIndicator.sprite = placeableRange;
             }
             else { islandTowerSelection = false; }
         }  
         else
         {
-            towerRigSprite.color = notPlaceable;
-            rangeIndicator.color = notPlaceable;
+            towerRigSprite.color = notPlaceableColour;
+            rangeIndicator.sprite = notPlaceableRange;
         }
     }
 
