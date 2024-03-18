@@ -360,7 +360,7 @@ public class MouseInputHandling : MonoBehaviour
                                 break;
                         }
                     }
-                            SpriteRenderer towerRenderer = currentTowerInstance.GetComponent<SpriteRenderer>();
+                            SpriteRenderer towerRenderer = currentTowerInstance.GetComponentInChildren<SpriteRenderer>();
                     if (!islandTowerSelection)
                     {
                         if (!towerSelection.IsSelectingSpell())
@@ -370,15 +370,11 @@ public class MouseInputHandling : MonoBehaviour
                     }
                     if (towerRenderer != null)
                     {
+
                         float orderInLayer = (towerRig.transform.position.y * 100);
                         orderInLayer = -orderInLayer;
-
-                        //if (orderInLayer <= 0)
-                        {
-                           // orderInLayer = 60;
-                        }
-
                         towerRenderer.sortingOrder = ((int)orderInLayer);
+
                         if (hit.collider != null && hit.collider.gameObject.CompareTag("Platform") && towerSelection.towers != "Buff Tower" && towerSelection.towers != "Earthquake Tower" && towerSelection.towers != "Frost Tower" && !towerSelection.IsSelectingSpell())
                         {
                             towerRenderer.sortingOrder = 2501;

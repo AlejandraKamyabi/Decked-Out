@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -150073476557729027}
   - component: {fileID: 2281122888512149763}
   - component: {fileID: 2763153389729729428}
+  - component: {fileID: 8111929749885454325}
   m_Layer: 3
   m_Name: Poison_AOE
   m_TagString: Untagged
@@ -29,9 +30,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5573567819655174200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.59, y: -0.11, z: 0}
-  m_LocalScale: {x: 1.004088, y: 1.004088, z: 1.004088}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,9 +75,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 17
+  m_SortingLayerID: -955459919
+  m_SortingLayer: 1
+  m_SortingOrder: 1000
   m_Sprite: {fileID: -2050872365, guid: aa9a7db177802174e89281ccb9329b00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -169,3 +170,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8111929749885454325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5573567819655174200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6cd0fb886a4e14eb9a8903063c50f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tickSpeed: 0.25

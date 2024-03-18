@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7326591932277806573}
   - component: {fileID: 6111746919607868508}
   - component: {fileID: 3149811972742799339}
+  - component: {fileID: -2687578103020149570}
   m_Layer: 0
   m_Name: Buff
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443179554803152393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.7113614, y: -0.8733085, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,9 +72,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -955459919
+  m_SortingLayer: 1
+  m_SortingOrder: 1000
   m_Sprite: {fileID: 21300000, guid: 56e6fe22486b80b4d9cd2baee648c694, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
   m_FlipX: 0
@@ -105,3 +106,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2687578103020149570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443179554803152393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6cd0fb886a4e14eb9a8903063c50f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tickSpeed: 0.25
