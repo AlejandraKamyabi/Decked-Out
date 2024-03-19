@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private float original_moveSpeed;
     public float damage = 10.0f;
     public float maxHealth;
-    private float currentHealth;
+    public float currentHealth;
     public Slider healthSlider;
     public GameObject zapPrefab;
     public bool isBurning = false;
