@@ -21,7 +21,8 @@ public class EnemyStatusAnimationController : MonoBehaviour
     bool _apostate = false;
     bool _necromancer = false;
     float _yPos;
-    float _scalingDuration = 0.5f;
+    float _upscaleDuration = 0.5f;
+    float _downscaleDuration = 0.25f;
 
     SpriteRenderer _burnRenderer;
     SpriteRenderer _slowRenderer;
@@ -32,6 +33,10 @@ public class EnemyStatusAnimationController : MonoBehaviour
     [SerializeField] Vector3 _slowScale;
     [SerializeField] Vector3 _charmScale;
     [SerializeField] Vector3 _poisonScale;
+
+
+    int frozenStateFrames;
+    int frozenStateFrameThreshold = 10;
 
     private void Start()
     {
@@ -57,9 +62,9 @@ public class EnemyStatusAnimationController : MonoBehaviour
         }
 
         _burnRenderer = _burnEffect.GetComponent<SpriteRenderer>();
-        ScaleDown(_burnEffect);
-        //_slowRenderer = _slowEffect.GetComponent<SpriteRenderer>();
-        //ScaleDown(_slowEffect);
+        ScaleDown(_burnEffect, _burnScale);
+        _slowRenderer = _slowEffect.GetComponent<SpriteRenderer>();
+        ScaleDown(_slowEffect, _slowScale);
         //_charmRenderer = _charmEffect.GetComponent<SpriteRenderer>();
        // ScaleDown(_charmEffect);
        // _poisonRenderer = _poisonEffect.GetComponent<SpriteRenderer>();
@@ -72,38 +77,59 @@ public class EnemyStatusAnimationController : MonoBehaviour
             if (_enemyScript.currentHealth <= 0)
             {
                 _burnEffect.SetActive(false);
+                _slowEffect.SetActive(false);
             }
-            else if (!_enemyScript.isBurning && _burnEffect.activeInHierarchy == true)
+            else if (_enemyScript.isBurning)
             {
-                ScaleDown(_burnEffect);
-                Debug.Log("Flame Off.");
+                if (_burnEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_burnRenderer);
+                }
+                else if (_burnEffect.activeInHierarchy != true)
+                {
+                    ScaleUp(_burnEffect, _burnScale);
+                    UpdateSortingOrder(_burnRenderer);
+                }
             }
-            else if (_enemyScript.isBurning && _burnEffect.activeInHierarchy == true)
+            if (_enemyScript.isFrozen)
             {
-                UpdateSortingOrder(_burnRenderer);
+                if (_slowEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_slowRenderer);
+                }
+                else if (_slowEffect.activeInHierarchy != true)
+                {
+                    ScaleUp(_slowEffect, _slowScale);
+                    UpdateSortingOrder(_slowRenderer);
+                }
             }
-            else if (_enemyScript.isBurning && _burnEffect.activeInHierarchy != true)
+            else if (!_enemyScript.isFrozen && _slowEffect.activeInHierarchy)
             {
-                ScaleUp(_burnEffect, _burnScale);
-                UpdateSortingOrder(_burnRenderer);
-                Debug.Log("Flame On!");
+                frozenStateFrames++;
+                if (frozenStateFrames >= frozenStateFrameThreshold)
+                {
+                    ScaleDown(_slowEffect, _slowScale);
+                    frozenStateFrames = 0;
+                }
+                
             }
+           
         }
     }
 
-    private void ScaleDown(GameObject effectObject)
+    private void ScaleDown(GameObject effectObject, Vector3 effectScale)
     {
-        StartCoroutine(ScaleDownCoroutine(effectObject));
+        StartCoroutine(ScaleDownCoroutine(effectObject, effectScale));
     }
-    private IEnumerator ScaleDownCoroutine(GameObject effectObject)
+    private IEnumerator ScaleDownCoroutine(GameObject effectObject, Vector3 effectScale)
     {
-        Vector3 originalScale = _burnScale;
+        Vector3 originalScale = effectScale;
         Vector3 targetScale = Vector3.zero;
         float elapsedTime = 0;
 
-        while (elapsedTime < _scalingDuration)
+        while (elapsedTime < _downscaleDuration)
         {
-            float ratio = elapsedTime / _scalingDuration;
+            float ratio = elapsedTime / _downscaleDuration;
             effectObject.transform.localScale = Vector3.Lerp(originalScale, targetScale, ratio);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -123,9 +149,9 @@ public class EnemyStatusAnimationController : MonoBehaviour
         Vector3 originalScale = effectObject.transform.localScale;
         float elapsedTime = 0;
 
-        while (elapsedTime < _scalingDuration)
+        while (elapsedTime < _upscaleDuration)
         {
-            float ratio = elapsedTime / _scalingDuration;
+            float ratio = elapsedTime / _upscaleDuration;
             effectObject.transform.localScale = Vector3.Lerp(originalScale, targetScale, ratio);
             elapsedTime += Time.deltaTime;
             yield return null;
