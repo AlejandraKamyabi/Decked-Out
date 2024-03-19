@@ -31,6 +31,7 @@ public class KaboomEnemy : MonoBehaviour
 
     private Transform originalTarget;
     private bool isAttracted;
+    private bool isPoisoned;
     //Wave_Tower
     public bool isBeingPushed = false;
     bool _isDead = false;
@@ -202,6 +203,10 @@ public class KaboomEnemy : MonoBehaviour
     public void setBurning()
     {
         isBurning = true;
+    }
+    public void SetPoisoning(bool poisoning)
+    {
+        isPoisoned = poisoning;
     }
     public void ApplyFreeze()
     {

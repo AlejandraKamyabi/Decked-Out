@@ -62,13 +62,13 @@ public class EnemyStatusAnimationController : MonoBehaviour
         }
 
         _burnRenderer = _burnEffect.GetComponent<SpriteRenderer>();
-        ScaleDown(_burnEffect, _burnScale);
+        ScaleDownAndDisable(_burnEffect, _burnScale);
         _slowRenderer = _slowEffect.GetComponent<SpriteRenderer>();
-        ScaleDown(_slowEffect, _slowScale);
+        ScaleDownAndDisable(_slowEffect, _slowScale);
         //_charmRenderer = _charmEffect.GetComponent<SpriteRenderer>();
        // ScaleDown(_charmEffect);
-       // _poisonRenderer = _poisonEffect.GetComponent<SpriteRenderer>();
-       // ScaleDown(_poisonEffect);
+       _poisonRenderer = _poisonEffect.GetComponent<SpriteRenderer>();
+       ScaleDownAndDisable(_poisonEffect, _poisonScale);
     }
     private void Update()
     {
@@ -78,8 +78,9 @@ public class EnemyStatusAnimationController : MonoBehaviour
             {
                 _burnEffect.SetActive(false);
                 _slowEffect.SetActive(false);
+                _poisonEffect.SetActive(false);
             }
-            else if (_enemyScript.isBurning)
+            if (_enemyScript.isBurning)
             {
                 if (_burnEffect.activeInHierarchy == true)
                 {
@@ -87,9 +88,13 @@ public class EnemyStatusAnimationController : MonoBehaviour
                 }
                 else if (_burnEffect.activeInHierarchy != true)
                 {
-                    ScaleUp(_burnEffect, _burnScale);
+                    ScaleUpAndEnable(_burnEffect, _burnScale);
                     UpdateSortingOrder(_burnRenderer);
                 }
+            }
+            else if (!_enemyScript.isBurning && _burnEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_burnEffect, _burnScale);
             }
             if (_enemyScript.isFrozen)
             {
@@ -99,7 +104,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
                 }
                 else if (_slowEffect.activeInHierarchy != true)
                 {
-                    ScaleUp(_slowEffect, _slowScale);
+                    ScaleUpAndEnable(_slowEffect, _slowScale);
                     UpdateSortingOrder(_slowRenderer);
                 }
             }
@@ -108,16 +113,32 @@ public class EnemyStatusAnimationController : MonoBehaviour
                 frozenStateFrames++;
                 if (frozenStateFrames >= frozenStateFrameThreshold)
                 {
-                    ScaleDown(_slowEffect, _slowScale);
+                    ScaleDownAndDisable(_slowEffect, _slowScale);
                     frozenStateFrames = 0;
                 }
                 
+            }
+            if (_enemyScript.isPoisoned)
+            {
+                if (_poisonEffect.activeInHierarchy)
+                {
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+                else if (_poisonEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_poisonEffect, _poisonScale);
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+            }
+            else if (!_enemyScript.isPoisoned & _poisonEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_poisonEffect, _poisonScale);
             }
            
         }
     }
 
-    private void ScaleDown(GameObject effectObject, Vector3 effectScale)
+    private void ScaleDownAndDisable(GameObject effectObject, Vector3 effectScale)
     {
         StartCoroutine(ScaleDownCoroutine(effectObject, effectScale));
     }
@@ -139,7 +160,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
         effectObject.SetActive(false);
     }
 
-    private void ScaleUp(GameObject effectObject, Vector3 scale)
+    private void ScaleUpAndEnable(GameObject effectObject, Vector3 scale)
     {
         effectObject.SetActive(true);
         StartCoroutine(ScaleUpCoroutine(effectObject, scale));

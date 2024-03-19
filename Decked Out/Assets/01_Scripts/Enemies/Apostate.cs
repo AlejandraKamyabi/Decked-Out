@@ -33,6 +33,7 @@ public class Apostate : MonoBehaviour
 
     private Transform originalTarget;
     private bool isAttracted;
+    private bool isPoisoned;
 
     //Wave_Tower
     public bool isBeingPushed = false;
@@ -281,6 +282,10 @@ public class Apostate : MonoBehaviour
     public void setBurning()
     {
         isBurning = true;
+    }
+    public void SetPoisoning(bool poisoning)
+    {
+        isPoisoned = poisoning;
     }
     public void ApplyFreeze()
     {

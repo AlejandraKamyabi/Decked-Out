@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     private Transform originalTarget;
     private bool isAttracted;
+    public bool isPoisoned;
 
     //Wave_Tower
     public bool isBeingPushed = false;
@@ -214,6 +215,10 @@ public class Enemy : MonoBehaviour
     public void setBurning()
     {
         isBurning = true;   
+    }
+    public void SetPoisoning(bool poisoning)
+    {
+        isPoisoned = poisoning;
     }
     public void ApplyFreeze()
     {

@@ -31,6 +31,7 @@ public class Necromancer : MonoBehaviour
 
     private Transform originalTarget;
     private bool isAttracted;
+    private bool isPoisoned;
 
     //Wave_Tower
     public bool isBeingPushed = false;
@@ -170,6 +171,10 @@ public class Necromancer : MonoBehaviour
             isAttracted = true;
             StartCoroutine(ResetAttracted());
         }
+    }
+    public void SetPoisoning(bool poisoning)
+    {
+        isPoisoned = poisoning;
     }
 
     private IEnumerator ResetAttracted()
