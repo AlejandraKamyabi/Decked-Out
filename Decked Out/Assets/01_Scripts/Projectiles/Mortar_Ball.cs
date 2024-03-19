@@ -19,7 +19,10 @@ public class Mortar_Ball : MonoBehaviour
     public void SetTarget(Transform target)
     {
         // Capture the target's position at the moment of firing
-        fixedTargetPosition = new Vector2(target.position.x, target.position.y);
+        if (target != null)
+        {
+            fixedTargetPosition = new Vector2(target.position.x, target.position.y);
+        }
     }
 
     private void Update()

@@ -434,7 +434,10 @@ public class MouseInputHandling : MonoBehaviour
 
     public void ClearRig()
     {
-        towerRig.gameObject.SetActive(false);
+        if (towerRig != null)
+        {
+            towerRig.gameObject.SetActive(false);
+        }
     }
     public float SpellSlotCheck()
     {
