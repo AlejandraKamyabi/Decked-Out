@@ -10,7 +10,7 @@ public class KaboomEnemy : MonoBehaviour
     private float original_Speed;
     public float damage = 10.0f;
     public float maxHealth = 100.0f;
-    private float currentHealth;
+    public float currentHealth;
     public Slider healthSlider;
     public GameObject zapPrefab;
     private bool hasBeenZapped = false;
@@ -30,8 +30,8 @@ public class KaboomEnemy : MonoBehaviour
     //Attraction tower 
 
     private Transform originalTarget;
-    private bool isAttracted;
-    private bool isPoisoned;
+    public bool isAttracted;
+    public bool isPoisoned;
     //Wave_Tower
     public bool isBeingPushed = false;
     bool _isDead = false;

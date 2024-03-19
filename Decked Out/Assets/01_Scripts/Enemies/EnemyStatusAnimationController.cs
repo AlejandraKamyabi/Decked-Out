@@ -37,10 +37,15 @@ public class EnemyStatusAnimationController : MonoBehaviour
     SpriteRenderer _poisonRenderer;
 
     [Header("Scalling")]
-    [SerializeField] Vector3 _burnScale;
-    [SerializeField] Vector3 _slowScale;
-    [SerializeField] Vector3 _charmScale;
-    [SerializeField] Vector3 _poisonScale;
+    [SerializeField] float _burnScaleValue;
+    [SerializeField] float _slowScaleValue;
+    [SerializeField] float _charmScaleValue;
+    [SerializeField] float _poisonScaleValue;
+
+    Vector3 _burnScale;
+    Vector3 _slowScale;
+    Vector3 _charmScale;
+    Vector3 _poisonScale;
 
 
     int frozenStateFrames;
@@ -77,6 +82,11 @@ public class EnemyStatusAnimationController : MonoBehaviour
        ScaleDownAndDisable(_charmEffect, _charmScale);
        _poisonRenderer = _poisonEffect.GetComponent<SpriteRenderer>();
        ScaleDownAndDisable(_poisonEffect, _poisonScale);
+
+        _burnScale = Vector3.one * _burnScaleValue;
+        _charmScale = Vector3.one * _charmScaleValue;
+        _poisonScale = Vector3.one * _poisonScaleValue;
+        _slowScale = Vector3.one * _slowScaleValue;
     }
     private void Update()
     {
@@ -161,6 +171,88 @@ public class EnemyStatusAnimationController : MonoBehaviour
                 EnemyColour(Color.white);
             }
            
+        }
+        else if (_kaboom)
+        {
+            if (_kaboomScript.currentHealth <= 0)
+            {
+                _burnEffect.SetActive(false);
+                _slowEffect.SetActive(false);
+                _poisonEffect.SetActive(false);
+                _charmEffect.SetActive(false);
+            }
+            if (_kaboomScript.isBurning)
+            {
+                EnemyColour(_burningColour);
+                if (_burnEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_burnRenderer);
+                }
+                else if (_burnEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_burnEffect, _burnScale);
+                    UpdateSortingOrder(_burnRenderer);
+                }
+            }
+            else if (!_kaboomScript.isBurning && _burnEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_burnEffect, _burnScale);
+            }
+            if (_kaboomScript.isFrozen)
+            {
+                EnemyColour(_chilledColour);
+                if (_slowEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_slowRenderer);
+                }
+                else if (_slowEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_slowEffect, _slowScale);
+                    UpdateSortingOrder(_slowRenderer);
+                }
+            }
+            else if (!_kaboomScript.isFrozen && _slowEffect.activeInHierarchy)
+            {
+                frozenStateFrames++;
+                if (frozenStateFrames >= frozenStateFrameThreshold)
+                {
+                    ScaleDownAndDisable(_slowEffect, _slowScale);
+                    frozenStateFrames = 0;
+                }
+
+            }
+            if (_kaboomScript.isPoisoned)
+            {
+                EnemyColour(_poisonedColour);
+                if (_poisonEffect.activeInHierarchy)
+                {
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+                else if (_poisonEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_poisonEffect, _poisonScale);
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+            }
+            else if (!_kaboomScript.isPoisoned && _poisonEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_poisonEffect, _poisonScale);
+            }
+            if (_kaboomScript.isAttracted)
+            {
+                EnemyColour(_attrachedColour);
+                ScaleUpAndEnable(_charmEffect, _charmScale);
+                UpdateSortingOrder(_charmRenderer);
+            }
+            else if (!_kaboomScript.isAttracted && _charmEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_charmEffect, _charmScale);
+            }
+            else if (!_kaboomScript.isBurning && !_kaboomScript.isPoisoned && !_kaboomScript.isFrozen && !_kaboomScript.isAttracted)
+            {
+                EnemyColour(Color.white);
+            }
+
         }
     }
 
