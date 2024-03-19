@@ -55,6 +55,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 1373121805
+    locked: 0
+  - name: Range Indicators
+    uniqueID: 2539097789
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Projectile
+    uniqueID: 3339507377
     locked: 0

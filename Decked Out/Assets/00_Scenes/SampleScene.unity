@@ -3009,9 +3009,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -899
+  m_SortingLayerID: 1373121805
+  m_SortingLayer: -2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7333a97a781711a40b70ec2e09563566, type: 3}
   m_Color: {r: 0.9383447, g: 1, b: 0.5424528, a: 1}
   m_FlipX: 0
@@ -3108,11 +3108,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1755869507
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6a5444d7e5a893c44b977e5b8e155bfc, type: 3}
-  m_Color: {r: 0.1875, g: 0.75, b: 0.2955882, a: 0.49019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5143,10 +5143,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80646ee834e19ce40b3e884676db6e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigColor: {r: 1, g: 1, b: 1, a: 0.39215687}
-  notPlaceable: {r: 1, g: 0, b: 0, a: 0.6862745}
-  onIsland: {r: 0.4392157, g: 0.27450982, b: 0.5019608, a: 0.6862745}
-  supportOnIsland: {r: 1, g: 0, b: 0, a: 0.6901961}
+  notPlaceableColour: {r: 1, g: 0, b: 0, a: 1}
+  onIslandColour: {r: 0.96862745, g: 0.8039216, b: 0.5686275, a: 1}
+  placeableRange: {fileID: 21300000, guid: 6a5444d7e5a893c44b977e5b8e155bfc, type: 3}
+  onPlatformRange: {fileID: 21300000, guid: 21f15a86af97d394fa7e50251343bc0a, type: 3}
+  notPlaceableRange: {fileID: 21300000, guid: f91c95b124b01e34691c728cae3217b0, type: 3}
   castleGameObject: {fileID: 892063877}
   cardRandoEngine: {fileID: 0}
   collisionOccurred: 0

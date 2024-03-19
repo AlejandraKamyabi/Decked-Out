@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6186327346600205874}
   - component: {fileID: 8380255017392265088}
   - component: {fileID: -5030057063948146100}
+  - component: {fileID: -4597489644717392434}
   m_Layer: 3
   m_Name: Field
   m_TagString: Field
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768669603021752526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0450284, y: 0.53074896, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -955459919
+  m_SortingLayer: 1
+  m_SortingOrder: 1000
   m_Sprite: {fileID: 21300000, guid: f60bf78894831e24f91e7343aa76f183, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -355,3 +356,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a30d0b3e360804aa4ea0b901ea6208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4597489644717392434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768669603021752526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6cd0fb886a4e14eb9a8903063c50f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tickSpeed: 0.25

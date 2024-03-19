@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3956206777213680669}
   - component: {fileID: 995995880901192166}
   - component: {fileID: -368563807566900999}
+  - component: {fileID: -3211246957109133282}
   m_Layer: 3
   m_Name: Mortar_ball
   m_TagString: Untagged
@@ -27,9 +28,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3956206777213680668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8031, y: 6.5631, z: 10}
-  m_LocalScale: {x: 0.13441955, y: 0.13441955, z: 0.13441955}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,9 +73,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingLayerID: -955459919
+  m_SortingLayer: 1
+  m_SortingOrder: 1000
   m_Sprite: {fileID: 21300000, guid: c2b18f284ad9f8744b6d746d074ccfa2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -121,4 +122,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonSpeed: 10
   effect: {fileID: 5600610290312254772, guid: 853de82af1453014ca73c787bdac7ca7, type: 3}
-  aoeRadius: 3
+  aoeRadius: 5
+--- !u!114 &-3211246957109133282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3956206777213680668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6cd0fb886a4e14eb9a8903063c50f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tickSpeed: 0.25

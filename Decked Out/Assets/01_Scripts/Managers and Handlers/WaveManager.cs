@@ -1,4 +1,4 @@
-// =============================================================================
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // =============================================================================
 // 
 // Everything related to spawning enemies, waves are all here.
 // 
@@ -111,6 +111,14 @@ public class WaveManager : MonoBehaviour
                 Debug.LogError("Trying to spawn more enemies than allowed");
                 break;
             }
+            else if (enemiesSpawned % enemiesBetweenNecromancerSpawns == 0 && enemiesSpawned != 0)
+            {
+                Spawn_Necromancer();
+                enemiesSpawned++;
+                //kaboomEnemy = true;
+                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
+                continue;
+            }
             else if (enemiesSpawned % enemiesBetweenApostateSpawns == 0 && enemiesSpawned != 0)
             {
                 SpawnApostateEnemy();
@@ -129,14 +137,6 @@ public class WaveManager : MonoBehaviour
             else if (enemiesSpawned % enemiesBetweenKaboomSpawns == 0 && enemiesSpawned != 0)
             {
                 SpawnKaboomEnemy();
-                enemiesSpawned++;
-                //kaboomEnemy = true;
-                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
-                continue;
-            }
-            else if (enemiesSpawned % enemiesBetweenNecromancerSpawns == 0 && enemiesSpawned != 0)
-            {
-                Spawn_Necromancer();
                 enemiesSpawned++;
                 //kaboomEnemy = true;
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
@@ -347,7 +347,7 @@ public class WaveManager : MonoBehaviour
 
                 Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
-
+                _killTracker.NumbersOfEnemiesInWave(GetEnemies());
                 newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                 newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
                 newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
@@ -359,7 +359,7 @@ public class WaveManager : MonoBehaviour
 
                 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
-
+                _killTracker.NumbersOfEnemiesInWave(GetEnemies());
                 newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                 newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
                 newEnemy.GetComponent<KaboomEnemy>().SetHealthSlider(newHealthSlider);
@@ -372,7 +372,7 @@ public class WaveManager : MonoBehaviour
 
                  sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
-
+                _killTracker.NumbersOfEnemiesInWave(GetEnemies());
                 newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                 newHealthSlider.maxValue = newEnemy.GetComponent<Apostate>().maxHealth;
                 newEnemy.GetComponent<Apostate>().SetHealthSlider(newHealthSlider);
@@ -384,7 +384,7 @@ public class WaveManager : MonoBehaviour
 
                 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
-
+                _killTracker.NumbersOfEnemiesInWave(GetEnemies());
                 newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
                 newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
                 newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
@@ -394,6 +394,7 @@ public class WaveManager : MonoBehaviour
         if (enemyPrefab != null)
         {
             waves[currentWave].numberOfEnemies++;
+            
         }
 
     }
