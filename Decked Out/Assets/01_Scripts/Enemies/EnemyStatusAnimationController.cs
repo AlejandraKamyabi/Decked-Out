@@ -16,6 +16,13 @@ public class EnemyStatusAnimationController : MonoBehaviour
     [SerializeField] KaboomEnemy _kaboomScript;
     [SerializeField] Necromancer _necromancerScript;
 
+    [Header("Sprite Modifers")]
+    [SerializeField] SpriteRenderer _mainSpriteRenderer;
+    [SerializeField] Color _burningColour;
+    [SerializeField] Color _chilledColour;
+    [SerializeField] Color _poisonedColour;
+    [SerializeField] Color _attrachedColour;
+
     bool _basic = false;
     bool _kaboom = false;
     bool _apostate = false;
@@ -29,6 +36,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
     SpriteRenderer _charmRenderer;
     SpriteRenderer _poisonRenderer;
 
+    [Header("Scalling")]
     [SerializeField] Vector3 _burnScale;
     [SerializeField] Vector3 _slowScale;
     [SerializeField] Vector3 _charmScale;
@@ -61,12 +69,12 @@ public class EnemyStatusAnimationController : MonoBehaviour
             Debug.LogError("No type of enemy script found.");
         }
 
-        _burnRenderer = _burnEffect.GetComponent<SpriteRenderer>();
-        ScaleDownAndDisable(_burnEffect, _burnScale);
-        _slowRenderer = _slowEffect.GetComponent<SpriteRenderer>();
-        ScaleDownAndDisable(_slowEffect, _slowScale);
-        //_charmRenderer = _charmEffect.GetComponent<SpriteRenderer>();
-       // ScaleDown(_charmEffect);
+       _burnRenderer = _burnEffect.GetComponent<SpriteRenderer>();
+       ScaleDownAndDisable(_burnEffect, _burnScale);
+       _slowRenderer = _slowEffect.GetComponent<SpriteRenderer>();
+       ScaleDownAndDisable(_slowEffect, _slowScale);
+       _charmRenderer = _charmEffect.GetComponent<SpriteRenderer>();
+       ScaleDownAndDisable(_charmEffect, _charmScale);
        _poisonRenderer = _poisonEffect.GetComponent<SpriteRenderer>();
        ScaleDownAndDisable(_poisonEffect, _poisonScale);
     }
@@ -79,12 +87,14 @@ public class EnemyStatusAnimationController : MonoBehaviour
                 _burnEffect.SetActive(false);
                 _slowEffect.SetActive(false);
                 _poisonEffect.SetActive(false);
+                _charmEffect.SetActive(false);
             }
             if (_enemyScript.isBurning)
             {
+                EnemyColour(_burningColour);
                 if (_burnEffect.activeInHierarchy == true)
                 {
-                    UpdateSortingOrder(_burnRenderer);
+                    UpdateSortingOrder(_burnRenderer);                    
                 }
                 else if (_burnEffect.activeInHierarchy != true)
                 {
@@ -98,6 +108,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
             }
             if (_enemyScript.isFrozen)
             {
+                EnemyColour(_chilledColour);
                 if (_slowEffect.activeInHierarchy == true)
                 {
                     UpdateSortingOrder(_slowRenderer);
@@ -120,6 +131,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
             }
             if (_enemyScript.isPoisoned)
             {
+                EnemyColour(_poisonedColour);
                 if (_poisonEffect.activeInHierarchy)
                 {
                     UpdateSortingOrder(_poisonRenderer);
@@ -130,12 +142,31 @@ public class EnemyStatusAnimationController : MonoBehaviour
                     UpdateSortingOrder(_poisonRenderer);
                 }
             }
-            else if (!_enemyScript.isPoisoned & _poisonEffect.activeInHierarchy)
+            else if (!_enemyScript.isPoisoned && _poisonEffect.activeInHierarchy)
             {
                 ScaleDownAndDisable(_poisonEffect, _poisonScale);
             }
+            if (_enemyScript.isAttracted)
+            {
+                EnemyColour(_attrachedColour);
+                ScaleUpAndEnable(_charmEffect, _charmScale);
+                UpdateSortingOrder(_charmRenderer);
+            }
+            else if (!_enemyScript.isAttracted && _charmEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_charmEffect, _charmScale);
+            }
+            else if (!_enemyScript.isBurning && !_enemyScript.isPoisoned && !_enemyScript.isFrozen && !_enemyScript.isAttracted)
+            {
+                EnemyColour(Color.white);
+            }
            
         }
+    }
+
+    private void EnemyColour(Color color)
+    {
+        _mainSpriteRenderer.color = color;
     }
 
     private void ScaleDownAndDisable(GameObject effectObject, Vector3 effectScale)

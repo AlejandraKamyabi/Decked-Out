@@ -28,7 +28,8 @@ public class Enemy : MonoBehaviour
     //Attraction tower 
 
     private Transform originalTarget;
-    private bool isAttracted;
+    public bool isAttracted;
+
     public bool isPoisoned;
 
     //Wave_Tower
