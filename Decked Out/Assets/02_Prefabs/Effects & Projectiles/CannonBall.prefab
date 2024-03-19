@@ -121,4 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonSpeed: 8
   effect: {fileID: 5600610290312254772, guid: 853de82af1453014ca73c787bdac7ca7, type: 3}
-  aoeRadius: 5
+  aoeRadius: 2

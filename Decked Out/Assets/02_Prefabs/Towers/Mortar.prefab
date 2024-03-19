@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3692268328757577928}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.38, y: 2.38, z: 2.38}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7405903770306088365}
@@ -411,10 +411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23f68b0e25f9f048be6a5756c016da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2.5
+  attackRange: 6
   CannonBall: {fileID: 3956206777213680668, guid: 21eddf438ee6db44c80db1c3982fe713, type: 3}
-  Damage: 50
-  RateOfFire: 2.25
-  Health: 2
+  Damage: 40
+  RateOfFire: 2.5
+  Health: 7
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: 0}

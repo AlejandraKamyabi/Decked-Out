@@ -20,8 +20,8 @@ MonoBehaviour:
   towerInfo: 
   uses: 0
   rarityWeight: 15
-  damage: 15
-  range: 4
-  rateOfFire: 1.75
+  damage: 40
+  range: 6
+  rateOfFire: 2.5
   duration: 7
   spell: 0
