@@ -50,24 +50,30 @@ public class EnemyStatusAnimationController : MonoBehaviour
 
     int frozenStateFrames;
     int frozenStateFrameThreshold = 10;
+    int clearStatusFrames;
+    int clearStatusFrameThreshold = 10;
 
     private void Start()
     {
         if (_enemyScript != null)
         {
             _basic = true;
+            Debug.Log("Basic Enemy Found");
         }
         else if (_kaboomScript != null)
         {
             _kaboom = true;
+            Debug.Log("Kaboom Enemy Found");
         }
         else if (_apostateScript != null)
         {
             _apostate = true;
+            Debug.Log("Apostate Found");
         }
         else if (_necromancerScript != null)
         {
             _necromancer = true;
+            Debug.Log("Nercomancer Found");
         }
         else
         {
@@ -250,9 +256,100 @@ public class EnemyStatusAnimationController : MonoBehaviour
             }
             else if (!_kaboomScript.isBurning && !_kaboomScript.isPoisoned && !_kaboomScript.isFrozen && !_kaboomScript.isAttracted)
             {
-                EnemyColour(Color.white);
+                clearStatusFrames++;
+                if (clearStatusFrames >= clearStatusFrameThreshold)
+                {
+                    EnemyColour(Color.white);
+                    clearStatusFrames = 0;
+                }
             }
 
+        }
+        else if (_apostate)
+        {
+            if (_apostateScript.currentHealth <= 0)
+            {
+                _burnEffect.SetActive(false);
+                _slowEffect.SetActive(false);
+                _poisonEffect.SetActive(false);
+                _charmEffect.SetActive(false);
+            }
+            if (_apostateScript.isBurning)
+            {
+                EnemyColour(_burningColour);
+                if (_burnEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_burnRenderer);
+                }
+                else if (_burnEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_burnEffect, _burnScale);
+                    UpdateSortingOrder(_burnRenderer);
+                }
+            }
+            else if (!_apostateScript.isBurning && _burnEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_burnEffect, _burnScale);
+            }
+            if (_apostateScript.isFrozen)
+            {
+                EnemyColour(_chilledColour);
+                if (_slowEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_slowRenderer);
+                }
+                else if (_slowEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_slowEffect, _slowScale);
+                    UpdateSortingOrder(_slowRenderer);
+                }
+            }
+            else if (!_apostateScript.isFrozen && _slowEffect.activeInHierarchy)
+            {
+                frozenStateFrames++;
+                if (frozenStateFrames >= frozenStateFrameThreshold)
+                {
+                    ScaleDownAndDisable(_slowEffect, _slowScale);
+                    frozenStateFrames = 0;
+                }
+
+            }
+            if (_apostateScript.isPoisoned)
+            {
+                EnemyColour(_poisonedColour);
+                if (_poisonEffect.activeInHierarchy)
+                {
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+                else if (_poisonEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_poisonEffect, _poisonScale);
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+            }
+            else if (!_apostateScript.isPoisoned && _poisonEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_poisonEffect, _poisonScale);
+            }
+            if (_apostateScript.isAttracted)
+            {
+                EnemyColour(_attrachedColour);
+                ScaleUpAndEnable(_charmEffect, _charmScale);
+                UpdateSortingOrder(_charmRenderer);
+            }
+            else if (!_apostateScript.isAttracted && _charmEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_charmEffect, _charmScale);
+            }
+            else if (!_apostateScript.isBurning && !_apostateScript.isPoisoned && !_apostateScript.isFrozen && !_apostateScript.isAttracted)
+            {
+                clearStatusFrames++;
+                if (clearStatusFrames >= clearStatusFrameThreshold)
+                {
+                    EnemyColour(Color.white);
+                    clearStatusFrames = 0;
+                }
+            }
         }
     }
 
@@ -308,14 +405,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
     {
         _yPos = transform.position.y;
         _yPos = -_yPos;
-        if (_yPos < 0)
-        {
-            effectRenderer.sortingOrder = (int)(_yPos * 100) + 2;
-        }
-        else
-        {
-            effectRenderer.sortingOrder = (int)(_yPos * 100) + 1;
-        }
+        effectRenderer.sortingOrder = (int)(_yPos * 100) + 2;
     }
 
 }

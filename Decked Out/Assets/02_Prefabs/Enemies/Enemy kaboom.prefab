@@ -259,10 +259,10 @@ MonoBehaviour:
   _chilledColour: {r: 0.11372549, g: 0.69803923, b: 0.7921569, a: 1}
   _poisonedColour: {r: 0.3921569, g: 0.6039216, b: 0.3019608, a: 1}
   _attrachedColour: {r: 1, g: 0.43529412, b: 0.58431375, a: 1}
-  _burnScale: {x: 0.3, y: 0.3, z: 0.3}
-  _slowScale: {x: 0.25, y: 0.25, z: 0.25}
-  _charmScale: {x: 0.15, y: 0.15, z: 0.15}
-  _poisonScale: {x: 0.5, y: 0.5, z: 0.5}
+  _burnScaleValue: 0.3
+  _slowScaleValue: 0.25
+  _charmScaleValue: 0.25
+  _poisonScaleValue: 0.5
 --- !u!1001 &270080493447818841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7553439347579601132, guid: 8ab12d052918dc54294b272ac078d089, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 7553439347579601132, guid: 8ab12d052918dc54294b272ac078d089, type: 3}
       propertyPath: m_LocalPosition.z

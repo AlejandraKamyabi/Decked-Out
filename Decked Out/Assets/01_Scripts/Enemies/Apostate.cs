@@ -10,7 +10,7 @@ public class Apostate : MonoBehaviour
     private float original_speed;
     public float damage = 10.0f;
     public float maxHealth;
-    private float currentHealth;
+    public float currentHealth;
     public Slider healthSlider;
     public GameObject zapPrefab;
     public bool isBurning = false;
@@ -32,8 +32,8 @@ public class Apostate : MonoBehaviour
     //Attraction tower 
 
     private Transform originalTarget;
-    private bool isAttracted;
-    private bool isPoisoned;
+    public bool isAttracted;
+    public bool isPoisoned;
 
     //Wave_Tower
     public bool isBeingPushed = false;
