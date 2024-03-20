@@ -351,6 +351,91 @@ public class EnemyStatusAnimationController : MonoBehaviour
                 }
             }
         }
+        else if (_necromancer)
+        {
+            if (_necromancerScript.currentHealth <= 0)
+            {
+                _burnEffect.SetActive(false);
+                _slowEffect.SetActive(false);
+                _poisonEffect.SetActive(false);
+                _charmEffect.SetActive(false);
+            }
+            if (_necromancerScript.isBurning)
+            {
+                EnemyColour(_burningColour);
+                if (_burnEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_burnRenderer);
+                }
+                else if (_burnEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_burnEffect, _burnScale);
+                    UpdateSortingOrder(_burnRenderer);
+                }
+            }
+            else if (!_necromancerScript.isBurning && _burnEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_burnEffect, _burnScale);
+            }
+            if (_necromancerScript.isFrozen)
+            {
+                EnemyColour(_chilledColour);
+                if (_slowEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_slowRenderer);
+                }
+                else if (_slowEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_slowEffect, _slowScale);
+                    UpdateSortingOrder(_slowRenderer);
+                }
+            }
+            else if (!_necromancerScript.isFrozen && _slowEffect.activeInHierarchy)
+            {
+                frozenStateFrames++;
+                if (frozenStateFrames >= frozenStateFrameThreshold)
+                {
+                    ScaleDownAndDisable(_slowEffect, _slowScale);
+                    frozenStateFrames = 0;
+                }
+            }
+            if (_necromancerScript.isPoisoned)
+            {
+                EnemyColour(_poisonedColour);
+                if (_poisonEffect.activeInHierarchy)
+                {
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+                else if (_poisonEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_poisonEffect, _poisonScale);
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+            }
+            else if (!_necromancerScript.isPoisoned && _poisonEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_poisonEffect, _poisonScale);
+            }
+            if (_necromancerScript.isAttracted)
+            {
+                EnemyColour(_attrachedColour);
+                ScaleUpAndEnable(_charmEffect, _charmScale);
+                UpdateSortingOrder(_charmRenderer);
+            }
+            else if (!_necromancerScript.isAttracted && _charmEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_charmEffect, _charmScale);
+            }
+            else if (!_necromancerScript.isBurning && !_necromancerScript.isPoisoned && !_necromancerScript.isFrozen && !_necromancerScript.isAttracted)
+            {
+                clearStatusFrames++;
+                if (clearStatusFrames >= clearStatusFrameThreshold)
+                {
+                    EnemyColour(Color.white);
+                    clearStatusFrames = 0;
+                }
+            }
+        }
     }
 
     private void EnemyColour(Color color)

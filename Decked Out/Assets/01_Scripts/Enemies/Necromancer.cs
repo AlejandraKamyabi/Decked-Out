@@ -10,7 +10,7 @@ public class Necromancer : MonoBehaviour
     private float original_moveSpeed;
     public float damage = 10.0f;
     public float maxHealth;
-    private float currentHealth;
+    public float currentHealth;
     public Slider healthSlider;
     public GameObject zapPrefab;
     public bool isBurning = false;
@@ -30,15 +30,16 @@ public class Necromancer : MonoBehaviour
     //Attraction tower 
 
     private Transform originalTarget;
-    private bool isAttracted;
-    private bool isPoisoned;
+    public bool isAttracted;
+    public bool isPoisoned;
 
     //Wave_Tower
     public bool isBeingPushed = false;
     EnemyDeathAnimation _enemyDeathAnimation;
     CapsuleCollider2D _capsuleCollider;
     bool _isDead = false;
-
+    float _yPos;
+    SpriteRenderer _spriteRenderer;
 
     private WaveManager wave;
     private GameLoader _loader;
@@ -56,6 +57,7 @@ public class Necromancer : MonoBehaviour
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
         _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
         healthFlash = GetComponent<EnemyHealthFlash>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     public void Initialize()
     {
@@ -90,6 +92,13 @@ public class Necromancer : MonoBehaviour
         {
             moveSpeed = 0.39f;
         }
+        UpdateSortingLayer();
+    }
+    private void UpdateSortingLayer()
+    {
+        _yPos = transform.position.y;
+        _yPos = -_yPos;
+        _spriteRenderer.sortingOrder = (int)(_yPos * 100);
     }
     public void HandleWaveImpact(Vector2 direction, float duration, float distance)
     {
