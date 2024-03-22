@@ -43,6 +43,8 @@ public class DeckbuildingManager : MonoBehaviour
         bool allTiersHaveCard = new[] {_common, _uncommon, _rare, _epic, _legendary}.All(array => array.Length > 0);
         if (allTiersHaveCard)
         {
+            StartButtonLoading startButtonLoading = FindObjectOfType<StartButtonLoading>();
+            startButtonLoading.DisableButton();
             var loadSceneTask = SceneManager.LoadSceneAsync(nextSceneName);
         }
         else
