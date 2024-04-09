@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Ballista_Tower : MonoBehaviour, ITower
+public class OrganGunTower : MonoBehaviour, ITower
 {
     public float attackRange;
-    public GameObject arrowPrefab;
+    public GameObject SmallBulletPrefab;
     [SerializeField] private float Damage;
     [SerializeField] private float RateOfFire;
     [SerializeField] private float Health = 2;
@@ -18,7 +18,8 @@ public class Ballista_Tower : MonoBehaviour, ITower
     private GameObject buffed;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
-    public AudioSource audioSource;
+    //public AudioSource audioSource;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -89,25 +90,19 @@ public class Ballista_Tower : MonoBehaviour, ITower
             {
                 if (collider.CompareTag("Enemy"))
                 {
-                    ShootArrow(collider.transform);
+                    ShootInAnyDirection(collider.transform);
                     break;
                 }
             }
         }
     }
 
-    private void ShootArrow(Transform target)
+    private void ShootInAnyDirection(Transform target)
     {
-        audioSource.Play();
-        GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
-        Ballista_Arrow arrowScript = arrow.GetComponent<Ballista_Arrow>();
-        arrowScript.SetTarget(target);
-
-        canAttack = false;
-        arrowScript.SetDamage(Damage);
-        StartCoroutine(AttackCooldown());
+        GameObject SmallBullet = Instantiate(SmallBulletPrefab, transform.position, Quaternion.identity);
 
     }
+
     public void ResetTowerEffects()
     {
         Damage = initialDamage;
@@ -126,7 +121,7 @@ public class Ballista_Tower : MonoBehaviour, ITower
     {
         return attackRange;
     }
-   
+
     private IEnumerator AttackCooldown()
     {
         float actualRateOfFire = RateOfFire;
@@ -137,11 +132,5 @@ public class Ballista_Tower : MonoBehaviour, ITower
             canAttack = true;
         }
     }
-    private void OnDestroy()
-    {
-        if (buffed != null)
-        {
-            Destroy(buffed);
-        }
-    }
+
 }
