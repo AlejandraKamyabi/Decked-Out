@@ -100,7 +100,11 @@ public class OrganGunTower : MonoBehaviour, ITower
     private void ShootInAnyDirection(Transform target)
     {
         GameObject SmallBullet = Instantiate(SmallBulletPrefab, transform.position, Quaternion.identity);
+        SmallBullet bulletScript = SmallBullet.GetComponent<SmallBullet>();
 
+        canAttack = false;
+        bulletScript.SetDamage(Damage);
+        StartCoroutine(AttackCooldown());
     }
 
     public void ResetTowerEffects()
