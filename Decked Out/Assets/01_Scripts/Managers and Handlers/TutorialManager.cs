@@ -9,9 +9,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] float _checkTimer;
 
     private GameLoader _loader;
-    private bool _firstPlay = true;
     public int _index = 0;
     private float _timer;
+    private bool _tutorial;
     private bool _waiting = false;
     private string _waitingObjectName;
     private GameObject _waitingObject;
@@ -29,8 +29,10 @@ public class TutorialManager : MonoBehaviour
 
     private void Initialize()
     {
-        if (_firstPlay)
+        TutorialPassthrough passthrough = FindObjectOfType<TutorialPassthrough>();
+        if (passthrough != null)
         {
+            _tutorial = true;
             LoadPopup();
             _timer = _checkTimer;
         }
@@ -41,27 +43,30 @@ public class TutorialManager : MonoBehaviour
     }
     private void Update()
     {
-        if (_firstPlay)
+        if (_tutorial)
         {
             _timer -= Time.deltaTime;
+            if (_waiting && _timer <= 0)
+            {
+                _waitingObject = GameObject.Find(_waitingObjectName);
+                _timer = _checkTimer;
+            }
+            if (_waitingObject != null && _waitingObject.activeInHierarchy)
+            {
+                _waiting = false;
+                _waitingObject = null;
+                _popups[_index].gameObject.SetActive(false);
+                _index++;
+                LoadPopup();
+            }
+            else if (_waitingObject != null && _waitingObject.activeInHierarchy == false)
+            {
+                Debug.LogError("Found Waiting Object, but is not active");
+            }
         }
-        if (_waiting && _timer <= 0)
-        {
-            _waitingObject = GameObject.Find(_waitingObjectName);
-            _timer = _checkTimer;
-        }
-        if (_waitingObject != null && _waitingObject.activeInHierarchy)
-        {
-            _waiting = false;
-            _waitingObject = null;
-            _popups[_index].gameObject.SetActive(false);
-            _index++;
-            LoadPopup();
-        }
-        else if (_waitingObject != null && _waitingObject.activeInHierarchy == false)
-        {
-            Debug.LogError("Found Waiting Object, but is not active");
-        }
+       
+        
+       
 
     }
 

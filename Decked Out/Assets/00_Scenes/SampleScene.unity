@@ -4283,7 +4283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6148840201758897593, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6148840201758897593, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4400,7 +4400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936339158611316971, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7936339158611316971, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7131,7 +7131,7 @@ GameObject:
   - component: {fileID: 1529245004}
   - component: {fileID: 1529245003}
   m_Layer: 0
-  m_Name: Temp Tutorial Manager
+  m_Name: Tutorial Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7153,6 +7153,7 @@ MonoBehaviour:
   - {fileID: 279826075}
   - {fileID: 984858295}
   _checkTimer: 0.125
+  _index: 0
 --- !u!4 &1529245004
 Transform:
   m_ObjectHideFlags: 0
@@ -8934,7 +8935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7123561325698608161, guid: 522346df8077db04c8a31fe0f59d6aa7, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7123561325698608161, guid: 522346df8077db04c8a31fe0f59d6aa7, type: 3}
       propertyPath: m_LocalScale.x
@@ -10969,7 +10970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
       propertyPath: m_LocalPosition.x
