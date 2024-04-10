@@ -12,6 +12,7 @@ public class Wave_Projectile : MonoBehaviour
     private bool canMove = false;
     [SerializeField] private float force;
     [SerializeField] private float duration;
+    private static Dictionary<GameObject, int> targetHits = new Dictionary<GameObject, int>();
     void Start()
     {
         StartCoroutine(EnableMovementAfterDelay(0.8f)); 
@@ -61,7 +62,23 @@ public class Wave_Projectile : MonoBehaviour
         }
     
 }
-
+    private void TrackHitAndCheckForInstaKill(GameObject enemy)
+    {
+        if (targetHits.ContainsKey(enemy))
+        {
+            targetHits[enemy]++;
+            if (targetHits[enemy] == 5) 
+            {
+               
+                targetHits[enemy] = 0; 
+                Insta_Kill(enemy);
+            }
+        }
+        else
+        {
+            targetHits.Add(enemy, 1);
+        }
+    }
     public void SetDamage(float value)
     {
         damage = value;
@@ -114,6 +131,31 @@ public class Wave_Projectile : MonoBehaviour
         {
             necromancer.TakeDamage(damage);
           
+        }
+        TrackHitAndCheckForInstaKill(enemy);
+    }
+    private void Insta_Kill(GameObject enemy)
+    {
+        Enemy enemyScript = enemy.GetComponent<Enemy>();
+        if (enemyScript != null)
+        {
+            enemyScript.Insta_Kill();
+        }
+        KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
+        if (kaboom != null)
+        {
+            kaboom.Insta_Kill();
+        }
+        Apostate apostate = enemy.GetComponent<Apostate>();
+        if (apostate != null)
+        {
+            apostate.Insta_Kill();
+        }
+        Necromancer necromancer = enemy.GetComponent<Necromancer>();
+        if (necromancer != null)
+        {
+            necromancer.Insta_Kill();
+
         }
     }
 }

@@ -94,6 +94,10 @@ public class Necromancer : MonoBehaviour
         }
         UpdateSortingLayer();
     }
+    public void Insta_Kill()
+    {
+        Die();
+    }
     private void UpdateSortingLayer()
     {
         _yPos = transform.position.y;

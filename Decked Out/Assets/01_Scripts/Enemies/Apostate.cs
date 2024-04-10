@@ -57,7 +57,10 @@ public class Apostate : MonoBehaviour
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         healthFlash = GetComponent<EnemyHealthFlash>();
     }
-
+    public void Insta_Kill()
+    {
+        Die();
+    }
     private void Update()
     {
         HashSet<GameObject> currentlyDetected = new HashSet<GameObject>();

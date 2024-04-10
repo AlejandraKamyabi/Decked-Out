@@ -236,6 +236,10 @@ public class Enemy : MonoBehaviour
         isFrozen = false; 
         moveSpeed = original_moveSpeed; 
     }
+    public void Insta_Kill()
+    {
+        Die();
+    }
     public void Zap()
     {
         if (!hasBeenZapped)
