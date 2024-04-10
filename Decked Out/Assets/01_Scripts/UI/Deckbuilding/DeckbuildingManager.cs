@@ -34,8 +34,16 @@ public class DeckbuildingManager : MonoBehaviour
         {
             ServiceLocator.Register<DeckbuildingManager>(this);
         }
+        TutorialPassthrough tutorialPassthrough = FindObjectOfType<TutorialPassthrough>();
+        if (tutorialPassthrough == null)
+        {
+            _buttonScrips[0].SetTier();
+        }
+        else
+        {
+            Debug.Log("Loading Tutorial");
+        }
         
-        _buttonScrips[0].SetTier();
     }
 
     public void OnStartButtonClicked()
@@ -53,6 +61,29 @@ public class DeckbuildingManager : MonoBehaviour
         }
         
 
+    }
+    public void LoadTutorialCards(TowerCardSO[] cards, string tier)
+    {
+        if (tier == "Common")
+        {
+            _common = cards;
+        }
+        if (tier == "Uncommon")
+        {
+            _uncommon = cards;
+        }
+        if (tier == "Rare")
+        {
+            _rare = cards;
+        }
+        if (tier == "Epic")
+        {
+            _epic = cards;
+        }
+        if (tier == "Legendary")
+        {
+            _legendary = cards;
+        }        
     }
 
     public bool CheckCurrentTier(string tier)
