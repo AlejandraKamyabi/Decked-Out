@@ -12,8 +12,8 @@ public class Popup : MonoBehaviour
     [Header("UI")]
     [SerializeField] TextMeshProUGUI _popupText;
     [SerializeField] GameObject _nextButton;
-    [Header("Misc")]
-    [SerializeField] string _waitingObjectName;
+    [Header("Obj to Find")]
+    [SerializeField] string _searchName;
 
     TextMeshProUGUI _buttonTextt;
     TutorialManager _manager;
@@ -62,7 +62,8 @@ public class Popup : MonoBehaviour
         if (_fileIndex == _fileNames.Length -1)
         {
             _nextButton.SetActive(false);
-            _manager.Waiting(true, _waitingObjectName);
+            _manager.Waiting(true, _searchName);
+
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
@@ -13,7 +14,7 @@ public class TutorialManager : MonoBehaviour
     private float _timer;
     private bool _tutorial;
     private bool _waiting = false;
-    private string _waitingObjectName;
+    private string _searchName;
     private GameObject _waitingObject;
     private void Start()
     {
@@ -21,10 +22,10 @@ public class TutorialManager : MonoBehaviour
         _loader.CallOnComplete(Initialize);
     }
 
-    public void Waiting(bool waiting, string waitingObjectName)
+    public void Waiting(bool waiting, string searchName)
     {
         _waiting = waiting;
-        _waitingObjectName = waitingObjectName;
+        _searchName = searchName;
     }
 
     private void Initialize()
@@ -48,8 +49,9 @@ public class TutorialManager : MonoBehaviour
             _timer -= Time.deltaTime;
             if (_waiting && _timer <= 0)
             {
-                _waitingObject = GameObject.Find(_waitingObjectName);
+                _waitingObject = GameObject.Find(_searchName);
                 _timer = _checkTimer;
+                Debug.Log("Checking for; " + _searchName);
             }
             if (_waitingObject != null && _waitingObject.activeInHierarchy)
             {
