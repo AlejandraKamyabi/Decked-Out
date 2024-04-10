@@ -82,6 +82,10 @@ public class KaboomEnemy : MonoBehaviour
         _yPos = -_yPos;
         _spriteRenderer.sortingOrder = (int)(_yPos * 100);
     }
+    public void Insta_Kill()
+    {
+        Die();
+    }
     public void Attracted(Transform attractionTower)
     {
         if (!isAttracted)
