@@ -97,15 +97,34 @@ public class OrganGunTower : MonoBehaviour, ITower
         }
     }
 
-    private void ShootInAnyDirection(Transform target)
+    private void ShootInAnyDirection(Transform transform)
     {
-        GameObject SmallBullet = Instantiate(SmallBulletPrefab, transform.position, Quaternion.identity);
-        SmallBullet bulletScript = SmallBullet.GetComponent<SmallBullet>();
+        Vector2[] directions = new Vector2[]
+        {
+        Vector2.up,
+        Vector2.down,
+        Vector2.left,
+        Vector2.right,
+        new Vector2(-1, 1).normalized,
+        new Vector2(1, 1).normalized,
+        new Vector2(-1, -1).normalized,
+        new Vector2(1, -1).normalized
+        };
+
+        foreach (Vector2 direction in directions)
+        {
+            GameObject smallBullet = Instantiate(SmallBulletPrefab, transform.position, Quaternion.identity);
+            SmallBullet bulletScript = smallBullet.GetComponent<SmallBullet>();
+
+            bulletScript.SetDamage(Damage);
+            bulletScript.SetDirection(direction); 
+        }
 
         canAttack = false;
-        bulletScript.SetDamage(Damage);
         StartCoroutine(AttackCooldown());
     }
+
+
 
     public void ResetTowerEffects()
     {

@@ -6,6 +6,7 @@ public class SmallBullet : MonoBehaviour
 {
     public float SmallBulletSpeed = 30.0f;
     private float damage;
+    private Vector2 moveDirection;
     private Transform target;
     public GameObject effect;
     [SerializeField] private float aoeRadius = 3.0f;
@@ -19,7 +20,7 @@ public class SmallBullet : MonoBehaviour
         Vector2 currentPosition = new Vector2(transform.position.x, transform.position.y);
         Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
         transform.position = Vector2.MoveTowards(currentPosition, targetPosition, SmallBulletSpeed * Time.deltaTime);
-
+        transform.Translate(moveDirection * SmallBulletSpeed * Time.deltaTime, Space.World);
         if (Vector2.Distance(currentPosition, targetPosition) < 0.1f)
         {
             Vector3 explosionPosition = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
@@ -38,6 +39,11 @@ public class SmallBullet : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+    }
+
+    public void SetDirection(Vector2 direction)
+    {
+        moveDirection = direction.normalized;
     }
 
     private void DealDamage(Vector2 explosionPoint)
