@@ -21,7 +21,6 @@ public class Wave_Tower : MonoBehaviour, ITower
     private GameObject buffed;
     private bool hasBeenBuffed = false;
     public AudioSource audioSource;
-
     private List<GameObject> recentlyShotEnemies = new List<GameObject>();
     private void OnDrawGizmos()
     {
@@ -133,6 +132,7 @@ public class Wave_Tower : MonoBehaviour, ITower
         canAttack = false;
         waveScript.SetDamage(Damage);
         StartCoroutine(AttackCooldown());
+
 
     }
     public void ResetTowerEffects()
