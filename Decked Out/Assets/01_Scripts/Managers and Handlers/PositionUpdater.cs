@@ -5,8 +5,9 @@
 //            
 // 
 // =============================================================================
-
-
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PositionUpdater : MonoBehaviour
@@ -16,7 +17,7 @@ public class PositionUpdater : MonoBehaviour
     private bool hasCollided = false;
     private WaveManager mouse;
     private GameLoader _loader;
-
+    private bool stop = false;
     private void Start()
     {
         _loader = ServiceLocator.Get<GameLoader>();
@@ -36,25 +37,31 @@ public class PositionUpdater : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+private IEnumerator changeTag(float delay)
+{
+    yield return new WaitForSeconds(delay);
+        gameObject.tag = "Empty";
+}
+
+private void OnTriggerEnter2D(Collider2D other)
     {
+    
         if (gameObject.CompareTag("Buffer") || gameObject.CompareTag("Placed") || gameObject.CompareTag("Spell"))
         {
             return;
         }
-
-        gameObject.tag = "Empty";
-        if (other.CompareTag("Empty") || other.CompareTag("Tower") || other.CompareTag("Placed") || other.CompareTag("Spell"))
+        if (other.CompareTag("Empty"))
         {
-            return;
-        }
 
-        if (!mouse.collisionOccurred && other.CompareTag("Platform"))
+            Destroy(other.gameObject);
+        }
+        StartCoroutine(changeTag(0.4f));
+        if (!other.CompareTag("Empty") && !other.CompareTag("Placed") & !other.CompareTag("Tower") && !other.CompareTag("Spell") && other.CompareTag("Platform"))
         {
             mouse.setCollision();
             hasCollided = true;
             transform.position = platformTransform.position + new Vector3(0, 0.9f, 0);
-
+            gameObject.tag = "Temp";
 
         }
 
