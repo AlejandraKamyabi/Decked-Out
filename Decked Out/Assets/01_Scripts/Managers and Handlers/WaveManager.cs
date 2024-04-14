@@ -486,33 +486,38 @@ public class WaveManager : MonoBehaviour
     private Vector3 GetRandomSpawnPosition()
     {
         int randomSide = Random.Range(0, 4);
+        bool spawnInside = Random.value < 0.3;  // 30% chance to spawn slightly inside
 
+        // Reduced inset to a very minimal value to prevent mid-screen spawning
+        float insetFactor = spawnInside ? 0.2f : 0.0f;  
+
+        float maxInset = unitSquareSize * insetFactor;
+        float minEdgeOffset = unitSquareSize / 2 - maxInset;  // Ensures always close to edge
 
         float randomX = 0;
         float randomY = 0;
 
         switch (randomSide)
         {
-            case 0:
-                randomX = Random.Range(-unitSquareSize / 2, unitSquareSize / 2);
-                randomY = unitSquareSize / 2;
+            case 0:  // Top edge
+                randomX = Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
+                randomY = spawnInside ? Random.Range(minEdgeOffset, unitSquareSize / 2) : unitSquareSize / 2;
                 break;
-            case 1:
-                randomX = unitSquareSize / 2;
-                randomY = Random.Range(-unitSquareSize / 2, unitSquareSize / 2);
+            case 1:  // Right edge
+                randomX = spawnInside ? Random.Range(unitSquareSize / 2 - maxInset, unitSquareSize / 2) : unitSquareSize / 2;
+                randomY = Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
                 break;
-            case 2:
-                randomX = Random.Range(-unitSquareSize / 2, unitSquareSize / 2);
-                randomY = -unitSquareSize / 2;
+            case 2:  // Bottom edge
+                randomX = Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
+                randomY = spawnInside ? Random.Range(-unitSquareSize / 2, -minEdgeOffset) : -unitSquareSize / 2;
                 break;
-            case 3:
-                randomX = -unitSquareSize / 2;
-                randomY = Random.Range(-unitSquareSize / 2, unitSquareSize / 2);
+            case 3:  // Left edge
+                randomX = spawnInside ? Random.Range(-unitSquareSize / 2, -unitSquareSize / 2 + maxInset) : -unitSquareSize / 2;
+                randomY = Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
                 break;
         }
 
-        Vector3 spawnPosition = new Vector3(0, 0, 0) + new Vector3(randomX, randomY, 0);
-
+        Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
         return spawnPosition;
     }
     public void IncrementTowersPlaced()
