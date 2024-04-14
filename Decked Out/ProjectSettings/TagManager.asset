@@ -21,6 +21,7 @@ TagManager:
   - Apostate
   - Golem
   - Necromancer
+  - Temp
   layers:
   - Default
   - TransparentFX
