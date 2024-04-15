@@ -272,7 +272,7 @@ public class Apostate : MonoBehaviour
             circleCollider.enabled = false;
         }
     }
-    private void UpdateEnemyHealthUI()
+    public void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
         healthFlash.TakeDamage(currentHealth);
@@ -290,11 +290,12 @@ public class Apostate : MonoBehaviour
     {
         isPoisoned = poisoning;
     }
-    public void ApplyFreeze()
+    public void ApplyFreeze(float precentage)
     {
         if (!isFrozen)
         {
             isFrozen = true;
+            moveSpeed *= precentage;
             StartCoroutine(DisableFreezeAfterDuration(3.0f));
         }
     }

@@ -39,6 +39,12 @@ public class BigBomb : MonoBehaviour
                     necromancer.TakeDamage(damage);
          
                 }
+                Cleric cleric = collider.GetComponent<Cleric>();
+                if (cleric != null)
+                {
+                    cleric.TakeDamage(damage);
+
+                }
             }
         }
 

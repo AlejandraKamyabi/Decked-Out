@@ -61,5 +61,11 @@ public class FlamesEffect : MonoBehaviour
             necromancer.TakeDamage(damage);
             necromancer.setBurning();
         }
+        Cleric cleric = enemy.GetComponent<Cleric>();
+        if (cleric != null)
+        {
+            cleric.TakeDamage(damage);
+            cleric.setBurning();
+        }
     }
 }

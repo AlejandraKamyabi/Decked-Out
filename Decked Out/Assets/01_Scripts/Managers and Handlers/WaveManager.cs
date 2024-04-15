@@ -30,6 +30,7 @@ public class WaveManager : MonoBehaviour
     public GameObject GolemPrefab;
     public GameObject Apostate_Prefab;
     public GameObject necromancer;
+    public GameObject cleric;
 
 
     public float unitSquareSize = 10.0f;
@@ -50,6 +51,8 @@ public class WaveManager : MonoBehaviour
     public int enemiesBetweenApostateSpawns = 8;
     [Range(1, 25)]
     public int enemiesBetweenNecromancerSpawns = 10;
+    [Range(1, 25)]
+    public int enemiesBetweenClericSpawns = 9;
 
     private EnemyKillTracker _killTracker;
     private Coroutine spawningCoroutine;
@@ -80,6 +83,7 @@ public class WaveManager : MonoBehaviour
         enemiesBetweenGolemSpawns--;
         enemiesBetweenKaboomSpawns--;
         enemiesBetweenNecromancerSpawns--;
+        enemiesBetweenClericSpawns--;
         return this;
     }
 
@@ -114,6 +118,14 @@ public class WaveManager : MonoBehaviour
             else if (enemiesSpawned % enemiesBetweenNecromancerSpawns == 0 && enemiesSpawned != 0)
             {
                 Spawn_Necromancer();
+                enemiesSpawned++;
+                //kaboomEnemy = true;
+                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
+                continue;
+            }
+            else if (enemiesSpawned % enemiesBetweenClericSpawns == 0 && enemiesSpawned != 0)
+            {
+                Spawn_Cleric();
                 enemiesSpawned++;
                 //kaboomEnemy = true;
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
@@ -190,6 +202,20 @@ public class WaveManager : MonoBehaviour
         newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
         newHealthSlider.maxValue = newEnemy.GetComponent<Necromancer>().maxHealth;
         newEnemy.GetComponent<Necromancer>().SetHealthSlider(newHealthSlider);
+    }
+    private void Spawn_Cleric()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
+
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = newEnemy.GetComponent<Cleric>().maxHealth;
+        newEnemy.GetComponent<Cleric>().SetHealthSlider(newHealthSlider);
     }
     private void SpawnGolemEnemy()
     {
@@ -525,9 +551,9 @@ public class WaveManager : MonoBehaviour
         towersPlaced++;
         TowersLeft--;
     }
-    public void setCollision()
+    public void setCollision(bool tf)
     {
-        collisionOccurred = true;
+        collisionOccurred = tf;
     }
     public int GetEnemies()
     {
