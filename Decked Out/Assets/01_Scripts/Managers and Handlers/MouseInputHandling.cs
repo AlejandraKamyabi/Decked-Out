@@ -26,7 +26,7 @@ public class MouseInputHandling : MonoBehaviour
     private float unitSquareSize = 10.0f;
     public bool collisionOccurred = false;
     private bool _initialized = false;
-    private bool islandTowerSelection = false;
+    public bool islandTowerSelection = false;
     public GameObject towerRig;
     private SpriteRenderer towerRigSprite;
     public SpriteRenderer rangeIndicator;
@@ -363,7 +363,7 @@ public class MouseInputHandling : MonoBehaviour
                             SpriteRenderer towerRenderer = currentTowerInstance.GetComponentInChildren<SpriteRenderer>();
                     if (!islandTowerSelection)
                     {
-                        if (!towerSelection.IsSelectingSpell())
+                        if (!Wave.collisionOccurred && !towerSelection.IsSelectingSpell())
                         {
                             currentTowerInstance.tag = "Placed";
                         }
@@ -470,5 +470,8 @@ public class MouseInputHandling : MonoBehaviour
     {
         collisionOccurred = true;
     }
-
+    public void setIsland(bool island)
+    {
+        islandTowerSelection = island;
+    }
 }

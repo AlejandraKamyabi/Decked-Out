@@ -202,7 +202,7 @@ public class Enemy : MonoBehaviour
             circleCollider.enabled = false; 
         }
     }
-    private void UpdateEnemyHealthUI()
+    public void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
         _healthFlash.TakeDamage(currentHealth);
@@ -221,13 +221,13 @@ public class Enemy : MonoBehaviour
     {
         isPoisoned = poisoning;
     }
-    public void ApplyFreeze()
+    public void ApplyFreeze(float precentage)
     {
-
-        if (!isFrozen) 
+        if (!isFrozen)
         {
             isFrozen = true;
-            StartCoroutine(DisableFreezeAfterDuration(3.0f)); 
+            moveSpeed *= precentage;
+            StartCoroutine(DisableFreezeAfterDuration(3.0f));
         }
     }
     private IEnumerator DisableFreezeAfterDuration(float duration)

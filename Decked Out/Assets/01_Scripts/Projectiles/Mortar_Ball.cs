@@ -123,6 +123,11 @@ public class Mortar_Ball : MonoBehaviour
             {
                 necromancer.TakeDamage(damage);
             }
+            Cleric cleric = hitCollider.GetComponent<Cleric>();
+            if (cleric != null)
+            {
+                cleric.TakeDamage(damage);
+            }
         }
     }
 }
