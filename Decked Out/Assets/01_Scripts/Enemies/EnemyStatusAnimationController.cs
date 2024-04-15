@@ -15,6 +15,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
     [SerializeField] Apostate _apostateScript;
     [SerializeField] KaboomEnemy _kaboomScript;
     [SerializeField] Necromancer _necromancerScript;
+    [SerializeField] Cleric cleric;
 
     [Header("Sprite Modifers")]
     [SerializeField] SpriteRenderer _mainSpriteRenderer;
@@ -27,6 +28,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
     bool _kaboom = false;
     bool _apostate = false;
     bool _necromancer = false;
+    bool _cleric = false;
     float _yPos;
     float _upscaleDuration = 0.5f;
     float _downscaleDuration = 0.25f;
@@ -73,6 +75,11 @@ public class EnemyStatusAnimationController : MonoBehaviour
         else if (_necromancerScript != null)
         {
             _necromancer = true;
+            Debug.Log("Nercomancer Found");
+        }
+        else if (cleric != null)
+        {
+            _cleric = true;
             Debug.Log("Nercomancer Found");
         }
         else
@@ -427,6 +434,91 @@ public class EnemyStatusAnimationController : MonoBehaviour
                 ScaleDownAndDisable(_charmEffect, _charmScale);
             }
             else if (!_necromancerScript.isBurning && !_necromancerScript.isPoisoned && !_necromancerScript.isFrozen && !_necromancerScript.isAttracted)
+            {
+                clearStatusFrames++;
+                if (clearStatusFrames >= clearStatusFrameThreshold)
+                {
+                    EnemyColour(Color.white);
+                    clearStatusFrames = 0;
+                }
+            }
+        }
+        else if (cleric)
+        {
+            if (cleric.currentHealth <= 0)
+            {
+                _burnEffect.SetActive(false);
+                _slowEffect.SetActive(false);
+                _poisonEffect.SetActive(false);
+                _charmEffect.SetActive(false);
+            }
+            if (cleric.isBurning)
+            {
+                EnemyColour(_burningColour);
+                if (_burnEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_burnRenderer);
+                }
+                else if (_burnEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_burnEffect, _burnScale);
+                    UpdateSortingOrder(_burnRenderer);
+                }
+            }
+            else if (!cleric.isBurning && _burnEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_burnEffect, _burnScale);
+            }
+            if (cleric.isFrozen)
+            {
+                EnemyColour(_chilledColour);
+                if (_slowEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_slowRenderer);
+                }
+                else if (_slowEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_slowEffect, _slowScale);
+                    UpdateSortingOrder(_slowRenderer);
+                }
+            }
+            else if (!cleric.isFrozen && _slowEffect.activeInHierarchy)
+            {
+                frozenStateFrames++;
+                if (frozenStateFrames >= frozenStateFrameThreshold)
+                {
+                    ScaleDownAndDisable(_slowEffect, _slowScale);
+                    frozenStateFrames = 0;
+                }
+            }
+            if (cleric.isPoisoned)
+            {
+                EnemyColour(_poisonedColour);
+                if (_poisonEffect.activeInHierarchy)
+                {
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+                else if (_poisonEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_poisonEffect, _poisonScale);
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+            }
+            else if (!cleric.isPoisoned && _poisonEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_poisonEffect, _poisonScale);
+            }
+            if (cleric.isAttracted)
+            {
+                EnemyColour(_attrachedColour);
+                ScaleUpAndEnable(_charmEffect, _charmScale);
+                UpdateSortingOrder(_charmRenderer);
+            }
+            else if (!cleric.isAttracted && _charmEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_charmEffect, _charmScale);
+            }
+            else if (!cleric.isBurning && !cleric.isPoisoned && !cleric.isFrozen && !cleric.isAttracted)
             {
                 clearStatusFrames++;
                 if (clearStatusFrames >= clearStatusFrameThreshold)

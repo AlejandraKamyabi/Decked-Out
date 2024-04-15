@@ -43,24 +43,31 @@ public class EarthQuack : MonoBehaviour, ITower
                 Enemy enemy = collider.GetComponent<Enemy>();
                 KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
                 Apostate apostate = collider.GetComponent<Apostate>();
+                Cleric cleric = collider.GetComponent<Cleric>();
 
                 if (enemy != null)
                 {
 
-                    enemy.ApplyFreeze();
+                    enemy.ApplyFreeze(0.3f);
  
 
 
                 }
                 if (kaboom != null)
                 {
-                    kaboom.ApplyFreeze();
+                    kaboom.ApplyFreeze(0.3f);
 
 
                 }
                 if (apostate != null)
                 {
-                    apostate.ApplyFreeze();
+                    apostate.ApplyFreeze(0.3f);
+
+
+                }
+                if (cleric != null)
+                {
+                    cleric.ApplyFreeze(0.3f);
 
 
                 }
@@ -95,6 +102,7 @@ public class EarthQuack : MonoBehaviour, ITower
                     KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
                     Apostate apostate = collider.GetComponent<Apostate>();
                     Necromancer necromancer = collider.GetComponent<Necromancer>();
+                    Cleric cleric = collider.GetComponent<Cleric>();
 
                     if (enemy != null)
                     {
@@ -121,7 +129,12 @@ public class EarthQuack : MonoBehaviour, ITower
                         GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
                         Destroy(deathEffect, 0.5f);
                     }
-
+                    if (cleric != null)
+                    {
+                        cleric.TakeDamage(Damage);
+                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
+                        Destroy(deathEffect, 0.5f);
+                    }
                 }
             }
             yield return new WaitForSeconds(2.0f);

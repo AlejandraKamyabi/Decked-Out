@@ -107,6 +107,12 @@ public class Wave_Projectile : MonoBehaviour
             apostate.HandleWaveImpact(direction, duration, force);
             
         }
+        Cleric cleric = enemy.GetComponent<Cleric>();
+        if (cleric != null)
+        {
+            cleric.HandleWaveImpact(direction, duration, force);
+
+        }
 
     }
     private void DealDamage(GameObject enemy)
@@ -132,6 +138,12 @@ public class Wave_Projectile : MonoBehaviour
             necromancer.TakeDamage(damage);
           
         }
+        Cleric cleric = enemy.GetComponent<Cleric>();
+        if (cleric != null)
+        {
+            cleric.TakeDamage(damage);
+
+        }
         TrackHitAndCheckForInstaKill(enemy);
     }
     private void Insta_Kill(GameObject enemy)
@@ -155,6 +167,12 @@ public class Wave_Projectile : MonoBehaviour
         if (necromancer != null)
         {
             necromancer.Insta_Kill();
+
+        }
+        Cleric cleric = enemy.GetComponent<Cleric>();
+        if (cleric != null)
+        {
+            cleric.Insta_Kill();
 
         }
     }

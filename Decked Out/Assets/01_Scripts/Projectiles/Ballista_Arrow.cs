@@ -67,6 +67,11 @@ public class Ballista_Arrow : MonoBehaviour
         {
             necromancer.TakeDamage(damage);
         }
+        Cleric cleric = enemy.GetComponent<Cleric>();
+        if (cleric != null)
+        {
+            cleric.TakeDamage(damage);
+        }
     }
 }
 

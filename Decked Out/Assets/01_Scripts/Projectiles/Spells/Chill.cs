@@ -21,26 +21,32 @@ public class Chill : MonoBehaviour
                 if (enemyScript != null)
                 {
                     enemyScript.TakeDamage(damage);
-                    enemyScript.ApplyFreeze();
+                    enemyScript.ApplyFreeze(0.3f);
                 }
                 KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
                 if (kaboom != null)
                 {
                     kaboom.TakeDamage(damage);
-                    kaboom.ApplyFreeze();
+                    kaboom.ApplyFreeze(0.3f);
                 }
                 Apostate apostate = collider.GetComponent<Apostate>();
                 if (apostate != null)
                 {
                     apostate.TakeDamage(damage);
-                    apostate.ApplyFreeze();
+                    apostate.ApplyFreeze(0.3f);
 
                 }
                 Necromancer necromancer = collider.GetComponent<Necromancer>();
                 if (necromancer != null)
                 {
                     necromancer.TakeDamage(damage);
-                    necromancer.ApplyFreeze();
+                    necromancer.ApplyFreeze(0.3f);
+                }
+                Cleric cleric = collider.GetComponent<Cleric>();
+                if (cleric != null)
+                {
+                    cleric.TakeDamage(damage);
+                    cleric.ApplyFreeze(0.3f);
                 }
             }
         }

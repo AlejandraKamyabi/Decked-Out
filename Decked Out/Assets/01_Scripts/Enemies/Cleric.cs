@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Necromancer : MonoBehaviour
+public class Cleric : MonoBehaviour
 {
     public UnityEngine.Transform targetCastle;
     public float moveSpeed = 1f;
@@ -15,34 +14,33 @@ public class Necromancer : MonoBehaviour
     public GameObject zapPrefab;
     public bool isBurning = false;
     private bool hasBeenZapped = false;
-    public float detectionRadius;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
     public GameObject deathEffectPrefab;
-    private HashSet<GameObject> detectedEnemy = new HashSet<GameObject>();
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
     private EnemyKillTracker _killTracker;
-    private EnemyHealthFlash healthFlash;
     [SerializeField] private CircleCollider2D circleCollider;
+    float _yPos;
+    SpriteRenderer _spriteRenderer;
 
+    [Header("Healing Configuration")]
+    public float healingRange = 5f; // The range within which enemies can be healed
+    public float healAmount = 25f; // The amount of health to restore
     //Attraction tower 
 
     private Transform originalTarget;
     public bool isAttracted;
+
     public bool isPoisoned;
 
     //Wave_Tower
     public bool isBeingPushed = false;
     EnemyDeathAnimation _enemyDeathAnimation;
+    EnemyHealthFlash _healthFlash;
     CapsuleCollider2D _capsuleCollider;
     bool _isDead = false;
-    float _yPos;
-    SpriteRenderer _spriteRenderer;
-
-    private WaveManager wave;
-    private GameLoader _loader;
 
     private void Start()
     {
@@ -51,21 +49,48 @@ public class Necromancer : MonoBehaviour
         original_moveSpeed = moveSpeed;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
         _capsuleCollider = GetComponent<CapsuleCollider2D>();
-        _loader = ServiceLocator.Get<GameLoader>();
-        _loader.CallOnComplete(Initialize);
         deathSoundHandling.enemyDeathSound = deathSound;
         _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
         _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
-        healthFlash = GetComponent<EnemyHealthFlash>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _healthFlash = GetComponent<EnemyHealthFlash>();
+        InvokeRepeating("HealNearbyEnemies", 3.0f, 3.0f);
     }
-    public void Initialize()
+    void HealNearbyEnemies()
     {
-        wave = ServiceLocator.Get<WaveManager>();
+        Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(transform.position, healingRange);
+        foreach (Collider2D enemy in enemiesInRange)
+        {
+         
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+                if (enemyScript != null)
+                {
+                    enemyScript.currentHealth += healAmount;
+                    enemyScript.UpdateEnemyHealthUI(); 
+                }
+                KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
+                if (kaboom != null)
+                {
+                    kaboom.currentHealth += healAmount;
+                    kaboom.UpdateEnemyHealthUI();
+                }
+                Apostate apostate = enemy.GetComponent<Apostate>();
+                if (apostate != null)
+                {
+                    apostate.currentHealth += healAmount;
+                    apostate.UpdateEnemyHealthUI();
+                }
+                Necromancer necromancer = enemy.GetComponent<Necromancer>();
+                if (necromancer != null)
+                {
+                    necromancer.currentHealth += healAmount;
+                    necromancer.UpdateEnemyHealthUI();
+                }
+        
+        }
     }
     private void Update()
     {
-        DetectAndAddAcolyte();
         if (targetCastle != null)
         {
             Vector2 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
@@ -87,16 +112,12 @@ public class Necromancer : MonoBehaviour
                 TakeDamage(10.0f);
             }
         }
-     
         if (isFrozen)
         {
             moveSpeed = 0.39f;
         }
+
         UpdateSortingLayer();
-    }
-    public void Insta_Kill()
-    {
-        Die();
     }
     private void UpdateSortingLayer()
     {
@@ -104,6 +125,7 @@ public class Necromancer : MonoBehaviour
         _yPos = -_yPos;
         _spriteRenderer.sortingOrder = (int)(_yPos * 100);
     }
+
     public void HandleWaveImpact(Vector2 direction, float duration, float distance)
     {
         if (!isBeingPushed)
@@ -137,49 +159,7 @@ public class Necromancer : MonoBehaviour
             Die();
         }
     }
-    private void DetectAndAddAcolyte()
-    {
-        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
-        foreach (var collider in detectedObjects)
-        {
-            if (collider.CompareTag("Acolyte") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Acolyte", collider.transform.position);
-            }
-            else if (collider.CompareTag("Kaboom") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Kaboom", collider.transform.position);
-            }
-            else if (collider.CompareTag("Golem") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Golem", collider.transform.position);
-            }
-            else if (collider.CompareTag("Apostate") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Apostate", collider.transform.position);
-            }
-            else if (collider.CompareTag("Necromancer") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Necromancer", collider.transform.position);
-            }
-            else if (collider.CompareTag("Cleric") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Cleric", collider.transform.position);
-            }
 
-        }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }
     public void Attracted(Transform attractionTower)
     {
         if (!isAttracted)
@@ -189,10 +169,6 @@ public class Necromancer : MonoBehaviour
             isAttracted = true;
             StartCoroutine(ResetAttracted());
         }
-    }
-    public void SetPoisoning(bool poisoning)
-    {
-        isPoisoned = poisoning;
     }
 
     private IEnumerator ResetAttracted()
@@ -266,10 +242,11 @@ public class Necromancer : MonoBehaviour
             circleCollider.enabled = false;
         }
     }
-    public void UpdateEnemyHealthUI()
+    private void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
-        healthFlash.TakeDamage(currentHealth);
+        _healthFlash.TakeDamage(currentHealth);
+
     }
 
     public void SetHealthSlider(Slider slider)
@@ -280,20 +257,28 @@ public class Necromancer : MonoBehaviour
     {
         isBurning = true;
     }
+    public void SetPoisoning(bool poisoning)
+    {
+        isPoisoned = poisoning;
+    }
     public void ApplyFreeze(float precentage)
     {
         if (!isFrozen)
         {
             isFrozen = true;
-            moveSpeed *= precentage;
+            moveSpeed *= precentage;  
             StartCoroutine(DisableFreezeAfterDuration(3.0f));
         }
     }
-    private IEnumerator DisableFreezeAfterDuration(float duration)
+        private IEnumerator DisableFreezeAfterDuration(float duration)
     {
         yield return new WaitForSeconds(duration);
         isFrozen = false;
         moveSpeed = original_moveSpeed;
+    }
+    public void Insta_Kill()
+    {
+        Die();
     }
     public void Zap()
     {

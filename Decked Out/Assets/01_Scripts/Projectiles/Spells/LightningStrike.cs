@@ -39,6 +39,12 @@ public class LightningStrike : MonoBehaviour
                     necromancer.TakeDamage(damage);
        
                 }
+                Cleric cleric = collider.GetComponent<Cleric>();
+                if (cleric != null)
+                {
+                    cleric.TakeDamage(damage);
+
+                }
             }
         }
 

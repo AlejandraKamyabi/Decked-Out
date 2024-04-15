@@ -70,5 +70,12 @@ public class ZapProjectile : MonoBehaviour
             necromancer.Zap();
             necromancer.ResetZapFlag();
         }
+        Cleric cleric = enemy.GetComponent<Cleric>();
+        if (cleric != null)
+        {
+            cleric.TakeDamage(damage);
+            cleric.Zap();
+            cleric.ResetZapFlag();
+        }
     }
 }
