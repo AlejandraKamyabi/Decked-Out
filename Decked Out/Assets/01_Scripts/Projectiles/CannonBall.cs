@@ -68,6 +68,11 @@ public class CannonBall : MonoBehaviour
             {
                 necromancer.TakeDamage(damage);
             }
+            Cleric cleric = hitCollider.GetComponent<Cleric>();
+            if (cleric != null)
+            {
+                cleric.TakeDamage(damage);
+            }
         }
     }
 }

@@ -38,21 +38,27 @@ public class FrostTower : MonoBehaviour, ITower
                 Enemy enemy = collider.GetComponent<Enemy>();
                 KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
                 Apostate apostate = collider.GetComponent<Apostate>();
+                Cleric cleric = collider.GetComponent<Cleric>();
 
                 if (enemy != null)
                 {
                   
-                    enemy.ApplyFreeze();
+                    enemy.ApplyFreeze(0.3f);
 
                 }
                 if (kaboom != null)
                 {
-                    kaboom.ApplyFreeze();
+                    kaboom.ApplyFreeze(0.3f);
 
                 }
                 if (apostate != null)
                 {
-                    apostate.ApplyFreeze();
+                    apostate.ApplyFreeze(0.3f);
+
+                }
+                if (cleric != null)
+                {
+                    cleric.ApplyFreeze(0.3f);
 
                 }
             }

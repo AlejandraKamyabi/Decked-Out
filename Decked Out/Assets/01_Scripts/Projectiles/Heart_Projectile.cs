@@ -77,6 +77,12 @@ public class Heart_Projectile : MonoBehaviour
             necromancer.TakeDamage(damage);
             necromancer.Attracted(attractionTower);
         }
+        Cleric cleric = enemy.GetComponent<Cleric>();
+        if (cleric != null)
+        {
+            cleric.TakeDamage(damage);
+            cleric.Attracted(attractionTower);
+        }
     }
 }
 
