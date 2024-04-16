@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
@@ -9,6 +10,11 @@ public class TutorialManager : MonoBehaviour
     [Range(0f, 0.25f)]
     [SerializeField] float _checkTimer;
 
+    [SerializeField] string[] _placeholders;
+    [SerializeField] string[] _replacementTextArrow;
+    [SerializeField] string[] _replacementTextCannon;
+    [SerializeField] string[] _replacementTextChill;
+
     private GameLoader _loader;
     public int _index = 0;
     private float _timer;
@@ -16,6 +22,11 @@ public class TutorialManager : MonoBehaviour
     private bool _waiting = false;
     private string _searchName;
     private GameObject _waitingObject;
+    private TowerSelection _towerSelection;
+    public string _selectedTowerName;
+    private string[] _placeholdersToPass;
+    private string[] _replacementTextToPass;
+
     private void Start()
     {
         _loader = ServiceLocator.Get<GameLoader>();
@@ -51,7 +62,7 @@ public class TutorialManager : MonoBehaviour
             {
                 _waitingObject = GameObject.Find(_searchName);
                 _timer = _checkTimer;
-                Debug.Log("Checking for; " + _searchName);
+                Debug.Log("Checking for:" +_searchName);
             }
             if (_waitingObject != null && _waitingObject.activeInHierarchy)
             {
@@ -60,15 +71,14 @@ public class TutorialManager : MonoBehaviour
                 _popups[_index].gameObject.SetActive(false);
                 _index++;
                 LoadPopup();
+                
             }
             else if (_waitingObject != null && _waitingObject.activeInHierarchy == false)
             {
                 Debug.LogError("Found Waiting Object, but is not active");
             }
-        }
-       
-        
-       
+        }     
+              
 
     }
 

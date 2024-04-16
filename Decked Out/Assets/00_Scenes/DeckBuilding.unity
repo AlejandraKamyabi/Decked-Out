@@ -1116,6 +1116,7 @@ MonoBehaviour:
   nextSceneName: SampleScene
   _tutorialCommonCards:
   - {fileID: 11400000, guid: 8430b8eca9945e34cbcdec8e2ff926ba, type: 2}
+  - {fileID: 11400000, guid: 76fa049d1c07f7846bc3999051be13b4, type: 2}
   _tutorialUncommonCards: []
   _tutorialRareCards: []
   _tutorialEpicCards: []

@@ -4229,12 +4229,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
-      propertyPath: _fileNames.Array.size
+      propertyPath: _searchName
+      value: CardStatsPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
+      propertyPath: _keepSearchObject
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
+      propertyPath: _fileNames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
       propertyPath: _fileNames.Array.data[0]
-      value: ArrowTower
+      value: TowerPlaced00
+      objectReference: {fileID: 0}
+    - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
+      propertyPath: _fileNames.Array.data[1]
+      value: TowerPlaced01
       objectReference: {fileID: 0}
     - target: {fileID: 4006169624298247710, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
       propertyPath: m_Name
@@ -4295,6 +4307,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4006169624298247710, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
   m_PrefabInstance: {fileID: 962837915}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &962837917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962837916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f6c229269e07547ba05c30cdce36a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _namePlacehold: '{TowerName}'
+  _descPlacehold: '{Desc}'
 --- !u!1 &963083975
 GameObject:
   m_ObjectHideFlags: 0
@@ -4462,7 +4488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
       propertyPath: _searchName
-      value: Archer Tower(Clone)
+      value: TowerName
       objectReference: {fileID: 0}
     - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
       propertyPath: _fileNames.Array.size
@@ -4531,6 +4557,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4006169624298247710, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
   m_PrefabInstance: {fileID: 984858294}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &984858296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984858295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f6c229269e07547ba05c30cdce36a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _namePlacehold: '{TowerName}'
+  _descPlacehold: '{Desc}'
 --- !u!1 &1013344013
 GameObject:
   m_ObjectHideFlags: 0
@@ -5312,6 +5352,7 @@ MonoBehaviour:
   castleGameObject: {fileID: 892063877}
   cardRandoEngine: {fileID: 0}
   collisionOccurred: 0
+  islandTowerSelection: 0
   towerRig: {fileID: 2133007076}
   rangeIndicator: {fileID: 633343608}
 --- !u!114 &1106663290
@@ -7236,7 +7277,12 @@ MonoBehaviour:
   - {fileID: 984858295}
   - {fileID: 962837916}
   _checkTimer: 0.125
+  _placeholders: []
+  _replacementTextArrow: []
+  _replacementTextCannon: []
+  _replacementTextChill: []
   _index: 0
+  _selectedTowerName: 
 --- !u!4 &1529245004
 Transform:
   m_ObjectHideFlags: 0
@@ -9547,6 +9593,10 @@ PrefabInstance:
     - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
       propertyPath: _searchName
       value: Tower Rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
+      propertyPath: _keepSearchObject
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 507732961735131294, guid: 936bdce5d7448a44fba387032ba9cb7d, type: 3}
       propertyPath: _waitingObjectName
