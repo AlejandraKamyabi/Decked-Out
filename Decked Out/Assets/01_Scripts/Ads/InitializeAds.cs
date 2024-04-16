@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-
 public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
 {
     [SerializeField] private string androidGameId;
@@ -12,15 +11,12 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
 
     private string gameId;
 
-
     private void Awake()
     {
 #if UNITY_IOS
-                gameId = iosGameId;
+        gameId = iosGameId;
 #elif UNITY_ANDROID
-                gameId = androidGameId;
-#elif UNITY_EDITOR
-        gameId = androidGameId; // If you Havn't Switched the Platfrom...
+        gameId = androidGameId;
 #endif
 
         if (!Advertisement.isInitialized && Advertisement.isSupported)
@@ -28,7 +24,6 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
             Advertisement.Initialize(gameId, isTesting, this);
         }
     }
-
 
     public void OnInitializationComplete()
     {

@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class AdsManager : MonoBehaviour
 {
-    public InitializeAds initializeAds;
-    public BannerAds bannerAds;
     public InterstitialAds interstitialAds;
-    public RewardedAds rewardedAds;
 
     public static AdsManager Instance { get; private set; }
 
-
-
     private void Awake()
     {
+        Debug.Log("AdsManager Awake");
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -23,9 +20,13 @@ public class AdsManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        // Initialize InterstitialAds
+        interstitialAds.Initialize();
+    }
 
-        bannerAds.LoadBannerAd();
-        interstitialAds.LoadInterstitialAd();
-        rewardedAds.LoadRewardedAd();
+    // Method to show interstitial ad
+    public void ShowInterstitialAd()
+    {
+        interstitialAds.ShowInterstitialAd();
     }
 }
