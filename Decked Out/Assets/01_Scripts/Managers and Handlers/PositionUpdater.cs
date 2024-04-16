@@ -61,9 +61,10 @@ private void OnTriggerEnter2D(Collider2D other)
         if (!mouse.collisionOccurred && !other.CompareTag("Empty") && !other.CompareTag("Placed") && !other.CompareTag("Tower") && !other.CompareTag("Spell") && other.CompareTag("Platform"))
         {
             mouse.setCollision(false);
+            
             hasCollided = true;
             transform.position = platformTransform.position + new Vector3(0, 0.9f, 0);
-
+            input.setIsland(false);
             gameObject.tag = "Temp";
         }
 
