@@ -23,6 +23,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject Ballista_Tower;
     public GameObject Mortar;
     public GameObject Mystery;
+    public GameObject Sniper_Tower;
 
     [Header("Spells")]
     public GameObject lightning;

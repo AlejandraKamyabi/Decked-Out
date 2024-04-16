@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
 
     public void SetDamage(float value)
     {
-        damage = value * 2; 
+        damage = value; 
     }
 
     public void SetTarget(Transform newTarget)

@@ -125,7 +125,7 @@ public class SniperTower : MonoBehaviour, ITower
 
     private IEnumerator AttackCooldown()
     {
-        float actualRateOfFire = RateOfFire * 2; 
+        float actualRateOfFire = RateOfFire; 
 
         while (!canAttack)
         {
