@@ -6,15 +6,42 @@ public class SaveSystem : MonoBehaviour
 {
     public enum CardCollected
     {
-        a
+        //Towers
+        Arrow,
+        Frost_Tower,
+        Buff_Tower,
+        Flamethrower,
+        Electric_Tower,
+        Earthquake_Tower,
+        Attraction_Tower,
+        Cannon,
+        Wave_Tower,
+        Balista_Tower,
+        Poison_Tower,
+        Mystery_Tower,
+        Mortar_Tower,
+        Sniper_Tower,
+
+        //SPELLS
+        Lighting_Bolt,
+        Big_Bomb,
+        Fireball,
+        Nuke,
+        Frost,
+        Freeze_Time
     }
     public enum PurchasedItem
     {
         b
     }
 
-    bool outPut;
-    bool[] allOutPut;
+    private bool outPut;
+    private bool[] allOutPut;
+    private int itemCount = 0;
+    private int cardCount = 0;
+
+    private Dictionary<CardCollected, string> cardCollectedString;
+    private Dictionary<PurchasedItem, string> purchasedItemString;
 
     private void Awake()
     {
@@ -24,95 +51,149 @@ public class SaveSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
+        {
+            cardCollectedString[card] = card.ToString();
+            cardCount++;
+        }
+        foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
+        {
+            itemCount++;
+        }
 
         DontDestroyOnLoad(gameObject);
     }
 
+    //Set Card Collected
     public void SetCardCollected(CardCollected card, bool haveCard)
     {
-        switch (card)
+        if (haveCard)
         {
-            case CardCollected.a:
-                if (haveCard)
-                {
-                    PlayerPrefs.SetInt("a", 1);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("a", 1);
-                }
-                break;
+            PlayerPrefs.SetInt(cardCollectedString[card], 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(cardCollectedString[card], 0);
         }
     }
+    //Get One Card Collected
     public bool GetCardCollected(CardCollected card)
     {
-        switch (card)
+        if (PlayerPrefs.HasKey(cardCollectedString[card]))
         {
-            case CardCollected.a:
-                if (PlayerPrefs.GetInt("a") == 0)
-                {
-                    outPut = false;
-                }
-                else
-                {
-                    outPut = true;
-                }
-                break;
+            if (PlayerPrefs.GetInt(cardCollectedString[card]) == 1)
+            {
+                outPut = true;
+            }
+            else
+            {
+                outPut = false;
+            }
         }
         return outPut;
     }
+    //Get All Card Collected (in the order how the enum are)
+    public bool[] GetAllCardCollected()
+    {
+        allOutPut = new bool[cardCount];
+        int count = 0;
 
+        foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
+        {
+            if (PlayerPrefs.GetInt(cardCollectedString[card]) == 1)
+            {
+                allOutPut[count] = true;
+            }
+            else
+            {
+                allOutPut[count] = false;
+            }
+            count++;
+        }
+
+        return allOutPut;
+    }
+
+    //Set Purchased Item
     public void SetPurchasedItem(PurchasedItem item, bool haveItem)
     {
-        switch (item)
+        if (haveItem)
         {
-            case PurchasedItem.b:
-                if (haveItem)
-                {
-                    PlayerPrefs.SetInt("b", 1);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("b", 1);
-                }
-                break;
+            PlayerPrefs.SetInt(purchasedItemString[item], 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(purchasedItemString[item], 0);
         }
     }
+    //Get one Purchased Item
     public bool GetPurchasedItem(PurchasedItem item)
     {
-        switch (item)
+        if (PlayerPrefs.HasKey(purchasedItemString[item]))
         {
-            case PurchasedItem.b:
-                if (PlayerPrefs.GetInt("b") == 0)
-                {
-                    outPut = false;
-                }
-                else
-                {
-                    outPut = true;
-                }
-                break;
+            if (PlayerPrefs.GetInt(purchasedItemString[item]) == 1)
+            {
+                outPut = true;
+            }
+            else
+            {
+                outPut = false;
+            }
         }
-
         return outPut;
     }
+    //Get all Purchased Item (in the order how the enum are)
+    public bool[] GetAllPurchasedItem()
+    {
+        allOutPut = new bool[itemCount];
+        int count = 0;
 
+        foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
+        {
+            if (PlayerPrefs.GetInt(purchasedItemString[item]) == 1)
+            {
+                allOutPut[count] = true;
+            }
+            else
+            {
+                allOutPut[count] = false;
+            }
+            count++;
+        }
 
+        return allOutPut;
+    }
+
+    //Save Gem Count
     public void SetGemCount(int count)
     {
         PlayerPrefs.SetInt("gemCount", count);
     }
+    //Get Gem Count
     public int GetGemCount()
     {
         return PlayerPrefs.GetInt("gemCount");
     }
+    //Reset Gem Count
+    public void ResetGemCount()
+    {
+        PlayerPrefs.SetInt("gemCount", 0);
+    }
 
+    //Save Total Kill
     public void SetTotalKill(int count)
     {
         PlayerPrefs.SetInt("TotalKill", count);
     }
+    //Get Total Kill
     public int GetTotalKill()
     {
         return PlayerPrefs.GetInt("TotalKill");
+    }
+    //Reset Total Kill
+    private void ResetTotalKill()
+    {
+        PlayerPrefs.SetInt("TotalKill", 0);
     }
 }
