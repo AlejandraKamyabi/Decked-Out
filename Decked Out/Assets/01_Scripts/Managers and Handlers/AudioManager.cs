@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -14,50 +15,34 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
 
+    [SerializeField] private GameObject canvas;
+    private bool canvasActive = false;
+
     private GameLoader _loader;
     public enum SFXSound
     {
-        f
+        TEMPDeathSound
     }
     public enum musicSound
     {
-        f
+        encounter_loop
     }
     private Dictionary<SFXSound, AudioClip> SFXSoundAudioClipDictionary;
     private Dictionary<musicSound, AudioClip> musicSoundAudioClipDictionary;
 
-    /*protected void Awake()
-    {
-        SFXSoundAudioClipDictionary = new Dictionary<SFXSound, AudioClip>();
-        foreach (SFXSound sound in System.Enum.GetValues(typeof(SFXSound)))
-        {
-            SFXSoundAudioClipDictionary[sound] = Resources.Load<AudioClip>(sound.ToString());
-        }
-
-        musicSoundAudioClipDictionary = new Dictionary<musicSound, AudioClip>();
-        foreach (musicSound sound in System.Enum.GetValues(typeof(musicSound)))
-        {
-            musicSoundAudioClipDictionary[sound] = Resources.Load<AudioClip>(sound.ToString());
-        }
-    }
-    private void Start()
-    {
-        _loader = ServiceLocator.Get<GameLoader>();
-        _loader.CallOnComplete(Initialize);
-
-        if (PlayerPrefs.HasKey("masterVolume") || PlayerPrefs.HasKey("musicVolume") || PlayerPrefs.HasKey("SFXVolume"))
-        {
-            LoadVolume();
-        }
-        else
-        {
-            setMasterVolume();
-            setMusicVolume();
-            setSFXVolume();
-        }
-    }*/
     private void Awake()
     {
+        canvas.SetActive(canvasActive);
+
+        GameObject[] allAudioManager = GameObject.FindGameObjectsWithTag("AudioManager");
+        
+        if (allAudioManager.Length > 1)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+
         SFXSoundAudioClipDictionary = new Dictionary<SFXSound, AudioClip>();
         foreach (SFXSound sound in System.Enum.GetValues(typeof(SFXSound)))
         {
@@ -83,8 +68,6 @@ public class AudioManager : MonoBehaviour
             setMusicVolume();
             setSFXVolume();
         }
-        //_loader = ServiceLocator.Get<GameLoader>();
-        //_loader.CallOnComplete(Initialize);
     }
     public void setMasterVolume()
     {
@@ -177,5 +160,16 @@ public class AudioManager : MonoBehaviour
             setMusicVolume();
             setSFXVolume();
         }
+    }
+
+    public void LoadTest()
+    {
+        SceneManager.LoadScene("Test");
+    }
+
+    public void Setting ()
+    {
+        canvasActive = !canvasActive;
+        canvas.SetActive(canvasActive);
     }
 }

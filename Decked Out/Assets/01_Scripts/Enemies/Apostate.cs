@@ -17,6 +17,8 @@ public class Apostate : MonoBehaviour
     private bool hasBeenZapped = false;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
+    public int TotalFreezeTime = 3;
+    public bool isTotalFrozen = false;
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
     public GameObject deathEffectPrefab;
@@ -128,10 +130,7 @@ public class Apostate : MonoBehaviour
                 TakeDamage(20.0f);
             }
         }
-        if (isFrozen)
-        {
-            moveSpeed = 0.39f;
-        }
+
         UpdateSortingLayer();
     }
     private void UpdateSortingLayer()
@@ -330,5 +329,21 @@ public class Apostate : MonoBehaviour
     public void ResetZapFlag()
     {
         hasBeenZapped = true;
+    }
+
+    public void ApplyTotalFreeze()
+    {
+        if (!isFrozen)
+        {
+            isTotalFrozen = true;
+            moveSpeed = 0;
+            StartCoroutine(DisableTotalFreezeAfterDuration(TotalFreezeTime));
+        }
+    }
+    private IEnumerator DisableTotalFreezeAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isTotalFrozen = false;
+        moveSpeed = original_speed;
     }
 }

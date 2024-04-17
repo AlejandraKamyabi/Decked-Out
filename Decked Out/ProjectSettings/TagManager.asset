@@ -23,6 +23,7 @@ TagManager:
   - Necromancer
   - Temp
   - Cleric
+  - AudioManager
   layers:
   - Default
   - TransparentFX
