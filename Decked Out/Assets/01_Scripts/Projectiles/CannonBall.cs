@@ -73,6 +73,12 @@ public class CannonBall : MonoBehaviour
             {
                 cleric.TakeDamage(damage);
             }
+            Aegis aegis = hitCollider.GetComponent<Aegis>();
+            if (aegis != null)
+            {
+                aegis.TakeDamage(damage);
+
+            }
         }
     }
 }

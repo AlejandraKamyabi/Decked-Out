@@ -128,6 +128,12 @@ public class Mortar_Ball : MonoBehaviour
             {
                 cleric.TakeDamage(damage);
             }
+            Aegis aegis = hitCollider.GetComponent<Aegis>();
+            if (aegis != null)
+            {
+                aegis.TakeDamage(damage);
+
+            }
         }
     }
 }

@@ -61,6 +61,12 @@ public class FrostTower : MonoBehaviour, ITower
                     cleric.ApplyFreeze(0.3f);
 
                 }
+                Aegis aegis = enemy.GetComponent<Aegis>();
+                if (aegis != null)
+                {
+                    aegis.TakeDamage(damage);
+
+                }
             }
         }
     }

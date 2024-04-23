@@ -67,5 +67,11 @@ public class FlamesEffect : MonoBehaviour
             cleric.TakeDamage(damage);
             cleric.setBurning();
         }
+        Aegis aegis = enemy.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.TakeDamage(damage);
+            aegis.setBurning();
+        }
     }
 }

@@ -72,6 +72,11 @@ public class Ballista_Arrow : MonoBehaviour
         {
             cleric.TakeDamage(damage);
         }
+        Aegis aegis = enemy.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.TakeDamage(damage);
+        }
     }
 }
 
