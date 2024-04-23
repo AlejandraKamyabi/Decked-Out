@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SmallBullet : MonoBehaviour
@@ -70,6 +68,17 @@ public class SmallBullet : MonoBehaviour
             if (necromancer != null)
             {
                 necromancer.TakeDamage(damage);
+            }
+            Cleric cleric = hitCollider.GetComponent<Cleric>();
+            if (cleric != null)
+            {
+                cleric.TakeDamage(damage);
+            }
+            Aegis aegis = hitCollider.GetComponent<Aegis>();
+            if (aegis != null)
+            {
+                aegis.TakeDamage(damage);
+
             }
         }
     }

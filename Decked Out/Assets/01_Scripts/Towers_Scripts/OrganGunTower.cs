@@ -33,7 +33,7 @@ public class OrganGunTower : MonoBehaviour, ITower
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public float damage
@@ -119,7 +119,7 @@ public class OrganGunTower : MonoBehaviour, ITower
             bulletScript.SetDirection(direction);
         }
 
-        canAttack = false;
+        canAttack = true;
         StartCoroutine(AttackCooldown());
     }
 

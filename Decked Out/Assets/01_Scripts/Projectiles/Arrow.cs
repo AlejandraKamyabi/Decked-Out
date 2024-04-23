@@ -70,7 +70,6 @@ public class Arrow : MonoBehaviour
         if (aegis != null)
         {
             aegis.TakeDamage(damage);
-
         }
     }
 }
