@@ -54,7 +54,7 @@ public class Popup : MonoBehaviour
                 towerDesc = towerSearch.GetTowerDesc();
                 Debug.Log(towerName);
                 modifiedText = modifiedText.Replace("{towerName}", towerName);
-                modifiedText = modifiedText.Replace("{desc}", towerDesc);
+                modifiedText = modifiedText.Replace("{dloesc}", towerDesc);
             }
             _popupText.text = modifiedText;
         }
