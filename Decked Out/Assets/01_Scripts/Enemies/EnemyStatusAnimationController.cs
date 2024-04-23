@@ -15,6 +15,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
     [SerializeField] Apostate _apostateScript;
     [SerializeField] KaboomEnemy _kaboomScript;
     [SerializeField] Necromancer _necromancerScript;
+    [SerializeField] Aegis _AegisScript;
     [SerializeField] Cleric cleric;
 
     [Header("Sprite Modifers")]
@@ -28,6 +29,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
     bool _kaboom = false;
     bool _apostate = false;
     bool _necromancer = false;
+    bool _Aegis = false;
     bool _cleric = false;
     float _yPos;
     float _upscaleDuration = 0.5f;
@@ -75,6 +77,11 @@ public class EnemyStatusAnimationController : MonoBehaviour
         else if (_necromancerScript != null)
         {
             _necromancer = true;
+            Debug.Log("Nercomancer Found");
+        }
+        else if (_AegisScript != null)
+        {
+            _Aegis = true;
             Debug.Log("Nercomancer Found");
         }
         else if (cleric != null)
@@ -434,6 +441,91 @@ public class EnemyStatusAnimationController : MonoBehaviour
                 ScaleDownAndDisable(_charmEffect, _charmScale);
             }
             else if (!_necromancerScript.isBurning && !_necromancerScript.isPoisoned && !_necromancerScript.isFrozen && !_necromancerScript.isAttracted)
+            {
+                clearStatusFrames++;
+                if (clearStatusFrames >= clearStatusFrameThreshold)
+                {
+                    EnemyColour(Color.white);
+                    clearStatusFrames = 0;
+                }
+            }
+        }
+        else if (_Aegis)
+        {
+            if (_AegisScript.currentHealth <= 0)
+            {
+                _burnEffect.SetActive(false);
+                _slowEffect.SetActive(false);
+                _poisonEffect.SetActive(false);
+                _charmEffect.SetActive(false);
+            }
+            if (_AegisScript.isBurning)
+            {
+                EnemyColour(_burningColour);
+                if (_burnEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_burnRenderer);
+                }
+                else if (_burnEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_burnEffect, _burnScale);
+                    UpdateSortingOrder(_burnRenderer);
+                }
+            }
+            else if (!_AegisScript.isBurning && _burnEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_burnEffect, _burnScale);
+            }
+            if (_AegisScript.isFrozen)
+            {
+                EnemyColour(_chilledColour);
+                if (_slowEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_slowRenderer);
+                }
+                else if (_slowEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_slowEffect, _slowScale);
+                    UpdateSortingOrder(_slowRenderer);
+                }
+            }
+            else if (!_AegisScript.isFrozen && _slowEffect.activeInHierarchy)
+            {
+                frozenStateFrames++;
+                if (frozenStateFrames >= frozenStateFrameThreshold)
+                {
+                    ScaleDownAndDisable(_slowEffect, _slowScale);
+                    frozenStateFrames = 0;
+                }
+            }
+            if (_AegisScript.isPoisoned)
+            {
+                EnemyColour(_poisonedColour);
+                if (_poisonEffect.activeInHierarchy)
+                {
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+                else if (_poisonEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_poisonEffect, _poisonScale);
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+            }
+            else if (!_AegisScript.isPoisoned && _poisonEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_poisonEffect, _poisonScale);
+            }
+            if (_AegisScript.isAttracted)
+            {
+                EnemyColour(_attrachedColour);
+                ScaleUpAndEnable(_charmEffect, _charmScale);
+                UpdateSortingOrder(_charmRenderer);
+            }
+            else if (!_AegisScript.isAttracted && _charmEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_charmEffect, _charmScale);
+            }
+            else if (!_AegisScript.isBurning && !_AegisScript.isPoisoned && !_AegisScript.isFrozen && !_AegisScript.isAttracted)
             {
                 clearStatusFrames++;
                 if (clearStatusFrames >= clearStatusFrameThreshold)

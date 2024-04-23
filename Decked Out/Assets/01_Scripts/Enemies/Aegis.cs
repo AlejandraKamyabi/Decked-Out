@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Cleric : MonoBehaviour
+public class Aegis : MonoBehaviour
 {
     public UnityEngine.Transform targetCastle;
     public float moveSpeed = 1f;
@@ -16,6 +16,7 @@ public class Cleric : MonoBehaviour
     private bool hasBeenZapped = false;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
+    public GameObject shieldPrefab;
     public GameObject deathEffectPrefab;
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
@@ -23,11 +24,12 @@ public class Cleric : MonoBehaviour
     private EnemyKillTracker _killTracker;
     [SerializeField] private CircleCollider2D circleCollider;
     float _yPos;
+    public float shieldRadius = 5f; 
+    public float shieldDuration = 5f;  
+    private bool isShieldActive = false;  
+    private float shieldTimer = 0f;
     SpriteRenderer _spriteRenderer;
 
-    [Header("Healing Configuration")]
-    public float healingRange = 5f; // The range within which enemies can be healed
-    public float healAmount = 25f; // The amount of health to restore
     //Attraction tower 
 
     private Transform originalTarget;
@@ -54,62 +56,32 @@ public class Cleric : MonoBehaviour
         _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _healthFlash = GetComponent<EnemyHealthFlash>();
-        InvokeRepeating("HealNearbyEnemies", 3.0f, 3.0f);
     }
-    void HealNearbyEnemies()
-    {
-        Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(transform.position, healingRange);
-        foreach (Collider2D enemy in enemiesInRange)
-        {
-         
-                Enemy enemyScript = enemy.GetComponent<Enemy>();
-                if (enemyScript != null)
-                {
-                    enemyScript.currentHealth += healAmount;
-                    enemyScript.UpdateEnemyHealthUI(); 
-                }
-                KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
-                if (kaboom != null)
-                {
-                    kaboom.currentHealth += healAmount;
-                    kaboom.UpdateEnemyHealthUI();
-                }
-                Apostate apostate = enemy.GetComponent<Apostate>();
-                if (apostate != null)
-                {
-                    apostate.currentHealth += healAmount;
-                    apostate.UpdateEnemyHealthUI();
-                }
-                Necromancer necromancer = enemy.GetComponent<Necromancer>();
-                if (necromancer != null)
-                {
-                    necromancer.currentHealth += healAmount;
-                    necromancer.UpdateEnemyHealthUI();
-                }
-            Aegis aegis = enemy.GetComponent<Aegis>();
-            if (aegis != null)
-            {
-                aegis.currentHealth += healAmount;
-                aegis.UpdateEnemyHealthUI();
-            }
 
-        }
-    }
     private void Update()
     {
-        if (targetCastle != null)
-        {
-            Vector2 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
-            transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-
-            if (healthSlider != null)
+  
+            if (targetCastle != null)
             {
-                Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-                healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
+                Vector2 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
+                transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+
+                if (healthSlider != null)
+                {
+                    Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+                    healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
+                }
             }
-        }
-        if (isBurning)
-        {
+
+            // Shield activation timer
+            shieldTimer += Time.deltaTime;
+            if (shieldTimer >= 5f)  // Every 5 seconds
+            {
+                StartCoroutine(ActivateShield());
+                shieldTimer = 0f;  // Reset timer
+            }
+            if (isBurning)
+            {
             timeSinceLastDamage += Time.deltaTime;
 
             if (timeSinceLastDamage >= damageTimer)
@@ -125,13 +97,13 @@ public class Cleric : MonoBehaviour
 
         UpdateSortingLayer();
     }
+
     private void UpdateSortingLayer()
     {
         _yPos = transform.position.y;
         _yPos = -_yPos;
         _spriteRenderer.sortingOrder = (int)(_yPos * 100);
     }
-
     public void HandleWaveImpact(Vector2 direction, float duration, float distance)
     {
         if (!isBeingPushed)
@@ -139,6 +111,51 @@ public class Cleric : MonoBehaviour
             Vector2 oppositeDirection = -direction.normalized;
             isBeingPushed = true;
             StartCoroutine(ManualPushback(oppositeDirection, duration, distance));
+        }
+    }
+    IEnumerator ActivateShield()
+    {
+        Collider2D[] enemiesToShield = Physics2D.OverlapCircleAll(transform.position, shieldRadius);
+        foreach (var enemy in enemiesToShield)
+        {
+            if (enemy.gameObject.CompareTag("Enemy") && enemy.gameObject != this.gameObject)
+            {
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+                if (enemyScript != null && !enemyScript.IsShielded)
+                {
+                    enemyScript.IsShielded = true;
+                    enemyScript.ImmuneToDamage = true;
+                    // Instantiate a shield prefab at the enemy's position
+                    GameObject newShield = Instantiate(shieldPrefab, enemy.transform.position, Quaternion.identity);
+                    newShield.transform.SetParent(enemy.transform);  // Parent the shield to move with the enemy
+                }
+            }
+        }
+        yield return new WaitForSeconds(shieldDuration);  // Shield duration
+
+        // After duration ends, remove immunity
+        foreach (var enemy in enemiesToShield)
+        {
+            if (enemy.gameObject.CompareTag("Enemy") && enemy.gameObject != this.gameObject)
+            {
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+                if (enemyScript != null)
+                {
+                    enemyScript.ImmuneToDamage = false;
+                    enemyScript.IsShielded = false;
+                    // Destroy the shield object
+                    if (enemyScript.transform.childCount > 0)
+                    {
+                        foreach (Transform child in enemyScript.transform)
+                        {
+                            if (child.gameObject.CompareTag("Shield"))
+                            {
+                                Destroy(child.gameObject);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     public IEnumerator ManualPushback(Vector2 direction, float duration, float distance)
@@ -155,19 +172,14 @@ public class Cleric : MonoBehaviour
         }
         isBeingPushed = false;
     }
-    public bool ImmuneToDamage { get; set; }
-    public bool IsShielded { get; set; }
     public void TakeDamage(float damage)
     {
-        if (!ImmuneToDamage)
-        {
-            currentHealth -= damage;
-            UpdateEnemyHealthUI();
+        currentHealth -= damage;
+        UpdateEnemyHealthUI();
 
-            if (currentHealth <= 0 && !_isDead)
-            {
-                Die();
-            }
+        if (currentHealth <= 0 && !_isDead)
+        {
+            Die();
         }
     }
     public void Attracted(Transform attractionTower)
@@ -252,7 +264,7 @@ public class Cleric : MonoBehaviour
             circleCollider.enabled = false;
         }
     }
-    private void UpdateEnemyHealthUI()
+    public void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
         _healthFlash.TakeDamage(currentHealth);
@@ -276,11 +288,11 @@ public class Cleric : MonoBehaviour
         if (!isFrozen)
         {
             isFrozen = true;
-            moveSpeed *= precentage;  
+            moveSpeed *= precentage;
             StartCoroutine(DisableFreezeAfterDuration(3.0f));
         }
     }
-        private IEnumerator DisableFreezeAfterDuration(float duration)
+    private IEnumerator DisableFreezeAfterDuration(float duration)
     {
         yield return new WaitForSeconds(duration);
         isFrozen = false;

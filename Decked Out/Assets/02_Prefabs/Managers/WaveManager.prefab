@@ -49,6 +49,7 @@ MonoBehaviour:
   GolemPrefab: {fileID: 3913288999114805945, guid: 245fe243352756e46944c4a8c4be652b, type: 3}
   Apostate_Prefab: {fileID: 3913288999114805945, guid: c70a52559804d664e90af3b6f01d409b, type: 3}
   necromancer: {fileID: 3913288999114805945, guid: 085feb032e4f09f438afc1bf1ddccf45, type: 3}
+  aegis: {fileID: 3913288999114805945, guid: 67fda4b96e612154e8b3ba394081599b, type: 3}
   cleric: {fileID: 3913288999114805945, guid: 5afd2464fad22604b87fad74e784078d, type: 3}
   unitSquareSize: 20
   TowersLeft: 5
@@ -151,6 +152,7 @@ MonoBehaviour:
   enemiesBetweenGolemSpawns: 7
   enemiesBetweenApostateSpawns: 10
   enemiesBetweenNecromancerSpawns: 17
+  enemiesBetweenAegisSpawns: 7
   enemiesBetweenClericSpawns: 9
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0

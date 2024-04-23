@@ -83,6 +83,12 @@ public class Heart_Projectile : MonoBehaviour
             cleric.TakeDamage(damage);
             cleric.Attracted(attractionTower);
         }
+        Aegis aegis = enemy.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.TakeDamage(damage);
+            aegis.Attracted(attractionTower);
+        }
     }
 }
 

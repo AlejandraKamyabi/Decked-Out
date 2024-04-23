@@ -142,17 +142,21 @@ public class KaboomEnemy : MonoBehaviour
         }
     }
 
+    public bool ImmuneToDamage { get; set; }
+    public bool IsShielded { get; set; }
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        UpdateEnemyHealthUI();
-
-        if (currentHealth <= 0 && !_isDead)
+        if (!ImmuneToDamage)
         {
-            Die();
+            currentHealth -= damage;
+            UpdateEnemyHealthUI();
+
+            if (currentHealth <= 0 && !_isDead)
+            {
+                Die();
+            }
         }
     }
-
     private void Die()
     {
         _isDead = true;

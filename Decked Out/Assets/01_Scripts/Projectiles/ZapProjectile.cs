@@ -77,5 +77,12 @@ public class ZapProjectile : MonoBehaviour
             cleric.Zap();
             cleric.ResetZapFlag();
         }
+        Aegis aegis = enemy.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.TakeDamage(damage);
+            aegis.Zap();
+            aegis.ResetZapFlag();
+        }
     }
 }
