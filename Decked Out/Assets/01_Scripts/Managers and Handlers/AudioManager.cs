@@ -69,6 +69,7 @@ public class AudioManager : MonoBehaviour
             setSFXVolume();
         }
     }
+
     public void setMasterVolume()
     {
         float volume = masterSlider.value;
@@ -87,6 +88,7 @@ public class AudioManager : MonoBehaviour
         myMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
+
     private void LoadVolume()
     {
         if (PlayerPrefs.HasKey("masterVolume"))
@@ -105,6 +107,7 @@ public class AudioManager : MonoBehaviour
             setSFXVolume();
         }
     }
+
     public void playMusicClip(musicSound sound)
     {
         musicSource.clip = musicSoundAudioClipDictionary[sound];
@@ -114,6 +117,7 @@ public class AudioManager : MonoBehaviour
     {
         musicSource.Stop();
     }
+
     public void playSFXClip(SFXSound sound)
     {
         SFXSource.PlayOneShot(SFXSoundAudioClipDictionary[sound]);
@@ -123,6 +127,7 @@ public class AudioManager : MonoBehaviour
         SFXSource.clip = SFXSoundAudioClipDictionary[sound];
         SFXSource.Play();
     }
+
     public void StopAllAudio()
     {
         AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>() as AudioSource[];
@@ -161,15 +166,14 @@ public class AudioManager : MonoBehaviour
             setSFXVolume();
         }
     }
-
-    public void LoadTest()
-    {
-        SceneManager.LoadScene("Test");
-    }
-
     public void Setting ()
     {
         canvasActive = !canvasActive;
         canvas.SetActive(canvasActive);
+    }
+
+    public void LoadTest()
+    {
+        SceneManager.LoadScene("Test");
     }
 }

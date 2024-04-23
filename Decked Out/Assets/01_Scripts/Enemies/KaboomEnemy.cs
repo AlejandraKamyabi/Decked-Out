@@ -272,4 +272,13 @@ public class KaboomEnemy : MonoBehaviour
         isTotalFrozen = false;
         moveSpeed = original_Speed;
     }
+
+    public void ApplySpeedUp(float precentage)
+    {
+        moveSpeed *= precentage;
+    }
+    public void RemoveSpeedUp()
+    {
+        moveSpeed = original_Speed;
+    }
 }

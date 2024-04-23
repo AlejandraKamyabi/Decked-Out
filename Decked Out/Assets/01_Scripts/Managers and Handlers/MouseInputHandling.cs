@@ -249,6 +249,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
+                case "BlackHole":
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
+                    towerRigSprite.sprite = towerSelection.BlackHole.GetComponentInChildren<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.BlackHole.GetComponent<BlackHole>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
+                    break;
             }
         }
         towerRig.gameObject.SetActive(true);
@@ -379,6 +386,9 @@ public class MouseInputHandling : MonoBehaviour
 
                             case "Freeze":
                                 currentTowerInstance = Instantiate(towerSelection.freeze, mousePos, Quaternion.identity);
+                                break;
+                            case "BlackHole":
+                                currentTowerInstance = Instantiate(towerSelection.BlackHole, mousePos, Quaternion.identity);
                                 break;
                         }
                     }
