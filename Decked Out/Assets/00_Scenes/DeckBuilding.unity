@@ -2680,6 +2680,7 @@ MonoBehaviour:
   _cardsOfRarity:
   - {fileID: 11400000, guid: a594bc4f654a0324c9f522defa7f346b, type: 2}
   - {fileID: 11400000, guid: 8983d8cb0b0b65e449ea0efb6c25d2d7, type: 2}
+  - {fileID: 11400000, guid: 33cdb4f8b1e6e9f43a8a1fd3716adc68, type: 2}
 --- !u!1001 &661333716
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -31,6 +31,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject nuke;
     public GameObject bigBomb;
     public GameObject chill;
+    public GameObject freeze;
     public bool isSelectingSpell = false;
 
 
