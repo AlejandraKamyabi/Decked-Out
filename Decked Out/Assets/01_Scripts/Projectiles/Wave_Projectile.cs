@@ -144,6 +144,12 @@ public class Wave_Projectile : MonoBehaviour
             cleric.TakeDamage(damage);
 
         }
+        Aegis aegis = enemy.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.TakeDamage(damage);
+
+        }
         TrackHitAndCheckForInstaKill(enemy);
     }
     private void Insta_Kill(GameObject enemy)
