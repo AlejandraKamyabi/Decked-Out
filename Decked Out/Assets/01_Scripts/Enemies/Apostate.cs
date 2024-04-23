@@ -351,4 +351,13 @@ public class Apostate : MonoBehaviour
         isTotalFrozen = false;
         moveSpeed = original_speed;
     }
+
+    public void ApplySpeedUp(float precentage)
+    {
+        moveSpeed *= precentage;
+    }
+    public void RemoveSpeedUp()
+    {
+        moveSpeed = original_speed;
+    }
 }

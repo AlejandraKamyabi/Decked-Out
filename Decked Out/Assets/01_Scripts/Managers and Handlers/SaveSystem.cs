@@ -51,7 +51,7 @@ public class SaveSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
         foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
         {
             cardCollectedString[card] = card.ToString();
@@ -114,6 +114,14 @@ public class SaveSystem : MonoBehaviour
 
         return allOutPut;
     }
+    //Reset Card Collected
+    public void ResetCardCollected()
+    {
+        foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
+        {
+            PlayerPrefs.SetInt(cardCollectedString[card], 0);
+        }
+    }
 
     //Set Purchased Item
     public void SetPurchasedItem(PurchasedItem item, bool haveItem)
@@ -163,6 +171,14 @@ public class SaveSystem : MonoBehaviour
         }
 
         return allOutPut;
+    }
+    //Reset Purchased Item
+    public void ResetPurchasedItem()
+    {
+        foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
+        {
+            PlayerPrefs.SetInt(purchasedItemString[item], 0);
+        }
     }
 
     //Save Gem Count

@@ -330,4 +330,13 @@ public class Cleric : MonoBehaviour
         isTotalFrozen = false;
         moveSpeed = original_moveSpeed;
     }
+
+    public void ApplySpeedUp(float precentage)
+    {
+        moveSpeed *= precentage;
+    }
+    public void RemoveSpeedUp()
+    {
+        moveSpeed = original_moveSpeed;
+    }
 }
