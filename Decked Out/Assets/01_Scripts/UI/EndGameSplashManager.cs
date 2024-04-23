@@ -12,8 +12,7 @@ public class EndGameSplashManager : MonoBehaviour
     public CardRandoEngine cardRandoEngine;
     public EnemyKillTracker enemyKillTracker;
 
-    // Reference to AdsManager
-    public AdsManager adsManager;
+    
 
     public void Initialize()
     {
@@ -31,14 +30,6 @@ public class EndGameSplashManager : MonoBehaviour
 
     public void Retry()
     {
-        // Show interstitial ad
-        adsManager.ShowInterstitialAd();
-    }
-
-    // Called when interstitial ad is completed
-    public void OnInterstitialAdCompleted()
-    {
-        // Reset health, hide splash screen, and load next round
         castleGameObject.ResetHealth();
         splashScreen.SetActive(false);
         cardRandoEngine.NewWave();
