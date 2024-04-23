@@ -193,6 +193,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
+                case "Sniper":
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.sprite = towerSelection.Sniper_Tower.GetComponentInChildren<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.Sniper_Tower.GetComponent<SniperTower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
+                    break;
             }
         }
         else
@@ -232,6 +239,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
                     towerRigSprite.sprite = towerSelection.chill.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.chill.GetComponent<Chill>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
+                    break;
+                case "Freeze":
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
+                    towerRigSprite.sprite = towerSelection.freeze.GetComponentInChildren<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.freeze.GetComponent<Freeze>().attackRange;
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
@@ -313,6 +327,9 @@ public class MouseInputHandling : MonoBehaviour
                             case "Mortar":
                                 currentTowerInstance = Instantiate(towerSelection.Mortar, mousePos, Quaternion.identity);
                                 break;
+                            case "Sniper":
+                                currentTowerInstance = Instantiate(towerSelection.Sniper_Tower, mousePos, Quaternion.identity);
+                                break;
                             case "Mystery":
                                 GameObject[] towers = new GameObject[] {
         towerSelection.ArcherTower,
@@ -325,7 +342,8 @@ public class MouseInputHandling : MonoBehaviour
         towerSelection.EathQuack,
         towerSelection.attraction_Tower,
         towerSelection.Poison_Tower,
-        towerSelection.Ballista_Tower
+        towerSelection.Ballista_Tower,
+        towerSelection.Sniper_Tower
     };
 
              int randomIndex = Random.Range(0, towers.Length);
@@ -357,6 +375,10 @@ public class MouseInputHandling : MonoBehaviour
 
                             case "Chill":
                                 currentTowerInstance = Instantiate(towerSelection.chill, mousePos, Quaternion.identity);
+                                break;
+
+                            case "Freeze":
+                                currentTowerInstance = Instantiate(towerSelection.freeze, mousePos, Quaternion.identity);
                                 break;
                         }
                     }

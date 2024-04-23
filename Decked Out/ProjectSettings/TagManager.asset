@@ -23,6 +23,7 @@ TagManager:
   - Necromancer
   - Temp
   - Cleric
+  - AudioManager
   - Aegis
   layers:
   - Default

@@ -9,8 +9,8 @@ public class CardRandoEngine : MonoBehaviour
 {
     [Header("Game Tool")]
     public WaveManager waveManager;
-    public TowerSelection towerSelection;    
-    public Vector3 leftSpotScale;    
+    public TowerSelection towerSelection;
+    public Vector3 leftSpotScale;
     public Vector3 bottomSpotScale;
     public bool cardsOnLeft;
     public GameObject cardHandPanel;
@@ -19,11 +19,11 @@ public class CardRandoEngine : MonoBehaviour
     public float moveDuration;
 
     [Header("Card Spaces")]
-    public GameObject cardSpace0;   
+    public GameObject cardSpace0;
     public GameObject cardSpace1;
     public GameObject cardSpace2;
     public GameObject cardSpace3;
-    public GameObject cardSpace4; 
+    public GameObject cardSpace4;
     public GameObject blockingButton;
 
     [Header("Card Stats Panel")]
@@ -47,12 +47,12 @@ public class CardRandoEngine : MonoBehaviour
     [Header("Hand Cards Data")]
     public int handSize;
     public int spellUses = 4;
-   
+
 
     [Header("Button Input Modifers")]
     public List<GameObject> buttons = new List<GameObject>();
     public GameObject _lastCardSlot;
-    public float longPressDuration = 1.0f;    
+    public float longPressDuration = 1.0f;
 
     [Header("Card 0 Data")]
     public TowerCardSO card0Data;
@@ -128,7 +128,7 @@ public class CardRandoEngine : MonoBehaviour
     private bool timerOn = false;
     private bool isButtonHeld = false;
     private float buttonHeldTime = 0f;
-  
+
     float scale;
     private int current_Button_Held;
     private float _startUpDelay = 1f;
@@ -137,20 +137,20 @@ public class CardRandoEngine : MonoBehaviour
     private void Start()
     {
         _loader = ServiceLocator.Get<GameLoader>();
-        _loader.CallOnComplete(Initialize);        
+        _loader.CallOnComplete(Initialize);
     }
     private void Initialize()
     {
         _deckManager = ServiceLocator.Get<DeckbuildingManager>();
 
         transform.position = bottomSpot.position;
-        transform.rotation = bottomSpot.rotation;       
-        spell0Uses =0;   
-        spell1Uses=0;
-        spell2Uses=0;
-        spell3Uses=0;
-        spell4Uses=0;
-          
+        transform.rotation = bottomSpot.rotation;
+        spell0Uses = 0;
+        spell1Uses = 0;
+        spell2Uses = 0;
+        spell3Uses = 0;
+        spell4Uses = 0;
+
         blockingButton.gameObject.SetActive(false);
         buttons.Add(cardSpace0);
         buttons.Add(cardSpace1);
@@ -183,7 +183,7 @@ public class CardRandoEngine : MonoBehaviour
             //Debug.Log("Button Held for:" + buttonHeldTime);
             if (buttonHeldTime >= longPressDuration)
             {
-                switch(current_Button_Held)
+                switch (current_Button_Held)
                 {
                     case 0:
                         ButtonStats(card0Data);
@@ -201,34 +201,42 @@ public class CardRandoEngine : MonoBehaviour
                         ButtonStats(card4Data);
                         break;
                 }
-                
+
             }
         }
-       
+
     }
 
     public void NewWave()
     {
+        spell0Uses = 0;
+        spell1Uses = 0;
+        spell2Uses = 0;
+        spell3Uses = 0;
+        spell4Uses = 0;
+
         Debug.Log("New Wave Called");
         cardsInHand.Clear();
         blockingButton.gameObject.SetActive(true);
         MoveCardHandPanel(false);
         PlayCardSuffleSound();
+
         cardSpace0.gameObject.SetActive(true);
         cardSpace1.gameObject.SetActive(true);
         cardSpace2.gameObject.SetActive(true);
         cardSpace3.gameObject.SetActive(true);
         cardSpace4.gameObject.SetActive(true);
         GetCards();
+
         card0Used = false;
         card1Used = false;
         card2Used = false;
         card3Used = false;
         card4Used = false;
-        
+
     }
     public void GetCards()
-    {       
+    {
         GetRandomizedCards(handSize);
         GetCardData();
         ButtonData();
@@ -241,7 +249,7 @@ public class CardRandoEngine : MonoBehaviour
         card1Data = cardsInHand[1];
         card2Data = cardsInHand[2];
         card3Data = cardsInHand[3];
-        card4Data = cardsInHand[4];       
+        card4Data = cardsInHand[4];
         //cardsInHand.Clear();
 
     }
@@ -256,7 +264,7 @@ public class CardRandoEngine : MonoBehaviour
             spell0Uses = card0Data.uses;
             ChangeSpellText();
         }
-           
+
 
         cardSpace1Background.sprite = card1Data.background;
         card1TowerImage.sprite = card1Data.image;
@@ -299,7 +307,7 @@ public class CardRandoEngine : MonoBehaviour
         }
 
 
-    }  
+    }
 
 
     public void Button0DragOff()
@@ -412,7 +420,7 @@ public class CardRandoEngine : MonoBehaviour
         current_Button_Held = 4;
     }
 
- 
+
 
     private void ButtonStats(TowerCardSO cardDataToShow)
     {
@@ -462,12 +470,13 @@ public class CardRandoEngine : MonoBehaviour
         _lastCardSlot = cardSpace0;
         if (card0Data.spell == true)
         {
-          //  towerSelection.SelectTower();
+            //  towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card0Name;
             blockingButton.gameObject.SetActive(true);
             spell0Uses--;
-            ChangeSpellText();
+            ChangeSpellText(cardSpace0, card0Used, spell0Uses, 0);
+            //ChangeSpellText();
         }
 
         else
@@ -488,12 +497,13 @@ public class CardRandoEngine : MonoBehaviour
         _lastCardSlot = cardSpace1;
         if (card1Data.spell == true)
         {
-          //  towerSelection.SelectTower();
+            //  towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card1Name;
             blockingButton.gameObject.SetActive(true);
             spell1Uses--;
-            ChangeSpellText();
+            ChangeSpellText(cardSpace1, card1Used, spell1Uses, 1);
+            //ChangeSpellText();
         }
         else
         {
@@ -511,12 +521,13 @@ public class CardRandoEngine : MonoBehaviour
         _lastCardSlot = cardSpace2;
         if (card2Data.spell == true)
         {
-          //  towerSelection.SelectTower();
+            //  towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card2Name;
             blockingButton.gameObject.SetActive(true);
             spell2Uses--;
-            ChangeSpellText();
+            ChangeSpellText(cardSpace2, card2Used, spell2Uses, 2);
+            //ChangeSpellText();
         }
         else
         {
@@ -534,12 +545,13 @@ public class CardRandoEngine : MonoBehaviour
         _lastCardSlot = cardSpace3;
         if (card3Data.spell == true)
         {
-           // towerSelection.SelectTower();
+            // towerSelection.SelectTower();
             towerSelection.SelectSpells();
             towerSelection.spells = card3Name;
             blockingButton.gameObject.SetActive(true);
             spell3Uses--;
-            ChangeSpellText();
+            ChangeSpellText(cardSpace3, card3Used, spell3Uses, 3);
+            //ChangeSpellText();
         }
         else
         {
@@ -563,7 +575,8 @@ public class CardRandoEngine : MonoBehaviour
             towerSelection.spells = card4Name;
             blockingButton.gameObject.SetActive(true);
             spell4Uses--;
-            ChangeSpellText();
+            ChangeSpellText(cardSpace4, card4Used, spell4Uses, 4);
+            //ChangeSpellText();
         }
         else
         {
@@ -638,6 +651,7 @@ public class CardRandoEngine : MonoBehaviour
             cardShuffle.Play();
         }
     }
+
     private void ChangeSpellText()
     {
         // Mapping of spell uses to Roman numerals
@@ -665,14 +679,46 @@ public class CardRandoEngine : MonoBehaviour
                 cardSpaces[i].SetActive(true);
                 spellUsesTexts[i].text = spellUsesToRoman[spellUses[i]];
             }
-            else if ((spellUses[i] <= 0) && (cardData[i].spell == true))
+            else if (spellUses[i] <= 0 && cardData[i].spell == true)
             {
                 cardSpaces[i].SetActive(false);
                 cardUsed[i] = true;
             }
-            
+
         }
     }
+
+    private void ChangeSpellText(GameObject cardSpaces, bool cardUsed, int spellUses, int inDex)
+    {
+        // Mapping of spell uses to Roman numerals
+        Dictionary<int, string> spellUsesToRoman = new Dictionary<int, string>()
+        {
+            {0, ""}, // Handle the case of 0 separately to deactivate the card space
+            {1, "I"},
+            {2, "II"},
+            {3, "III"},
+            {4, "IV"}
+         };
+
+        TowerCardSO[] cardData = { card0Data, card1Data, card2Data, card3Data, card4Data };
+        TextMeshProUGUI[] spellUsesTexts = { card0SpellUsesText, card1SpellUsesText, card2SpellUsesText, card3SpellUsesText, card4SpellUsesText };
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (spellUses > 0)
+            {
+                //spellUsesTexts[i].gameObject.SetActive(true);
+                cardSpaces.SetActive(true);
+                spellUsesTexts[inDex].text = spellUsesToRoman[spellUses];
+            }
+            else if (spellUses <= 0 && cardData[i].spell == true)
+            {
+                cardSpaces.SetActive(false);
+                cardUsed = true;
+            }
+        }
+    }
+    
     public void SpellSlotCheck()
     {
         GameObject[] cardSpaces = { cardSpace0, cardSpace1, cardSpace2, cardSpace3, cardSpace4 };
@@ -711,7 +757,6 @@ public class CardRandoEngine : MonoBehaviour
             }
         }
     }
-
 
     public void LoadSpellText()
     {

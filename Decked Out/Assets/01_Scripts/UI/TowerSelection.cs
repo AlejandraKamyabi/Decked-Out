@@ -23,6 +23,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject Ballista_Tower;
     public GameObject Mortar;
     public GameObject Mystery;
+    public GameObject Sniper_Tower;
 
     [Header("Spells")]
     public GameObject lightning;
@@ -30,6 +31,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject nuke;
     public GameObject bigBomb;
     public GameObject chill;
+    public GameObject freeze;
     public bool isSelectingSpell = false;
 
 
