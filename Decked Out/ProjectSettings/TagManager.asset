@@ -24,6 +24,7 @@ TagManager:
   - Temp
   - Cleric
   - AudioManager
+  - Aegis
   layers:
   - Default
   - TransparentFX

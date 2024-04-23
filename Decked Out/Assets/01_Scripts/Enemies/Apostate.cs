@@ -181,14 +181,19 @@ public class Apostate : MonoBehaviour
         }
         isBeingPushed = false;
     }
+    public bool ImmuneToDamage { get; set; }
+    public bool IsShielded { get; set; }
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        UpdateEnemyHealthUI();
-
-        if (currentHealth <= 0 && !_isDead)
+        if (!ImmuneToDamage)
         {
-            Die();
+            currentHealth -= damage;
+            UpdateEnemyHealthUI();
+
+            if (currentHealth <= 0 && !_isDead)
+            {
+                Die();
+            }
         }
     }
     public void Attracted(Transform attractionTower)

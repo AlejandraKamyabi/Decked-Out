@@ -125,14 +125,19 @@ public class Necromancer : MonoBehaviour
         }
         isBeingPushed = false;
     }
+    public bool ImmuneToDamage { get; set; }
+    public bool IsShielded { get; set; }
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        UpdateEnemyHealthUI();
-
-        if (currentHealth <= 0 && !_isDead)
+        if (!ImmuneToDamage)
         {
-            Die();
+            currentHealth -= damage;
+            UpdateEnemyHealthUI();
+
+            if (currentHealth <= 0 && !_isDead)
+            {
+                Die();
+            }
         }
     }
     private void DetectAndAddAcolyte()
@@ -164,6 +169,11 @@ public class Necromancer : MonoBehaviour
             {
                 detectedEnemy.Add(collider.gameObject);
                 wave.AddEnemyToCurrentWave("Necromancer", collider.transform.position);
+            }
+            else if (collider.CompareTag("Aegis") && !detectedEnemy.Contains(collider.gameObject))
+            {
+                detectedEnemy.Add(collider.gameObject);
+                wave.AddEnemyToCurrentWave("Aegis", collider.transform.position);
             }
             else if (collider.CompareTag("Cleric") && !detectedEnemy.Contains(collider.gameObject))
             {

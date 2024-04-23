@@ -48,6 +48,12 @@ public class Chill : MonoBehaviour
                     cleric.TakeDamage(damage);
                     cleric.ApplyFreeze(0.3f);
                 }
+                Aegis aegis = collider.GetComponent<Aegis>();
+                if (aegis != null)
+                {
+                    aegis.TakeDamage(damage);
+                    aegis.ApplyFreeze(0.3f);
+                }
             }
         }
 

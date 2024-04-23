@@ -88,7 +88,13 @@ public class Cleric : MonoBehaviour
                     necromancer.currentHealth += healAmount;
                     necromancer.UpdateEnemyHealthUI();
                 }
-        
+            Aegis aegis = enemy.GetComponent<Aegis>();
+            if (aegis != null)
+            {
+                aegis.currentHealth += healAmount;
+                aegis.UpdateEnemyHealthUI();
+            }
+
         }
     }
     private void Update()
@@ -147,17 +153,21 @@ public class Cleric : MonoBehaviour
         }
         isBeingPushed = false;
     }
+    public bool ImmuneToDamage { get; set; }
+    public bool IsShielded { get; set; }
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        UpdateEnemyHealthUI();
-
-        if (currentHealth <= 0 && !_isDead)
+        if (!ImmuneToDamage)
         {
-            Die();
+            currentHealth -= damage;
+            UpdateEnemyHealthUI();
+
+            if (currentHealth <= 0 && !_isDead)
+            {
+                Die();
+            }
         }
     }
-
     public void Attracted(Transform attractionTower)
     {
         if (!isAttracted)

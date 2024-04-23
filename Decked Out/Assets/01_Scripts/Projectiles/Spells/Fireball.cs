@@ -48,6 +48,12 @@ public class Fireball : MonoBehaviour
                     cleric.TakeDamage(damage);
                     cleric.setBurning();
                 }
+                Aegis aegis = collider.GetComponent<Aegis>();
+                if (aegis != null)
+                {
+                    aegis.TakeDamage(damage);
+                    aegis.setBurning();
+                }
             }
         }
 
