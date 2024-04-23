@@ -23,6 +23,7 @@ TagManager:
   - Necromancer
   - Temp
   - Cleric
+  - Aegis
   layers:
   - Default
   - TransparentFX

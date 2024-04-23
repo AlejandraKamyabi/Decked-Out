@@ -45,6 +45,12 @@ public class BigBomb : MonoBehaviour
                     cleric.TakeDamage(damage);
 
                 }
+                Aegis aegis = collider.GetComponent<Aegis>();
+                if (aegis != null)
+                {
+                    aegis.TakeDamage(damage);
+
+                }
             }
         }
 

@@ -66,6 +66,12 @@ public class Arrow : MonoBehaviour
         {
             cleric.TakeDamage(damage);
         }
+        Aegis aegis = enemy.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.TakeDamage(damage);
+
+        }
     }
 }
 
