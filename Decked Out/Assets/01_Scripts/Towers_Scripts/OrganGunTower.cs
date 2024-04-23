@@ -33,7 +33,7 @@ public class OrganGunTower : MonoBehaviour, ITower
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public float damage
