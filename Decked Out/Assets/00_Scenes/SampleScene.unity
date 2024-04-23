@@ -5184,6 +5184,7 @@ MonoBehaviour:
   Mortar: {fileID: 7405903770306088367, guid: 9651cef698a667349a0c68dcc51523bd, type: 3}
   Mystery: {fileID: 7405903770306088367, guid: 21f92544c958cd54fba9ddaaf0eff28c, type: 3}
   Sniper_Tower: {fileID: 7405903770306088367, guid: d8efcc1d0c5b25c429accf097ea417be, type: 3}
+  OrganGun_Tower: {fileID: 7405903770306088367, guid: 9ebd6449d0b13dd49acb6d45f1dbd4fd, type: 3}
   lightning: {fileID: 7405903770306088367, guid: fc70580715f6256409ac743977334c56, type: 3}
   fireball: {fileID: 7405903770306088367, guid: 99463ee7e03f7f14abfe170532e27598, type: 3}
   nuke: {fileID: 7405903770306088367, guid: 6d954bab85fc16d409534418fe528b4e, type: 3}

@@ -24,6 +24,7 @@ public class TowerSelection : MonoBehaviour
     public GameObject Mortar;
     public GameObject Mystery;
     public GameObject Sniper_Tower;
+    public GameObject OrganGun_Tower;
 
     [Header("Spells")]
     public GameObject lightning;

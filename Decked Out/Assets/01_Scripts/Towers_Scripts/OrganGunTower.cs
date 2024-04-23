@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class OrganGunTower : MonoBehaviour, ITower
 {
     public float attackRange;
@@ -18,7 +17,7 @@ public class OrganGunTower : MonoBehaviour, ITower
     private GameObject buffed;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
-    //public AudioSource audioSource;
+    public AudioSource audioSource;
 
     private void OnDrawGizmos()
     {
@@ -34,8 +33,9 @@ public class OrganGunTower : MonoBehaviour, ITower
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
     public float damage
     {
         get { return Damage; }
@@ -97,7 +97,7 @@ public class OrganGunTower : MonoBehaviour, ITower
         }
     }
 
-    private void ShootInAnyDirection(Transform transform)
+    private void ShootInAnyDirection(Transform targetTransform)
     {
         Vector2[] directions = new Vector2[]
         {
@@ -115,15 +115,13 @@ public class OrganGunTower : MonoBehaviour, ITower
         {
             GameObject smallBullet = Instantiate(SmallBulletPrefab, transform.position, Quaternion.identity);
             SmallBullet bulletScript = smallBullet.GetComponent<SmallBullet>();
-
             bulletScript.SetDamage(Damage);
-            bulletScript.SetDirection(direction); 
+            bulletScript.SetDirection(direction);
         }
 
         canAttack = false;
         StartCoroutine(AttackCooldown());
     }
-
 
 
     public void ResetTowerEffects()
@@ -153,6 +151,14 @@ public class OrganGunTower : MonoBehaviour, ITower
         {
             yield return new WaitForSeconds(actualRateOfFire);
             canAttack = true;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (buffed != null)
+        {
+            Destroy(buffed);
         }
     }
 

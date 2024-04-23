@@ -200,6 +200,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
+                case "OrganGun":
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
+                    towerRigSprite.sprite = towerSelection.OrganGun_Tower.GetComponentInChildren<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.OrganGun_Tower.GetComponent<OrganGunTower>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
+                    break;
             }
         }
         else
@@ -330,6 +337,9 @@ public class MouseInputHandling : MonoBehaviour
                             case "Sniper":
                                 currentTowerInstance = Instantiate(towerSelection.Sniper_Tower, mousePos, Quaternion.identity);
                                 break;
+                            case "Organ":
+                                currentTowerInstance = Instantiate(towerSelection.OrganGun_Tower, mousePos, Quaternion.identity);
+                                break;
                             case "Mystery":
                                 GameObject[] towers = new GameObject[] {
         towerSelection.ArcherTower,
@@ -343,7 +353,8 @@ public class MouseInputHandling : MonoBehaviour
         towerSelection.attraction_Tower,
         towerSelection.Poison_Tower,
         towerSelection.Ballista_Tower,
-        towerSelection.Sniper_Tower
+        towerSelection.Sniper_Tower,
+        towerSelection.OrganGun_Tower
     };
 
              int randomIndex = Random.Range(0, towers.Length);
