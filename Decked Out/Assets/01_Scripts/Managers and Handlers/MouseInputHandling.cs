@@ -235,6 +235,13 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
+                case "Freeze":
+                    towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
+                    towerRigSprite.sprite = towerSelection.freeze.GetComponentInChildren<SpriteRenderer>().sprite;
+                    towerRange = towerSelection.freeze.GetComponent<Freeze>().attackRange;
+                    towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
+                    rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
+                    break;
             }
         }
         towerRig.gameObject.SetActive(true);
@@ -357,6 +364,10 @@ public class MouseInputHandling : MonoBehaviour
 
                             case "Chill":
                                 currentTowerInstance = Instantiate(towerSelection.chill, mousePos, Quaternion.identity);
+                                break;
+
+                            case "Freeze":
+                                currentTowerInstance = Instantiate(towerSelection.freeze, mousePos, Quaternion.identity);
                                 break;
                         }
                     }

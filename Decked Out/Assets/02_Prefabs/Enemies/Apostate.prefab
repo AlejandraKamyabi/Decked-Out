@@ -170,7 +170,7 @@ AudioSource:
   m_GameObject: {fileID: 3913288999114805945}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -766855418508781966, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDeathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
+  mixerGroup: {fileID: -766855418508781966, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
 --- !u!50 &-6209553455341248833
 Rigidbody2D:
   serializedVersion: 4
@@ -353,6 +354,7 @@ MonoBehaviour:
   _apostateScript: {fileID: 4704783627426132583}
   _kaboomScript: {fileID: 0}
   _necromancerScript: {fileID: 0}
+  cleric: {fileID: 0}
   _mainSpriteRenderer: {fileID: 1380346453654109597}
   _burningColour: {r: 1, g: 0.47058824, b: 0, a: 1}
   _chilledColour: {r: 0.11372549, g: 0.69803923, b: 0.7921569, a: 1}
