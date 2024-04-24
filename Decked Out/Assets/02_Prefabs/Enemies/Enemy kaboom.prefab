@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDeathSound: {fileID: 8300000, guid: f01c623f724825e44a923d1ae50256f2, type: 3}
+  mixerGroup: {fileID: -766855418508781966, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
 --- !u!50 &131239190853023437
 Rigidbody2D:
   serializedVersion: 4
@@ -254,6 +255,7 @@ MonoBehaviour:
   _apostateScript: {fileID: 0}
   _kaboomScript: {fileID: 7651664643644394062}
   _necromancerScript: {fileID: 0}
+  cleric: {fileID: 0}
   _mainSpriteRenderer: {fileID: 3094617416819071183}
   _burningColour: {r: 1, g: 0.47058824, b: 0, a: 1}
   _chilledColour: {r: 0.11372549, g: 0.69803923, b: 0.7921569, a: 1}

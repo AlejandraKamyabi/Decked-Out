@@ -16,6 +16,8 @@ public class Cleric : MonoBehaviour
     private bool hasBeenZapped = false;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
+    public int TotalFreezeTime = 3;
+    public bool isTotalFrozen = false;
     public GameObject deathEffectPrefab;
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
@@ -117,10 +119,6 @@ public class Cleric : MonoBehaviour
                 timeSinceLastDamage = 0.0f;
                 TakeDamage(10.0f);
             }
-        }
-        if (isFrozen)
-        {
-            moveSpeed = 0.39f;
         }
 
         UpdateSortingLayer();
@@ -315,5 +313,30 @@ public class Cleric : MonoBehaviour
     public void ResetZapFlag()
     {
         hasBeenZapped = true;
+    }
+
+    public void ApplyTotalFreeze()
+    {
+        if (!isFrozen)
+        {
+            isTotalFrozen = true;
+            moveSpeed = 0;
+            StartCoroutine(DisableTotalFreezeAfterDuration(TotalFreezeTime));
+        }
+    }
+    private IEnumerator DisableTotalFreezeAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isTotalFrozen = false;
+        moveSpeed = original_moveSpeed;
+    }
+
+    public void ApplySpeedUp(float precentage)
+    {
+        moveSpeed *= precentage;
+    }
+    public void RemoveSpeedUp()
+    {
+        moveSpeed = original_moveSpeed;
     }
 }

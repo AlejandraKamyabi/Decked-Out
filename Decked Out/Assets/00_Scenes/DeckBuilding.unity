@@ -2868,6 +2868,8 @@ MonoBehaviour:
   _cardsOfRarity:
   - {fileID: 11400000, guid: a594bc4f654a0324c9f522defa7f346b, type: 2}
   - {fileID: 11400000, guid: 8983d8cb0b0b65e449ea0efb6c25d2d7, type: 2}
+  - {fileID: 11400000, guid: 33cdb4f8b1e6e9f43a8a1fd3716adc68, type: 2}
+  - {fileID: 11400000, guid: c7c13847fd7a74445aaf59d9f0abf8ec, type: 2}
 --- !u!1001 &661333716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4492,6 +4494,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aed80f7ecc88b744ba63fb298d661901, type: 2}
   - {fileID: 11400000, guid: 76fa049d1c07f7846bc3999051be13b4, type: 2}
   - {fileID: 11400000, guid: 4103427755180534d9dc8166028842a2, type: 2}
+  - {fileID: 11400000, guid: e65ade43fe9803345b756ce52c0d5ab0, type: 2}
 --- !u!1 &1033743474 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 527230130669368719, guid: 8787d373d463a9540a40266457567c91, type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5170167603880075016}
   - component: {fileID: 6101147343607671521}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Range Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2500564895929566302}
   - component: {fileID: 7146762681547183767}
   - component: {fileID: 5959584683983673997}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Spell Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: -8631973492879612246}
   - component: {fileID: -145709283384004902}
   - component: {fileID: -7458032594738771337}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: BigBombSpell
   m_TagString: Spell
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ AudioSource:
   m_GameObject: {fileID: 7405903770306088367}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -766855418508781966, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
   m_audioClip: {fileID: 8300000, guid: 11b863097ffe397488a720d45e30e83c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
