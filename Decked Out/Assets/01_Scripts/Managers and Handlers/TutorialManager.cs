@@ -10,11 +10,6 @@ public class TutorialManager : MonoBehaviour
     [Range(0f, 0.25f)]
     [SerializeField] float _checkTimer;
 
-    [SerializeField] string[] _placeholders;
-    [SerializeField] string[] _replacementTextArrow;
-    [SerializeField] string[] _replacementTextCannon;
-    [SerializeField] string[] _replacementTextChill;
-
     private GameLoader _loader;
     public int _index = 0;
     private float _timer;
@@ -22,10 +17,7 @@ public class TutorialManager : MonoBehaviour
     private bool _waiting = false;
     private string _searchName;
     private GameObject _waitingObject;
-    private TowerSelection _towerSelection;
     public string _selectedTowerName;
-    private string[] _placeholdersToPass;
-    private string[] _replacementTextToPass;
 
     private void Start()
     {
@@ -55,9 +47,13 @@ public class TutorialManager : MonoBehaviour
     }
     private void Update()
     {
-        if (_tutorial)
+        if (_tutorial && _waiting == true)
         {
             _timer -= Time.deltaTime;
+            if (_searchName == null)
+            {
+                Debug.LogWarning("Tutorial Object Search Name is blank, is something else searching for an object?");
+            }
             if (_waiting && _timer <= 0)
             {
                 _waitingObject = GameObject.Find(_searchName);
