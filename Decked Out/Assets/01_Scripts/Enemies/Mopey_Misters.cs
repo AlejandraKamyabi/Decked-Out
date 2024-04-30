@@ -178,7 +178,7 @@ public class Mopey_Misters : MonoBehaviour
             wave.Spawn_mistakes(transform.position);
         }
 
-        wave.IncrementEnemyCount(numberOfSmallerEnemies);
+        wave.IncrementEnemyCount(numberOfSmallerEnemies + 1);
 
         Destroy(deathEffect, 10f);
         Destroy(gameObject, 0.4f);
