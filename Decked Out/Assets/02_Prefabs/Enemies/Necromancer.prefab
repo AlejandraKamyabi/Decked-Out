@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3913288997857569341}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3913288999114805958}
@@ -315,6 +315,8 @@ MonoBehaviour:
   isBurning: 0
   detectionRadius: 4
   isFrozen: 0
+  TotalFreezeTime: 3
+  isTotalFrozen: 0
   deathEffectPrefab: {fileID: 3161217357562407052, guid: 0cf2463afee714c41bed90fde5f36542, type: 3}
   deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
   circleCollider: {fileID: 0}
@@ -388,6 +390,8 @@ MonoBehaviour:
   _apostateScript: {fileID: 0}
   _kaboomScript: {fileID: 0}
   _necromancerScript: {fileID: -805646326839572185}
+  Mopey_Script: {fileID: 0}
+  _AegisScript: {fileID: 0}
   cleric: {fileID: 0}
   _mainSpriteRenderer: {fileID: 1380346453654109597}
   _burningColour: {r: 1, g: 0.47058824, b: 0, a: 1}
