@@ -44,6 +44,16 @@ public class Freeze : MonoBehaviour
                 {
                     cleric.ApplyTotalFreeze();
                 }
+                Mopey_Misters mopey_ = collider.GetComponent<Mopey_Misters>();
+                if (mopey_ != null)
+                {
+                    mopey_.ApplyTotalFreeze();
+                }
+                Aegis aegis = collider.GetComponent<Aegis>();
+                if (aegis != null)
+                {
+                    aegis.ApplyTotalFreeze();
+                }
             }
         }
 

@@ -1,5 +1,68 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2119423537532532960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7400822952328400357}
+  - component: {fileID: 7946888882544632744}
+  - component: {fileID: 564507489542639740}
+  m_Layer: 3
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7400822952328400357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119423537532532960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3913288999114805958}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &7946888882544632744
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119423537532532960}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
+--- !u!114 &564507489542639740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119423537532532960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd7fc89af7b27941a8d87708e9ac6c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 2
+  speedUpPrecentage: 1.8
 --- !u!1 &3913288997857569341
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +137,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a10a787cbf644449e90d3ce63e5fd7cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eeeb91388005cac428dd31f73a59ea63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,6 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3913288999114805958}
+  - component: {fileID: 3913288999114805944}
   - component: {fileID: 1920306922376555978}
   - component: {fileID: -7672974679039879729}
   - component: {fileID: 5728615593586163833}
@@ -118,9 +182,8 @@ GameObject:
   - component: {fileID: 3341973020179541167}
   - component: {fileID: 3896669677113779306}
   - component: {fileID: 7609683532087171619}
-  - component: {fileID: 1397299533675947310}
   m_Layer: 3
-  m_Name: Cleric
+  m_Name: Zoom_Zealots
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,9 +206,39 @@ Transform:
   - {fileID: 886997818285423921}
   - {fileID: 2274059105432949644}
   - {fileID: 5909795512529521301}
+  - {fileID: 7400822952328400357}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3913288999114805944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e12011f114e443449fd63bdaa3bb628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
+  moveSpeed: 1.8
+  damage: 10
+  maxHealth: 50
+  currentHealth: 0
+  healthSlider: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
+  zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
+  isBurning: 0
+  isFrozen: 0
+  TotalFreezeTime: 3
+  isTotalFrozen: 0
+  deathEffectPrefab: {fileID: 3161217357562407052, guid: dbc04a59f62726747bcc36af6783caa7, type: 3}
+  deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
+  circleCollider: {fileID: 0}
+  isAttracted: 0
+  isPoisoned: 0
+  isBeingPushed: 0
 --- !u!70 &1920306922376555978
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,7 +264,7 @@ AudioSource:
   m_GameObject: {fileID: 3913288999114805945}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -766855418508781966, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -356,12 +449,12 @@ MonoBehaviour:
   _slowEffect: {fileID: 7305093231076520712}
   _charmEffect: {fileID: 5909795512529521299}
   _poisonEffect: {fileID: 2274059105432949642}
-  _enemyScript: {fileID: 0}
+  _enemyScript: {fileID: 3913288999114805944}
   _apostateScript: {fileID: 0}
   _kaboomScript: {fileID: 0}
   _necromancerScript: {fileID: 0}
   _AegisScript: {fileID: 0}
-  cleric: {fileID: 1397299533675947310}
+  cleric: {fileID: 0}
   _mainSpriteRenderer: {fileID: 1380346453654109597}
   _burningColour: {r: 1, g: 0.47058824, b: 0, a: 1}
   _chilledColour: {r: 0.11372549, g: 0.69803923, b: 0.7921569, a: 1}
@@ -371,37 +464,6 @@ MonoBehaviour:
   _slowScaleValue: 0.2
   _charmScaleValue: 0.25
   _poisonScaleValue: 0.4
---- !u!114 &1397299533675947310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913288999114805945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ba4aa569cd3a240a3c53c009b755a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-  moveSpeed: 0.8
-  damage: 5
-  maxHealth: 100
-  currentHealth: 0
-  healthSlider: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
-  zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
-  isBurning: 0
-  isFrozen: 0
-  TotalFreezeTime: 3
-  isTotalFrozen: 0
-  deathEffectPrefab: {fileID: 3161217357562407052, guid: 1df0d32f96d55a14f835a67066872077, type: 3}
-  deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
-  circleCollider: {fileID: 0}
-  healingRange: 5
-  healAmount: 25
-  isAttracted: 0
-  isPoisoned: 0
-  isBeingPushed: 0
 --- !u!1001 &2983724566876172182
 PrefabInstance:
   m_ObjectHideFlags: 0

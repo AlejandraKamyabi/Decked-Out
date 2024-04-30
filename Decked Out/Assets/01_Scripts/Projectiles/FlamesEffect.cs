@@ -67,6 +67,12 @@ public class FlamesEffect : MonoBehaviour
             cleric.TakeDamage(damage);
             cleric.setBurning();
         }
+        Mopey_Misters mopey = enemy.GetComponent<Mopey_Misters>();
+        if (mopey != null)
+        {
+            mopey.TakeDamage(damage);
+            mopey.setBurning();
+        }
         Aegis aegis = enemy.GetComponent<Aegis>();
         if (aegis != null)
         {

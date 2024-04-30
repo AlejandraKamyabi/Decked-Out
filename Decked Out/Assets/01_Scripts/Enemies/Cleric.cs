@@ -82,7 +82,13 @@ public class Cleric : MonoBehaviour
                     apostate.currentHealth += healAmount;
                     apostate.UpdateEnemyHealthUI();
                 }
-                Necromancer necromancer = enemy.GetComponent<Necromancer>();
+            Mopey_Misters _Mopey = enemy.GetComponent<Mopey_Misters>();
+            if (_Mopey != null)
+            {
+                _Mopey.currentHealth += healAmount;
+                _Mopey.UpdateEnemyHealthUI();
+            }
+            Necromancer necromancer = enemy.GetComponent<Necromancer>();
                 if (necromancer != null)
                 {
                     necromancer.currentHealth += healAmount;
@@ -328,6 +334,15 @@ public class Cleric : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isTotalFrozen = false;
+        moveSpeed = original_moveSpeed;
+    }
+
+    public void ApplySpeedUp(float precentage)
+    {
+        moveSpeed *= precentage;
+    }
+    public void RemoveSpeedUp()
+    {
         moveSpeed = original_moveSpeed;
     }
 }
