@@ -181,6 +181,13 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    //Add Gem
+    public void AddGem(int count)
+    {
+        int i = PlayerPrefs.GetInt("gemCount");
+        i += count;
+        PlayerPrefs.SetInt("gemCount", i);
+    }
     //Save Gem Count
     public void SetGemCount(int count)
     {
@@ -197,6 +204,13 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.SetInt("gemCount", 0);
     }
 
+    //Add total kill
+    public void AddTotalKill(int count)
+    {
+        int i = PlayerPrefs.GetInt("TotalKill");
+        i += count;
+        PlayerPrefs.SetInt("TotalKill", i);
+    }
     //Save Total Kill
     public void SetTotalKill(int count)
     {
