@@ -151,7 +151,7 @@ public class Enemy : MonoBehaviour
         _isDead = true;
         moveSpeed = 0;
         _capsuleCollider.enabled = false;
-        deathSoundHandling.PlayDeathSound();
+        //deathSoundHandling.PlayDeathSound();
         if (_killTracker != null)
         {
             _killTracker.EnemyKilled();
@@ -159,8 +159,8 @@ public class Enemy : MonoBehaviour
         float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
         healthSlider.gameObject.SetActive(false);
         Destroy(healthSlider.gameObject, deathAnimationDuration);
-        GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
-        Destroy(deathEffect, 10f);
+        //GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+        //Destroy(deathEffect, 10f);
         Destroy(gameObject, 0.4f);       
     }
 
@@ -283,6 +283,15 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isTotalFrozen = false;
+        moveSpeed = original_moveSpeed;
+    }
+
+    public void ApplySpeedUp(float precentage)
+    {
+        moveSpeed *= precentage;
+    }
+    public void RemoveSpeedUp()
+    {
         moveSpeed = original_moveSpeed;
     }
 }

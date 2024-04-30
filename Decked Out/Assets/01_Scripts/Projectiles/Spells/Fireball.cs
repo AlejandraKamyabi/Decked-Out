@@ -42,6 +42,12 @@ public class Fireball : MonoBehaviour
                     necromancer.TakeDamage(damage);
                     necromancer.setBurning();
                 }
+                Mopey_Misters mopey_ = collider.GetComponent<Mopey_Misters>();
+                if (mopey_ != null)
+                {
+                    mopey_.TakeDamage(damage);
+                    mopey_.setBurning();
+                }
                 Cleric cleric = collider.GetComponent<Cleric>();
                 if (cleric != null)
                 {

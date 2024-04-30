@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2022782489577013929}
   - component: {fileID: 5543870573964730383}
   m_Layer: 0
-  m_Name: Cleric
-  m_TagString: Cleric
+  m_Name: Mopey Misters
+  m_TagString: Mopey_Misters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

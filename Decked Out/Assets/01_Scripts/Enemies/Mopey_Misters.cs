@@ -1,31 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
-public class KaboomEnemy : MonoBehaviour
+public class Mopey_Misters : MonoBehaviour
 {
     public UnityEngine.Transform targetCastle;
     public float moveSpeed = 1f;
-    private float original_Speed;
+    private float original_moveSpeed;
     public float damage = 10.0f;
-    public float maxHealth = 100.0f;
+    public float maxHealth;
     public float currentHealth;
     public Slider healthSlider;
     public GameObject zapPrefab;
-    private bool hasBeenZapped = false;
     public bool isBurning = false;
-    public GameObject effect;
-    public GameObject deathEffectPrefab;
+    private bool hasBeenZapped = false;
+    public int numberOfSmallerEnemies = 3;
+    private WaveManager wave;
+    private GameLoader _loader;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
     public int TotalFreezeTime = 3;
     public bool isTotalFrozen = false;
+    public GameObject deathEffectPrefab;
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
-    private EnemyKillTracker enemyKillTracker;
-    private EnemyHealthFlash healthFlash;
+    private EnemyKillTracker _killTracker;
+    [SerializeField] private CircleCollider2D circleCollider;
     float _yPos;
     SpriteRenderer _spriteRenderer;
 
@@ -33,20 +35,34 @@ public class KaboomEnemy : MonoBehaviour
 
     private Transform originalTarget;
     public bool isAttracted;
+
     public bool isPoisoned;
+
     //Wave_Tower
     public bool isBeingPushed = false;
+    EnemyDeathAnimation _enemyDeathAnimation;
+    EnemyHealthFlash _healthFlash;
+    CapsuleCollider2D _capsuleCollider;
     bool _isDead = false;
+
     private void Start()
     {
+        _loader = ServiceLocator.Get<GameLoader>();
+        _loader.CallOnComplete(Initialize);
         currentHealth = maxHealth;
-        original_Speed = moveSpeed;
         timeSinceLastDamage = damageTimer;
+        original_moveSpeed = moveSpeed;
         deathSoundHandling = GetComponent<EnemyDeathSoundHandling>();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
         deathSoundHandling.enemyDeathSound = deathSound;
-        enemyKillTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
+        _killTracker = GameObject.FindObjectOfType<EnemyKillTracker>();
+        _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        healthFlash = GetComponent<EnemyHealthFlash>();
+        _healthFlash = GetComponent<EnemyHealthFlash>();
+    }
+    public void Initialize()
+    {
+        wave = ServiceLocator.Get<WaveManager>();
     }
 
     private void Update()
@@ -68,12 +84,12 @@ public class KaboomEnemy : MonoBehaviour
 
             if (timeSinceLastDamage >= damageTimer)
             {
-                timeSinceLastDamage = 0.0f;
-                TakeDamage(20.0f);
+                timeSinceLastDamage = 0.0f; 
+                TakeDamage(10.0f); 
             }
         }
 
-        UpdateSortingLayer();
+        UpdateSortingLayer();        
     }
     private void UpdateSortingLayer()
     {
@@ -81,22 +97,7 @@ public class KaboomEnemy : MonoBehaviour
         _yPos = -_yPos;
         _spriteRenderer.sortingOrder = (int)(_yPos * 100);
     }
-    public void Insta_Kill()
-    {
-        Die();
-    }
-    public void Attracted(Transform attractionTower)
-    {
-        if (!isAttracted)
-        {
-            originalTarget = targetCastle;
-            targetCastle = attractionTower;
-            isAttracted = true;
-            StartCoroutine(ResetAttracted());
-        }
-    }
-
-    public void HandleWaveImpact(Vector2 direction ,float duration, float distance)
+    public void HandleWaveImpact(Vector2 direction, float duration, float distance)
     {
         if (!isBeingPushed)
         {
@@ -119,33 +120,11 @@ public class KaboomEnemy : MonoBehaviour
         }
         isBeingPushed = false;
     }
-    private IEnumerator ResetAttracted()
-    {
-        yield return new WaitForSeconds(5);
-        targetCastle = originalTarget;
-        isAttracted = false;
-    }
-    private void DealAOEDamage()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 5f);
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.CompareTag("Enemy"))
-            {
-                Enemy otherEnemy = collider.GetComponent<Enemy>();
-                if (otherEnemy != null)
-                {
-                    otherEnemy.TakeDamage(10);
-                }
-            }
-        }
-    }
-
     public bool ImmuneToDamage { get; set; }
     public bool IsShielded { get; set; }
     public void TakeDamage(float damage)
     {
-        if (!ImmuneToDamage)
+        if (!ImmuneToDamage)  
         {
             currentHealth -= damage;
             UpdateEnemyHealthUI();
@@ -156,26 +135,53 @@ public class KaboomEnemy : MonoBehaviour
             }
         }
     }
+    public void Attracted(Transform attractionTower)
+    {
+        if (!isAttracted) 
+        {
+            originalTarget = targetCastle;
+            targetCastle = attractionTower;
+            isAttracted = true; 
+            StartCoroutine(ResetAttracted()); 
+        }
+    }
+
+    private IEnumerator ResetAttracted()
+    {
+        yield return new WaitForSeconds(5);
+        targetCastle = originalTarget;
+        isAttracted = false;
+    }
+    private IEnumerator reset_Field()
+    {
+        yield return new WaitForSeconds(2);
+    }
     private void Die()
     {
         _isDead = true;
+        moveSpeed = 0;
+        _capsuleCollider.enabled = false;
         deathSoundHandling.PlayDeathSound();
-        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
-
-        if (enemyKillTracker != null)
+        if (_killTracker != null)
         {
-            enemyKillTracker.EnemyKilled();
+            _killTracker.EnemyKilled();
+        }
+        float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
+        healthSlider.gameObject.SetActive(false);
+        Destroy(healthSlider.gameObject, deathAnimationDuration);
+        GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+
+        
+        for (int i = 0; i < numberOfSmallerEnemies; i++)
+        {
+
+            wave.Spawn_mistakes(transform.position);
         }
 
-        DealAOEDamage();
+        wave.IncrementEnemyCount(numberOfSmallerEnemies + 1);
 
-        Destroy(healthSlider.gameObject);
-        GameObject deathEffect_prefab = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
-        Destroy(deathEffect_prefab, 10f);
-        Destroy(gameObject);
-        Destroy(deathEffect, 4.0f);
-
-
+        Destroy(deathEffect, 10f);
+        Destroy(gameObject, 0.4f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -187,20 +193,43 @@ public class KaboomEnemy : MonoBehaviour
             {
                 castle.TakeDamage(damage);
             }
-            enemyKillTracker.EnemyDestroyed();
-            GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
+            _killTracker.EnemyDestroyed();
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
-            Destroy(deathEffect, 4.0f);
-            
+
+           
         }
+        if (circleCollider == null) {
 
+          // if (collision.gameObject.CompareTag("Field"))
+          // {
+          //     Field force_Field = collision.gameObject.GetComponent<Field>();
+          //     force_Field.StartFlickerEffect();
+          //     StartCoroutine(reset_Field());
+          //     force_Field.ResetFieldPrefabChanges();
+          // }
+
+            return; } 
+
+        if (collision.gameObject.CompareTag("Field"))
+        {
+            circleCollider.enabled = true;                
+        }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (circleCollider == null) return; 
 
+        if (collision.gameObject.CompareTag("Field"))
+        {
+            circleCollider.enabled = false; 
+        }
+    }
     public void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
-        healthFlash.TakeDamage(currentHealth);
+        _healthFlash.TakeDamage(currentHealth);
+        
     }
 
     public void SetHealthSlider(Slider slider)
@@ -209,7 +238,7 @@ public class KaboomEnemy : MonoBehaviour
     }
     public void setBurning()
     {
-        isBurning = true;
+        isBurning = true;   
     }
     public void SetPoisoning(bool poisoning)
     {
@@ -227,14 +256,18 @@ public class KaboomEnemy : MonoBehaviour
     private IEnumerator DisableFreezeAfterDuration(float duration)
     {
         yield return new WaitForSeconds(duration);
-        isFrozen = false;
-        moveSpeed = original_Speed;
+        isFrozen = false; 
+        moveSpeed = original_moveSpeed; 
+    }
+    public void Insta_Kill()
+    {
+        Die();
     }
     public void Zap()
     {
         if (!hasBeenZapped)
         {
-            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 6f);
+            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 2f);
 
             foreach (Collider2D enemyCollider in nearbyEnemies)
             {
@@ -259,7 +292,7 @@ public class KaboomEnemy : MonoBehaviour
 
     public void ApplyTotalFreeze()
     {
-        if (!isFrozen)
+        if (!isTotalFrozen)
         {
             isTotalFrozen = true;
             moveSpeed = 0;
@@ -270,7 +303,7 @@ public class KaboomEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isTotalFrozen = false;
-        moveSpeed = original_Speed;
+        moveSpeed = original_moveSpeed;
     }
 
     public void ApplySpeedUp(float precentage)
@@ -279,6 +312,6 @@ public class KaboomEnemy : MonoBehaviour
     }
     public void RemoveSpeedUp()
     {
-        moveSpeed = original_Speed;
+        moveSpeed = original_moveSpeed;
     }
 }

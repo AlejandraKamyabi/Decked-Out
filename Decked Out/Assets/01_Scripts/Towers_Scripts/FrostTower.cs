@@ -37,6 +37,7 @@ public class FrostTower : MonoBehaviour, ITower
             {
                 Enemy enemy = collider.GetComponent<Enemy>();
                 KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
+                Mopey_Misters mopey = collider.GetComponent<Mopey_Misters>();
                 Apostate apostate = collider.GetComponent<Apostate>();
                 Cleric cleric = collider.GetComponent<Cleric>();
 
@@ -61,7 +62,12 @@ public class FrostTower : MonoBehaviour, ITower
                     cleric.ApplyFreeze(0.3f);
 
                 }
-                Aegis aegis = enemy.GetComponent<Aegis>();
+                if (mopey != null)
+                {
+                    mopey.ApplyFreeze(0.3f);
+
+                }
+                Aegis aegis = collider.GetComponent<Aegis>();
                 if (aegis != null)
                 {
                     aegis.TakeDamage(damage);
