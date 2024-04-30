@@ -47,14 +47,14 @@ private IEnumerator changeTag(float delay)
 
 private void OnTriggerEnter2D(Collider2D other)
     {
-    
+        input.setIsland(false);
         if (gameObject.CompareTag("Buffer") || gameObject.CompareTag("Placed") || gameObject.CompareTag("Spell"))
         {
             return;
         }
         if (other.CompareTag("Empty"))
         {
-            input.setIsland(false);
+         
             Destroy(other.gameObject);
         }
         StartCoroutine(changeTag(0.4f));
