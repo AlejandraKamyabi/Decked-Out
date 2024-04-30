@@ -613,9 +613,11 @@ public class WaveManager : MonoBehaviour
         Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
         return spawnPosition;
     }
-    public void IncrementEnemyCount(int count)
+    public void IncrementEnemyCount()
     {
-        waves[currentWave].numberOfEnemies += count;
+        waves[currentWave].numberOfEnemies++;
+        _killTracker.NumbersOfEnemiesInWave(GetEnemies());
+
     }
     public void IncrementTowersPlaced()
     {
