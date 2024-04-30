@@ -25,6 +25,8 @@ TagManager:
   - Cleric
   - AudioManager
   - Aegis
+  - Shield
+  - Mopey_Misters
   layers:
   - Default
   - TransparentFX

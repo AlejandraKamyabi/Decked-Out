@@ -32,6 +32,9 @@ public class WaveManager : MonoBehaviour
     public GameObject necromancer;
     public GameObject aegis;
     public GameObject cleric;
+    public GameObject Mopey_prefab;
+    public GameObject Mistake_Prefab;
+
 
 
     public float unitSquareSize = 10.0f;
@@ -56,6 +59,8 @@ public class WaveManager : MonoBehaviour
     public int enemiesBetweenAegisSpawns = 7;
     [Range(1, 25)]
     public int enemiesBetweenClericSpawns = 9;
+    [Range(1, 25)]
+    public int enemiesBetweenMopeySpawns = 13;
 
     private EnemyKillTracker _killTracker;
     private Coroutine spawningCoroutine;
@@ -86,6 +91,7 @@ public class WaveManager : MonoBehaviour
         enemiesBetweenGolemSpawns--;
         enemiesBetweenKaboomSpawns--;
         enemiesBetweenNecromancerSpawns--;
+        enemiesBetweenMopeySpawns--;
         enemiesBetweenAegisSpawns--;
         enemiesBetweenClericSpawns--;
         return this;
@@ -166,6 +172,14 @@ public class WaveManager : MonoBehaviour
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
                 continue;
             }
+            else if (enemiesSpawned % enemiesBetweenMopeySpawns == 0 && enemiesSpawned != 0)
+            {
+                Spawn_Mopey();
+                enemiesSpawned++;
+                //kaboomEnemy = true;
+                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
+                continue;
+            }
             else
             {
                 SpawnEnemy();
@@ -200,6 +214,48 @@ public class WaveManager : MonoBehaviour
         newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
         newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
         newEnemy.GetComponent<KaboomEnemy>().SetHealthSlider(newHealthSlider);
+    }
+    private void SpawnEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+        newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
+    }
+    private void Spawn_Mopey()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(Mopey_prefab, spawnPosition, Quaternion.identity);
+
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = newEnemy.GetComponent<Mopey_Misters>().maxHealth;
+        newEnemy.GetComponent<Mopey_Misters>().SetHealthSlider(newHealthSlider);
+    }
+    public void Spawn_mistakes(Vector3 spawnPosition)
+    {
+        Vector3 spawnOffset = Random.insideUnitCircle * 0.5f;
+        GameObject newEnemy = Instantiate(Mistake_Prefab, spawnPosition + spawnOffset, Quaternion.identity);
+
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+        newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
     }
     private void Spawn_Necromancer()
     {
@@ -519,21 +575,6 @@ public class WaveManager : MonoBehaviour
         }
 
     }
-        private void SpawnEnemy()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
-        newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
-    }
-
 
     private Vector3 GetRandomSpawnPosition()
     {
@@ -571,6 +612,10 @@ public class WaveManager : MonoBehaviour
 
         Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
         return spawnPosition;
+    }
+    public void IncrementEnemyCount(int count)
+    {
+        waves[currentWave].numberOfEnemies += count;
     }
     public void IncrementTowersPlaced()
     {
