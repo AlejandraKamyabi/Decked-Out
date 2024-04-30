@@ -53,5 +53,14 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
 
     public void OnUnityAdsShowStart(string adUnitId) { }
     public void OnUnityAdsShowClick(string adUnitId) { }
-    public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState) { }
+
+    // This method will be called after the ad is shown
+    public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
+    {
+        if (showCompletionState == UnityAdsShowCompletionState.COMPLETED)
+        {
+            // Call the ShowInterstitialAd method in the EndGameSplashManager
+            FindObjectOfType<EndGameSplashManager>().RestartGameAfterAd();
+        }
+    }
 }

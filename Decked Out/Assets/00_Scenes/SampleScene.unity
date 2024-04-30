@@ -4212,6 +4212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 937219844}
   - component: {fileID: 937219843}
+  - component: {fileID: 937219845}
   m_Layer: 0
   m_Name: AdsManager
   m_TagString: Untagged
@@ -4250,6 +4251,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &937219845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937219842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4bfc63547d1ae4f99ddb29d0269bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _androidAdUnitId: Interstitial_Android
+  _iOSAdUnitId: Interstitial_iOS
 --- !u!1 &949355066
 GameObject:
   m_ObjectHideFlags: 0
@@ -5418,6 +5433,7 @@ MonoBehaviour:
   castleGameObject: {fileID: 892063888}
   cardRandoEngine: {fileID: 0}
   enemyKillTracker: {fileID: 1106663294}
+  interstitialAds: {fileID: 0}
 --- !u!114 &1106663294
 MonoBehaviour:
   m_ObjectHideFlags: 0
