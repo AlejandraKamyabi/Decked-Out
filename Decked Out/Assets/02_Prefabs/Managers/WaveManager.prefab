@@ -150,13 +150,13 @@ MonoBehaviour:
     timeBetweenWaves: 2.12
   towersLeftText: {fileID: 0}
   collisionOccurred: 0
-  enemiesBetweenKaboomSpawns: 4
-  enemiesBetweenGolemSpawns: 7
-  enemiesBetweenApostateSpawns: 10
+  enemiesBetweenKaboomSpawns: 5
+  enemiesBetweenGolemSpawns: 8
+  enemiesBetweenApostateSpawns: 12
   enemiesBetweenNecromancerSpawns: 17
   enemiesBetweenAegisSpawns: 7
-  enemiesBetweenClericSpawns: 9
-  enemiesBetweenMopeySpawns: 3
+  enemiesBetweenClericSpawns: 11
+  enemiesBetweenMopeySpawns: 10
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0
   currentWave: 0

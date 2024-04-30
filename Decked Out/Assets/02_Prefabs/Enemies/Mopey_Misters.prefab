@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 3913288999114805945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3913288997857569340}
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
-  moveSpeed: 1
+  moveSpeed: 0.7
   damage: 10
   maxHealth: 100
   currentHealth: 0
