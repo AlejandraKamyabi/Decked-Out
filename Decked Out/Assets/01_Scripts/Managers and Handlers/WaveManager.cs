@@ -497,6 +497,30 @@ public class WaveManager : MonoBehaviour
                 newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
                 newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
                 break;
+            case "Aegis":
+
+                newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
+                newHealthSlider = Instantiate(healthSliderPrefab);
+
+                sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
+                newHealthSlider.transform.position = sliderPosition;
+                _killTracker.NumbersOfEnemiesInWave(GetEnemies());
+                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Aegis>().maxHealth;
+                newEnemy.GetComponent<Aegis>().SetHealthSlider(newHealthSlider);
+                break;
+            case "Cleric":
+
+                newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
+                newHealthSlider = Instantiate(healthSliderPrefab);
+
+                sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
+                newHealthSlider.transform.position = sliderPosition;
+                _killTracker.NumbersOfEnemiesInWave(GetEnemies());
+                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Cleric>().maxHealth;
+                newEnemy.GetComponent<Cleric>().SetHealthSlider(newHealthSlider);
+                break;
         }
 
         if (enemyPrefab != null)
