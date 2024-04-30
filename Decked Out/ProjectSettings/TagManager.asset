@@ -23,7 +23,10 @@ TagManager:
   - Necromancer
   - Temp
   - Cleric
+  - AudioManager
   - Aegis
+  - Shield
+  - Mopey_Misters
   layers:
   - Default
   - TransparentFX

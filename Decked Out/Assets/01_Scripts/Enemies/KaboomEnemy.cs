@@ -19,6 +19,8 @@ public class KaboomEnemy : MonoBehaviour
     public GameObject deathEffectPrefab;
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
+    public int TotalFreezeTime = 3;
+    public bool isTotalFrozen = false;
     private float timeSinceLastDamage = 0.0f;
     public AudioClip deathSound;
     private EnemyDeathSoundHandling deathSoundHandling;
@@ -70,10 +72,7 @@ public class KaboomEnemy : MonoBehaviour
                 TakeDamage(20.0f);
             }
         }
-        if (isFrozen)
-        {
-            moveSpeed = 0.39f;
-        }
+
         UpdateSortingLayer();
     }
     private void UpdateSortingLayer()
@@ -256,5 +255,30 @@ public class KaboomEnemy : MonoBehaviour
     public void ResetZapFlag()
     {
         hasBeenZapped = true;
+    }
+
+    public void ApplyTotalFreeze()
+    {
+        if (!isFrozen)
+        {
+            isTotalFrozen = true;
+            moveSpeed = 0;
+            StartCoroutine(DisableTotalFreezeAfterDuration(TotalFreezeTime));
+        }
+    }
+    private IEnumerator DisableTotalFreezeAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isTotalFrozen = false;
+        moveSpeed = original_Speed;
+    }
+
+    public void ApplySpeedUp(float precentage)
+    {
+        moveSpeed *= precentage;
+    }
+    public void RemoveSpeedUp()
+    {
+        moveSpeed = original_Speed;
     }
 }

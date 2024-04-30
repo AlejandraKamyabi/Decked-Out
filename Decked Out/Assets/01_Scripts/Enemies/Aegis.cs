@@ -10,6 +10,8 @@ public class Aegis : MonoBehaviour
     public float damage = 10.0f;
     public float maxHealth;
     public float currentHealth;
+    public int TotalFreezeTime = 3;
+    public bool isTotalFrozen = false;
     public Slider healthSlider;
     public GameObject zapPrefab;
     public bool isBurning = false;
@@ -57,7 +59,21 @@ public class Aegis : MonoBehaviour
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _healthFlash = GetComponent<EnemyHealthFlash>();
     }
-
+    public void ApplyTotalFreeze()
+    {
+        if (!isTotalFrozen)
+        {
+            isTotalFrozen = true;
+            moveSpeed = 0;
+            StartCoroutine(DisableTotalFreezeAfterDuration(TotalFreezeTime));
+        }
+    }
+    private IEnumerator DisableTotalFreezeAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isTotalFrozen = false;
+        moveSpeed = original_moveSpeed;
+    }
     private void Update()
     {
   

@@ -39,6 +39,12 @@ public class LightningStrike : MonoBehaviour
                     necromancer.TakeDamage(damage);
        
                 }
+                Mopey_Misters mopey = collider.GetComponent<Mopey_Misters>();
+                if (mopey != null)
+                {
+                    mopey.TakeDamage(damage);
+
+                }
                 Cleric cleric = collider.GetComponent<Cleric>();
                 if (cleric != null)
                 {

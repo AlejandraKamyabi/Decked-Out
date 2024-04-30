@@ -15,6 +15,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
     [SerializeField] Apostate _apostateScript;
     [SerializeField] KaboomEnemy _kaboomScript;
     [SerializeField] Necromancer _necromancerScript;
+    [SerializeField] Mopey_Misters Mopey_Script;
     [SerializeField] Aegis _AegisScript;
     [SerializeField] Cleric cleric;
 
@@ -28,6 +29,7 @@ public class EnemyStatusAnimationController : MonoBehaviour
     bool _basic = false;
     bool _kaboom = false;
     bool _apostate = false;
+    bool _mopey = false;
     bool _necromancer = false;
     bool _Aegis = false;
     bool _cleric = false;
@@ -87,6 +89,11 @@ public class EnemyStatusAnimationController : MonoBehaviour
         else if (cleric != null)
         {
             _cleric = true;
+            Debug.Log("Nercomancer Found");
+        }
+        else if (Mopey_Script != null)
+        {
+            _mopey = true;
             Debug.Log("Nercomancer Found");
         }
         else
@@ -356,6 +363,92 @@ public class EnemyStatusAnimationController : MonoBehaviour
                 ScaleDownAndDisable(_charmEffect, _charmScale);
             }
             else if (!_apostateScript.isBurning && !_apostateScript.isPoisoned && !_apostateScript.isFrozen && !_apostateScript.isAttracted)
+            {
+                clearStatusFrames++;
+                if (clearStatusFrames >= clearStatusFrameThreshold)
+                {
+                    EnemyColour(Color.white);
+                    clearStatusFrames = 0;
+                }
+            }
+        }
+        else if (_mopey)
+        {
+            if (Mopey_Script.currentHealth <= 0)
+            {
+                _burnEffect.SetActive(false);
+                _slowEffect.SetActive(false);
+                _poisonEffect.SetActive(false);
+                _charmEffect.SetActive(false);
+            }
+            if (Mopey_Script.isBurning)
+            {
+                EnemyColour(_burningColour);
+                if (_burnEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_burnRenderer);
+                }
+                else if (_burnEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_burnEffect, _burnScale);
+                    UpdateSortingOrder(_burnRenderer);
+                }
+            }
+            else if (!Mopey_Script.isBurning && _burnEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_burnEffect, _burnScale);
+            }
+            if (Mopey_Script.isFrozen)
+            {
+                EnemyColour(_chilledColour);
+                if (_slowEffect.activeInHierarchy == true)
+                {
+                    UpdateSortingOrder(_slowRenderer);
+                }
+                else if (_slowEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_slowEffect, _slowScale);
+                    UpdateSortingOrder(_slowRenderer);
+                }
+            }
+            else if (!Mopey_Script.isFrozen && _slowEffect.activeInHierarchy)
+            {
+                frozenStateFrames++;
+                if (frozenStateFrames >= frozenStateFrameThreshold)
+                {
+                    ScaleDownAndDisable(_slowEffect, _slowScale);
+                    frozenStateFrames = 0;
+                }
+
+            }
+            if (Mopey_Script.isPoisoned)
+            {
+                EnemyColour(_poisonedColour);
+                if (_poisonEffect.activeInHierarchy)
+                {
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+                else if (_poisonEffect.activeInHierarchy != true)
+                {
+                    ScaleUpAndEnable(_poisonEffect, _poisonScale);
+                    UpdateSortingOrder(_poisonRenderer);
+                }
+            }
+            else if (!Mopey_Script.isPoisoned && _poisonEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_poisonEffect, _poisonScale);
+            }
+            if (Mopey_Script.isAttracted)
+            {
+                EnemyColour(_attrachedColour);
+                ScaleUpAndEnable(_charmEffect, _charmScale);
+                UpdateSortingOrder(_charmRenderer);
+            }
+            else if (!Mopey_Script.isAttracted && _charmEffect.activeInHierarchy)
+            {
+                ScaleDownAndDisable(_charmEffect, _charmScale);
+            }
+            else if (!Mopey_Script.isBurning && !Mopey_Script.isPoisoned && !Mopey_Script.isFrozen && !Mopey_Script.isAttracted)
             {
                 clearStatusFrames++;
                 if (clearStatusFrames >= clearStatusFrameThreshold)

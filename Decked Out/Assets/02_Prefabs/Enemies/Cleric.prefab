@@ -171,7 +171,7 @@ AudioSource:
   m_GameObject: {fileID: 3913288999114805945}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -766855418508781966, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDeathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
+  mixerGroup: {fileID: -766855418508781966, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
 --- !u!50 &-6209553455341248833
 Rigidbody2D:
   serializedVersion: 4
@@ -359,6 +360,7 @@ MonoBehaviour:
   _apostateScript: {fileID: 0}
   _kaboomScript: {fileID: 0}
   _necromancerScript: {fileID: 0}
+  _AegisScript: {fileID: 0}
   cleric: {fileID: 1397299533675947310}
   _mainSpriteRenderer: {fileID: 1380346453654109597}
   _burningColour: {r: 1, g: 0.47058824, b: 0, a: 1}
@@ -390,7 +392,9 @@ MonoBehaviour:
   zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
   isBurning: 0
   isFrozen: 0
-  deathEffectPrefab: {fileID: 3913288999114805945}
+  TotalFreezeTime: 3
+  isTotalFrozen: 0
+  deathEffectPrefab: {fileID: 3161217357562407052, guid: 1df0d32f96d55a14f835a67066872077, type: 3}
   deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
   circleCollider: {fileID: 0}
   healingRange: 5
