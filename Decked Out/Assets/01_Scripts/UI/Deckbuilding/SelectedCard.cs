@@ -16,21 +16,21 @@ public class SelectedCard : MonoBehaviour
 
     [Header("Card Stats Display")]
     [SerializeField] Slider _dmgSlider;
+    [SerializeField] Image _dmgFill;
     [SerializeField] TextMeshProUGUI _dmgText;
+    [SerializeField] Image _rangeFill;
     [SerializeField] Slider _rangeSlider;
     [SerializeField] TextMeshProUGUI _rangeText;
     [SerializeField] Slider _rofSlider;
+    [SerializeField] Image _rofFill;
     [SerializeField] TextMeshProUGUI _rofText;
     [SerializeField] Slider _durationSlider;
+    [SerializeField] Image _durationFill;
     [SerializeField] TextMeshProUGUI _durationText;
     [SerializeField] float _sliderCheat = 0.1f;
 
     bool _slottedIn;
     Color _rarityColour;
-    Image _dmgFill;
-    Image _rangeFill;
-    Image _rofFill;
-    Image _durationFill;
 
     public TowerCardSO card { get { return _card; } }
     public bool slottedIn { get { return _slottedIn; } }
@@ -40,14 +40,12 @@ public class SelectedCard : MonoBehaviour
     {
         _loader = ServiceLocator.Get<GameLoader>();
         _loader.CallOnComplete(Initialize);
+
     }
     private void Initialize()
     {
-        _dmgFill = _dmgSlider.fillRect.GetComponent<Image>();
-        _rangeFill = _rangeSlider.fillRect.GetComponent<Image>();
-        _rofFill = _rofSlider.fillRect.GetComponent<Image>();
-        _durationFill = _durationSlider.fillRect.GetComponent<Image>();
-        DisableUI();
+     
+        //DisableUI();
     }
 
     public void SlotInCard(TowerCardSO card)
@@ -119,5 +117,9 @@ public class SelectedCard : MonoBehaviour
         _rofText.enabled = false;
         _durationSlider.value = 0f;
         _durationText.enabled = false;
+    }
+    public void SelectCard()
+    {
+
     }
 }

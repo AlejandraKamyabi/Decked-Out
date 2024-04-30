@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class DeckbuildingManager : MonoBehaviour
 {
     [SerializeField] private string nextSceneName = "SampleScene";
 
     [SerializeField] CardTierSelector[] _buttonScrips;
+    [SerializeField] GameObject[] _cardRenderers;
+
     [SerializeField] TowerCardSO[] _common;
     [SerializeField] TowerCardSO[] _uncommon;
     [SerializeField] TowerCardSO[] _rare;
@@ -38,12 +42,37 @@ public class DeckbuildingManager : MonoBehaviour
         if (tutorialPassthrough == null)
         {
             _buttonScrips[0].SetTier();
+            _buttonScrips[0].gameObject.GetComponent<Button>().Select();
         }
         else
         {
             Debug.Log("Loading Tutorial");
         }
         
+    }
+    public SelectedCard[] SetTierRenderers(int cardsInTier)
+    {
+        //Debug.Log("Cards in " + _currentTier + " Tier: " + cardsInTier);
+        SelectedCard[] activeRenderers = new SelectedCard[cardsInTier];
+        foreach (GameObject cardRenderer in _cardRenderers)
+        {
+            cardRenderer.SetActive(false);
+        }
+        for (int i = 0; i < cardsInTier; i++)
+        {
+            if (i <= cardsInTier)
+            {
+                _cardRenderers[i].SetActive(true);
+                activeRenderers[i] = _cardRenderers[i].GetComponent<SelectedCard>();
+                activeRenderers[i].Unslot();
+            }
+            else
+            {
+                Debug.LogError("No Cards in Tier - Check the Button");
+            }
+
+        }
+        return activeRenderers.ToArray();
     }
 
     public void OnStartButtonClicked()

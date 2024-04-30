@@ -8,18 +8,18 @@ using UnityEngine.UI;
 public class CardTierSelector : MonoBehaviour
 {
     [SerializeField] DeckbuildingManager _manager;
+    [SerializeField] Color _rarityColour;
 
     [Header("Tier Data")]
     [SerializeField] Image _border;
     [SerializeField] string _tier;
 
     [Header("Card Data")]
-    [SerializeField] SelectedCard[] _cardsSlots;
+    [SerializeField] SelectedCard[] _cardRenderers;
     [SerializeField] Image[] _cardBlanks;
     [SerializeField] GameObject[] _cardsToPickGO;
     [SerializeField] TowerCardSO[] _cardsOfRarity;
 
-    Color _rarityColour;
     public void SetTier()
     {
         bool noCardsSaved = false;
@@ -31,79 +31,46 @@ public class CardTierSelector : MonoBehaviour
         {
             noCardsSaved = true;
         }
+        Debug.Log("Renderering " + _cardsOfRarity.Length + " cards from " + _tier + " tier");
+        _cardRenderers = _manager.SetTierRenderers(_cardsOfRarity.Count());
   
-        _rarityColour = gameObject.GetComponentInChildren<Image>().color;
-        _border.color = _rarityColour;
-        SelectedCard[] allCardSlots = FindObjectsOfType<SelectedCard>();
-        foreach (SelectedCard cardSlot in allCardSlots)
+        //if (noCardsSaved)
         {
-            cardSlot.gameObject.SetActive(false);
-        }
-        Image[] allImages = FindObjectsOfType<Image>();
-        foreach (Image image in allImages)
-        {
-            if (image.gameObject.CompareTag("Card Blank"))
+            //TowerCardSO[] savedCards = new TowerCardSO[_manager.CheckIfSavedCards(_tier).Length];
+            //savedCards = _manager.CheckIfSavedCards(_tier).ToArray();
+            //for (int i = 0; i < savedCards.Length; i++)
             {
-                image.enabled = false;
-            }
-        }
-        foreach (SelectedCard cardSlot in _cardsSlots)
-        {
-            cardSlot.gameObject.SetActive(true);
-            cardSlot.Unslot();   
-
-        }
-        foreach (Image image in _cardBlanks)
-        {
-            image.enabled = true;
-        }
-        if (noCardsSaved)
-        {
-            TowerCardSO[] savedCards = new TowerCardSO[_manager.CheckIfSavedCards(_tier).Length];
-            savedCards = _manager.CheckIfSavedCards(_tier).ToArray();
-            for (int i = 0; i < savedCards.Length; i++)
-            {
-                _cardsSlots[i].SlotInCard(savedCards[i]);
+                //_cardRenderers[i].SlotInCard(savedCards[i]);
             }           
         }
         PresentCards();
     }
     private void PresentCards()
     {
-        CardToPick[] _cardsToPick = new CardToPick[_cardsToPickGO.Length];
-        foreach (GameObject cardToPickGO_ in _cardsToPickGO)
+        for (int i = 0; i < _cardRenderers.Length; i++)
         {
-            cardToPickGO_.gameObject.SetActive(true);
-        }        
-        for (int i = 0; i < _cardsOfRarity.Length; i++)
-        {
-            _cardsToPick[i] = _cardsToPickGO[i].GetComponent<CardToPick>();
-            _cardsToPick[i].SetCard(_cardsOfRarity[i]);
-        }
-        for (int j = _cardsOfRarity.Length; j < _cardsToPickGO.Length; j++)
-        {
-            _cardsToPickGO[j].SetActive(false);
+            _cardRenderers[i].SlotInCard(_cardsOfRarity[i]);
         }
 
     }
 
     public void SaveCards()
     {
-        TowerCardSO[] cards = new TowerCardSO[_cardsSlots.Length];
-        List<TowerCardSO> cardsList = new List<TowerCardSO>();
+        //TowerCardSO[] cards = new TowerCardSO[_cardRenderers.Length];
+        //List<TowerCardSO> cardsList = new List<TowerCardSO>();
 
-        foreach (SelectedCard slottedCards in _cardsSlots)
+        //foreach (SelectedCard slottedCards in _cardRenderers)
         {
-            if (slottedCards.slottedIn)
+           // if (slottedCards.slottedIn)
             {
-                TowerCardSO card = slottedCards.card;
-                cardsList.Add(card);
+                //TowerCardSO card = slottedCards.card;
+                //cardsList.Add(card);
             }
         }
-        cards = cardsList.ToArray();
-        if (_manager.CheckCurrentTier(_tier))
+       // cards = cardsList.ToArray();
+        //if (_manager.CheckCurrentTier(_tier))
         {
-            _manager.SetCardsOfTier(cards, _tier);
+           // _manager.SetCardsOfTier(cards, _tier);
         }       
     }
 
