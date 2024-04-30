@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Castle : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Castle : MonoBehaviour
     [SerializeField] long _deathVibrationDuration;
     private GameLoader _loader;
     private WaveManager wave;
+    private int damage = 9999;
 
     HeartJiggle _heartJiggle;
 
@@ -55,7 +57,53 @@ public class Castle : MonoBehaviour
     }
     private void UpdateHealthUI()
     {
-
         healthSlider.value = currentHealth;
+    }
+
+    
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        StartCoroutine(Wait(3, collision.gameObject));
+    }
+
+    private IEnumerator Wait(float time, GameObject enemy)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (enemy.CompareTag("Enemy"))
+        {
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                enemyScript.TakeDamage(damage);
+            }
+            KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
+            if (kaboom != null)
+            {
+                kaboom.TakeDamage(damage);
+            }
+            Apostate apostate = enemy.GetComponent<Apostate>();
+            if (apostate != null)
+            {
+                apostate.TakeDamage(damage);
+
+            }
+            Necromancer necromancer = enemy.GetComponent<Necromancer>();
+            if (necromancer != null)
+            {
+                necromancer.TakeDamage(damage);
+            }
+            Cleric cleric = enemy.GetComponent<Cleric>();
+            if (cleric != null)
+            {
+                cleric.TakeDamage(damage);
+            }
+            Aegis aegis = enemy.GetComponent<Aegis>();
+            if (aegis != null)
+            {
+                aegis.TakeDamage(damage);
+            }
+        }
     }
 }
