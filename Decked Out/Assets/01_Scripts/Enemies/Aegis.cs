@@ -152,26 +152,30 @@ public class Aegis : MonoBehaviour
         // After duration ends, remove immunity
         foreach (var enemy in enemiesToShield)
         {
-            if (enemy.gameObject.CompareTag("Enemy") && enemy.gameObject != this.gameObject)
+            if (enemy != null)
             {
-                Enemy enemyScript = enemy.GetComponent<Enemy>();
-                if (enemyScript != null)
+                if (enemy.gameObject.CompareTag("Enemy") && enemy.gameObject != this.gameObject)
                 {
-                    enemyScript.ImmuneToDamage = false;
-                    enemyScript.IsShielded = false;
-                    // Destroy the shield object
-                    if (enemyScript.transform.childCount > 0)
+                    Enemy enemyScript = enemy.GetComponent<Enemy>();
+                    if (enemyScript != null)
                     {
-                        foreach (Transform child in enemyScript.transform)
+                        enemyScript.ImmuneToDamage = false;
+                        enemyScript.IsShielded = false;
+                        // Destroy the shield object
+                        if (enemyScript.transform.childCount > 0)
                         {
-                            if (child.gameObject.CompareTag("Shield"))
+                            foreach (Transform child in enemyScript.transform)
                             {
-                                Destroy(child.gameObject);
+                                if (child.gameObject.CompareTag("Shield"))
+                                {
+                                    Destroy(child.gameObject);
+                                }
                             }
                         }
                     }
                 }
             }
+           
         }
     }
     public IEnumerator ManualPushback(Vector2 direction, float duration, float distance)
