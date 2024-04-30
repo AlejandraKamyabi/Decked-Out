@@ -1023,7 +1023,6 @@ GameObject:
   m_Component:
   - component: {fileID: 656364561}
   - component: {fileID: 656364559}
-  - component: {fileID: 656364562}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: AudioManager
@@ -1049,6 +1048,7 @@ MonoBehaviour:
   SFXSlider: {fileID: 2021626555}
   musicSource: {fileID: 1506916994}
   SFXSource: {fileID: 227203642}
+  canvas: {fileID: 0}
 --- !u!4 &656364561
 Transform:
   m_ObjectHideFlags: 0
@@ -1067,14 +1067,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &656364562
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656364558}
-  m_Enabled: 1
 --- !u!1 &717297344
 GameObject:
   m_ObjectHideFlags: 0
