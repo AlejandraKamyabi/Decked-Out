@@ -36,6 +36,12 @@ public class ZoomZealots : MonoBehaviour
             apostate.ApplySpeedUp(speedUpPrecentage);
 
         }
+        Mopey_Misters _mopey = collision.GetComponent<Mopey_Misters>();
+        if (_mopey != null)
+        {
+            _mopey.ApplySpeedUp(speedUpPrecentage);
+
+        }
         Necromancer necromancer = collision.GetComponent<Necromancer>();
         if (necromancer != null)
         {
@@ -75,6 +81,11 @@ public class ZoomZealots : MonoBehaviour
         if (cleric != null)
         {
             cleric.RemoveSpeedUp();
+        }
+        Mopey_Misters _mopey = collision.GetComponent<Mopey_Misters>();
+        if (_mopey != null)
+        {
+            _mopey.RemoveSpeedUp();
         }
     }
 }

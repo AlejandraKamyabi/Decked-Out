@@ -63,6 +63,14 @@ public class ZapProjectile : MonoBehaviour
             apostate.ResetZapFlag();
 
         }
+        Mopey_Misters mopey_ = enemy.GetComponent<Mopey_Misters>();
+        if (mopey_ != null)
+        {
+            mopey_.TakeDamage(damage);
+            mopey_.Zap();
+            mopey_.ResetZapFlag();
+
+        }
         Necromancer necromancer = enemy.GetComponent<Necromancer>();
         if (necromancer != null)
         {

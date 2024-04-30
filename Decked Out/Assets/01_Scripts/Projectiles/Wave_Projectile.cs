@@ -107,6 +107,12 @@ public class Wave_Projectile : MonoBehaviour
             apostate.HandleWaveImpact(direction, duration, force);
             
         }
+        Mopey_Misters mopey_ = enemy.GetComponent<Mopey_Misters>();
+        if (mopey_ != null)
+        {
+            mopey_.HandleWaveImpact(direction, duration, force);
+
+        }
         Cleric cleric = enemy.GetComponent<Cleric>();
         if (cleric != null)
         {
@@ -138,6 +144,12 @@ public class Wave_Projectile : MonoBehaviour
             necromancer.TakeDamage(damage);
           
         }
+        Mopey_Misters mopey = enemy.GetComponent<Mopey_Misters>();
+        if (mopey != null)
+        {
+            mopey.TakeDamage(damage);
+
+        }
         Cleric cleric = enemy.GetComponent<Cleric>();
         if (cleric != null)
         {
@@ -158,6 +170,11 @@ public class Wave_Projectile : MonoBehaviour
         if (enemyScript != null)
         {
             enemyScript.Insta_Kill();
+        }
+        Mopey_Misters mopey_ = enemy.GetComponent<Mopey_Misters>();
+        if (mopey_ != null)
+        {
+            mopey_.Insta_Kill();
         }
         KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
         if (kaboom != null)

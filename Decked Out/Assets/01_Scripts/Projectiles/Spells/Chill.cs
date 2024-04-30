@@ -54,6 +54,12 @@ public class Chill : MonoBehaviour
                     aegis.TakeDamage(damage);
                     aegis.ApplyFreeze(0.3f);
                 }
+                Mopey_Misters mopey = collider.GetComponent<Mopey_Misters>();
+                if (mopey != null)
+                {
+                    mopey.TakeDamage(damage);
+                    mopey.ApplyFreeze(0.3f);
+                }
             }
         }
 

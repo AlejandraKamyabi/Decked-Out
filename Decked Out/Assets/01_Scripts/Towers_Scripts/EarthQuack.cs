@@ -43,6 +43,8 @@ public class EarthQuack : MonoBehaviour, ITower
                 Enemy enemy = collider.GetComponent<Enemy>();
                 KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
                 Apostate apostate = collider.GetComponent<Apostate>();
+                Aegis aegis = collider.GetComponent<Aegis>();
+                Mopey_Misters mopey = collider.GetComponent<Mopey_Misters>();
                 Cleric cleric = collider.GetComponent<Cleric>();
 
                 if (enemy != null)
@@ -68,6 +70,18 @@ public class EarthQuack : MonoBehaviour, ITower
                 if (cleric != null)
                 {
                     cleric.ApplyFreeze(0.3f);
+
+
+                }
+                if (mopey != null)
+                {
+                    mopey.ApplyFreeze(0.3f);
+
+
+                }
+                if (aegis != null)
+                {
+                    aegis.ApplyFreeze(0.3f);
 
 
                 }
@@ -100,6 +114,7 @@ public class EarthQuack : MonoBehaviour, ITower
                 {
                     Enemy enemy = collider.GetComponent<Enemy>();
                     KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
+                    Mopey_Misters _mopey = collider.GetComponent<Mopey_Misters>();
                     Apostate apostate = collider.GetComponent<Apostate>();
                     Necromancer necromancer = collider.GetComponent<Necromancer>();
                     Aegis aegis = collider.GetComponent<Aegis>();
@@ -139,6 +154,12 @@ public class EarthQuack : MonoBehaviour, ITower
                     if (cleric != null)
                     {
                         cleric.TakeDamage(Damage);
+                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
+                        Destroy(deathEffect, 0.5f);
+                    }
+                    if (_mopey != null)
+                    {
+                        _mopey.TakeDamage(Damage);
                         GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
                         Destroy(deathEffect, 0.5f);
                     }
