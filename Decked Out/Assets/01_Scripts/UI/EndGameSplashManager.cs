@@ -12,7 +12,7 @@ public class EndGameSplashManager : MonoBehaviour
     public CardRandoEngine cardRandoEngine;
     public EnemyKillTracker enemyKillTracker;
 
-    private InterstitialAds interstitialAds; // Reference to the InterstitialAds script
+    public InterstitialAds interstitialAds; // Reference to the InterstitialAds script
 
     public void Initialize()
     {
@@ -49,6 +49,8 @@ public class EndGameSplashManager : MonoBehaviour
         else
         {
             Debug.LogError("InterstitialAds reference is null.");
+            // If interstitialAds reference is null, restart the game directly
+            RestartGame();
         }
     }
 
@@ -63,11 +65,20 @@ public class EndGameSplashManager : MonoBehaviour
         else
         {
             Debug.LogError("InterstitialAds reference is null.");
+            // If interstitialAds reference is null, restart the game directly
+            RestartGame();
         }
     }
 
     // This method will be called by InterstitialAds script after the ad is closed
     public void RestartGameAfterAd()
+    {
+        // Restart the game after the ad is closed
+        RestartGame();
+    }
+
+    // Restart the game method
+    private void RestartGame()
     {
         castleGameObject.ResetHealth();
         splashScreen.SetActive(false);
