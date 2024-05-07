@@ -399,7 +399,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
   circleCollider: {fileID: 0}
   healingRange: 5
-  healAmount: 25
+  healAmount: 40
   isAttracted: 0
   isPoisoned: 0
   isBeingPushed: 0

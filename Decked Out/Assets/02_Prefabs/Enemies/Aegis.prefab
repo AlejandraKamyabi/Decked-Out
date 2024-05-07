@@ -161,7 +161,7 @@ MonoBehaviour:
   targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
   moveSpeed: 0.7
   damage: 10
-  maxHealth: 150
+  maxHealth: 200
   currentHealth: 0
   TotalFreezeTime: 3
   isTotalFrozen: 0
