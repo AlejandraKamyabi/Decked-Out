@@ -239,9 +239,10 @@ public class Apostate : MonoBehaviour
             {
                 castle.TakeDamage(damage);
             }
+            _killTracker.EnemyDestroyed();
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
-            _killTracker.EnemyDestroyed();
+           
         }
         if (collision.gameObject.CompareTag("Placed"))
         {
