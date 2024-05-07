@@ -198,8 +198,6 @@ public class Mopey_Misters : MonoBehaviour
             _killTracker.EnemyDestroyed();
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
-
-           
         }
         if (circleCollider == null) {
 

@@ -60,60 +60,49 @@ public class Castle : MonoBehaviour
         healthSlider.value = currentHealth;
     }
 
-    
-
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(Wait(3, collision.gameObject));
+        StartCoroutine(Wait(2, collision.gameObject));
     }
 
     private IEnumerator Wait(float time, GameObject enemy)
     {
-       
-            // Your code that accesses enemy
+        yield return new WaitForSeconds(time);
 
-            yield return new WaitForSeconds(time);
-        if (enemy != null && enemy.gameObject != null)
+        Enemy enemyScript = enemy.GetComponent<Enemy>();
+        if (enemyScript != null)
         {
-            if (enemy.CompareTag("Enemy"))
-            {
-                Enemy enemyScript = enemy.GetComponent<Enemy>();
-                if (enemyScript != null)
-                {
-                    enemyScript.TakeDamage(damage);
-                }
-                KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
-                if (kaboom != null)
-                {
-                    kaboom.TakeDamage(damage);
-                }
-                Apostate apostate = enemy.GetComponent<Apostate>();
-                if (apostate != null)
-                {
-                    apostate.TakeDamage(damage);
-
-                }
-                Necromancer necromancer = enemy.GetComponent<Necromancer>();
-                if (necromancer != null)
-                {
-                    necromancer.TakeDamage(damage);
-                }
-                Cleric cleric = enemy.GetComponent<Cleric>();
-                if (cleric != null)
-                {
-                    cleric.TakeDamage(damage);
-                }
-                Aegis aegis = enemy.GetComponent<Aegis>();
-                if (aegis != null)
-                {
-                    aegis.TakeDamage(damage);
-                }
-                Mopey_Misters mopey = enemy.GetComponent<Mopey_Misters>();
-                if (mopey != null)
-                {
-                    mopey.TakeDamage(damage);
-                }
-            }
+            enemyScript.TakeDamage(damage);
+        }
+        KaboomEnemy kaboom = enemy.GetComponent<KaboomEnemy>();
+        if (kaboom != null)
+        {
+            kaboom.TakeDamage(damage);
+        }
+        Apostate apostate = enemy.GetComponent<Apostate>();
+        if (apostate != null)
+        {
+            apostate.TakeDamage(damage);
+        }
+        Necromancer necromancer = enemy.GetComponent<Necromancer>();
+        if (necromancer != null)
+        {
+            necromancer.TakeDamage(damage);
+        }
+        Cleric cleric = enemy.GetComponent<Cleric>();
+        if (cleric != null)
+        {
+            cleric.TakeDamage(damage);
+        }
+        Aegis aegis = enemy.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.TakeDamage(damage);
+        }
+        Mopey_Misters mopey = enemy.GetComponent<Mopey_Misters>();
+        if (mopey != null)
+        {
+            mopey.TakeDamage(damage);
         }
     }
 }

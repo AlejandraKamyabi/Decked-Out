@@ -33,7 +33,6 @@ public class BlackHole : MonoBehaviour
         Enemy enemyScript = collision.gameObject.GetComponent<Enemy>();
         if (enemyScript != null)
         {
-            print("hit");
             enemyScript.TakeDamage(damage);
         }
         KaboomEnemy kaboom = collision.gameObject.GetComponent<KaboomEnemy>();
@@ -45,7 +44,6 @@ public class BlackHole : MonoBehaviour
         if (apostate != null)
         {
             apostate.TakeDamage(damage);
-
         }
         Necromancer necromancer = collision.gameObject.GetComponent<Necromancer>();
         if (necromancer != null)
@@ -56,6 +54,16 @@ public class BlackHole : MonoBehaviour
         if (cleric != null)
         {
             cleric.TakeDamage(damage);
+        }
+        Aegis aegis = collision.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.TakeDamage(damage);
+        }
+        Mopey_Misters mopey = collision.GetComponent<Mopey_Misters>();
+        if (mopey != null)
+        {
+            mopey.TakeDamage(damage);
         }
     }
 }
