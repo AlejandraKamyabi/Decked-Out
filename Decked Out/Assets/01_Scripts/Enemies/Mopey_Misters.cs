@@ -162,10 +162,10 @@ public class Mopey_Misters : MonoBehaviour
         moveSpeed = 0;
         _capsuleCollider.enabled = false;
         deathSoundHandling.PlayDeathSound();
-        for (int i = 0; i < numberOfSmallerEnemies; i++)
+        for (int i = 0; i <= numberOfSmallerEnemies; i++)
         {
-            wave.Spawn_mistakes(transform.position);
             wave.IncrementEnemyCount();
+            wave.Spawn_mistakes(transform.position);
         }
         if (_killTracker != null)
         {
@@ -174,14 +174,14 @@ public class Mopey_Misters : MonoBehaviour
         float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
         healthSlider.gameObject.SetActive(false);
         Destroy(healthSlider.gameObject, deathAnimationDuration);
-        GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
-
-        
-   
-
-
-
-        Destroy(deathEffect, 10f);
+        //GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+        //
+        //
+        //
+        //
+        //
+        //
+        //Destroy(deathEffect, 10f);
         Destroy(gameObject, 0.4f);
     }
 

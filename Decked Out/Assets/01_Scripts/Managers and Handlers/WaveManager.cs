@@ -452,7 +452,7 @@ public class WaveManager : MonoBehaviour
                
                 GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
                 Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
+                waves[currentWave].numberOfEnemies++;
                 Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
                 _killTracker.NumbersOfEnemiesInWave(GetEnemies());
@@ -464,7 +464,7 @@ public class WaveManager : MonoBehaviour
                
                 newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
                 newHealthSlider = Instantiate(healthSliderPrefab);
-
+                waves[currentWave].numberOfEnemies++;
                 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
                 _killTracker.NumbersOfEnemiesInWave(GetEnemies());
@@ -477,8 +477,8 @@ public class WaveManager : MonoBehaviour
            
                 newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
                 newHealthSlider = Instantiate(healthSliderPrefab);
-
-                 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+                waves[currentWave].numberOfEnemies++;
+                sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
                 _killTracker.NumbersOfEnemiesInWave(GetEnemies());
                 newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
@@ -489,7 +489,7 @@ public class WaveManager : MonoBehaviour
                
                 newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
                 newHealthSlider = Instantiate(healthSliderPrefab);
-
+                waves[currentWave].numberOfEnemies++;
                 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
                 _killTracker.NumbersOfEnemiesInWave(GetEnemies());
@@ -501,7 +501,7 @@ public class WaveManager : MonoBehaviour
 
                 newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
                 newHealthSlider = Instantiate(healthSliderPrefab);
-
+                waves[currentWave].numberOfEnemies++;
                 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
                 _killTracker.NumbersOfEnemiesInWave(GetEnemies());
@@ -513,7 +513,7 @@ public class WaveManager : MonoBehaviour
 
                 newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
                 newHealthSlider = Instantiate(healthSliderPrefab);
-
+                waves[currentWave].numberOfEnemies++;
                 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
                 newHealthSlider.transform.position = sliderPosition;
                 _killTracker.NumbersOfEnemiesInWave(GetEnemies());
