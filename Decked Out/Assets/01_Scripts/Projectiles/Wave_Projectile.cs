@@ -119,6 +119,12 @@ public class Wave_Projectile : MonoBehaviour
             cleric.HandleWaveImpact(direction, duration, force);
 
         }
+        Aegis aegis = enemy.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.HandleWaveImpact(direction, duration, force);
+
+        }
 
     }
     private void DealDamage(GameObject enemy)
