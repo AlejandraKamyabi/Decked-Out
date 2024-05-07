@@ -165,11 +165,6 @@ public class Necromancer : MonoBehaviour
                 detectedEnemy.Add(collider.gameObject);
                 wave.AddEnemyToCurrentWave("Apostate", collider.transform.position);
             }
-            else if (collider.CompareTag("Necromancer") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Necromancer", collider.transform.position);
-            }
             else if (collider.CompareTag("Aegis") && !detectedEnemy.Contains(collider.gameObject))
             {
                 detectedEnemy.Add(collider.gameObject);
