@@ -1,30 +1,17 @@
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class SmallBullet : MonoBehaviour
 {
-    public float arrowSpeed = 10.0f;
+    public float SmallBulletSpeed;
     private float damage;
-    private Transform target;
+    private Vector2 moveDirection;
+    private float attackRange;
 
     private void Update()
     {
-        if (target == null || target.gameObject == null)
+        transform.Translate(moveDirection * SmallBulletSpeed * Time.deltaTime, Space.World);
+        if (Vector2.Distance(transform.position, transform.parent.position) > attackRange)
         {
-            Destroy(gameObject);
-            return;
-        }
-
-        Vector2 currentPosition = new Vector2(transform.position.x, transform.position.y);
-        Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
-        transform.position = Vector2.MoveTowards(currentPosition, targetPosition, arrowSpeed * Time.deltaTime);
-
-        Vector2 direction = targetPosition - currentPosition;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-        if (Vector2.Distance(currentPosition, targetPosition) < 0.1f)
-        {
-            DealDamage(target.gameObject);
             Destroy(gameObject);
         }
     }
@@ -34,13 +21,28 @@ public class Arrow : MonoBehaviour
         damage = value;
     }
 
-    public void SetTarget(Transform newTarget)
+    public void SetDirection(Vector2 direction)
     {
-        target = newTarget;
+        moveDirection = direction.normalized;
+    }
+
+    public void SetAttackRange(float range)
+    {
+        attackRange = range;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            DealDamage(other.gameObject);
+            Debug.Log("Creating bullet with damage");
+        }
     }
 
     private void DealDamage(GameObject enemy)
     {
+        Debug.Log("Dealing damage to target: " + enemy.name);
         Enemy enemyScript = enemy.GetComponent<Enemy>();
         if (enemyScript != null)
         {
@@ -61,11 +63,6 @@ public class Arrow : MonoBehaviour
         {
             necromancer.TakeDamage(damage);
         }
-        Mopey_Misters mopey = enemy.GetComponent<Mopey_Misters>();
-        if (mopey != null)
-        {
-            mopey.TakeDamage(damage);
-        }
         Cleric cleric = enemy.GetComponent<Cleric>();
         if (cleric != null)
         {
@@ -76,6 +73,6 @@ public class Arrow : MonoBehaviour
         {
             aegis.TakeDamage(damage);
         }
+        Destroy(gameObject);
     }
 }
-
