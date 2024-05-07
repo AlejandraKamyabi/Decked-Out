@@ -21,8 +21,8 @@ public class EnemyKillTracker : MonoBehaviour
     private GameLoader _loader;
     private CardRandoEngine _randoEngine;
     //Enemy Number Tracking
-    int _enemiesInWave;
-    int _enemiesDestroyedThisWave;
+    public int _enemiesInWave;
+    public int _enemiesDestroyedThisWave;
 
     private void Start()
     {
