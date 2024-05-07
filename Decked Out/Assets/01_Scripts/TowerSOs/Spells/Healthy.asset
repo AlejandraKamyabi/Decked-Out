@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
   m_Name: Healthy
   m_EditorClassIdentifier: 
-  towerName: Fireball
+  towerName: Health
   background: {fileID: 21300000, guid: 22650383234d3e24ca9131310b52bf04, type: 3}
   image: {fileID: 21300000, guid: 3fb643e4f91b26b42a97be485aef2460, type: 3}
   icon: {fileID: 21300000, guid: 99f7a47b58840d840879994ff1dc199a, type: 3}
