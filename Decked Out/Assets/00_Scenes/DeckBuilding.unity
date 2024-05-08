@@ -803,11 +803,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 337.5
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 420
+      value: 472.5
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -861,6 +861,7 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 8697395711928720410, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1145,6 +1146,11 @@ PrefabInstance:
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_RootOrder
       value: 3
+=======
+    - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2549,54 +2555,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1009700342}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 876393313}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 785592423}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2108980451}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 638760147}
         m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
         m_MethodName: SetTier
@@ -2660,6 +2618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 817826480}
+<<<<<<< Updated upstream
   _border: {fileID: 591246866}
   _tier: Legendary
   _cardsSlots:
@@ -2677,6 +2636,15 @@ MonoBehaviour:
   - {fileID: 1124112095}
   - {fileID: 1305189727}
   - {fileID: 354093570}
+=======
+  _rarityColour: {r: 0.9333334, g: 0.7254902, b: 0.1137255, a: 1}
+  _border: {fileID: 21300000, guid: 86ef3102cf37d764fbaca644468cd3b7, type: 3}
+  _tier: Legendary
+  _maxCount: 2
+  _cardRenderers: []
+  _cardBlanks: []
+  _cardsToPickGO: []
+>>>>>>> Stashed changes
   _cardsOfRarity:
   - {fileID: 11400000, guid: a594bc4f654a0324c9f522defa7f346b, type: 2}
   - {fileID: 11400000, guid: 8983d8cb0b0b65e449ea0efb6c25d2d7, type: 2}
@@ -3162,54 +3130,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1009700342}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 876393313}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2108980451}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 638760147}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 785592423}
         m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
         m_MethodName: SetTier
@@ -3273,6 +3193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 817826480}
+<<<<<<< Updated upstream
   _border: {fileID: 591246866}
   _tier: Rare
   _cardsSlots:
@@ -3292,6 +3213,15 @@ MonoBehaviour:
   - {fileID: 1124112095}
   - {fileID: 1305189727}
   - {fileID: 354093570}
+=======
+  _rarityColour: {r: 0.18431373, g: 0.32156864, b: 0.6862745, a: 1}
+  _border: {fileID: 21300000, guid: d903b922e1679f644895a7e280e2c229, type: 3}
+  _tier: Rare
+  _maxCount: 3
+  _cardRenderers: []
+  _cardBlanks: []
+  _cardsToPickGO: []
+>>>>>>> Stashed changes
   _cardsOfRarity:
   - {fileID: 11400000, guid: beb6c0bf0cacdb545ac0a525d40c9432, type: 2}
   - {fileID: 11400000, guid: c1bd809c41365af4d9b313a92d95a864, type: 2}
@@ -3424,13 +3354,28 @@ MonoBehaviour:
   - {fileID: 785592423}
   - {fileID: 2108980451}
   - {fileID: 638760147}
+<<<<<<< Updated upstream
+=======
+  _cardRenderers:
+  - {fileID: 8697395712100092858}
+  - {fileID: 1640391270}
+  - {fileID: 282367804}
+  - {fileID: 1952186241}
+  - {fileID: 818425249}
+  _startButton: {fileID: 1088290771}
+>>>>>>> Stashed changes
   _common: []
   _uncommon: []
   _rare: []
   _epic: []
   _legendary: []
   _currentTier: 
+<<<<<<< Updated upstream
 --- !u!1001 &835215578
+=======
+  _glowBorder: {fileID: 21300000, guid: 537668b18e8c2fe498014690fab62bf1, type: 3}
+--- !u!1001 &818425247
+>>>>>>> Stashed changes
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3507,11 +3452,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 337.5
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 420
+      value: 472.5
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3543,7 +3488,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< Updated upstream
       value: -200
+=======
+      value: 725
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3563,7 +3512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+<<<<<<< Updated upstream
       value: 2
+=======
+      value: 1
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -3705,54 +3658,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1009700342}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 785592423}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2108980451}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 638760147}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 876393313}
         m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
         m_MethodName: SetTier
@@ -3816,6 +3721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 817826480}
+<<<<<<< Updated upstream
   _border: {fileID: 591246866}
   _tier: Uncommon
   _cardsSlots:
@@ -3841,6 +3747,15 @@ MonoBehaviour:
   - {fileID: 1124112095}
   - {fileID: 1305189727}
   - {fileID: 354093570}
+=======
+  _rarityColour: {r: 0.1137255, g: 0.47058827, b: 0.36862746, a: 1}
+  _border: {fileID: 21300000, guid: b7c986fefb094fb428a6fc8edf2e64fb, type: 3}
+  _tier: Uncommon
+  _maxCount: 4
+  _cardRenderers: []
+  _cardBlanks: []
+  _cardsToPickGO: []
+>>>>>>> Stashed changes
   _cardsOfRarity:
   - {fileID: 11400000, guid: a17d7f6e4d56c2f499950572b877f0d9, type: 2}
   - {fileID: 11400000, guid: edeaafcae54913549a1514d0ec193284, type: 2}
@@ -4165,54 +4080,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 876393313}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 785592423}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2108980451}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 638760147}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1009700342}
         m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
         m_MethodName: SetTier
@@ -4276,6 +4143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 817826480}
+<<<<<<< Updated upstream
   _border: {fileID: 591246866}
   _tier: Common
   _cardsSlots:
@@ -4297,6 +4165,15 @@ MonoBehaviour:
   - {fileID: 1124112095}
   - {fileID: 1305189727}
   - {fileID: 354093570}
+=======
+  _rarityColour: {r: 0.34509805, g: 0.34509805, b: 0.34509805, a: 1}
+  _border: {fileID: 21300000, guid: 916842f7aeee6524f81c2a6d1b8ceea7, type: 3}
+  _tier: Common
+  _maxCount: 4
+  _cardRenderers: []
+  _cardBlanks: []
+  _cardsToPickGO: []
+>>>>>>> Stashed changes
   _cardsOfRarity:
   - {fileID: 11400000, guid: 8430b8eca9945e34cbcdec8e2ff926ba, type: 2}
   - {fileID: 11400000, guid: aed80f7ecc88b744ba63fb298d661901, type: 2}
@@ -6363,11 +6240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 337.5
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 420
+      value: 472.5
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6399,7 +6276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< Updated upstream
       value: -400
+=======
+      value: -362.5
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6629,7 +6510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -7871,11 +7752,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 337.5
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 420
+      value: 472.5
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7907,7 +7788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< Updated upstream
       value: 0
+=======
+      value: 362.5
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7927,7 +7812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -8304,54 +8189,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1009700342}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 876393313}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 785592423}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 638760147}
-        m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
-        m_MethodName: SaveCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2108980451}
         m_TargetAssemblyTypeName: CardTierSelector, Assembly-CSharp
         m_MethodName: SetTier
@@ -8415,6 +8252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 817826480}
+<<<<<<< Updated upstream
   _border: {fileID: 591246866}
   _tier: Epic
   _cardsSlots:
@@ -8434,6 +8272,15 @@ MonoBehaviour:
   - {fileID: 1124112095}
   - {fileID: 1305189727}
   - {fileID: 354093570}
+=======
+  _rarityColour: {r: 0.42352945, g: 0.2784314, b: 0.6627451, a: 1}
+  _border: {fileID: 21300000, guid: 4f3b995301dbca34f87e9809bb54471c, type: 3}
+  _tier: Epic
+  _maxCount: 3
+  _cardRenderers: []
+  _cardBlanks: []
+  _cardsToPickGO: []
+>>>>>>> Stashed changes
   _cardsOfRarity:
   - {fileID: 11400000, guid: f3b9932f60e217e4f8da4b2bc39894f2, type: 2}
   - {fileID: 11400000, guid: 17a9b6996c9c2d84cbf57d27e5a7fda3, type: 2}
@@ -8684,11 +8531,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.x
+<<<<<<< Updated upstream
       value: -1250
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_SizeDelta.y
       value: -60
+=======
+      value: 337.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 472.5
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8720,7 +8575,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< Updated upstream
       value: -575
+=======
+      value: -725
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342723, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8740,7 +8599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -8753,7 +8612,7 @@ PrefabInstance:
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1009700342}
+      objectReference: {fileID: 876393313}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
