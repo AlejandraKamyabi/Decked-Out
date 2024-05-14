@@ -36,7 +36,8 @@ public class SaveSystem : MonoBehaviour
     }
 
     private bool outPut = false;
-    private bool[] allOutPut;
+    private bool[] allOutPutBool;
+    private string[] allOutPutString;
     private int itemCount = 0;
     private int cardCount = 0;
 
@@ -98,12 +99,12 @@ public class SaveSystem : MonoBehaviour
     //Get All Card Collected (in the order how the enum are)
     public bool[] GetAllCardCollected()
     {
-        allOutPut = new bool[cardCount];
+        allOutPutBool = new bool[cardCount];
         int count = 0;
 
         foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
         {
-            allOutPut[count] = false;
+            allOutPutBool[count] = false;
             count++;
         }
         count = 0;
@@ -114,17 +115,17 @@ public class SaveSystem : MonoBehaviour
             {
                 if (PlayerPrefs.GetInt(cardCollectedString[card]) == 1)
                 {
-                    allOutPut[count] = true;
+                    allOutPutBool[count] = true;
                 }
                 else
                 {
-                    allOutPut[count] = false;
+                    allOutPutBool[count] = false;
                 }
             }
             count++;
         }
 
-        return allOutPut;
+        return allOutPutBool;
     }
     //Reset Card Collected
     public void ResetCardCollected()
@@ -133,6 +134,19 @@ public class SaveSystem : MonoBehaviour
         {
             PlayerPrefs.SetInt(cardCollectedString[card], 0);
         }
+    }
+    //Get All Card Name
+    public string[] GetAllCardName()
+    {
+        allOutPutString = new string[cardCount];
+        int count = 0;
+
+        foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
+        {
+            allOutPutString[count] = card.ToString();
+        }
+
+        return allOutPutString;
     }
 
     //Set Purchased Item
@@ -167,12 +181,12 @@ public class SaveSystem : MonoBehaviour
     //Get all Purchased Item (in the order how the enum are)
     public bool[] GetAllPurchasedItem()
     {
-        allOutPut = new bool[itemCount];
+        allOutPutBool = new bool[itemCount];
         int count = 0;
 
         foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
         {
-            allOutPut[count] = false;
+            allOutPutBool[count] = false;
             count++;
         }
         count = 0;
@@ -183,17 +197,17 @@ public class SaveSystem : MonoBehaviour
             {
                 if (PlayerPrefs.GetInt(purchasedItemString[item]) == 1)
                 {
-                    allOutPut[count] = true;
+                    allOutPutBool[count] = true;
                 }
                 else
                 {
-                    allOutPut[count] = false;
+                    allOutPutBool[count] = false;
                 }
             }
             count++;
         }
 
-        return allOutPut;
+        return allOutPutBool;
     }
     //Reset Purchased Item
     public void ResetPurchasedItem()
