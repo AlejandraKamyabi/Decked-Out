@@ -35,7 +35,7 @@ public class SaveSystem : MonoBehaviour
         b
     }
 
-    private bool outPut;
+    private bool outPut = false;
     private bool[] allOutPut;
     private int itemCount = 0;
     private int cardCount = 0;
@@ -45,9 +45,9 @@ public class SaveSystem : MonoBehaviour
 
     private void Awake()
     {
-        GameObject[] allAudioManager = GameObject.FindGameObjectsWithTag("SaveSystem");
+        GameObject[] saveSystem = GameObject.FindGameObjectsWithTag("SaveSystem");
 
-        if (allAudioManager.Length > 1)
+        if (saveSystem.Length > 1)
         {
             Destroy(gameObject);
         }
@@ -59,6 +59,7 @@ public class SaveSystem : MonoBehaviour
         }
         foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
         {
+            purchasedItemString[item] = item.ToString();
             itemCount++;
         }
 
@@ -80,6 +81,7 @@ public class SaveSystem : MonoBehaviour
     //Get One Card Collected
     public bool GetCardCollected(CardCollected card)
     {
+        outPut = false;
         if (PlayerPrefs.HasKey(cardCollectedString[card]))
         {
             if (PlayerPrefs.GetInt(cardCollectedString[card]) == 1)
@@ -101,13 +103,23 @@ public class SaveSystem : MonoBehaviour
 
         foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
         {
-            if (PlayerPrefs.GetInt(cardCollectedString[card]) == 1)
+            allOutPut[count] = false;
+            count++;
+        }
+        count = 0;
+
+        foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
+        {
+            if (PlayerPrefs.HasKey(cardCollectedString[card]))
             {
-                allOutPut[count] = true;
-            }
-            else
-            {
-                allOutPut[count] = false;
+                if (PlayerPrefs.GetInt(cardCollectedString[card]) == 1)
+                {
+                    allOutPut[count] = true;
+                }
+                else
+                {
+                    allOutPut[count] = false;
+                }
             }
             count++;
         }
@@ -138,6 +150,7 @@ public class SaveSystem : MonoBehaviour
     //Get one Purchased Item
     public bool GetPurchasedItem(PurchasedItem item)
     {
+        outPut = false;
         if (PlayerPrefs.HasKey(purchasedItemString[item]))
         {
             if (PlayerPrefs.GetInt(purchasedItemString[item]) == 1)
@@ -159,13 +172,23 @@ public class SaveSystem : MonoBehaviour
 
         foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
         {
-            if (PlayerPrefs.GetInt(purchasedItemString[item]) == 1)
+            allOutPut[count] = false;
+            count++;
+        }
+        count = 0;
+
+        foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
+        {
+            if (PlayerPrefs.HasKey(purchasedItemString[item]))
             {
-                allOutPut[count] = true;
-            }
-            else
-            {
-                allOutPut[count] = false;
+                if (PlayerPrefs.GetInt(purchasedItemString[item]) == 1)
+                {
+                    allOutPut[count] = true;
+                }
+                else
+                {
+                    allOutPut[count] = false;
+                }
             }
             count++;
         }
@@ -184,8 +207,11 @@ public class SaveSystem : MonoBehaviour
     //Add Gem
     public void AddGem(int count)
     {
-        int i = PlayerPrefs.GetInt("gemCount");
-        i += count;
+        int i = count;
+        if (PlayerPrefs.HasKey("gemCount"))
+        {
+            i += PlayerPrefs.GetInt("gemCount");
+        }
         PlayerPrefs.SetInt("gemCount", i);
     }
     //Save Gem Count
@@ -196,7 +222,14 @@ public class SaveSystem : MonoBehaviour
     //Get Gem Count
     public int GetGemCount()
     {
-        return PlayerPrefs.GetInt("gemCount");
+        if (PlayerPrefs.HasKey("gemCount"))
+        {
+            return PlayerPrefs.GetInt("gemCount");
+        }
+        else
+        {
+            return 0;
+        }
     }
     //Reset Gem Count
     public void ResetGemCount()
@@ -207,8 +240,11 @@ public class SaveSystem : MonoBehaviour
     //Add total kill
     public void AddTotalKill(int count)
     {
-        int i = PlayerPrefs.GetInt("TotalKill");
-        i += count;
+        int i = count;
+        if (PlayerPrefs.HasKey("TotalKill"))
+        {
+            i += PlayerPrefs.GetInt("TotalKill");
+        }
         PlayerPrefs.SetInt("TotalKill", i);
     }
     //Save Total Kill
@@ -219,7 +255,14 @@ public class SaveSystem : MonoBehaviour
     //Get Total Kill
     public int GetTotalKill()
     {
-        return PlayerPrefs.GetInt("TotalKill");
+        if (PlayerPrefs.HasKey("TotalKill"))
+        {
+            return PlayerPrefs.GetInt("TotalKill");
+        }
+        else
+        {
+            return 0;
+        }
     }
     //Reset Total Kill
     private void ResetTotalKill()
