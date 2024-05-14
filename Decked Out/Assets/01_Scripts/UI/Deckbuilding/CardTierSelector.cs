@@ -17,8 +17,6 @@ public class CardTierSelector : MonoBehaviour
 
     [Header("Card Data")]
     [SerializeField] SelectedCard[] _cardRenderers;
-    [SerializeField] Image[] _cardBlanks;
-    [SerializeField] GameObject[] _cardsToPickGO;
     [SerializeField] TowerCardSO[] _cardsOfRarity;
 
     public void SetTier()

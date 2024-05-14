@@ -15,6 +15,7 @@ public class SelectedCard : MonoBehaviour
     [SerializeField] Color _gold;
 
     [Header("Card Stats Display")]
+    [SerializeField] Button _button;
     [SerializeField] Slider _dmgSlider;
     [SerializeField] Image _dmgFill;
     [SerializeField] TextMeshProUGUI _dmgText;
@@ -33,7 +34,6 @@ public class SelectedCard : MonoBehaviour
     Color _rarityColour;
     Sprite _glowBorder;
     Sprite _baseBorder;
-    Button _button;
 
     public TowerCardSO card { get { return _card; } }
     public bool selected { get { return _selected; } }
@@ -46,7 +46,6 @@ public class SelectedCard : MonoBehaviour
         _loader.CallOnComplete(Initialize);
         _manager = FindObjectOfType<DeckbuildingManager>();
         _glowBorder = _manager._glowBorder;
-        _button = GetComponent<Button>();
     }
     private void Initialize()
     {
