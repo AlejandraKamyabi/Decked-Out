@@ -228,6 +228,16 @@ public class SaveSystem : MonoBehaviour
         }
         PlayerPrefs.SetInt("gemCount", i);
     }
+    //minus Gem
+    public void MinusGem(int count)
+    {
+        int i = count;
+        if (PlayerPrefs.HasKey("gemCount"))
+        {
+            i -= PlayerPrefs.GetInt("gemCount");
+        }
+        PlayerPrefs.SetInt("gemCount", i);
+    }
     //Save Gem Count
     public void SetGemCount(int count)
     {

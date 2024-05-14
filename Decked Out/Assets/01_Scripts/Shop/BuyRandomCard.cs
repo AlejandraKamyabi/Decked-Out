@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuyRandomCard : MonoBehaviour
 {
     private SaveSystem saveSystem;
+    [SerializeField] int prices;
 
     private void Start()
     {
@@ -18,31 +19,35 @@ public class BuyRandomCard : MonoBehaviour
         string[] cardNameList = saveSystem.GetAllCardName();
         int count = 0;
         int cardGet = 0;
+        int gemCount = saveSystem.GetGemCount();
 
-
-        foreach (bool card in cardList)
+        if (gemCount >= prices)
         {
-            if (card == false)
+            foreach (bool card in cardList)
             {
-                count++;
+                if (card == false)
+                {
+                    count++;
+                }
             }
-        }
 
-        if (count > 1)
-        {
-            cardGet = Random.Range(0, count - 1);
-        }
-
-        for (int i = 0; i < cardList.Length; i++)
-        {
-            if(cardList[i] == false && cardGet == 0)
+            if (count > 1)
             {
-                SaveSystem.CardCollected collected = (SaveSystem.CardCollected)System.Enum.Parse(typeof(SaveSystem.CardCollected), cardNameList[i]);
-                saveSystem.SetCardCollected(collected, true);
+                cardGet = Random.Range(0, count - 1);
             }
-            else if(cardList[i] == false)
+
+            for (int i = 0; i < cardList.Length; i++)
             {
-                cardGet--;
+                if (cardList[i] == false && cardGet == 0)
+                {
+                    SaveSystem.CardCollected collected = (SaveSystem.CardCollected)System.Enum.Parse(typeof(SaveSystem.CardCollected), cardNameList[i]);
+                    saveSystem.SetCardCollected(collected, true);
+                    saveSystem.MinusGem(prices);
+                }
+                else if (cardList[i] == false)
+                {
+                    cardGet--;
+                }
             }
         }
     }
