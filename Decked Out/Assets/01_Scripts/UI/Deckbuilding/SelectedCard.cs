@@ -1,18 +1,18 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SelectedCard : MonoBehaviour
 {
     [SerializeField] TowerCardSO _card;
 
     [Header("Card Base Display")]
-    [SerializeField] Image _border;
+    [SerializeField] Image _background;
     [SerializeField] Image _image;
     [SerializeField] Image _icon;
     [SerializeField] TextMeshProUGUI _name;
-    [SerializeField] Image _greyOut;
-    [SerializeField] Color _gold;
 
     [Header("Card Stats Display")]
     [SerializeField] Slider _dmgSlider;
@@ -27,38 +27,34 @@ public class SelectedCard : MonoBehaviour
     [SerializeField] Slider _durationSlider;
     [SerializeField] Image _durationFill;
     [SerializeField] TextMeshProUGUI _durationText;
-    [SerializeField] float _sliderCheat = 0.15f;
+    [SerializeField] float _sliderCheat = 0.1f;
 
-    bool _selected = false;
+    bool _slottedIn;
     Color _rarityColour;
-    Sprite _glowBorder;
-    Sprite _baseBorder;
-    Button _button;
 
     public TowerCardSO card { get { return _card; } }
-    public bool selected { get { return _selected; } }
+    public bool slottedIn { get { return _slottedIn; } }
 
     GameLoader _loader;
-    DeckbuildingManager _manager;
     private void Start()
     {
         _loader = ServiceLocator.Get<GameLoader>();
         _loader.CallOnComplete(Initialize);
-        _manager = FindObjectOfType<DeckbuildingManager>();
-        _glowBorder = _manager._glowBorder;
-        _button = GetComponent<Button>();
+
     }
     private void Initialize()
     {
+     
         //DisableUI();
     }
 
     public void SlotInCard(TowerCardSO card)
     {
-        if (!_selected)
+        if (!_slottedIn)
         {
             Debug.Log(card + " :slotted in");
             _card = card;
+            _slottedIn = true;
             UpdateUI();
         }
        
@@ -66,25 +62,13 @@ public class SelectedCard : MonoBehaviour
     public void Unslot()
     {
         _card = null;
-        _selected = false;
+        _slottedIn = false;
         DisableUI();
-    }
-    public void SetBorderSprite(Sprite border)
-    {
-        _border.sprite = border;
-        _baseBorder = border;
     }
     private void UpdateUI()
     {
-        //Selected Effects Clear
-        if (!_selected)
-        {
-            _border.transform.localScale = Vector3.one;
-            _baseBorder = _border.sprite;
-            _icon.color = Color.white;
-        }
         _rarityColour = _card.rarityColor;
-        _border.enabled = true;
+        _background.enabled = true;
         _image.enabled = true;
         _icon.enabled = true;
         _name.enabled = true;
@@ -92,7 +76,7 @@ public class SelectedCard : MonoBehaviour
         _rangeText.enabled = true;
         _rofText.enabled = true;
         _durationText.enabled = true;
-        _border.sprite = _card.background;
+        _background.sprite = _card.background;
         _image.sprite = _card.image;
         _icon.sprite = _card.icon;
         _name.text = _card.name;
@@ -100,23 +84,27 @@ public class SelectedCard : MonoBehaviour
 
         _dmgSlider.value = (_card.damage / 25) + _sliderCheat;
         _dmgText.text = _card.damage.ToString();
+        _dmgText.color = _rarityColour;
         _dmgFill.color = _rarityColour;
 
         _rangeSlider.value = (_card.range / 5) + _sliderCheat;
         _rangeText.text = _card.range.ToString();
         _rangeFill.color = _card.rarityColor;
+        _rangeText.color = _rarityColour;
 
         _rofSlider.value = (_card.rateOfFire / 10) + _sliderCheat;
         _rofText.text = _card.rateOfFire.ToString();
+        _rofText.color = _rarityColour;
         _rofFill.color = _rarityColour;
 
         _durationSlider.value = (_card.duration / 10) + _sliderCheat;
         _durationText.text = _card.duration.ToString();
+        _durationText.color = _rarityColour;
         _durationFill.color = _rarityColour;
     }
     private void DisableUI()
     {
-        _border.enabled = false;
+        _background.enabled = false;
         _image.enabled = false;
         _icon.enabled = false;
         _name.enabled = false;
@@ -132,33 +120,6 @@ public class SelectedCard : MonoBehaviour
     }
     public void SelectCard()
     {
-        if(!_selected)
-        {
-            _manager.AddCard(_card);
-            _selected = true;
-            _border.sprite = _glowBorder;
-            _border.transform.localScale = new Vector2(1.26f, 1.26f);
-            _icon.color = _gold;
-        }
-        else if (_selected)
-        {
-            _manager.RemoveCard(_card );
-            _selected = false;
-            _border.sprite = _baseBorder;
-            _border.transform.localScale = Vector2.one;
-            _icon.color = Color.white;
-        }
-    }
-    public void ActivateGlow()
-    {
-        _selected = true;
-        _border.sprite = _glowBorder;
-        _border.transform.localScale = new Vector2(1.26f, 1.26f);
-        _icon.color = _gold;
-    }
-    public void GreyOut(bool on)
-    {
-        _greyOut.gameObject.SetActive(on);
-        _button.interactable = !on;
+
     }
 }

@@ -11,9 +11,8 @@ public class CardTierSelector : MonoBehaviour
     [SerializeField] Color _rarityColour;
 
     [Header("Tier Data")]
-    [SerializeField] Sprite _border;
+    [SerializeField] Image _border;
     [SerializeField] string _tier;
-    [SerializeField] int _maxCount;
 
     [Header("Card Data")]
     [SerializeField] SelectedCard[] _cardRenderers;
@@ -23,36 +22,56 @@ public class CardTierSelector : MonoBehaviour
 
     public void SetTier()
     {
-         Debug.Log("Renderering " + _cardsOfRarity.Length + " cards from " + _tier + " tier");
-        _cardRenderers = _manager.SetTierRenderers(_cardsOfRarity.Count(), _tier);
+        bool noCardsSaved = false;
+        if (_manager.CheckIfSavedCards(_tier).Length < 0)
+        {
+            noCardsSaved = false;
+        }
+        else
+        {
+            noCardsSaved = true;
+        }
+        Debug.Log("Renderering " + _cardsOfRarity.Length + " cards from " + _tier + " tier");
+        _cardRenderers = _manager.SetTierRenderers(_cardsOfRarity.Count());
+  
+        //if (noCardsSaved)
+        {
+            //TowerCardSO[] savedCards = new TowerCardSO[_manager.CheckIfSavedCards(_tier).Length];
+            //savedCards = _manager.CheckIfSavedCards(_tier).ToArray();
+            //for (int i = 0; i < savedCards.Length; i++)
+            {
+                //_cardRenderers[i].SlotInCard(savedCards[i]);
+            }           
+        }
         PresentCards();
     }
     private void PresentCards()
     {
-        _manager.DeactivateGreyOut();
         for (int i = 0; i < _cardRenderers.Length; i++)
         {
             _cardRenderers[i].SlotInCard(_cardsOfRarity[i]);
-            _cardRenderers[i].SetBorderSprite(_border);
         }
-        for (int i = 0; i < _cardRenderers.Length; i++)
+
+    }
+
+    public void SaveCards()
+    {
+        //TowerCardSO[] cards = new TowerCardSO[_cardRenderers.Length];
+        //List<TowerCardSO> cardsList = new List<TowerCardSO>();
+
+        //foreach (SelectedCard slottedCards in _cardRenderers)
         {
-            if (_manager.CheckIfSavedCards(_tier).Contains(_cardRenderers[i].card))
+           // if (slottedCards.slottedIn)
             {
-                _cardRenderers[i].ActivateGlow();
+                //TowerCardSO card = slottedCards.card;
+                //cardsList.Add(card);
             }
         }
-        if (_manager.CheckIfSavedCards(_tier).Length >= _maxCount)
+       // cards = cardsList.ToArray();
+        //if (_manager.CheckCurrentTier(_tier))
         {
-            foreach (SelectedCard cardRenderer in _cardRenderers)
-            {
-                if (!cardRenderer.selected)
-                {
-                    cardRenderer.GreyOut(true);
-                }
-            }
-            
-        }
+           // _manager.SetCardsOfTier(cards, _tier);
+        }       
     }
 
 

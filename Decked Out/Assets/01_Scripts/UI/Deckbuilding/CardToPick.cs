@@ -69,7 +69,7 @@ public class CardToPick : MonoBehaviour
         _isPressed = false;
         foreach (SelectedCard selectedCard in selectedCardsArray)
         {
-            if (!selectedCard.selected)
+            if (!selectedCard.slottedIn)
             {
                 selectedCard.SlotInCard(_card);
             }
