@@ -69,7 +69,7 @@ MonoBehaviour:
   m_text: Tower Title
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b74d179f1f23d074f9a5c356061ad7ae, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 0d6d1b7833d21a04ca6dc6739115ddaf, type: 2}
+  m_sharedMaterial: {fileID: 4860474002388406797, guid: b74d179f1f23d074f9a5c356061ad7ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

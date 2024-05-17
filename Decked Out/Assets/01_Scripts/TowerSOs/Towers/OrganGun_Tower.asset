@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
   m_Name: OrganGun_Tower
   m_EditorClassIdentifier: 
-  towerName: Organ
-  background: {fileID: 21300000, guid: 7b276240032b8fa419849ff5eeba1a8e, type: 3}
+  towerName: Organ Gun
+  background: {fileID: 21300000, guid: d903b922e1679f644895a7e280e2c229, type: 3}
   image: {fileID: 21300000, guid: c030e466abbd60b4fbdd57854afabd7b, type: 3}
   icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
-  rarityColor: {r: 0.2, g: 0.34117648, b: 0.7176471, a: 1}
-  towerInfo: Shoots pointy things at bad guys!
+  rarityColor: {r: 0.20000002, g: 0.34117648, b: 0.7176471, a: 1}
+  towerInfo: Blast them away with the power of music.
   uses: 0
-  rarityWeight: 20
-  damage: 10
-  range: 3
-  rateOfFire: 1
+  rarityWeight: 35
+  damage: 60
+  range: 6
+  rateOfFire: 5
   duration: 1
   spell: 0

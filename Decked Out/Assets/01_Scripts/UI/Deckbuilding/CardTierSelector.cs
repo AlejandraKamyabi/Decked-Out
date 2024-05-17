@@ -8,103 +8,49 @@ using UnityEngine.UI;
 public class CardTierSelector : MonoBehaviour
 {
     [SerializeField] DeckbuildingManager _manager;
+    [SerializeField] Color _rarityColour;
 
     [Header("Tier Data")]
-    [SerializeField] Image _border;
+    [SerializeField] Sprite _border;
     [SerializeField] string _tier;
+    [SerializeField] int _maxCount;
 
     [Header("Card Data")]
-    [SerializeField] SelectedCard[] _cardsSlots;
-    [SerializeField] Image[] _cardBlanks;
-    [SerializeField] GameObject[] _cardsToPickGO;
+    [SerializeField] SelectedCard[] _cardRenderers;
     [SerializeField] TowerCardSO[] _cardsOfRarity;
 
-    Color _rarityColour;
     public void SetTier()
     {
-        bool noCardsSaved = false;
-        if (_manager.CheckIfSavedCards(_tier).Length < 0)
-        {
-            noCardsSaved = false;
-        }
-        else
-        {
-            noCardsSaved = true;
-        }
-  
-        _rarityColour = gameObject.GetComponentInChildren<Image>().color;
-        _border.color = _rarityColour;
-        SelectedCard[] allCardSlots = FindObjectsOfType<SelectedCard>();
-        foreach (SelectedCard cardSlot in allCardSlots)
-        {
-            cardSlot.gameObject.SetActive(false);
-        }
-        Image[] allImages = FindObjectsOfType<Image>();
-        foreach (Image image in allImages)
-        {
-            if (image.gameObject.CompareTag("Card Blank"))
-            {
-                image.enabled = false;
-            }
-        }
-        foreach (SelectedCard cardSlot in _cardsSlots)
-        {
-            cardSlot.gameObject.SetActive(true);
-            cardSlot.Unslot();   
-
-        }
-        foreach (Image image in _cardBlanks)
-        {
-            image.enabled = true;
-        }
-        if (noCardsSaved)
-        {
-            TowerCardSO[] savedCards = new TowerCardSO[_manager.CheckIfSavedCards(_tier).Length];
-            savedCards = _manager.CheckIfSavedCards(_tier).ToArray();
-            for (int i = 0; i < savedCards.Length; i++)
-            {
-                _cardsSlots[i].SlotInCard(savedCards[i]);
-            }           
-        }
+         Debug.Log("Renderering " + _cardsOfRarity.Length + " cards from " + _tier + " tier");
+        _cardRenderers = _manager.SetTierRenderers(_cardsOfRarity.Count(), _tier);
         PresentCards();
     }
     private void PresentCards()
     {
-        CardToPick[] _cardsToPick = new CardToPick[_cardsToPickGO.Length];
-        foreach (GameObject cardToPickGO_ in _cardsToPickGO)
+        _manager.DeactivateGreyOut();
+        for (int i = 0; i < _cardRenderers.Length; i++)
         {
-            cardToPickGO_.gameObject.SetActive(true);
-        }        
-        for (int i = 0; i < _cardsOfRarity.Length; i++)
-        {
-            _cardsToPick[i] = _cardsToPickGO[i].GetComponent<CardToPick>();
-            _cardsToPick[i].SetCard(_cardsOfRarity[i]);
+            _cardRenderers[i].SlotInCard(_cardsOfRarity[i]);
+            _cardRenderers[i].SetBorderSprite(_border);
         }
-        for (int j = _cardsOfRarity.Length; j < _cardsToPickGO.Length; j++)
+        for (int i = 0; i < _cardRenderers.Length; i++)
         {
-            _cardsToPickGO[j].SetActive(false);
-        }
-
-    }
-
-    public void SaveCards()
-    {
-        TowerCardSO[] cards = new TowerCardSO[_cardsSlots.Length];
-        List<TowerCardSO> cardsList = new List<TowerCardSO>();
-
-        foreach (SelectedCard slottedCards in _cardsSlots)
-        {
-            if (slottedCards.slottedIn)
+            if (_manager.CheckIfSavedCards(_tier).Contains(_cardRenderers[i].card))
             {
-                TowerCardSO card = slottedCards.card;
-                cardsList.Add(card);
+                _cardRenderers[i].ActivateGlow();
             }
         }
-        cards = cardsList.ToArray();
-        if (_manager.CheckCurrentTier(_tier))
+        if (_manager.CheckIfSavedCards(_tier).Length >= _maxCount)
         {
-            _manager.SetCardsOfTier(cards, _tier);
-        }       
+            foreach (SelectedCard cardRenderer in _cardRenderers)
+            {
+                if (!cardRenderer.selected)
+                {
+                    cardRenderer.GreyOut(true);
+                }
+            }
+            
+        }
     }
 
 

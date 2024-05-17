@@ -6,21 +6,41 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public string gameScene;
-    public GameObject scripturesPanel;
-    public GameObject settingsPanel;
-    public GameObject minimizeCollider;
-    public Image enemyPageImage;
-    
+    [SerializeField] string gameScene;
+    [SerializeField] GameObject scripturesPanel;
+    [SerializeField] GameObject settingsPanel;
+    [SerializeField] GameObject minimizeCollider;
+    [SerializeField] Image enemyPageImage;
+    [SerializeField] GameObject _tutorialPrompt;
+
 
     public void Start()
     {
         scripturesPanel.SetActive(false);
         settingsPanel.SetActive(false);
         minimizeCollider.SetActive(false);
+        _tutorialPrompt.SetActive(false);
     }
 
     public void StartGame()
+    {
+        _tutorialPrompt.gameObject.SetActive(true);
+        
+    }
+    public void StartTutorial()
+    {
+        GameLoader gameLoader = FindObjectOfType<GameLoader>();
+        if (gameLoader != null)
+        {
+            gameLoader.gameObject.AddComponent<TutorialPassthrough>();
+            var loadSceneTask = SceneManager.LoadSceneAsync(gameScene);
+        }
+        else
+        {
+            Debug.LogError("Can't find GameLoader.");
+        }
+    }
+    public void NoTutorial()
     {
         var loadSceneTask = SceneManager.LoadSceneAsync(gameScene);
     }
