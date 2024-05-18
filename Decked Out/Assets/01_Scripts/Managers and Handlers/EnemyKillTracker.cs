@@ -20,7 +20,6 @@ public class EnemyKillTracker : MonoBehaviour
     private WaveManager _waveManager;
     private GameLoader _loader;
     private CardRandoEngine _randoEngine;
-    //Enemy Number Tracking
     public int _enemiesInWave;
     public int _enemiesDestroyedThisWave;
 
@@ -43,24 +42,24 @@ public class EnemyKillTracker : MonoBehaviour
         Debug.Log("Enemy Killed");
         totalEnemiesDestroyed++;
         _enemiesDestroyedThisWave++;
-        if (_enemiesDestroyedThisWave == _enemiesInWave)
-        {
-            _randoEngine.NewWave();
-            WaveUpdate();
-            AllEnemiesInWaveDestroyed();
-        }
+        CheckWaveCompletion();
         UpdateEnemyCountText();
 
-        // Check for gem drop
         if (Random.value <= gemDropChance)
         {
             CollectGem();
         }
     }
+
     public void EnemyDestroyed()
     {
         Debug.Log("Enemy Destroyed");
         _enemiesDestroyedThisWave++;
+        CheckWaveCompletion();
+    }
+
+    private void CheckWaveCompletion()
+    {
         if (_enemiesDestroyedThisWave == _enemiesInWave)
         {
             _randoEngine.NewWave();
@@ -68,11 +67,13 @@ public class EnemyKillTracker : MonoBehaviour
             AllEnemiesInWaveDestroyed();
         }
     }
+
     public void NumbersOfEnemiesInWave(int enemies)
-    {        
+    {
         _enemiesInWave = enemies;
         Debug.Log("Enemies In Wave " + _waveManager.currentWave + ": " + _enemiesInWave);
     }
+
     public void AllEnemiesInWaveDestroyed()
     {
         _waveManager.AllEnemiesInWaveDestroyed();
@@ -100,7 +101,6 @@ public class EnemyKillTracker : MonoBehaviour
     public void ResetValues()
     {
         totalEnemiesDestroyed = 0;
-        // Do not reset gems here
         currentWave = 1;
         UpdateEnemyCountText();
         UpdateGemCountText();
@@ -130,9 +130,7 @@ public class EnemyKillTracker : MonoBehaviour
     IEnumerator ChangeTextColour(float duration)
     {
         enemyCountText.color = Color.red;
-
         yield return new WaitForSeconds(duration);
-
         enemyCountText.color = Color.white;
     }
 
@@ -141,10 +139,6 @@ public class EnemyKillTracker : MonoBehaviour
         endGameEnemyCountText.text = "Kills: " + totalEnemiesDestroyed.ToString("f0");
         endGameGemCountText.text = "Gems: " + totalGemsCollected.ToString("f0");
         endGameWave.text = "Wave: " + currentWave;
-
-        // Reset values when the game ends
-        // You may choose to reset other things, but not gems
         ResetValues();
     }
 }
-
