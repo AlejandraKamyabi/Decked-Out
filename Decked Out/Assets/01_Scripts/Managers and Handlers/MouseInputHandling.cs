@@ -94,7 +94,7 @@ public class MouseInputHandling : MonoBehaviour
         {
             switch (towerSelection.towers)
             {
-                case "Arrow Tower":
+                case "Archer Tower":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
                     towerRigSprite.sprite = towerSelection.ArcherTower.GetComponentInChildren<SpriteRenderer>().sprite;
                     float towerRange = towerSelection.ArcherTower.GetComponent<ArcherTower>().attackRange;
@@ -312,7 +312,7 @@ public class MouseInputHandling : MonoBehaviour
 
                         switch (towerSelection.towers)
                         {
-                            case "Arrow Tower":
+                            case "Archer Tower":
                                 currentTowerInstance = Instantiate(towerSelection.ArcherTower, mousePos, Quaternion.identity);
                                 break;
                             case "Cannon Tower":

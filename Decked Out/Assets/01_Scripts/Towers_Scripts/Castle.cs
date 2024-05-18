@@ -70,7 +70,6 @@ public class Castle : MonoBehaviour
     private IEnumerator Wait(float time, GameObject enemy)
     {
        
-            // Your code that accesses enemy
 
             yield return new WaitForSeconds(time);
         if (enemy != null && enemy.gameObject != null)
