@@ -64,6 +64,8 @@ public class SaveSystem : MonoBehaviour
             itemCount++;
         }
 
+        StartUpCard();
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -133,6 +135,31 @@ public class SaveSystem : MonoBehaviour
         foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
         {
             PlayerPrefs.SetInt(cardCollectedString[card], 0);
+        }
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Arrow], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Cannon], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost_Tower], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Fireball], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Poison_Tower], 1);
+    }
+    //Chack For Startting Card
+    public void StartUpCard()
+    {
+        if (PlayerPrefs.HasKey(cardCollectedString[CardCollected.Arrow]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Cannon]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Frost]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Frost_Tower]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Fireball]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Poison_Tower]) == false
+            )
+        {
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Arrow], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Cannon], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost_Tower], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Fireball], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Poison_Tower], 1);
         }
     }
     //Get All Card Name

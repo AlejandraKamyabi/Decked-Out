@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3169344394407691503}
   - component: {fileID: 4748014893659739210}
   m_Layer: 3
-  m_Name: SmallBullet
+  m_Name: OrganBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

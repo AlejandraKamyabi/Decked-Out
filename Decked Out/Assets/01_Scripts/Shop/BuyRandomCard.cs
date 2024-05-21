@@ -34,19 +34,20 @@ public class BuyRandomCard : MonoBehaviour
             if (count > 1)
             {
                 cardGet = Random.Range(0, count - 1);
-            }
 
-            for (int i = 0; i < cardList.Length; i++)
-            {
-                if (cardList[i] == false && cardGet == 0)
+                for (int i = 0; i < cardList.Length; i++)
                 {
-                    SaveSystem.CardCollected collected = (SaveSystem.CardCollected)System.Enum.Parse(typeof(SaveSystem.CardCollected), cardNameList[i]);
-                    saveSystem.SetCardCollected(collected, true);
-                    saveSystem.MinusGem(prices);
-                }
-                else if (cardList[i] == false)
-                {
-                    cardGet--;
+                    if (cardList[i] == false && cardGet == 0)
+                    {
+                        SaveSystem.CardCollected collected = (SaveSystem.CardCollected)System.Enum.Parse(typeof(SaveSystem.CardCollected), cardNameList[i]);
+                        saveSystem.SetCardCollected(collected, true);
+                        saveSystem.MinusGem(prices);
+                        break;
+                    }
+                    else if (cardList[i] == false)
+                    {
+                        cardGet--;
+                    }
                 }
             }
         }
