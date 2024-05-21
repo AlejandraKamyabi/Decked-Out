@@ -17,6 +17,9 @@ public class OrganGunTower : MonoBehaviour, ITower
     private float initialRateOfFire;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+    private Animator animator;
+
+    private float _organGunTownAnimLength = 1.0f;
 
     private void OnDrawGizmos()
     {
@@ -154,5 +157,31 @@ public class OrganGunTower : MonoBehaviour, ITower
         {
             Destroy(buffed);
         }
+    }
+    private void ShootCannon(Transform target)
+    {
+        // audioSource.Play();
+        animator.SetBool("IsShooting", true);
+        canAttack = false;
+
+        StartCoroutine(ShootCannonBall(target));
+        StartCoroutine(DeactivateAnimation());
+        StartCoroutine(AttackCooldown());
+    }
+
+    private IEnumerator ShootCannonBall(Transform target)
+    {
+        float offset = 0.25f;
+        yield return new WaitForSeconds(_organGunTownAnimLength - offset);
+        GameObject cannonBall = Instantiate(SmallBulletPrefab, transform.position, Quaternion.identity);
+        CannonBall cannonBallScript = cannonBall.GetComponent<CannonBall>();
+        cannonBallScript.SetTarget(target);
+        cannonBallScript.SetDamage(Damage);
+    }
+
+    private IEnumerator DeactivateAnimation()
+    {
+        yield return new WaitForSeconds(_organGunTownAnimLength);
+        animator.SetBool("IsShooting", false);
     }
 }
