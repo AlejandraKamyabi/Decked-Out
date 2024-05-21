@@ -12,6 +12,7 @@ public class DeckbuildingManager : MonoBehaviour
     [SerializeField] CardTierSelector[] _buttonScrips;
     [SerializeField] GameObject[] _cardRenderers;
     [SerializeField] Button _startButton;
+    [SerializeReference] PillarIndicatorManager _pillarIndicatorManager;
 
     [SerializeField] List<TowerCardSO> _common;
     [SerializeField] List<TowerCardSO> _uncommon;
@@ -27,6 +28,8 @@ public class DeckbuildingManager : MonoBehaviour
     public TowerCardSO[] rareCards { get { return _rare.ToArray(); } }
     public TowerCardSO[] epicCards { get { return _epic.ToArray(); } }
     public TowerCardSO[] legendaryCards { get { return _legendary.ToArray(); } }
+
+    public CardTierSelector[] tierButtons { get {  return _buttonScrips; } }
 
     private GameLoader _loader;
     private void Start()
@@ -58,8 +61,9 @@ public class DeckbuildingManager : MonoBehaviour
         TutorialPassthrough tutorialPassthrough = FindObjectOfType<TutorialPassthrough>();
         if (tutorialPassthrough == null)
         {
-            _buttonScrips[0].SetTier();
-            _buttonScrips[0].gameObject.GetComponent<Button>().Select();
+            Button commonButton = _buttonScrips[0].gameObject.GetComponent<Button>();
+            commonButton.Select();
+            commonButton.onClick.Invoke();
         }
         else
         {
@@ -92,6 +96,7 @@ public class DeckbuildingManager : MonoBehaviour
             }
 
         }
+        _pillarIndicatorManager.SetTier(_currentTier);
         return activeRenderers.ToArray();
     }
 
@@ -129,6 +134,7 @@ public class DeckbuildingManager : MonoBehaviour
         if(_currentTier == "Common")
         {
             _common.Add(card);
+            _pillarIndicatorManager.CardAdded(_currentTier, _common.Count);
             Debug.Log(card + " added to manager.");
             if (_common.Count >= 4)
             {
@@ -138,6 +144,7 @@ public class DeckbuildingManager : MonoBehaviour
         else if (_currentTier == "Uncommon")
         {
             _uncommon.Add(card);
+            _pillarIndicatorManager.CardAdded(_currentTier, _uncommon.Count);
             Debug.Log(card + " added to manager.");
             if (_uncommon.Count >= 4)
             {
@@ -147,6 +154,7 @@ public class DeckbuildingManager : MonoBehaviour
         else if (_currentTier == "Rare")
         {
             _rare.Add(card);
+            _pillarIndicatorManager.CardAdded(_currentTier, _rare.Count);
             Debug.Log(card + " added to manager.");
             if (_rare.Count >= 3)
             {
@@ -156,6 +164,7 @@ public class DeckbuildingManager : MonoBehaviour
         else if (_currentTier == "Epic")
         {
             _epic.Add(card);
+            _pillarIndicatorManager.CardAdded(_currentTier, _epic.Count);
             Debug.Log(card + " added to manager.");
             if (_epic.Count >= 3)
             {
@@ -165,6 +174,7 @@ public class DeckbuildingManager : MonoBehaviour
         else if (_currentTier == "Legendary")
         {
             _legendary.Add(card);
+            _pillarIndicatorManager.CardAdded(_currentTier, _legendary.Count);
             Debug.Log(card + " added to manager.");
             if (_legendary.Count >= 2)
             {
@@ -178,6 +188,7 @@ public class DeckbuildingManager : MonoBehaviour
         if (_currentTier == "Common")
         {
             _common.Remove(card);
+            _pillarIndicatorManager.CardRemoved(_currentTier, _common.Count);
             Debug.Log(card + " removed from manager.");
             if (_common.Count !<= 4)
             {
@@ -187,6 +198,8 @@ public class DeckbuildingManager : MonoBehaviour
         else if (_currentTier == "Uncommon")
         {
             _uncommon.Remove(card);
+            _pillarIndicatorManager.CardRemoved(_currentTier, _uncommon.Count);
+
             Debug.Log(card + " removed from manager.");
             if (_uncommon.Count !<= 4)
             {
@@ -196,8 +209,10 @@ public class DeckbuildingManager : MonoBehaviour
         else if (_currentTier == "Rare")
         {
             _rare.Remove(card);
+            _pillarIndicatorManager.CardRemoved(_currentTier, _rare.Count);
+
             Debug.Log(card + " removed from manager.");
-            if (_rare.Count !>= 3)
+            if (_rare.Count !<= 3)
             {
                 DeactivateGreyOut();
             }
@@ -205,6 +220,8 @@ public class DeckbuildingManager : MonoBehaviour
         else if (_currentTier == "Epic")
         {
             _epic.Remove(card);
+            _pillarIndicatorManager.CardRemoved(_currentTier, _epic.Count);
+
             Debug.Log(card + " removed from manager.");
             if (_epic.Count !<= 3)
             {
@@ -214,6 +231,8 @@ public class DeckbuildingManager : MonoBehaviour
         else if (_currentTier == "Legendary")
         {
             _legendary.Remove(card);
+            _pillarIndicatorManager.CardRemoved(_currentTier, _legendary.Count);
+
             Debug.Log(card + " removed from manager.");
             if (_legendary.Count !<= 2)
             {

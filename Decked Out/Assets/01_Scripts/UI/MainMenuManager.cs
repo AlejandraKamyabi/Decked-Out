@@ -24,8 +24,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        _tutorialPrompt.gameObject.SetActive(true);
-        
+        //_tutorialPrompt.gameObject.SetActive(true);
+        var loadSceneTask = SceneManager.LoadSceneAsync(gameScene);
     }
     public void StartTutorial()
     {
