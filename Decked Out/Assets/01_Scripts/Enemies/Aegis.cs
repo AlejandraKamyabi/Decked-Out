@@ -141,15 +141,12 @@ public class Aegis : MonoBehaviour
                 {
                     enemyScript.IsShielded = true;
                     enemyScript.ImmuneToDamage = true;
-                    // Instantiate a shield prefab at the enemy's position
                     GameObject newShield = Instantiate(shieldPrefab, enemy.transform.position, Quaternion.identity);
-                    newShield.transform.SetParent(enemy.transform);  // Parent the shield to move with the enemy
+                    newShield.transform.SetParent(enemy.transform);
                 }
             }
         }
-        yield return new WaitForSeconds(shieldDuration);  // Shield duration
-
-        // After duration ends, remove immunity
+        yield return new WaitForSeconds(shieldDuration);
         foreach (var enemy in enemiesToShield)
         {
             if (enemy != null)
@@ -161,7 +158,6 @@ public class Aegis : MonoBehaviour
                     {
                         enemyScript.ImmuneToDamage = false;
                         enemyScript.IsShielded = false;
-                        // Destroy the shield object
                         if (enemyScript.transform.childCount > 0)
                         {
                             foreach (Transform child in enemyScript.transform)
@@ -175,7 +171,6 @@ public class Aegis : MonoBehaviour
                     }
                 }
             }
-           
         }
     }
     public IEnumerator ManualPushback(Vector2 direction, float duration, float distance)

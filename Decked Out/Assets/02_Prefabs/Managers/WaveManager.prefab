@@ -156,7 +156,7 @@ MonoBehaviour:
   enemiesBetweenNecromancerSpawns: 17
   enemiesBetweenAegisSpawns: 7
   enemiesBetweenClericSpawns: 11
-  enemiesBetweenMopeySpawns: 10
+  enemiesBetweenMopeySpawns: 9
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0
   currentWave: 0

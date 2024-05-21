@@ -124,8 +124,25 @@ public class Mopey_Misters : MonoBehaviour
     public bool IsShielded { get; set; }
     public void TakeDamage(float damage)
     {
-        if (!ImmuneToDamage)  
+        if (IsShielded)
         {
+            // Destroy the shield
+            IsShielded = false;
+            ImmuneToDamage = false;
+            if (transform.childCount > 0)
+            {
+                foreach (Transform child in transform)
+                {
+                    if (child.gameObject.CompareTag("Shield"))
+                    {
+                        Destroy(child.gameObject);
+                    }
+                }
+            }
+        }
+        else
+        {
+            // Apply damage to health if not shielded
             currentHealth -= damage;
             UpdateEnemyHealthUI();
 
@@ -166,26 +183,17 @@ public class Mopey_Misters : MonoBehaviour
         {
             _killTracker.EnemyKilled();
         }
-        for (int i = 0; i <= numberOfSmallerEnemies; i++)
+        for (int i = 0; i < numberOfSmallerEnemies; i++)
         {
             wave.IncrementEnemyCount();
             wave.Spawn_mistakes(transform.position);
         }
-  
+
         float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
         healthSlider.gameObject.SetActive(false);
         Destroy(healthSlider.gameObject, deathAnimationDuration);
-        //GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
-        //
-        //
-        //
-        //
-        //
-        //
-        //Destroy(deathEffect, 10f);
         Destroy(gameObject, 0.4f);
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
