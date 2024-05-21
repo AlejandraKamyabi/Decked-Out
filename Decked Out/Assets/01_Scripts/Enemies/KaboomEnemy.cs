@@ -145,8 +145,25 @@ public class KaboomEnemy : MonoBehaviour
     public bool IsShielded { get; set; }
     public void TakeDamage(float damage)
     {
-        if (!ImmuneToDamage)
+        if (IsShielded)
         {
+            // Destroy the shield
+            IsShielded = false;
+            ImmuneToDamage = false;
+            if (transform.childCount > 0)
+            {
+                foreach (Transform child in transform)
+                {
+                    if (child.gameObject.CompareTag("Shield"))
+                    {
+                        Destroy(child.gameObject);
+                    }
+                }
+            }
+        }
+        else
+        {
+            // Apply damage to health if not shielded
             currentHealth -= damage;
             UpdateEnemyHealthUI();
 
