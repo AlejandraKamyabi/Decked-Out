@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Necromancer : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class Necromancer : MonoBehaviour
     public float moveSpeed = 1f;
     private float original_moveSpeed;
     public float damage = 10.0f;
+    private HashSet<GameObject> detectedEnemies = new HashSet<GameObject>();
     public float maxHealth;
     public float currentHealth;
+    private float RateOfFire = 2;
     public Slider healthSlider;
     public GameObject zapPrefab;
     public bool isBurning = false;
+    private bool canAttack = true;
     private bool hasBeenZapped = false;
     public float detectionRadius;
     private float damageTimer = 1.0f;
@@ -160,41 +164,89 @@ public class Necromancer : MonoBehaviour
     private void DetectAndAddAcolyte()
     {
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
-        foreach (var collider in detectedObjects)
+        foreach (Collider2D collider in detectedObjects)
         {
-            if (collider.CompareTag("Acolyte") && !detectedEnemy.Contains(collider.gameObject))
+            GameObject detectedObject = collider.gameObject;
+            if (detectedEnemies.Contains(detectedObject))
             {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Acolyte", collider.transform.position);
-            }
-            else if (collider.CompareTag("Kaboom") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Kaboom", collider.transform.position);
-            }
-            else if (collider.CompareTag("Golem") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Golem", collider.transform.position);
-            }
-            else if (collider.CompareTag("Apostate") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Apostate", collider.transform.position);
-            }
-            else if (collider.CompareTag("Aegis") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Aegis", collider.transform.position);
-            }
-            else if (collider.CompareTag("Cleric") && !detectedEnemy.Contains(collider.gameObject))
-            {
-                detectedEnemy.Add(collider.gameObject);
-                wave.AddEnemyToCurrentWave("Cleric", collider.transform.position);
+                continue; // Skip already detected enemies
             }
 
+            // Add the object to the HashSet to prevent reprocessing
+            detectedEnemies.Add(detectedObject);
+
+            if (collider.CompareTag("Acolyte"))
+            {
+                wave.AddEnemyToCurrentWave("Acolyte", collider.transform.position);
+            }
+            else if (collider.CompareTag("Kaboom"))
+            {
+                wave.AddEnemyToCurrentWave("Kaboom", collider.transform.position);
+            }
+            else if (collider.CompareTag("Golem"))
+            {
+                wave.AddEnemyToCurrentWave("Golem", collider.transform.position);
+            }
+            else if (collider.CompareTag("Apostate"))
+            {
+                wave.AddEnemyToCurrentWave("Apostate", collider.transform.position);
+            }
+            else if (collider.CompareTag("Aegis"))
+            {
+                wave.AddEnemyToCurrentWave("Aegis", collider.transform.position);
+            }
+            else if (collider.CompareTag("Cleric"))
+            {
+                wave.AddEnemyToCurrentWave("Cleric", collider.transform.position);
+            }
         }
     }
+    private IEnumerator AttackCooldown()
+    {
+        float actualRateOfFire = RateOfFire;
+
+        while (!canAttack)
+        {
+            yield return new WaitForSeconds(actualRateOfFire);
+            canAttack = true;
+        }
+    }
+    private void revive(Transform target)
+    {
+
+            if (target.CompareTag("Acolyte"))
+            {
+                wave.AddEnemyToCurrentWave("Acolyte", target.transform.position);
+            }
+            else if (target.CompareTag("Kaboom"))
+            {
+
+                wave.AddEnemyToCurrentWave("Kaboom", target.transform.position);
+            }
+            else if (target.CompareTag("Golem"))
+            {
+           
+                wave.AddEnemyToCurrentWave("Golem", target.transform.position);
+            }
+            else if (target.CompareTag("Apostate"))
+            {
+
+                wave.AddEnemyToCurrentWave("Apostate", target.transform.position);
+            }
+            else if (target.CompareTag("Aegis"))
+            {
+
+                wave.AddEnemyToCurrentWave("Aegis", target.transform.position);
+            }
+            else if (target.CompareTag("Cleric"))
+            {
+
+                wave.AddEnemyToCurrentWave("Cleric", target.transform.position);
+            }
+        StartCoroutine(AttackCooldown());
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
