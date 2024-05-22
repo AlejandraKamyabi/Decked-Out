@@ -64,14 +64,24 @@ public class Necromancer : MonoBehaviour
         _enemyDeathAnimation = GetComponent<EnemyDeathAnimation>();
         healthFlash = GetComponent<EnemyHealthFlash>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        StartCoroutine(DetectAndAddAcolyteCoroutine());
     }
     public void Initialize()
     {
         wave = ServiceLocator.Get<WaveManager>();
     }
+    private IEnumerator DetectAndAddAcolyteCoroutine()
+    {
+        while (true)
+        {
+            DetectAndAddAcolyte();
+            yield return new WaitForSeconds(2f);
+        }
+    }
+
     private void Update()
     {
-        DetectAndAddAcolyte();
         if (targetCastle != null)
         {
             Vector2 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
@@ -93,7 +103,7 @@ public class Necromancer : MonoBehaviour
                 TakeDamage(10.0f);
             }
         }
-     
+
         UpdateSortingLayer();
     }
     public void Insta_Kill()
