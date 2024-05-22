@@ -19,11 +19,41 @@ public class CardTierSelector : MonoBehaviour
     [SerializeField] SelectedCard[] _cardRenderers;
     [SerializeField] TowerCardSO[] _cardsOfRarity;
 
+    [Header("UI")]
+    [SerializeField] Sprite _selectedTextSprite;
+    [SerializeField] Image _textImage;
+    [SerializeField] Sprite _normalTextSprite;
+
+    List<CardTierSelector> _otherTierButtons = new List<CardTierSelector>();
+    bool _tierSet = false;
+
     public void SetTier()
     {
          Debug.Log("Renderering " + _cardsOfRarity.Length + " cards from " + _tier + " tier");
         _cardRenderers = _manager.SetTierRenderers(_cardsOfRarity.Count(), _tier);
+        _textImage.sprite = _selectedTextSprite;
+        if (_otherTierButtons.Count == 0)
+        {
+            _otherTierButtons = _manager.tierButtons.ToList();
+            if (_otherTierButtons.Contains(this))
+            {
+                _otherTierButtons.Remove(this);
+            }
+        }
+        foreach (CardTierSelector TierButton in _otherTierButtons)
+        {
+            TierButton.UnSetTier();
+        }
         PresentCards();
+        _tierSet = true;
+    }
+    public void UnSetTier()
+    {
+        if (_tierSet)
+        {
+            _textImage.sprite = _normalTextSprite;
+            _tierSet = false;
+        }
     }
     private void PresentCards()
     {
@@ -42,6 +72,7 @@ public class CardTierSelector : MonoBehaviour
         }
         if (_manager.CheckIfSavedCards(_tier).Length >= _maxCount)
         {
+            Debug.Log("Checking Saved Cards for Grey Out");
             foreach (SelectedCard cardRenderer in _cardRenderers)
             {
                 if (!cardRenderer.selected)
