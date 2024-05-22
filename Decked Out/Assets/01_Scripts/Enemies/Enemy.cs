@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public GameObject zapPrefab;
     public bool isBurning = false;
     private bool hasBeenZapped = false;
+
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
     public int TotalFreezeTime = 3;

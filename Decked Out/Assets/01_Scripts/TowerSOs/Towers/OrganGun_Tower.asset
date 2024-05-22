@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OrganGun_Tower
   m_EditorClassIdentifier: 
   towerName: Organ Gun
-  background: {fileID: 21300000, guid: d903b922e1679f644895a7e280e2c229, type: 3}
+  background: {fileID: 21300000, guid: 7b276240032b8fa419849ff5eeba1a8e, type: 3}
   image: {fileID: 21300000, guid: c030e466abbd60b4fbdd57854afabd7b, type: 3}
   icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
   rarityColor: {r: 0.20000002, g: 0.34117648, b: 0.7176471, a: 1}

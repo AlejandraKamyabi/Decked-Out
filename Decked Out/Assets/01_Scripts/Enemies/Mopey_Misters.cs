@@ -183,10 +183,11 @@ public class Mopey_Misters : MonoBehaviour
         {
             _killTracker.EnemyKilled();
         }
+
         for (int i = 0; i < numberOfSmallerEnemies; i++)
         {
+            wave.Spawn_mistakes(transform.position); // Ensure this spawns the enemy before incrementing
             wave.IncrementEnemyCount();
-            wave.Spawn_mistakes(transform.position);
         }
 
         float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
@@ -206,8 +207,6 @@ public class Mopey_Misters : MonoBehaviour
             _killTracker.EnemyDestroyed();
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
-
-           
         }
         if (circleCollider == null) {
 

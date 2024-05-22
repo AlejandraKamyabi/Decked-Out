@@ -5639,6 +5639,8 @@ MonoBehaviour:
   currentWave: 1
   duration: 0
   gemDropChance: 0.1
+  _enemiesInWave: 0
+  _enemiesDestroyedThisWave: 0
 --- !u!114 &1106663295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7806,7 +7808,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 835, y: -291}
-  m_SizeDelta: {x: 350, y: 350}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1544873037
 MonoBehaviour:
@@ -7865,14 +7867,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0b3a6fed7dea864e9fd1fc828ac9fc8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cea6c9bc3dc006b49af0487cd0816815, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9499,11 +9501,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7123561325698608161, guid: 522346df8077db04c8a31fe0f59d6aa7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7123561325698608161, guid: 522346df8077db04c8a31fe0f59d6aa7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7123561325698608161, guid: 522346df8077db04c8a31fe0f59d6aa7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9782,8 +9784,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279878906
+  m_fontColor: {r: 0.9803922, g: 0.7686275, b: 0.098039225, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11602,6 +11604,22 @@ PrefabInstance:
     - target: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913636825509975876, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7058678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913636825509975876, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.040600777
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913636825509975876, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.8706906
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913636825509975876, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6059431146150507047, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
       propertyPath: m_SortingOrder
