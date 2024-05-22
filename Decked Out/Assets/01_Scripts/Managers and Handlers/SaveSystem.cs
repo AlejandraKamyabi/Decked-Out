@@ -35,8 +35,9 @@ public class SaveSystem : MonoBehaviour
         b
     }
 
-    private bool outPut;
-    private bool[] allOutPut;
+    private bool outPut = false;
+    private bool[] allOutPutBool;
+    private string[] allOutPutString;
     private int itemCount = 0;
     private int cardCount = 0;
 
@@ -45,9 +46,9 @@ public class SaveSystem : MonoBehaviour
 
     private void Awake()
     {
-        GameObject[] allAudioManager = GameObject.FindGameObjectsWithTag("SaveSystem");
+        GameObject[] saveSystem = GameObject.FindGameObjectsWithTag("SaveSystem");
 
-        if (allAudioManager.Length > 1)
+        if (saveSystem.Length > 1)
         {
             Destroy(gameObject);
         }
@@ -59,8 +60,11 @@ public class SaveSystem : MonoBehaviour
         }
         foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
         {
+            purchasedItemString[item] = item.ToString();
             itemCount++;
         }
+
+        StartUpCard();
 
         DontDestroyOnLoad(gameObject);
     }
@@ -80,6 +84,7 @@ public class SaveSystem : MonoBehaviour
     //Get One Card Collected
     public bool GetCardCollected(CardCollected card)
     {
+        outPut = false;
         if (PlayerPrefs.HasKey(cardCollectedString[card]))
         {
             if (PlayerPrefs.GetInt(cardCollectedString[card]) == 1)
@@ -96,23 +101,33 @@ public class SaveSystem : MonoBehaviour
     //Get All Card Collected (in the order how the enum are)
     public bool[] GetAllCardCollected()
     {
-        allOutPut = new bool[cardCount];
+        allOutPutBool = new bool[cardCount];
         int count = 0;
 
         foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
         {
-            if (PlayerPrefs.GetInt(cardCollectedString[card]) == 1)
+            allOutPutBool[count] = false;
+            count++;
+        }
+        count = 0;
+
+        foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
+        {
+            if (PlayerPrefs.HasKey(cardCollectedString[card]))
             {
-                allOutPut[count] = true;
-            }
-            else
-            {
-                allOutPut[count] = false;
+                if (PlayerPrefs.GetInt(cardCollectedString[card]) == 1)
+                {
+                    allOutPutBool[count] = true;
+                }
+                else
+                {
+                    allOutPutBool[count] = false;
+                }
             }
             count++;
         }
 
-        return allOutPut;
+        return allOutPutBool;
     }
     //Reset Card Collected
     public void ResetCardCollected()
@@ -121,6 +136,44 @@ public class SaveSystem : MonoBehaviour
         {
             PlayerPrefs.SetInt(cardCollectedString[card], 0);
         }
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Arrow], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Cannon], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost_Tower], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Fireball], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Poison_Tower], 1);
+    }
+    //Chack For Startting Card
+    public void StartUpCard()
+    {
+        if (PlayerPrefs.HasKey(cardCollectedString[CardCollected.Arrow]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Cannon]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Frost]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Frost_Tower]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Fireball]) == false ||
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Poison_Tower]) == false
+            )
+        {
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Arrow], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Cannon], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost_Tower], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Fireball], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Poison_Tower], 1);
+        }
+    }
+    //Get All Card Name
+    public string[] GetAllCardName()
+    {
+        allOutPutString = new string[cardCount];
+        int count = 0;
+
+        foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
+        {
+            allOutPutString[count] = card.ToString();
+        }
+
+        return allOutPutString;
     }
 
     //Set Purchased Item
@@ -138,6 +191,7 @@ public class SaveSystem : MonoBehaviour
     //Get one Purchased Item
     public bool GetPurchasedItem(PurchasedItem item)
     {
+        outPut = false;
         if (PlayerPrefs.HasKey(purchasedItemString[item]))
         {
             if (PlayerPrefs.GetInt(purchasedItemString[item]) == 1)
@@ -154,23 +208,33 @@ public class SaveSystem : MonoBehaviour
     //Get all Purchased Item (in the order how the enum are)
     public bool[] GetAllPurchasedItem()
     {
-        allOutPut = new bool[itemCount];
+        allOutPutBool = new bool[itemCount];
         int count = 0;
 
         foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
         {
-            if (PlayerPrefs.GetInt(purchasedItemString[item]) == 1)
+            allOutPutBool[count] = false;
+            count++;
+        }
+        count = 0;
+
+        foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
+        {
+            if (PlayerPrefs.HasKey(purchasedItemString[item]))
             {
-                allOutPut[count] = true;
-            }
-            else
-            {
-                allOutPut[count] = false;
+                if (PlayerPrefs.GetInt(purchasedItemString[item]) == 1)
+                {
+                    allOutPutBool[count] = true;
+                }
+                else
+                {
+                    allOutPutBool[count] = false;
+                }
             }
             count++;
         }
 
-        return allOutPut;
+        return allOutPutBool;
     }
     //Reset Purchased Item
     public void ResetPurchasedItem()
@@ -184,8 +248,21 @@ public class SaveSystem : MonoBehaviour
     //Add Gem
     public void AddGem(int count)
     {
-        int i = PlayerPrefs.GetInt("gemCount");
-        i += count;
+        int i = count;
+        if (PlayerPrefs.HasKey("gemCount"))
+        {
+            i += PlayerPrefs.GetInt("gemCount");
+        }
+        PlayerPrefs.SetInt("gemCount", i);
+    }
+    //minus Gem
+    public void MinusGem(int count)
+    {
+        int i = count;
+        if (PlayerPrefs.HasKey("gemCount"))
+        {
+            i -= PlayerPrefs.GetInt("gemCount");
+        }
         PlayerPrefs.SetInt("gemCount", i);
     }
     //Save Gem Count
@@ -196,7 +273,14 @@ public class SaveSystem : MonoBehaviour
     //Get Gem Count
     public int GetGemCount()
     {
-        return PlayerPrefs.GetInt("gemCount");
+        if (PlayerPrefs.HasKey("gemCount"))
+        {
+            return PlayerPrefs.GetInt("gemCount");
+        }
+        else
+        {
+            return 0;
+        }
     }
     //Reset Gem Count
     public void ResetGemCount()
@@ -207,8 +291,11 @@ public class SaveSystem : MonoBehaviour
     //Add total kill
     public void AddTotalKill(int count)
     {
-        int i = PlayerPrefs.GetInt("TotalKill");
-        i += count;
+        int i = count;
+        if (PlayerPrefs.HasKey("TotalKill"))
+        {
+            i += PlayerPrefs.GetInt("TotalKill");
+        }
         PlayerPrefs.SetInt("TotalKill", i);
     }
     //Save Total Kill
@@ -219,7 +306,14 @@ public class SaveSystem : MonoBehaviour
     //Get Total Kill
     public int GetTotalKill()
     {
-        return PlayerPrefs.GetInt("TotalKill");
+        if (PlayerPrefs.HasKey("TotalKill"))
+        {
+            return PlayerPrefs.GetInt("TotalKill");
+        }
+        else
+        {
+            return 0;
+        }
     }
     //Reset Total Kill
     private void ResetTotalKill()

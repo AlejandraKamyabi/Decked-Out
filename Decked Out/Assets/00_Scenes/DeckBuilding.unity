@@ -4204,6 +4204,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f3b9932f60e217e4f8da4b2bc39894f2, type: 2}
   - {fileID: 11400000, guid: 17a9b6996c9c2d84cbf57d27e5a7fda3, type: 2}
   - {fileID: 11400000, guid: 3c5fd7efffdca614b9d28c8c74fec86d, type: 2}
+  - {fileID: 11400000, guid: c7c13847fd7a74445aaf59d9f0abf8ec, type: 2}
+  - {fileID: 11400000, guid: 33cdb4f8b1e6e9f43a8a1fd3716adc68, type: 2}
   _selectedTextSprite: {fileID: 21300000, guid: aaaaea19682b61f48b19456b7e8c1ab4, type: 3}
   _textImage: {fileID: 1544564712}
   _normalTextSprite: {fileID: 21300000, guid: 0004df5ebae2a824f8b8521a516a30d1, type: 3}
