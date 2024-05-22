@@ -108,8 +108,6 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
-
-
                 case "Flamethrower Tower":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
                     towerRigSprite.sprite = towerSelection.FlameTower.GetComponentInChildren<SpriteRenderer>().sprite;
@@ -117,7 +115,6 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
-
                 case "Frost Tower":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
                     towerRigSprite.sprite = towerSelection.FrostTower.GetComponentInChildren<SpriteRenderer>().sprite;
@@ -132,7 +129,6 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
-
                 case "Buff Tower":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
                     towerRigSprite.sprite = towerSelection.BuffTower.GetComponentInChildren<SpriteRenderer>().sprite;
@@ -140,7 +136,6 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
-
                 case "Electric Tower":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
                     towerRigSprite.sprite = towerSelection.ElectricTower.GetComponentInChildren<SpriteRenderer>().sprite;
@@ -148,7 +143,6 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
-
                 case "Earthquake Tower":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
                     towerRigSprite.sprite = towerSelection.EathQuack.GetComponentInChildren<SpriteRenderer>().sprite;
@@ -156,8 +150,6 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
-
-
                 case "Attraction Tower":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
                     towerRigSprite.sprite = towerSelection.attraction_Tower.GetComponentInChildren<SpriteRenderer>().sprite;
@@ -200,7 +192,7 @@ public class MouseInputHandling : MonoBehaviour
                     towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
-                case "OrganGun":
+                case "Organ Gun":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
                     towerRigSprite.sprite = towerSelection.OrganGun_Tower.GetComponentInChildren<SpriteRenderer>().sprite;
                     towerRange = towerSelection.OrganGun_Tower.GetComponent<OrganGunTower>().attackRange;
@@ -220,7 +212,6 @@ public class MouseInputHandling : MonoBehaviour
                     Vector3 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                     rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                     break;
-
                 case "Fireball":
                     towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
                     towerRigSprite.sprite = towerSelection.fireball.GetComponentInChildren<SpriteRenderer>().sprite;
@@ -351,7 +342,7 @@ public class MouseInputHandling : MonoBehaviour
                             case "Sniper":
                                 currentTowerInstance = Instantiate(towerSelection.Sniper_Tower, mousePos, Quaternion.identity);
                                 break;
-                            case "Organ":
+                            case "Organ Gun":
                                 currentTowerInstance = Instantiate(towerSelection.OrganGun_Tower, mousePos, Quaternion.identity);
                                 break;
                             case "Mystery":

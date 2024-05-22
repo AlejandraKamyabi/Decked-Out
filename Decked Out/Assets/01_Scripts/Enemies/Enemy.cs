@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public GameObject zapPrefab;
     public bool isBurning = false;
     private bool hasBeenZapped = false;
+
     private float damageTimer = 1.0f;
     public bool isFrozen = false;
     public int TotalFreezeTime = 3;
@@ -114,8 +115,25 @@ public class Enemy : MonoBehaviour
     public bool IsShielded { get; set; }
     public void TakeDamage(float damage)
     {
-        if (!ImmuneToDamage)  
+        if (IsShielded)
         {
+            // Destroy the shield
+            IsShielded = false;
+            ImmuneToDamage = false;
+            if (transform.childCount > 0)
+            {
+                foreach (Transform child in transform)
+                {
+                    if (child.gameObject.CompareTag("Shield"))
+                    {
+                        Destroy(child.gameObject);
+                    }
+                }
+            }
+        }
+        else
+        {
+            // Apply damage to health if not shielded
             currentHealth -= damage;
             UpdateEnemyHealthUI();
 

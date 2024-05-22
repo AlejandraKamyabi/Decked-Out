@@ -49,41 +49,27 @@ public class EarthQuack : MonoBehaviour, ITower
 
                 if (enemy != null)
                 {
-
-                    enemy.ApplyFreeze(0.3f);
- 
-
-
+                    enemy.ApplyFreeze(0.15f);
                 }
                 if (kaboom != null)
                 {
-                    kaboom.ApplyFreeze(0.3f);
-
-
+                    kaboom.ApplyFreeze(0.15f);
                 }
                 if (apostate != null)
                 {
-                    apostate.ApplyFreeze(0.3f);
-
-
+                    apostate.ApplyFreeze(0.15f);
                 }
                 if (cleric != null)
                 {
-                    cleric.ApplyFreeze(0.3f);
-
-
+                    cleric.ApplyFreeze(0.15f);
                 }
                 if (mopey != null)
                 {
-                    mopey.ApplyFreeze(0.3f);
-
-
+                    mopey.ApplyFreeze(0.15f);
                 }
                 if (aegis != null)
                 {
-                    aegis.ApplyFreeze(0.3f);
-
-
+                    aegis.ApplyFreeze(0.15f);
                 }
             }
         }

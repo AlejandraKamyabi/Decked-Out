@@ -9,11 +9,16 @@ public class FloatingPlatform : MonoBehaviour
     private Camera _cam;
     private FloatingPlatformHalo _halo;
 
+    //Bobbing
+    public float bobbingSpeed = 1f;
+    public float bobbingAmount = 0.25f;
+    private Vector3 bobbingBasePosition;
 
     private void Awake()
     {
         _cam = Camera.main;
         _halo = GetComponentInChildren<FloatingPlatformHalo>();
+        bobbingBasePosition = transform.localPosition;
     }
 
     private void Update()
@@ -34,6 +39,8 @@ public class FloatingPlatform : MonoBehaviour
         else
         {
             _halo.IsDragging(false);
+            float yOffset = Mathf.Sin(Time.time * bobbingSpeed) * bobbingAmount;
+            transform.localPosition = new Vector3(transform.localPosition.x, bobbingBasePosition.y + yOffset, transform.localPosition.z);
         }
     }
 
@@ -63,6 +70,7 @@ public class FloatingPlatform : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
+            bobbingBasePosition = transform.localPosition;
         }
     }
 }

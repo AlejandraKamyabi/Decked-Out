@@ -21,7 +21,19 @@ public class AudioManager : MonoBehaviour
     private GameLoader _loader;
     public enum SFXSound
     {
-        TEMPDeathSound
+        Power_Earthquake,
+        Power_EoD,
+        Power_Newhand,
+        Tower_Destroy,
+        Tower_Inferno,
+        Tower_Organ_Wound,
+        Tower_OrganShot_Var1,
+        Tower_OrganShot_Var2,
+        Tower_OrganShot_Var3,
+        Tower_Place,
+        UI_Click,
+        UI_Negative,
+        UI_Positive
     }
     public enum musicSound
     {
