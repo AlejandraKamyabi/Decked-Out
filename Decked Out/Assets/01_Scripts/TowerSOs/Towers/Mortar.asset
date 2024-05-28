@@ -22,6 +22,6 @@ MonoBehaviour:
   rarityWeight: 15
   damage: 40
   range: 6
-  rateOfFire: 2.5
+  rateOfFire: 3.5
   duration: 7
   spell: 0

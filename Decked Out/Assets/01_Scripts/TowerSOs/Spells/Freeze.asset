@@ -19,7 +19,7 @@ MonoBehaviour:
   rarityColor: {r: 0.43529412, g: 0.28627452, b: 0.6901961, a: 1}
   towerInfo: Freeze hands up
   uses: 1
-  rarityWeight: 14
+  rarityWeight: 15
   damage: 0
   range: 2
   rateOfFire: 0

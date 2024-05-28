@@ -241,7 +241,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0045677125, y: -0.017807782}
+  m_Offset: {x: -0.004567623, y: -0.253942}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -252,7 +252,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3574064, y: 1.9360517}
+  m_Size: {x: 1.8485656, y: 1.4637833}
   m_EdgeRadius: 0
 --- !u!50 &-8631973492879612246
 Rigidbody2D:
@@ -414,7 +414,7 @@ MonoBehaviour:
   attackRange: 6
   CannonBall: {fileID: 3956206777213680668, guid: 21eddf438ee6db44c80db1c3982fe713, type: 3}
   Damage: 40
-  RateOfFire: 2.5
+  RateOfFire: 3.5
   Health: 7
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: 0}

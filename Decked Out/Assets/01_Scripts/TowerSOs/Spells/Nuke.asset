@@ -21,7 +21,7 @@ MonoBehaviour:
   uses: 1
   rarityWeight: 5
   damage: 999
-  range: 3
+  range: 999
   rateOfFire: 0
   duration: 5
   spell: 1
