@@ -267,11 +267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046200805ab493e479b6ba35db4d4a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
+  attackRange: 2.5
   SmallBulletPrefab: {fileID: 2299985948843884215, guid: 346af6b6546acfb4d81d8d90a67c1c2a, type: 3}
   Damage: 10
-  RateOfFire: 0.3
-  Health: 3
+  RateOfFire: 0.5
+  Health: 6
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
 --- !u!50 &-8631973492879612246
 Rigidbody2D:
