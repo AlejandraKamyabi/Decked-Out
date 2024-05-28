@@ -18,8 +18,9 @@ public class OrganGunTower : MonoBehaviour, ITower
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
     private Animator animator;
+    public AudioSource audioSource;
 
-    private float _organGunTownAnimLength = 1.0f;
+    private float _organGunAnimLength = 1.0f;
 
     private void OnDrawGizmos()
     {
@@ -36,7 +37,17 @@ public class OrganGunTower : MonoBehaviour, ITower
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+
+        foreach (var clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name.Equals("Organ_Animation"))
+            {
+                _organGunAnimLength = clip.length;
+                break;
+            }
+        }
     }
 
     public float damage
@@ -85,14 +96,13 @@ public class OrganGunTower : MonoBehaviour, ITower
                 buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
-
         }
     }
 
     private void FindAndShootTarget()
     {
         if (canAttack)
-       {
+        {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
             foreach (Collider2D collider in colliders)
             {
@@ -107,11 +117,22 @@ public class OrganGunTower : MonoBehaviour, ITower
 
     private void ShootInAnyDirection()
     {
+        animator.SetBool("IsShooting", true);
+        canAttack = false;
+        StartCoroutine(ShootBullets());
+        StartCoroutine(DeactivateAnimation());
+        StartCoroutine(AttackCooldown());
+    }
+
+    private IEnumerator ShootBullets()
+    {
+        float offset = 0.25f;
+        yield return new WaitForSeconds(_organGunAnimLength - offset);
         Vector2[] directions = new Vector2[]
         {
-        Vector2.up, Vector2.down, Vector2.left, Vector2.right,
-        new Vector2(-1, 1).normalized, new Vector2(1, 1).normalized,
-        new Vector2(-1, -1).normalized, new Vector2(1, -1).normalized
+            Vector2.up, Vector2.down, Vector2.left, Vector2.right,
+            new Vector2(-1, 1).normalized, new Vector2(1, 1).normalized,
+            new Vector2(-1, -1).normalized, new Vector2(1, -1).normalized
         };
         foreach (Vector2 direction in directions)
         {
@@ -121,11 +142,13 @@ public class OrganGunTower : MonoBehaviour, ITower
             bulletScript.SetDirection(direction);
             bulletScript.SetAttackRange(attackRange);
             smallBullet.transform.SetParent(transform);
-            //Debug.Log("Creating bullet with damage: " + Damage + ", direction: " + direction + ", and attack range: " + attackRange);
         }
+    }
 
-        canAttack = false;
-        StartCoroutine(AttackCooldown());
+    private IEnumerator DeactivateAnimation()
+    {
+        yield return new WaitForSeconds(_organGunAnimLength);
+        animator.SetBool("IsShooting", false);
     }
 
     public void ResetTowerEffects()
@@ -157,31 +180,5 @@ public class OrganGunTower : MonoBehaviour, ITower
         {
             Destroy(buffed);
         }
-    }
-    private void ShootCannon(Transform target)
-    {
-        // audioSource.Play();
-        animator.SetBool("IsShooting", true);
-        canAttack = false;
-
-        StartCoroutine(ShootCannonBall(target));
-        StartCoroutine(DeactivateAnimation());
-        StartCoroutine(AttackCooldown());
-    }
-
-    private IEnumerator ShootCannonBall(Transform target)
-    {
-        float offset = 0.25f;
-        yield return new WaitForSeconds(_organGunTownAnimLength - offset);
-        GameObject cannonBall = Instantiate(SmallBulletPrefab, transform.position, Quaternion.identity);
-        CannonBall cannonBallScript = cannonBall.GetComponent<CannonBall>();
-        cannonBallScript.SetTarget(target);
-        cannonBallScript.SetDamage(Damage);
-    }
-
-    private IEnumerator DeactivateAnimation()
-    {
-        yield return new WaitForSeconds(_organGunTownAnimLength);
-        animator.SetBool("IsShooting", false);
     }
 }

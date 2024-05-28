@@ -6,6 +6,13 @@ public class SmallBullet : MonoBehaviour
     private float damage;
     private Vector2 moveDirection;
     private float attackRange;
+    private Animator animator; 
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        PlayAnimation(); 
+    }
 
     private void Update()
     {
@@ -36,7 +43,7 @@ public class SmallBullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             DealDamage(other.gameObject);
-            Debug.Log("Creating bullet with damage");
+            Destroy(gameObject); 
         }
     }
 
@@ -73,6 +80,13 @@ public class SmallBullet : MonoBehaviour
         {
             aegis.TakeDamage(damage);
         }
-        Destroy(gameObject);
+    }
+
+    private void PlayAnimation()
+    {
+        if (animator != null)
+        {
+            animator.Play("Music");
+        }
     }
 }
