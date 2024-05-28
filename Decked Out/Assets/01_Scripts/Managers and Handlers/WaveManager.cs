@@ -528,10 +528,10 @@ public class WaveManager : MonoBehaviour
         int randomSide = UnityEngine.Random.Range(0, 4);
         bool spawnInside = UnityEngine.Random.value < 0.3f;
 
-        float insetFactor = spawnInside ? 0.2f : 0.0f;
+        float insetFactor = spawnInside ? 0.1f : 0.0f;
 
         float maxInset = unitSquareSize * insetFactor;
-        float minEdgeOffset = unitSquareSize / 2 - maxInset;
+        float minEdgeOffset = unitSquareSize / 1 - maxInset;
 
         float randomX = 0;
         float randomY = 0;

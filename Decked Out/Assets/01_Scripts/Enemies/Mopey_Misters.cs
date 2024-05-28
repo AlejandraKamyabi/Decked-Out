@@ -180,10 +180,11 @@ public class Mopey_Misters : MonoBehaviour
         _capsuleCollider.enabled = false;
         deathSoundHandling.PlayDeathSound();
   
-        for (int i = 0; i < numberOfSmallerEnemies; i++)
+        for (int i = 0; i <= numberOfSmallerEnemies; i++)
         {
-            wave.Spawn_mistakes(transform.position); // Ensure this spawns the enemy before incrementing
+           // Ensure this spawns the enemy before incrementing
             wave.IncrementEnemyCount();
+            wave.Spawn_mistakes(transform.position);
         }
         if (_killTracker != null)
         {
