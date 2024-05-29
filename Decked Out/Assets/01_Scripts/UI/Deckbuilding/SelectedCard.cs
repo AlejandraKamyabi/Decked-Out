@@ -30,7 +30,13 @@ public class SelectedCard : MonoBehaviour
     [SerializeField] TextMeshProUGUI _durationText;
     [SerializeField] float _sliderCheat = 0.15f;
 
+    [Header("Misc")]
+    [SerializeField] float _longPressTimer = 2f;
+    [SerializeField] DeckbuildingCardStatsPanelManager _cardStatsPanel;
+
     bool _selected = false;
+    bool _timerEnabled;
+    float _timer;
     Color _rarityColour;
     Sprite _glowBorder;
     Sprite _baseBorder;
@@ -59,6 +65,7 @@ public class SelectedCard : MonoBehaviour
             Debug.Log(card + " :slotted in");
             _card = card;
             UpdateUI();
+            _timerEnabled = false;
         }
        
     }
@@ -131,22 +138,26 @@ public class SelectedCard : MonoBehaviour
     }
     public void SelectCard()
     {
-        if(!_selected)
+        if (!_cardStatsPanel.gameObject.activeInHierarchy)
         {
-            _manager.AddCard(_card);
-            _selected = true;
-            _border.sprite = _glowBorder;
-            _border.transform.localScale = new Vector2(1.26f, 1.26f);
-            _icon.color = _gold;
+            if (!_selected)
+            {
+                _manager.AddCard(_card);
+                _selected = true;
+                _border.sprite = _glowBorder;
+                _border.transform.localScale = new Vector2(1.26f, 1.26f);
+                _icon.color = _gold;
+            }
+            else if (_selected)
+            {
+                _manager.RemoveCard(_card);
+                _selected = false;
+                _border.sprite = _baseBorder;
+                _border.transform.localScale = Vector2.one;
+                _icon.color = Color.white;
+            }
         }
-        else if (_selected)
-        {
-            _manager.RemoveCard(_card );
-            _selected = false;
-            _border.sprite = _baseBorder;
-            _border.transform.localScale = Vector2.one;
-            _icon.color = Color.white;
-        }
+
     }
     public void ActivateGlow()
     {
@@ -159,5 +170,26 @@ public class SelectedCard : MonoBehaviour
     {
         _greyOut.gameObject.SetActive(on);
         _button.interactable = !on;
+    }
+    public void StartLongPressTimer()
+    {
+        _timerEnabled = true;
+        _timer = _longPressTimer;
+    }
+    public void StopLongPressTimer()
+    {
+        _timerEnabled = false;
+    }
+    private void Update()
+    {
+        if (_timerEnabled)
+        {
+            _timer -= Time.deltaTime;
+            if (_timer <= 0)
+            {
+                _timerEnabled = false;
+                _cardStatsPanel.EnableAndFillStatsPanel(_card);
+            }
+        }
     }
 }
