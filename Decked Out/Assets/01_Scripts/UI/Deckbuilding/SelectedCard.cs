@@ -104,17 +104,36 @@ public class SelectedCard : MonoBehaviour
         _name.text = _card.name;
         _name.color = _rarityColour;
 
-        _dmgSlider.value = (_card.damage / 25) + _sliderCheat;
-        _dmgText.text = _card.damage.ToString();
-        _dmgFill.color = _rarityColour;
+        if (_card.damage > 0)
+        {
+            _dmgSlider.value = (_card.damage / 25) + _sliderCheat;
+            _dmgFill.color = _rarityColour;
+            _dmgText.text = _card.damage.ToString();
+        }
+        else if (_card.damage <= 0)
+        {
+            _dmgSlider.value = 0;
+            _dmgText.text = null;
+
+        }
+
 
         _rangeSlider.value = (_card.range / 5) + _sliderCheat;
         _rangeText.text = _card.range.ToString();
         _rangeFill.color = _card.rarityColor;
 
-        _rofSlider.value = (_card.rateOfFire / 10) + _sliderCheat;
-        _rofText.text = _card.rateOfFire.ToString();
-        _rofFill.color = _rarityColour;
+        if (_card.rateOfFire > 0)
+        {
+            _rofSlider.value = (_card.rateOfFire / 10) + _sliderCheat;
+            _rofFill.color = _rarityColour;
+            _rofText.text = _card.rateOfFire.ToString();
+        }
+        else if (_card.rateOfFire <= 0)
+        {
+            _rofSlider.value = 0;
+            _rofText.text = null;
+        }
+
 
         _durationSlider.value = (_card.duration / 10) + _sliderCheat;
         _durationText.text = _card.duration.ToString();
@@ -173,6 +192,7 @@ public class SelectedCard : MonoBehaviour
     }
     public void StartLongPressTimer()
     {
+        Debug.Log("Long Press Timer Started");
         _timerEnabled = true;
         _timer = _longPressTimer;
     }

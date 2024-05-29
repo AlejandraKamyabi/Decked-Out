@@ -7,12 +7,15 @@ using TMPro;
 public class DeckbuildingCardStatsPanelManager : MonoBehaviour
 {
     [SerializeField] TowerCardSO _card;
+    [Range(0, 0.5f)]
     [SerializeField] float _sliderCheat;
 
     [Header("Display Stats")]
     [SerializeField] Image _image;
+    [SerializeField] Image _border;
     [SerializeField] Image _icon;
     [SerializeField] TextMeshProUGUI _name;
+    [SerializeField] TextMeshProUGUI _desc;
 
     [Header("Sliders")]
     [SerializeField] Slider _dmgSlider;
@@ -38,24 +41,41 @@ public class DeckbuildingCardStatsPanelManager : MonoBehaviour
         _card = card;
         this.gameObject.SetActive(true);
         Debug.Log("Slotting in " + card.name + " to deckbuilding stats panel.");
+        _rarityColour = _card.rarityColor;
         _image.sprite = _card.image;
+        _border.sprite = _card.background;
         _icon.sprite = _card.icon;
         _name.text = _card.name;
         _name.color = _rarityColour;
+        _desc.text = _card.towerInfo;
+        _desc.color = _rarityColour;
 
-        _rarityColour = _card.rarityColor;
 
-        _dmgSlider.value = (_card.damage / 25) + _sliderCheat;
+        if (_card.damage > 0)
+        {
+            _dmgSlider.value = (_card.damage / 25) + _sliderCheat;
+            _dmgFill.color = _rarityColour;
+        }
+        else if(_card.damage <= 0)
+        {
+            _dmgSlider.value = 0;
+        }
         _dmgText.text = _card.damage.ToString();
-        _dmgFill.color = _rarityColour;
 
         _rangeSlider.value = (_card.range / 5) + _sliderCheat;
         _rangeText.text = _card.range.ToString();
         _rangeFill.color = _card.rarityColor;
 
-        _rofSlider.value = (_card.rateOfFire / 10) + _sliderCheat;
+        if (_card.rateOfFire > 0) 
+        {
+            _rofSlider.value = (_card.rateOfFire / 10) + _sliderCheat;
+            _rofFill.color = _rarityColour;
+        }
+        else if (_card.rateOfFire <= 0)
+        {
+            _rofSlider.value = 0;
+        }
         _rofText.text = _card.rateOfFire.ToString();
-        _rofFill.color = _rarityColour;
 
         _durationSlider.value = (_card.duration / 10) + _sliderCheat;
         _durationText.text = _card.duration.ToString();

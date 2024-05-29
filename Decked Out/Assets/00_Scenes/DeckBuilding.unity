@@ -587,10 +587,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _card: {fileID: 0}
-  _sliderCheat: 0.1
+  _sliderCheat: 0.15
   _image: {fileID: 1146243657}
+  _border: {fileID: 824597209}
   _icon: {fileID: 1146243656}
   _name: {fileID: 1146243655}
+  _desc: {fileID: 824597208}
   _dmgSlider: {fileID: 75565378}
   _dmgFill: {fileID: 75565377}
   _dmgText: {fileID: 75565376}
@@ -3236,6 +3238,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818183572}
   m_CullTransparentMesh: 1
+--- !u!114 &824597208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8900095459030615826, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
+  m_PrefabInstance: {fileID: 75565365}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &824597209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8900095459779045145, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
+  m_PrefabInstance: {fileID: 75565365}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &851084540
 GameObject:
   m_ObjectHideFlags: 0
@@ -6845,7 +6869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8697395711861342724, guid: efcd180ccaa8e3f4fbfec567509923bb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
