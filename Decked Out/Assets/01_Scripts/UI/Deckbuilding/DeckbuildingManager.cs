@@ -9,7 +9,7 @@ public class DeckbuildingManager : MonoBehaviour
 {
     [SerializeField] private string nextSceneName = "SampleScene";
 
-    [SerializeField] CardTierSelector[] _buttonScrips;
+    [SerializeField] CardTierSelector[] _buttonScripts;
     [SerializeField] GameObject[] _cardRenderers;
     [SerializeField] Button _startButton;
     [SerializeReference] PillarIndicatorManager _pillarIndicatorManager;
@@ -29,7 +29,7 @@ public class DeckbuildingManager : MonoBehaviour
     public TowerCardSO[] epicCards { get { return _epic.ToArray(); } }
     public TowerCardSO[] legendaryCards { get { return _legendary.ToArray(); } }
 
-    public CardTierSelector[] tierButtons { get {  return _buttonScrips; } }
+    public CardTierSelector[] tierButtons { get {  return _buttonScripts; } }
 
     private GameLoader _loader;
     private void Start()
@@ -61,7 +61,7 @@ public class DeckbuildingManager : MonoBehaviour
         TutorialPassthrough tutorialPassthrough = FindObjectOfType<TutorialPassthrough>();
         if (tutorialPassthrough == null)
         {
-            Button commonButton = _buttonScrips[0].gameObject.GetComponent<Button>();
+            Button commonButton = _buttonScripts[0].gameObject.GetComponent<Button>();
             commonButton.Select();
             commonButton.onClick.Invoke();
         }
@@ -135,6 +135,7 @@ public class DeckbuildingManager : MonoBehaviour
         {
             _common.Add(card);
             _pillarIndicatorManager.CardAdded(_currentTier, _common.Count);
+            _buttonScripts[0].DisableCardNeededIndicator();
             Debug.Log(card + " added to manager.");
             if (_common.Count >= 4)
             {
@@ -145,6 +146,7 @@ public class DeckbuildingManager : MonoBehaviour
         {
             _uncommon.Add(card);
             _pillarIndicatorManager.CardAdded(_currentTier, _uncommon.Count);
+            _buttonScripts[1].DisableCardNeededIndicator();
             Debug.Log(card + " added to manager.");
             if (_uncommon.Count >= 4)
             {
@@ -155,6 +157,7 @@ public class DeckbuildingManager : MonoBehaviour
         {
             _rare.Add(card);
             _pillarIndicatorManager.CardAdded(_currentTier, _rare.Count);
+            _buttonScripts[2].DisableCardNeededIndicator();
             Debug.Log(card + " added to manager.");
             if (_rare.Count >= 3)
             {
@@ -165,6 +168,7 @@ public class DeckbuildingManager : MonoBehaviour
         {
             _epic.Add(card);
             _pillarIndicatorManager.CardAdded(_currentTier, _epic.Count);
+            _buttonScripts[3].DisableCardNeededIndicator();
             Debug.Log(card + " added to manager.");
             if (_epic.Count >= 3)
             {
@@ -175,6 +179,7 @@ public class DeckbuildingManager : MonoBehaviour
         {
             _legendary.Add(card);
             _pillarIndicatorManager.CardAdded(_currentTier, _legendary.Count);
+            _buttonScripts[4].DisableCardNeededIndicator();
             Debug.Log(card + " added to manager.");
             if (_legendary.Count >= 2)
             {
@@ -194,6 +199,10 @@ public class DeckbuildingManager : MonoBehaviour
             {
                 DeactivateGreyOut();
             }
+            if (_common.Count == 0)
+            {
+                _buttonScripts[0].EnableCardNeededIndicator();
+            }
         }
         else if (_currentTier == "Uncommon")
         {
@@ -204,6 +213,10 @@ public class DeckbuildingManager : MonoBehaviour
             if (_uncommon.Count !<= 4)
             {
                 DeactivateGreyOut();
+            }
+            if (_uncommon.Count == 0)
+            {
+                _buttonScripts[1].EnableCardNeededIndicator();
             }
         }
         else if (_currentTier == "Rare")
@@ -216,6 +229,10 @@ public class DeckbuildingManager : MonoBehaviour
             {
                 DeactivateGreyOut();
             }
+            if (_rare.Count == 0)
+            {
+                _buttonScripts[2].EnableCardNeededIndicator();
+            }
         }
         else if (_currentTier == "Epic")
         {
@@ -227,6 +244,10 @@ public class DeckbuildingManager : MonoBehaviour
             {
                 DeactivateGreyOut();
             }
+            if (_epic.Count == 0)
+            {
+                _buttonScripts[3].EnableCardNeededIndicator();
+            }
         }
         else if (_currentTier == "Legendary")
         {
@@ -237,6 +258,10 @@ public class DeckbuildingManager : MonoBehaviour
             if (_legendary.Count !<= 2)
             {
                 DeactivateGreyOut();
+            }
+            if (_legendary.Count == 0)
+            {
+                _buttonScripts[4].EnableCardNeededIndicator();
             }
         }
         allTiersHaveCard = new[] { _common, _uncommon, _rare, _epic, _legendary }.All(array => array.Count > 0);

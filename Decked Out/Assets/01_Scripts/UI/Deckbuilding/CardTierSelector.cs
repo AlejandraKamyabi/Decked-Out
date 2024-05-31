@@ -23,6 +23,7 @@ public class CardTierSelector : MonoBehaviour
     [SerializeField] Sprite _selectedTextSprite;
     [SerializeField] Image _textImage;
     [SerializeField] Sprite _normalTextSprite;
+    [SerializeField] Image _cardNeededIndicator;
 
     List<CardTierSelector> _otherTierButtons = new List<CardTierSelector>();
     bool _tierSet = false;
@@ -82,7 +83,22 @@ public class CardTierSelector : MonoBehaviour
             }
             
         }
+        if (_manager.CheckIfSavedCards(_tier).Length > 0)
+        {
+            DisableCardNeededIndicator();
+        }
+        else if (_manager.CheckIfSavedCards(_tier).Length == 0)
+        {
+            EnableCardNeededIndicator();
+        }
     }
 
-
+    public void EnableCardNeededIndicator()
+    {
+        _cardNeededIndicator.gameObject.SetActive(true);
+    }
+    public void DisableCardNeededIndicator()
+    {
+        _cardNeededIndicator.gameObject.SetActive(false);
+    }
 }
