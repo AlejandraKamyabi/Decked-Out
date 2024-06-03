@@ -57,18 +57,21 @@ public class WaveManager : MonoBehaviour
     public int towersPlaced = 0;
     public int currentWave = 0;
     public CardHandling deck_Building;
+    private GameSpeedManager _gameSpeedManager;
 
     public WaveManager Initialize()
     {
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
         deck_Building = FindObjectOfType<CardHandling>();
         _killTracker = FindObjectOfType<EnemyKillTracker>();
+        _gameSpeedManager = FindObjectOfType<GameSpeedManager>();
         return this;
     }
 
     private void StartWaves()
     {
         ToggleStartButton(false);
+        _gameSpeedManager.ActivateControlPanel();
         spawningCoroutine = StartCoroutine(StartWave());
     }
 
@@ -155,7 +158,7 @@ public class WaveManager : MonoBehaviour
         UpdateTowerHealth();
         DestroyTowers();
         ToggleStartButton(true);
-
+        _gameSpeedManager.DeactiveControlPanel();
         towersPlaced = 0;
         TowersLeft = 5;
         currentWave++;
