@@ -12,25 +12,12 @@ public class EndGameSplashManager : MonoBehaviour
     public CardRandoEngine cardRandoEngine;
     public EnemyKillTracker enemyKillTracker;
 
-    public InterstitialAds interstitialAds; // Reference to the InterstitialAds script
-
     public void Initialize()
     {
         wave = ServiceLocator.Get<WaveManager>();
         splashScreen.SetActive(false);
         castleGameObject = ServiceLocator.Get<Castle>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
-
-        // Find InterstitialAds GameObject by name
-        GameObject adsManager = GameObject.Find("AdsManager");
-        if (adsManager != null)
-        {
-            interstitialAds = adsManager.GetComponent<InterstitialAds>();
-        }
-        else
-        {
-            Debug.LogError("Failed to find InterstitialAds GameObject by name.");
-        }
     }
 
     public void Death()
@@ -40,41 +27,8 @@ public class EndGameSplashManager : MonoBehaviour
     }
 
     public void Retry()
-    {
-        if (interstitialAds != null)
-        {
-            // Load the interstitial ad
-            interstitialAds.LoadAd();
-        }
-        else
-        {
-            Debug.LogError("InterstitialAds reference is null.");
-            // If interstitialAds reference is null, restart the game directly
-            RestartGame();
-        }
-    }
-
-    // This method will be called by InterstitialAds script after the ad is loaded
-    public void ShowInterstitialAd()
-    {
-        if (interstitialAds != null)
-        {
-            // Show the interstitial ad
-            interstitialAds.ShowAd();
-        }
-        else
-        {
-            Debug.LogError("InterstitialAds reference is null.");
-            // If interstitialAds reference is null, restart the game directly
-            RestartGame();
-        }
-    }
-
-    // This method will be called by InterstitialAds script after the ad is closed
-    public void RestartGameAfterAd()
-    {
-        // Restart the game after the ad is closed
-        RestartGame();
+    {       
+        RestartGame();   
     }
 
     // Restart the game method
