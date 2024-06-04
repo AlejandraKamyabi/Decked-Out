@@ -44,6 +44,607 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4b46fd67419dc49b8624a4d9558a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waves:
+  - numberOfEnemies: 3
+    timeBetweenEnemies: 2.5
+    timeBetweenWaves: 2.15
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 1.34
+      - 0.62
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 5
+    timeBetweenEnemies: 2.4
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 10
+    timeBetweenEnemies: 2.2
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 15
+    timeBetweenEnemies: 2
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 20
+    timeBetweenEnemies: 2
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 25
+    timeBetweenEnemies: 1.75
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 30
+    timeBetweenEnemies: 1.5
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 35
+    timeBetweenEnemies: 1.4
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 40
+    timeBetweenEnemies: 1.3
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 1
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 1
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.95
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.9
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.85
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.5
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.8
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.75
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.7
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.65
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.3
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.5
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.4
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.3
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.2
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.1
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.09
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 100
+    timeBetweenEnemies: 0.07
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.05
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 50
+    timeBetweenEnemies: 0.03
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
+  - numberOfEnemies: 500
+    timeBetweenEnemies: 0.01
+    timeBetweenWaves: 2.12
+    enemySpawnPercentages:
+      keys:
+      - Acolyte
+      - Kaboom
+      - Golem
+      - Apostate
+      - Necromancer
+      - Aegis
+      - Cleric
+      values:
+      - 0.5
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.1
+      - 0.05
+      - 0.05
   enemyPrefab: {fileID: 3913288999114805945, guid: 59d3508bbaa1f8340a03f638ecfcc487, type: 3}
   KaboomPrefab: {fileID: 3913288999114805945, guid: f1862827c278b8f4ba6d1c6eebc4b423, type: 3}
   GolemPrefab: {fileID: 3913288999114805945, guid: 245fe243352756e46944c4a8c4be652b, type: 3}
@@ -57,106 +658,8 @@ MonoBehaviour:
   TowersLeft: 5
   kaboomEnemy: 0
   healthSliderPrefab: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
-  waves:
-  - numberOfEnemies: 3
-    timeBetweenEnemies: 2.5
-    timeBetweenWaves: 2.15
-  - numberOfEnemies: 5
-    timeBetweenEnemies: 2.4
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 10
-    timeBetweenEnemies: 2.2
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 15
-    timeBetweenEnemies: 2
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 20
-    timeBetweenEnemies: 2
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 25
-    timeBetweenEnemies: 1.75
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 30
-    timeBetweenEnemies: 1.5
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 35
-    timeBetweenEnemies: 1.4
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 40
-    timeBetweenEnemies: 1.3
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 1
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 1
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.95
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.9
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.85
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.5
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.8
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.75
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.7
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.65
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.3
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.5
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.4
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.3
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.2
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.1
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.09
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 100
-    timeBetweenEnemies: 0.07
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.05
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 50
-    timeBetweenEnemies: 0.03
-    timeBetweenWaves: 2.12
-  - numberOfEnemies: 500
-    timeBetweenEnemies: 0.01
-    timeBetweenWaves: 2.12
   towersLeftText: {fileID: 0}
   collisionOccurred: 0
-  enemiesBetweenKaboomSpawns: 5
-  enemiesBetweenGolemSpawns: 8
-  enemiesBetweenApostateSpawns: 12
-  enemiesBetweenNecromancerSpawns: 17
-  enemiesBetweenAegisSpawns: 7
-  enemiesBetweenClericSpawns: 11
-  enemiesBetweenMopeySpawns: 9
   cardRandoEngine: {fileID: 0}
   towersPlaced: 0
   currentWave: 0

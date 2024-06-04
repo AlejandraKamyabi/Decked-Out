@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class EnemyKillTracker : MonoBehaviour
@@ -68,11 +69,7 @@ public class EnemyKillTracker : MonoBehaviour
         }
     }
 
-    public void NumbersOfEnemiesInWave(int enemies)
-    {
-        _enemiesInWave = enemies;
-        Debug.Log("Enemies In Wave " + _waveManager.currentWave + ": " + _enemiesInWave);
-    }
+
 
     public void AllEnemiesInWaveDestroyed()
     {
@@ -104,6 +101,61 @@ public class EnemyKillTracker : MonoBehaviour
         currentWave = 1;
         UpdateEnemyCountText();
         UpdateGemCountText();
+    }
+
+    public void NumbersOfEnemiesInWave(int enemies)
+    {
+        _enemiesInWave = enemies;
+        Debug.Log("Enemies In Wave " + _waveManager.currentWave + ": " + _enemiesInWave);
+    }
+
+    public void AddEnemyToCurrentWave(string enemyType, Vector3 spawnPosition)
+    {
+        GameObject newEnemy = null;
+        Slider newHealthSlider = Instantiate(_waveManager.healthSliderPrefab);
+        Vector3 sliderPosition;
+
+        switch (enemyType)
+        {
+            case "Acolyte":
+                newEnemy = Instantiate(_waveManager.enemyPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+                break;
+            case "Kaboom":
+                newEnemy = Instantiate(_waveManager.KaboomPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
+                break;
+            case "Golem":
+                newEnemy = Instantiate(_waveManager.GolemPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+                break;
+            case "Apostate":
+                newEnemy = Instantiate(_waveManager.Apostate_Prefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Apostate>().maxHealth;
+                break;
+            case "Necromancer":
+                newEnemy = Instantiate(_waveManager.necromancer, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Necromancer>().maxHealth;
+                break;
+            case "Aegis":
+                newEnemy = Instantiate(_waveManager.aegis, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Aegis>().maxHealth;
+                break;
+            case "Cleric":
+                newEnemy = Instantiate(_waveManager.cleric, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Cleric>().maxHealth;
+                break;
+        }
+
+        if (newEnemy != null)
+        {
+            sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+            newHealthSlider.transform.position = sliderPosition;
+            newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+            newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
+            _waveManager.waves[_waveManager.currentWave].numberOfEnemies++;
+            NumbersOfEnemiesInWave(_waveManager.waves[_waveManager.currentWave].numberOfEnemies);
+        }
     }
 
     private void UpdateEnemyCountText()

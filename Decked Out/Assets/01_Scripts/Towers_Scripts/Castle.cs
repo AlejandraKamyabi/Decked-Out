@@ -6,6 +6,7 @@ public class Castle : MonoBehaviour
 {
     public float maxHealth = 100.0f;
     public float currentHealth;
+    public float healthSliderCheat = 5f;
 
     public Slider healthSlider;
     public EndGameSplashManager endGame;
@@ -57,7 +58,45 @@ public class Castle : MonoBehaviour
     }
     private void UpdateHealthUI()
     {
-        healthSlider.value = currentHealth;
+        if (currentHealth == 100)
+        {
+            healthSlider.value = currentHealth;
+        }
+        else if (currentHealth >= 99)
+        {
+            healthSlider.value = currentHealth - 10;
+            healthSlider.value = Mathf.Clamp(healthSlider.value, 90, 100);
+        }
+        else if (currentHealth >= 89)
+        {
+            healthSlider.value = currentHealth - 8;
+            healthSlider.value = Mathf.Clamp(healthSlider.value, 80, 90);
+        }
+        else if (currentHealth >= 79)
+        {
+            healthSlider.value = currentHealth - 6;
+            healthSlider.value = Mathf.Clamp(healthSlider.value, 70, 80);
+        }
+        else if (currentHealth >= 69)
+        {
+            healthSlider.value = currentHealth - 4;
+            healthSlider.value = Mathf.Clamp(healthSlider.value, 60, 70);
+        }
+        else if (currentHealth >= 59)
+        {
+            healthSlider.value = currentHealth - 2;
+            healthSlider.value = Mathf.Clamp(healthSlider.value, 50, 60);
+        }
+        else if (currentHealth < 59)
+        {
+            healthSlider.value = currentHealth;
+            healthSlider.value = Mathf.Clamp(healthSlider.value, 10, 50);
+        }
+        else if (currentHealth <= 10)
+        {
+            healthSlider.value = currentHealth + 2;
+            healthSlider.value = Mathf.Clamp(healthSlider.value, 0, 10);
+        }
     }
 
     

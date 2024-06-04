@@ -60,7 +60,7 @@ private void OnTriggerEnter2D(Collider2D other)
         StartCoroutine(changeTag(0.4f));
         if (!mouse.collisionOccurred && !other.CompareTag("Empty") && !other.CompareTag("Placed") && !other.CompareTag("Tower") && !other.CompareTag("Spell") && other.CompareTag("Platform"))
         {
-            mouse.setCollision(false);
+            mouse.SetCollision(false);
             
             hasCollided = true;
             transform.position = platformTransform.position + new Vector3(0, 0.9f, 0);
