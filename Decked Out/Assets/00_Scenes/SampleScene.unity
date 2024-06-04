@@ -1481,9 +1481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316a99c456de1c94199d816e2bbfc0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showAdButton: {fileID: 382893099}
-  _androidAdUnitId: Rewarded_Android
-  _iOSAdUnitId: Rewarded_iOS
 --- !u!114 &382893099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1528,9 +1525,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 382893098}
-        m_TargetAssemblyTypeName: RewardedAdsButton, Assembly-CSharp
-        m_MethodName: ShowAd
+      - m_Target: {fileID: 937219845}
+        m_TargetAssemblyTypeName: AdsManager, Assembly-CSharp
+        m_MethodName: ShowInterstitialAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1595,7 +1592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -560, y: 254}
+  m_AnchoredPosition: {x: -559.99994, y: 254}
   m_SizeDelta: {x: -2215, y: 225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &390537505
@@ -3434,7 +3431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 937219844}
-  - component: {fileID: 937219843}
+  - component: {fileID: 937219845}
   m_Layer: 0
   m_Name: AdsManager
   m_TagString: Untagged
@@ -3442,23 +3439,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &937219843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937219842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dabfd83f40a90604985c3b3779ac0de8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _androidGameId: 5541499
-  _iOSGameId: 5541498
-  _testMode: 1
-  _rewardedAdsButton: {fileID: 382893098}
-  _interstitialAds: {fileID: 2089853973}
 --- !u!4 &937219844
 Transform:
   m_ObjectHideFlags: 0
@@ -3474,6 +3454,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &937219845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937219842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1253e32d6f3eca459366f8e05bee979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &949355066
 GameObject:
   m_ObjectHideFlags: 0
@@ -4589,7 +4581,6 @@ MonoBehaviour:
   castleGameObject: {fileID: 892063888}
   cardRandoEngine: {fileID: 0}
   enemyKillTracker: {fileID: 1106663294}
-  interstitialAds: {fileID: 0}
 --- !u!114 &1106663294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6334,7 +6325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -928, y: -150}
+  m_AnchoredPosition: {x: -927.99994, y: -150}
   m_SizeDelta: {x: -1940, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1532686956
@@ -9090,12 +9081,52 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b16705d4ea9595549be21d69d2808de7, type: 3}
     - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 937219845}
+    - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1106663293}
     - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowInterstitialAd
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Retry
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AdsManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: EndGameSplashManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163277053648143894, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163277053648143895, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -299.99994
       objectReference: {fileID: 0}
     - target: {fileID: 3163277053786615730, guid: c555e2833cecbf1428174be8d4f09757, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -9142,8 +9173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4bfc63547d1ae4f99ddb29d0269bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _androidAdUnitId: Interstitial_Android
-  _iOSAdUnitId: Interstitial_iOS
 --- !u!1 &2118292658
 GameObject:
   m_ObjectHideFlags: 0
