@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] string gameScene;
+    [SerializeField] string storeScene;
     [SerializeField] GameObject scripturesPanel;
     [SerializeField] GameObject settingsPanel;
     [SerializeField] GameObject minimizeCollider;
@@ -27,6 +28,13 @@ public class MainMenuManager : MonoBehaviour
         //_tutorialPrompt.gameObject.SetActive(true);
         var loadSceneTask = SceneManager.LoadSceneAsync(gameScene);
     }
+
+    public void OpenStore()
+    {
+        //_tutorialPrompt.gameObject.SetActive(true);
+        var loadSceneTask = SceneManager.LoadSceneAsync(storeScene);
+    }
+
     public void StartTutorial()
     {
         GameLoader gameLoader = FindObjectOfType<GameLoader>();

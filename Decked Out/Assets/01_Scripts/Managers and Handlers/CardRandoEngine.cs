@@ -446,22 +446,22 @@ public class CardRandoEngine : MonoBehaviour
         dmgSlider.value = (cardDataToShow.damage / 25) + sliderCheat;
         dmgText.text = cardDataToShow.damage.ToString();
         dmgFillImage.color = cardDataToShow.rarityColor;
-        dmgText.color = cardDataToShow.rarityColor;
+        //dmgText.color = cardDataToShow.rarityColor;
 
         rangeSlider.value = (cardDataToShow.range / 5) + sliderCheat;
         rangeText.text = cardDataToShow.range.ToString();
         rangeFillImage.color = cardDataToShow.rarityColor;
-        rangeText.color = cardDataToShow.rarityColor;
+        //rangeText.color = cardDataToShow.rarityColor;
 
         rofSlider.value = (cardDataToShow.rateOfFire / 10) + sliderCheat;
         rofText.text = cardDataToShow.rateOfFire.ToString();
         rofFillImage.color = cardDataToShow.rarityColor;
-        rofText.color = cardDataToShow.rarityColor;
+        //rofText.color = cardDataToShow.rarityColor;
 
         durationSlider.value = (cardDataToShow.duration / 10) + sliderCheat;
         durationText.text = cardDataToShow.duration.ToString();
         durationFillImage.color = cardDataToShow.rarityColor;
-        durationText.color = cardDataToShow.rarityColor;
+        //durationText.color = cardDataToShow.rarityColor;
 
         //Debug.Log("Card Stats Panel Open");
     }

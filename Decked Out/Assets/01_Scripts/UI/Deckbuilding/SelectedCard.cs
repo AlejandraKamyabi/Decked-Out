@@ -30,7 +30,13 @@ public class SelectedCard : MonoBehaviour
     [SerializeField] TextMeshProUGUI _durationText;
     [SerializeField] float _sliderCheat = 0.15f;
 
+    [Header("Misc")]
+    [SerializeField] float _longPressTimer = 2f;
+    [SerializeField] DeckbuildingCardStatsPanelManager _cardStatsPanel;
+
     bool _selected = false;
+    bool _timerEnabled;
+    float _timer;
     Color _rarityColour;
     Sprite _glowBorder;
     Sprite _baseBorder;
@@ -59,6 +65,7 @@ public class SelectedCard : MonoBehaviour
             Debug.Log(card + " :slotted in");
             _card = card;
             UpdateUI();
+            _timerEnabled = false;
         }
        
     }
@@ -97,17 +104,36 @@ public class SelectedCard : MonoBehaviour
         _name.text = _card.name;
         _name.color = _rarityColour;
 
-        _dmgSlider.value = (_card.damage / 25) + _sliderCheat;
-        _dmgText.text = _card.damage.ToString();
-        _dmgFill.color = _rarityColour;
+        if (_card.damage > 0)
+        {
+            _dmgSlider.value = (_card.damage / 25) + _sliderCheat;
+            _dmgFill.color = _rarityColour;
+            _dmgText.text = _card.damage.ToString();
+        }
+        else if (_card.damage <= 0)
+        {
+            _dmgSlider.value = 0;
+            _dmgText.text = null;
+
+        }
+
 
         _rangeSlider.value = (_card.range / 5) + _sliderCheat;
         _rangeText.text = _card.range.ToString();
         _rangeFill.color = _card.rarityColor;
 
-        _rofSlider.value = (_card.rateOfFire / 10) + _sliderCheat;
-        _rofText.text = _card.rateOfFire.ToString();
-        _rofFill.color = _rarityColour;
+        if (_card.rateOfFire > 0)
+        {
+            _rofSlider.value = (_card.rateOfFire / 10) + _sliderCheat;
+            _rofFill.color = _rarityColour;
+            _rofText.text = _card.rateOfFire.ToString();
+        }
+        else if (_card.rateOfFire <= 0)
+        {
+            _rofSlider.value = 0;
+            _rofText.text = null;
+        }
+
 
         _durationSlider.value = (_card.duration / 10) + _sliderCheat;
         _durationText.text = _card.duration.ToString();
@@ -131,22 +157,26 @@ public class SelectedCard : MonoBehaviour
     }
     public void SelectCard()
     {
-        if(!_selected)
+        if (!_cardStatsPanel.gameObject.activeInHierarchy)
         {
-            _manager.AddCard(_card);
-            _selected = true;
-            _border.sprite = _glowBorder;
-            _border.transform.localScale = new Vector2(1.26f, 1.26f);
-            _icon.color = _gold;
+            if (!_selected)
+            {
+                _manager.AddCard(_card);
+                _selected = true;
+                _border.sprite = _glowBorder;
+                _border.transform.localScale = new Vector2(1.26f, 1.26f);
+                _icon.color = _gold;
+            }
+            else if (_selected)
+            {
+                _manager.RemoveCard(_card);
+                _selected = false;
+                _border.sprite = _baseBorder;
+                _border.transform.localScale = Vector2.one;
+                _icon.color = Color.white;
+            }
         }
-        else if (_selected)
-        {
-            _manager.RemoveCard(_card );
-            _selected = false;
-            _border.sprite = _baseBorder;
-            _border.transform.localScale = Vector2.one;
-            _icon.color = Color.white;
-        }
+
     }
     public void ActivateGlow()
     {
@@ -159,5 +189,27 @@ public class SelectedCard : MonoBehaviour
     {
         _greyOut.gameObject.SetActive(on);
         _button.interactable = !on;
+    }
+    public void StartLongPressTimer()
+    {
+        Debug.Log("Long Press Timer Started");
+        _timerEnabled = true;
+        _timer = _longPressTimer;
+    }
+    public void StopLongPressTimer()
+    {
+        _timerEnabled = false;
+    }
+    private void Update()
+    {
+        if (_timerEnabled)
+        {
+            _timer -= Time.deltaTime;
+            if (_timer <= 0)
+            {
+                _timerEnabled = false;
+                _cardStatsPanel.EnableAndFillStatsPanel(_card);
+            }
+        }
     }
 }

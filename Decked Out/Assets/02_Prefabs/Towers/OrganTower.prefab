@@ -269,7 +269,7 @@ MonoBehaviour:
   attackRange: 2.5
   SmallBulletPrefab: {fileID: 2299985948843884215, guid: 346af6b6546acfb4d81d8d90a67c1c2a, type: 3}
   Damage: 10
-  RateOfFire: 0.5
+  RateOfFire: 1
   Health: 6
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
 --- !u!50 &-8631973492879612246
