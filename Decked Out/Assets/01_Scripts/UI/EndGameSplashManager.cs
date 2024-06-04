@@ -7,14 +7,14 @@ public class EndGameSplashManager : MonoBehaviour
     public string gameScene;
     public string mainMenuScene;
     public string deckbuilderScene;
-    private WaveManager wave;
+    private WaveManager wave_m;
     public Castle castleGameObject;
     public CardRandoEngine cardRandoEngine;
     public EnemyKillTracker enemyKillTracker;
 
     public void Initialize()
     {
-        wave = ServiceLocator.Get<WaveManager>();
+        wave_m = ServiceLocator.Get<WaveManager>();
         splashScreen.SetActive(false);
         castleGameObject = ServiceLocator.Get<Castle>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
@@ -41,7 +41,7 @@ public class EndGameSplashManager : MonoBehaviour
 
     public void MainMenu()
     {
-        wave.StopWave();
+        wave_m .StopWave();
         var loadSceneTask = SceneManager.LoadSceneAsync(mainMenuScene);
     }
 

@@ -4,19 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-[System.Serializable]
-public class Wave
-{
-    public int numberOfEnemies = 5;
-    public float timeBetweenEnemies = 2.0f;
-    public float timeBetweenWaves = 10.0f;
-}
-
 public class WaveManager : MonoBehaviour
 {
-    public delegate void SpawnAction();
+    public List<Wave> waves = new List<Wave>();
 
-    // Managing Wave
     public GameObject enemyPrefab;
     public GameObject KaboomPrefab;
     public GameObject GolemPrefab;
@@ -30,26 +21,10 @@ public class WaveManager : MonoBehaviour
     public float TowersLeft = 6;
     public bool kaboomEnemy = false;
     public Slider healthSliderPrefab;
-    public List<Wave> waves = new List<Wave>();
     public TMP_Text towersLeftText;
     public bool collisionOccurred = false;
 
     private int enemiesSpawned = 0;
-    [Range(1, 25)]
-    public int enemiesBetweenKaboomSpawns = 4;
-    [Range(1, 25)]
-    public int enemiesBetweenGolemSpawns = 6;
-    [Range(1, 25)]
-    public int enemiesBetweenApostateSpawns = 8;
-    [Range(1, 25)]
-    public int enemiesBetweenNecromancerSpawns = 10;
-    [Range(1, 25)]
-    public int enemiesBetweenAegisSpawns = 7;
-    [Range(1, 25)]
-    public int enemiesBetweenClericSpawns = 9;
-    [Range(1, 25)]
-    private int enemiesBetweenMopeySpawns = 9;
-
     private EnemyKillTracker _killTracker;
     private Coroutine spawningCoroutine;
     public CardRandoEngine cardRandoEngine;
@@ -58,6 +33,11 @@ public class WaveManager : MonoBehaviour
     public int currentWave = 0;
     public CardHandling deck_Building;
     private GameSpeedManager _gameSpeedManager;
+
+    private void Start()
+    {
+        Initialize();
+    }
 
     public WaveManager Initialize()
     {
@@ -95,62 +75,213 @@ public class WaveManager : MonoBehaviour
                 Debug.LogError("Trying to spawn more enemies than allowed");
                 break;
             }
-            else if (ShouldSpawnSpecialEnemy(enemiesSpawned, out SpawnAction spawnAction))
-            {
-                spawnAction.Invoke();
-                enemiesSpawned++;
-                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
-                continue;
-            }
             else
             {
-                SpawnEnemy();
+                SpawnEnemyBasedOnPercentage(waves[currentWave].enemySpawnPercentages);
                 enemiesSpawned++;
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
-                continue;
             }
         }
     }
 
-    private bool ShouldSpawnSpecialEnemy(int enemiesSpawned, out SpawnAction spawnAction)
+    private void SpawnEnemyBasedOnPercentage(SerializableDictionary<string, float> enemySpawnPercentages)
     {
-        spawnAction = null;
-        if (enemiesSpawned % enemiesBetweenNecromancerSpawns == 0 && enemiesSpawned != 0)
+        float rand = Random.value;
+        float cumulative = 0f;
+
+        foreach (var enemyType in enemySpawnPercentages)
         {
-            spawnAction = Spawn_Necromancer;
-            return true;
+            cumulative += enemyType.Value;
+            if (rand < cumulative)
+            {
+                switch (enemyType.Key)
+                {
+                    case "Acolyte":
+                        SpawnEnemy();
+                        break;
+                    case "Kaboom":
+                        SpawnKaboomEnemy();
+                        break;
+                    case "Golem":
+                        SpawnGolemEnemy();
+                        break;
+                    case "Apostate":
+                        SpawnApostateEnemy();
+                        break;
+                    case "Necromancer":
+                        Spawn_Necromancer();
+                        break;
+                    case "Aegis":
+                        Spawn_Aegis();
+                        break;
+                    case "Cleric":
+                        Spawn_Cleric();
+                        break;
+                }
+                break;
+            }
         }
-        else if (enemiesSpawned % enemiesBetweenAegisSpawns == 0 && enemiesSpawned != 0)
+    }
+
+    private void SpawnEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+    }
+
+    private void SpawnKaboomEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
+        SetupHealthSlider(newEnemy, newEnemy.GetComponent<KaboomEnemy>().maxHealth);
+    }
+
+    private void SpawnGolemEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
+        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+    }
+
+    private void SpawnApostateEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
+        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Apostate>().maxHealth);
+    }
+
+    private void Spawn_Necromancer()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
+        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Necromancer>().maxHealth);
+    }
+    public void IncrementTowersPlaced()
+    {
+        towersPlaced++;
+        TowersLeft--;
+    }
+    private void Spawn_Aegis()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
+        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Aegis>().maxHealth);
+    }
+
+    private void Spawn_Cleric()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        GameObject newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
+        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Cleric>().maxHealth);
+    }
+
+    private void SetupHealthSlider(GameObject enemy, float maxHealth)
+    {
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(enemy.transform.position + new Vector3(0, 100.0f, 0));
+        newHealthSlider.transform.position = sliderPosition;
+        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        newHealthSlider.maxValue = maxHealth;
+        //enemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
+    }
+
+    private Vector3 GetRandomSpawnPosition()
+    {
+        int randomSide = UnityEngine.Random.Range(0, 4);
+        bool spawnInside = UnityEngine.Random.value < 0.3f;
+
+        float insetFactor = spawnInside ? 0.1f : 0.0f;
+
+        float maxInset = unitSquareSize * insetFactor;
+        float minEdgeOffset = unitSquareSize / 1 - maxInset;
+
+        float randomX = 0;
+        float randomY = 0;
+
+        switch (randomSide)
         {
-            spawnAction = Spawn_Aegis;
-            return true;
+            case 0:
+                randomX = UnityEngine.Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
+                randomY = spawnInside ? UnityEngine.Random.Range(minEdgeOffset, unitSquareSize / 2) : unitSquareSize / 2;
+                break;
+            case 1:
+                randomX = spawnInside ? UnityEngine.Random.Range(unitSquareSize / 2 - maxInset, unitSquareSize / 2) : unitSquareSize / 2;
+                randomY = UnityEngine.Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
+                break;
+            case 2:
+                randomX = UnityEngine.Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
+                randomY = spawnInside ? UnityEngine.Random.Range(-unitSquareSize / 2, -minEdgeOffset) : -unitSquareSize / 2;
+                break;
+            case 3:
+                randomX = spawnInside ? UnityEngine.Random.Range(-unitSquareSize / 2, -unitSquareSize / 2 + maxInset) : -unitSquareSize / 2;
+                randomY = UnityEngine.Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
+                break;
         }
-        else if (enemiesSpawned % enemiesBetweenClericSpawns == 0 && enemiesSpawned != 0)
+
+        return new Vector3(randomX, randomY, 0);
+    }
+
+    public void AddEnemyToCurrentWave(string enemyType, Vector3 spawnPosition)
+    {
+        GameObject newEnemy = null;
+        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+        Vector3 sliderPosition;
+
+        switch (enemyType)
         {
-            spawnAction = Spawn_Cleric;
-            return true;
+            case "Acolyte":
+                newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+                break;
+            case "Kaboom":
+                newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
+                break;
+            case "Golem":
+                newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+                break;
+            case "Apostate":
+                newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Apostate>().maxHealth;
+                break;
+            case "Necromancer":
+                newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Necromancer>().maxHealth;
+                break;
+            case "Aegis":
+                newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Aegis>().maxHealth;
+                break;
+            case "Cleric":
+                newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Cleric>().maxHealth;
+                break;
         }
-        else if (enemiesSpawned % enemiesBetweenApostateSpawns == 0 && enemiesSpawned != 0)
+
+        if (newEnemy != null)
         {
-            spawnAction = SpawnApostateEnemy;
-            return true;
+            sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+            newHealthSlider.transform.position = sliderPosition;
+            newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+            //newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
+            waves[currentWave].numberOfEnemies++;
+            _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
         }
-        else if (enemiesSpawned % enemiesBetweenGolemSpawns == 0 && enemiesSpawned != 0)
-        {
-            spawnAction = SpawnGolemEnemy;
-            return true;
-        }
-        else if (enemiesSpawned % enemiesBetweenKaboomSpawns == 0 && enemiesSpawned != 0)
-        {
-            spawnAction = SpawnKaboomEnemy;
-            return true;
-        }
-        else if (enemiesSpawned % enemiesBetweenMopeySpawns == 0 && enemiesSpawned != 0)
-        {
-            spawnAction = Spawn_Mopey;
-            return true;
-        }
-        return false;
+    }
+
+    public void Spawn_mistakes(Vector3 spawnPosition)
+    {
+        Vector3 spawnOffset = Random.insideUnitCircle * 0.5f;
+        GameObject newEnemy = Instantiate(Mistake_Prefab, spawnPosition + spawnOffset, Quaternion.identity);
+        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+    }
+
+    public void IncrementEnemyCount()
+    {
+        waves[currentWave].numberOfEnemies++;
+        _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
     }
 
     public void AllEnemiesInWaveDestroyed()
@@ -162,141 +293,6 @@ public class WaveManager : MonoBehaviour
         towersPlaced = 0;
         TowersLeft = 5;
         currentWave++;
-    }
-
-    private void SpawnKaboomEnemy()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
-        newEnemy.GetComponent<KaboomEnemy>().SetHealthSlider(newHealthSlider);
-    }
-
-    private void SpawnEnemy()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
-        newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
-    }
-
-    private void Spawn_Mopey()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(Mopey_prefab, spawnPosition, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<Mopey_Misters>().maxHealth;
-        newEnemy.GetComponent<Mopey_Misters>().SetHealthSlider(newHealthSlider);
-    }
-
-    public void Spawn_mistakes(Vector3 spawnPosition)
-    {
-        Vector3 spawnOffset = Random.insideUnitCircle * 0.5f;
-        GameObject newEnemy = Instantiate(Mistake_Prefab, spawnPosition + spawnOffset, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
-        newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
-    }
-
-    private void Spawn_Necromancer()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<Necromancer>().maxHealth;
-        newEnemy.GetComponent<Necromancer>().SetHealthSlider(newHealthSlider);
-    }
-
-    private void Spawn_Aegis()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<Aegis>().maxHealth;
-        newEnemy.GetComponent<Aegis>().SetHealthSlider(newHealthSlider);
-    }
-
-    private void Spawn_Cleric()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<Cleric>().maxHealth;
-        newEnemy.GetComponent<Cleric>().SetHealthSlider(newHealthSlider);
-    }
-
-    private void SpawnGolemEnemy()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
-        newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
-    }
-
-    private void SpawnApostateEnemy()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
-
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
-
-        Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
-        newHealthSlider.transform.position = sliderPosition;
-
-        newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-        newHealthSlider.maxValue = newEnemy.GetComponent<Apostate>().maxHealth;
-        newEnemy.GetComponent<Apostate>().SetHealthSlider(newHealthSlider);
     }
 
     public void StopWave()
@@ -335,8 +331,8 @@ public class WaveManager : MonoBehaviour
             ITower towerScript = placedTower.GetComponent<ITower>();
             Destroy(placedTower);
         }
-        GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
-        foreach (GameObject empty in Empties)
+        GameObject[] empties = GameObject.FindGameObjectsWithTag("Empty");
+        foreach (GameObject empty in empties)
         {
             ITower towerScript = empty.GetComponent<ITower>();
             Destroy(empty);
@@ -356,133 +352,9 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private void UpdateTowerHealth()
+    public void SetCollision(bool tf)
     {
-        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
-        foreach (GameObject tower in towers)
-        {
-            ITower towerScript = tower.GetComponent<ITower>();
-            if (towerScript != null)
-            {
-                towerScript.health--;
-            }
-        }
-        GameObject[] PlacedTowers = GameObject.FindGameObjectsWithTag("Placed");
-        foreach (GameObject PlacedTower in PlacedTowers)
-        {
-            ITower towerScript = PlacedTower.GetComponent<ITower>();
-            if (towerScript != null)
-            {
-                towerScript.health--;
-            }
-        }
-        GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
-        foreach (GameObject empty in Empties)
-        {
-            ITower towerScript = empty.GetComponent<ITower>();
-            if (towerScript != null)
-            {
-                towerScript.health--;
-            }
-        }
-        GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
-        foreach (GameObject buffers in buffer)
-        {
-            IBuffTower towerScript = buffers.GetComponent<IBuffTower>();
-            if (towerScript != null)
-            {
-                towerScript.health--;
-            }
-        }
-        GameObject[] Placed_buffer = GameObject.FindGameObjectsWithTag("Placed");
-        foreach (GameObject Placed_buffers in Placed_buffer)
-        {
-            IBuffTower towerScript = Placed_buffers.GetComponent<IBuffTower>();
-            if (towerScript != null)
-            {
-                towerScript.health--;
-            }
-        }
-    }
-
-    private void ToggleStartButton(bool isEnabled)
-    {
-        startButton.interactable = isEnabled;
-        startButton.gameObject.SetActive(isEnabled);
-    }
-
-    public void AddEnemyToCurrentWave(string enemyType, Vector3 spawnPosition)
-    {
-        switch (enemyType)
-        {
-            case "Acolyte":
-                GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-                Slider newHealthSlider = Instantiate(healthSliderPrefab);
-                waves[currentWave].numberOfEnemies++;
-                Vector3 sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-                newHealthSlider.transform.position = sliderPosition;
-                _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
-                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
-                newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
-                break;
-            case "Kaboom":
-                newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
-                newHealthSlider = Instantiate(healthSliderPrefab);
-                waves[currentWave].numberOfEnemies++;
-                sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-                newHealthSlider.transform.position = sliderPosition;
-                _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
-                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-                newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
-                newEnemy.GetComponent<KaboomEnemy>().SetHealthSlider(newHealthSlider);
-                break;
-            case "Apostate":
-                newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
-                newHealthSlider = Instantiate(healthSliderPrefab);
-                waves[currentWave].numberOfEnemies++;
-                Vector3 apostateSliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
-                newHealthSlider.transform.position = apostateSliderPosition;
-                _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
-                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Apostate>().maxHealth;
-                newEnemy.GetComponent<Apostate>().SetHealthSlider(newHealthSlider);
-                break;
-            case "Golem":
-                newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
-                newHealthSlider = Instantiate(healthSliderPrefab);
-                waves[currentWave].numberOfEnemies++;
-                Vector3 golemSliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
-                newHealthSlider.transform.position = golemSliderPosition;
-                _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
-                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
-                newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
-                break;
-            case "Aegis":
-                newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
-                newHealthSlider = Instantiate(healthSliderPrefab);
-                waves[currentWave].numberOfEnemies++;
-                Vector3 aegisSliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
-                newHealthSlider.transform.position = aegisSliderPosition;
-                _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
-                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Aegis>().maxHealth;
-                newEnemy.GetComponent<Aegis>().SetHealthSlider(newHealthSlider);
-                break;
-            case "Cleric":
-                newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
-                newHealthSlider = Instantiate(healthSliderPrefab);
-                waves[currentWave].numberOfEnemies++;
-                Vector3 clericSliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 1700.0f, 0));
-                newHealthSlider.transform.position = clericSliderPosition;
-                _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
-                newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Cleric>().maxHealth;
-                newEnemy.GetComponent<Cleric>().SetHealthSlider(newHealthSlider);
-                break;
-        }
-
+        collisionOccurred = tf;
     }
 
     private void DestroyTowers()
@@ -526,68 +398,49 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private Vector3 GetRandomSpawnPosition()
+    private void UpdateTowerHealth()
     {
-        int randomSide = UnityEngine.Random.Range(0, 4);
-        bool spawnInside = UnityEngine.Random.value < 0.3f;
-
-        float insetFactor = spawnInside ? 0.1f : 0.0f;
-
-        float maxInset = unitSquareSize * insetFactor;
-        float minEdgeOffset = unitSquareSize / 1 - maxInset;
-
-        float randomX = 0;
-        float randomY = 0;
-
-        switch (randomSide)
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+        foreach (GameObject tower in towers)
         {
-            case 0:
-                randomX = UnityEngine.Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
-                randomY = spawnInside ? UnityEngine.Random.Range(minEdgeOffset, unitSquareSize / 2) : unitSquareSize / 2;
-                break;
-            case 1:
-                randomX = spawnInside ? UnityEngine.Random.Range(unitSquareSize / 2 - maxInset, unitSquareSize / 2) : unitSquareSize / 2;
-                randomY = UnityEngine.Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
-                break;
-            case 2:
-                randomX = UnityEngine.Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
-                randomY = spawnInside ? UnityEngine.Random.Range(-unitSquareSize / 2, -minEdgeOffset) : -unitSquareSize / 2;
-                break;
-            case 3:
-                randomX = spawnInside ? UnityEngine.Random.Range(-unitSquareSize / 2, -unitSquareSize / 2 + maxInset) : -unitSquareSize / 2;
-                randomY = UnityEngine.Random.Range(-unitSquareSize / 2 + maxInset, unitSquareSize / 2 - maxInset);
-                break;
+            ITower towerScript = tower.GetComponent<ITower>();
+            if (towerScript != null)
+            {
+                towerScript.health--;
+            }
         }
-
-        Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
-        return spawnPosition;
+        GameObject[] PlacedTowers = GameObject.FindGameObjectsWithTag("Placed");
+        foreach (GameObject PlacedTower in PlacedTowers)
+        {
+            ITower towerScript = PlacedTower.GetComponent<ITower>();
+            if (towerScript != null)
+            {
+                towerScript.health--;
+            }
+        }
+        GameObject[] Empties = GameObject.FindGameObjectsWithTag("Empty");
+        foreach (GameObject empty in Empties)
+        {
+            ITower towerScript = empty.GetComponent<ITower>();
+            if (towerScript != null)
+            {
+                towerScript.health--;
+            }
+        }
+        GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
+        foreach (GameObject buffers in buffer)
+        {
+            IBuffTower towerScript = buffers.GetComponent<IBuffTower>();
+            if (towerScript != null)
+            {
+                towerScript.health--;
+            }
+        }
     }
 
-    public void IncrementEnemyCount()
+    private void ToggleStartButton(bool isEnabled)
     {
-        waves[currentWave].numberOfEnemies++;
-        _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
-    }
-
-
-    public void IncrementTowersPlaced()
-    {
-        towersPlaced++;
-        TowersLeft--;
-    }
-
-    public void setCollision(bool tf)
-    {
-        collisionOccurred = tf;
-    }
-
-    public int GetEnemies()
-    {
-        return waves[currentWave].numberOfEnemies;
-    }
-
-    public int GetWave()
-    {
-        return currentWave;
+        startButton.interactable = isEnabled;
+        startButton.gameObject.SetActive(isEnabled);
     }
 }
