@@ -39,7 +39,22 @@ public class PositionUpdater : MonoBehaviour
         }
     }
 
-private IEnumerator changeTag(float delay)
+
+    // note for me
+
+
+    /*  I gotta go over this section since the tower usually scoops up when the detection on whether 
+        or not the tower has been destroyed, it sets it to null if it dosent which happens
+        when there no more detections used for this. setting it directly from the mousinputhandling script
+        might work since the script has collisionOccurred with it and it would rquire me to check every 
+        frame.This detection can sometimes require trying to make it a difference between each tower since the
+        collision might sometimes cause issues when there are multiple towers placed, basiccally overlapping 
+        in a single frame which can cause issues.
+        delaying this proccess might be able to fix this issues so i will start with that and 
+        connect to other issues. 
+     */
+
+    private IEnumerator changeTag(float delay)
 {
     yield return new WaitForSeconds(delay);
         gameObject.tag = "Empty";
@@ -72,13 +87,18 @@ private void OnTriggerEnter2D(Collider2D other)
 
     private void Update()
     {
+
+        if (platformTransform == null)
+        {
+            input.setIsland(true);
+        }
+
+
         if (hasCollided && platformTransform != null)
         {
             transform.position = platformTransform.position + new Vector3(0, 0.9f, 0);
         }
-        if(platformTransform == null)
-        {
-            input.setIsland(true);
-        }
+
+
     }
 }
