@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3463142274254736220}
   - component: {fileID: 1351544693355159091}
-  - component: {fileID: 1278526840456753987}
+  - component: {fileID: 6631534501052991661}
   m_Layer: 6
   m_Name: Tower Sprite
   m_TagString: Untagged
@@ -169,7 +169,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1278526840456753987
+--- !u!95 &6631534501052991661
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 7004951903434995616}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dbf0b942135f56249b6b58f4cea81d9c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 34eb7109e88c13d4e9b29891e8e6f697, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -204,7 +204,6 @@ GameObject:
   - component: {fileID: 5504842860396415455}
   - component: {fileID: -2459782676629322120}
   - component: {fileID: 7240716721217059006}
-  - component: {fileID: 6010209628081694879}
   m_Layer: 6
   m_Name: Ballista
   m_TagString: Tower
@@ -419,23 +418,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeDuration: 5
   _rangeRenderer: {fileID: 905211514465987605}
---- !u!95 &6010209628081694879
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7405903770306088367}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dbf0b942135f56249b6b58f4cea81d9c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

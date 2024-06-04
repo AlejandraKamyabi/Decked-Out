@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 995995880901192166}
   - component: {fileID: 2843627309858996433}
   - component: {fileID: -7347635400290845715}
+  - component: {fileID: -6249173973995521861}
   m_Layer: 3
   m_Name: Zap
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: -955459919
   m_SortingLayer: 1
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: a298082da6a9902499b752fdf18cdfb7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ef57df806ea03498b2fb0847c3c818, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.7019608}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,3 +136,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tickSpeed: 0.25
+--- !u!95 &-6249173973995521861
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3956206777213680668}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e310ed53cc4f28740bac59094b125dec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

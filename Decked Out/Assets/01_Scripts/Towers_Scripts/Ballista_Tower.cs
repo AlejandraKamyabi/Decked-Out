@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ballista_Tower : MonoBehaviour, ITower
@@ -20,17 +19,12 @@ public class Ballista_Tower : MonoBehaviour, ITower
     private Animator animator;
     public AudioSource audioSource;
 
-    private float _BallistaAnimLength = 1.0f;
+    private float _ballistaAnimLength = 1.0f;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
-
-    private void Update()
-    {
-        FindAndShootTarget();
     }
 
     private void Start()
@@ -40,21 +34,19 @@ public class Ballista_Tower : MonoBehaviour, ITower
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        if (animator != null)
+        foreach (var clip in animator.runtimeAnimatorController.animationClips)
         {
-            foreach (var clip in animator.runtimeAnimatorController.animationClips)
+            if (clip.name.Equals("Ballista_Animation"))
             {
-                if (clip.name.Equals("Ballista_Animation"))
-                {
-                    _BallistaAnimLength = clip.length;
-                    break;
-                }
+                _ballistaAnimLength = clip.length;
+                break;
             }
         }
-        else
-        {
-            Debug.LogError("Animator component not found on Ballista_Tower");
-        }
+    }
+
+    private void Update()
+    {
+        FindAndShootTarget();
     }
 
     public float damage
@@ -69,10 +61,10 @@ public class Ballista_Tower : MonoBehaviour, ITower
         set { RateOfFire = value; }
     }
 
-    GameObject ITower.gameObject
+    public float range
     {
-        get { return towerGameObject; }
-        set { towerGameObject = value; }
+        get { return attackRange; }
+        set { attackRange = value; }
     }
 
     public float health
@@ -81,10 +73,10 @@ public class Ballista_Tower : MonoBehaviour, ITower
         set { Health = value; }
     }
 
-    public float range
+    GameObject ITower.gameObject
     {
-        get { return attackRange; }
-        set { attackRange = value; }
+        get { return towerGameObject; }
+        set { towerGameObject = value; }
     }
 
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
@@ -111,21 +103,13 @@ public class Ballista_Tower : MonoBehaviour, ITower
         if (canAttack)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
-            bool enemyFound = false;
             foreach (Collider2D collider in colliders)
             {
                 if (collider.CompareTag("Enemy"))
                 {
                     ShootArrow(collider.transform);
-                    enemyFound = true;
                     break;
                 }
-            }
-
-            if (!enemyFound)
-            {
-                animator.Play("Ballista_Animation", 0, 0); 
-                animator.speed = 0;
             }
         }
     }
@@ -133,18 +117,15 @@ public class Ballista_Tower : MonoBehaviour, ITower
     private void ShootArrow(Transform target)
     {
         audioSource.Play();
-        animator.speed = 1;
-        animator.Play("Ballista_Animation", -1, 0);
+        animator.Play("Ballista_Animation");
         canAttack = false;
-
         StartCoroutine(ShootArrowCoroutine(target));
         StartCoroutine(AttackCooldown());
     }
 
     private IEnumerator ShootArrowCoroutine(Transform target)
     {
-        float offset = 0.25f;
-        yield return new WaitForSeconds(_BallistaAnimLength - offset);
+        yield return new WaitForSeconds(_ballistaAnimLength);
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         Ballista_Arrow arrowScript = arrow.GetComponent<Ballista_Arrow>();
         arrowScript.SetTarget(target);
@@ -173,6 +154,7 @@ public class Ballista_Tower : MonoBehaviour, ITower
     private IEnumerator AttackCooldown()
     {
         float actualRateOfFire = RateOfFire;
+
         while (!canAttack)
         {
             yield return new WaitForSeconds(actualRateOfFire);

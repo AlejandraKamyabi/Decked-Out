@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7939053178980904955}
   - component: {fileID: 8160611778649882270}
+  - component: {fileID: 181254165906598476}
   m_Layer: 6
   m_Name: Tower Sprite
   m_TagString: Untagged
@@ -168,6 +169,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &181254165906598476
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987193481905570648}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5e2debc407ed5e4a82cfbd95134fc99, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7405903770306088367
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,8 +287,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 3
+  IceBulletPrefab: {fileID: 0}
+  Damage: 10
+  RateOfFire: 1
   Health: 5
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
+  audioSource: {fileID: 0}
 --- !u!114 &-5682083530517359058
 MonoBehaviour:
   m_ObjectHideFlags: 0
