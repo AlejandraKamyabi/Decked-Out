@@ -27,6 +27,8 @@ TagManager:
   - Aegis
   - Shield
   - Mopey_Misters
+  - SaveSystem
+  - MidGameSaveSystem
   layers:
   - Default
   - TransparentFX
