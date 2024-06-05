@@ -344,6 +344,12 @@ public class WaveManager : MonoBehaviour
             IBuffTower towerScript = buffers.GetComponent<IBuffTower>();
             Destroy(buffers);
         }
+        GameObject[] buffed_icon_object = GameObject.FindGameObjectsWithTag("buffed_icon");
+        foreach (GameObject buffed_icon_objects in buffed_icon_object)
+        {
+            IBuffTower towerScript = buffed_icon_objects.GetComponent<IBuffTower>();
+            Destroy(buffed_icon_objects);
+        }
         GameObject[] buff = GameObject.FindGameObjectsWithTag("Placed");
         foreach (GameObject buffe in buff)
         {

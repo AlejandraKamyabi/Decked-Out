@@ -24,6 +24,7 @@ public class EnemyKillTracker : MonoBehaviour
     public int _enemiesInWave;
     public int _enemiesDestroyedThisWave;
 
+    private SaveSystem _saveSystem;
     private void Start()
     {
         _loader = ServiceLocator.Get<GameLoader>();
@@ -34,6 +35,7 @@ public class EnemyKillTracker : MonoBehaviour
     {
         _randoEngine = FindObjectOfType<CardRandoEngine>();
         _waveManager = FindObjectOfType<WaveManager>();
+        _saveSystem = FindObjectOfType<SaveSystem>();
         UpdateEnemyCountText();
         UpdateGemCountText();
     }
@@ -191,6 +193,8 @@ public class EnemyKillTracker : MonoBehaviour
         endGameEnemyCountText.text = "Kills: " + totalEnemiesDestroyed.ToString("f0");
         endGameGemCountText.text = "Gems: " + totalGemsCollected.ToString("f0");
         endGameWave.text = "Wave: " + currentWave;
+        _saveSystem.AddGem(totalGemsCollected);
+        _saveSystem.AddTotalKill(totalEnemiesDestroyed);
         ResetValues();
     }
 }
