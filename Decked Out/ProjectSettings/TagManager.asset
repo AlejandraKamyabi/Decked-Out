@@ -28,6 +28,7 @@ TagManager:
   - Shield
   - Mopey_Misters
   - SaveSystem
+  - MidGameSaveSystem
   - buffed_icon
   layers:
   - Default
