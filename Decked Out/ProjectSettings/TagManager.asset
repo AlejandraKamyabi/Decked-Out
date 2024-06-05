@@ -27,6 +27,8 @@ TagManager:
   - Aegis
   - Shield
   - Mopey_Misters
+  - SaveSystem
+  - buffed_icon
   layers:
   - Default
   - TransparentFX
