@@ -284,19 +284,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1760512439543855452, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1760512439543855452, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2579191582975253355, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2579191582975253355, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5733868242165005401, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -312,11 +312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7799226532195255539, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7799226532195255539, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8900095458252143963, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -332,11 +332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8900095458634545255, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8900095458634545255, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8900095459609197804, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_Name
@@ -344,7 +344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8900095459609197804, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8900095459609197805, guid: b2e99cd1ba9e5204cbcb799bde90a2ae, type: 3}
       propertyPath: m_Pivot.x
@@ -2847,9 +2847,7 @@ MonoBehaviour:
   - {fileID: 99691634}
   - {fileID: 417678975}
   - {fileID: 383715123}
-  _cardsOfRarity:
-  - {fileID: 11400000, guid: a594bc4f654a0324c9f522defa7f346b, type: 2}
-  - {fileID: 11400000, guid: 8983d8cb0b0b65e449ea0efb6c25d2d7, type: 2}
+  _cardsOfRarity: []
   _selectedTextSprite: {fileID: 21300000, guid: cf01c78f0c97c2647bc42626bedd6a97, type: 3}
   _textImage: {fileID: 96035801}
   _normalTextSprite: {fileID: 21300000, guid: 5e79af990a428e4479e708bf0ffa9afb, type: 3}
@@ -3165,12 +3163,7 @@ MonoBehaviour:
   - {fileID: 99691634}
   - {fileID: 417678975}
   - {fileID: 383715123}
-  _cardsOfRarity:
-  - {fileID: 11400000, guid: beb6c0bf0cacdb545ac0a525d40c9432, type: 2}
-  - {fileID: 11400000, guid: c1bd809c41365af4d9b313a92d95a864, type: 2}
-  - {fileID: 11400000, guid: 87f541c0cb5314c48a564edae7fe8510, type: 2}
-  - {fileID: 11400000, guid: 20d47570cbb57f94fb9c2aa8fb732f72, type: 2}
-  - {fileID: 11400000, guid: 8166fe59a1fb2734da1012030034eef0, type: 2}
+  _cardsOfRarity: []
   _selectedTextSprite: {fileID: 21300000, guid: 22df63f9b45e650478a8af1dfeca0049, type: 3}
   _textImage: {fileID: 1075631090}
   _normalTextSprite: {fileID: 21300000, guid: 7a1266971ea73e84da7bb0e13ba8f536, type: 3}
@@ -3710,12 +3703,7 @@ MonoBehaviour:
   - {fileID: 99691634}
   - {fileID: 417678975}
   - {fileID: 383715123}
-  _cardsOfRarity:
-  - {fileID: 11400000, guid: a17d7f6e4d56c2f499950572b877f0d9, type: 2}
-  - {fileID: 11400000, guid: edeaafcae54913549a1514d0ec193284, type: 2}
-  - {fileID: 11400000, guid: c48d9ae1dbf14914e8dffa026e662845, type: 2}
-  - {fileID: 11400000, guid: cbd0ddcb700ad3042ba0e9fc9e4af57c, type: 2}
-  - {fileID: 11400000, guid: 91acd756c25e2a24c9617b9c8aba9fa8, type: 2}
+  _cardsOfRarity: []
   _selectedTextSprite: {fileID: 21300000, guid: a1182c3ba8eab7a4e930c8178e86d0ab, type: 3}
   _textImage: {fileID: 551019264}
   _normalTextSprite: {fileID: 21300000, guid: 36957cd0421a17a4087ae426d307f407, type: 3}
@@ -4090,12 +4078,7 @@ MonoBehaviour:
   - {fileID: 99691634}
   - {fileID: 417678975}
   - {fileID: 383715123}
-  _cardsOfRarity:
-  - {fileID: 11400000, guid: 8430b8eca9945e34cbcdec8e2ff926ba, type: 2}
-  - {fileID: 11400000, guid: aed80f7ecc88b744ba63fb298d661901, type: 2}
-  - {fileID: 11400000, guid: 76fa049d1c07f7846bc3999051be13b4, type: 2}
-  - {fileID: 11400000, guid: 4103427755180534d9dc8166028842a2, type: 2}
-  - {fileID: 11400000, guid: e65ade43fe9803345b756ce52c0d5ab0, type: 2}
+  _cardsOfRarity: []
   _selectedTextSprite: {fileID: 21300000, guid: 73c5fd03997a9f748ada92cb0ba5a177, type: 3}
   _textImage: {fileID: 1857985258}
   _normalTextSprite: {fileID: 21300000, guid: d552bb4cf843aba46b7733ea7a346849, type: 3}
@@ -7693,12 +7676,7 @@ MonoBehaviour:
   - {fileID: 99691634}
   - {fileID: 417678975}
   - {fileID: 383715123}
-  _cardsOfRarity:
-  - {fileID: 11400000, guid: f3b9932f60e217e4f8da4b2bc39894f2, type: 2}
-  - {fileID: 11400000, guid: 17a9b6996c9c2d84cbf57d27e5a7fda3, type: 2}
-  - {fileID: 11400000, guid: 3c5fd7efffdca614b9d28c8c74fec86d, type: 2}
-  - {fileID: 11400000, guid: c7c13847fd7a74445aaf59d9f0abf8ec, type: 2}
-  - {fileID: 11400000, guid: 33cdb4f8b1e6e9f43a8a1fd3716adc68, type: 2}
+  _cardsOfRarity: []
   _selectedTextSprite: {fileID: 21300000, guid: aaaaea19682b61f48b19456b7e8c1ab4, type: 3}
   _textImage: {fileID: 1544564712}
   _normalTextSprite: {fileID: 21300000, guid: 0004df5ebae2a824f8b8521a516a30d1, type: 3}

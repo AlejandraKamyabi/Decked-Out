@@ -32,6 +32,8 @@ public class DeckbuildingManager : MonoBehaviour
     public CardTierSelector[] tierButtons { get {  return _buttonScripts; } }
 
     private GameLoader _loader;
+    private SaveSystem _saveSystem;
+
     private void Start()
     {
         _loader = ServiceLocator.Get<GameLoader>();
@@ -59,6 +61,11 @@ public class DeckbuildingManager : MonoBehaviour
             ServiceLocator.Register<DeckbuildingManager>(this);
         }
         TutorialPassthrough tutorialPassthrough = FindObjectOfType<TutorialPassthrough>();
+        if (_saveSystem == null)
+        {
+            _saveSystem = FindObjectOfType<SaveSystem>();
+            CheckSavedCards();
+        }
         if (tutorialPassthrough == null)
         {
             Button commonButton = _buttonScripts[0].gameObject.GetComponent<Button>();
@@ -71,8 +78,122 @@ public class DeckbuildingManager : MonoBehaviour
         }
         _startButton.enabled = false;
         _startButton.gameObject.SetActive(false);
+    }
+
+    private void CheckSavedCards()
+    {
+        bool[] savedCardsFromPlayerPref = _saveSystem.GetAllCardCollected();
+        string[] cardNamesArray = _saveSystem.GetAllCardName();
+        for (int i = 0; i < savedCardsFromPlayerPref.Length; i++)
+        {
+            string savedCardName = null;
+            if (savedCardsFromPlayerPref[i] == true)
+            {
+                savedCardName = cardNamesArray[i];
+                SlotInSavedCardToRespectiveButton(savedCardName);
+            }
+        }
 
     }
+    private void SlotInSavedCardToRespectiveButton(string cardName)
+    {
+        Debug.Log("Slotting in " + cardName + " to button.");
+        switch (cardName)
+        {
+            case "Arrow":
+                Debug.Log("Arrow Tower gotten from save system.");
+                _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Archer Tower"));
+                break;
+            case "Frost_Tower":
+                Debug.Log("Frost Tower gotten from save system.");
+                _buttonScripts[1].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Frost Tower"));
+                break;
+            case "Buff_Tower":
+                Debug.Log("Buff Tower gotten from save system.");
+                _buttonScripts[2].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Buff Tower"));
+                break;
+            case "Flamethrower":
+                Debug.Log("Flamethrower gotten from save system.");
+                _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Fire Tower"));
+                break;
+            case "Electric_Tower":
+                Debug.Log("Electric Tower gotten from save system.");
+                _buttonScripts[4].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Electric Tower"));
+                break;
+            case "Earthquake_Tower":
+                Debug.Log("Earthquake Tower gotten from save system.");
+                _buttonScripts[1].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Earthquake Tower"));
+                break;
+            case "Attraction_Tower":
+                Debug.Log("Attraction Tower gotten from save system.");
+                _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Attraction Tower"));
+                break;
+            case "Cannon":
+                Debug.Log("Cannon Tower gotten from save system.");
+                _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Cannon Tower"));
+                break;
+            case "Wave_Tower":
+                Debug.Log("Wave Tower gotten from save system.");
+                _buttonScripts[1].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Wave_Tower"));
+                break;
+            case "Balista_Tower":
+                Debug.Log("Balista Tower gotten from save system.");
+                _buttonScripts[1].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Ballista Tower"));
+                break;
+            case "Poison_Tower":
+                Debug.Log("Poison Tower gotten from save system.");
+                _buttonScripts[2].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Poison Tower"));
+                break;
+            case "Mystery_Tower":
+                Debug.Log("Mystery Tower gotten from save system.");
+                _buttonScripts[2].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Mystery"));
+                break;
+            case "Mortar_Tower":
+                Debug.Log("Mortar Tower gotten from save system.");
+                _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Mortar"));
+                break;
+            case "Sniper_Tower":
+                Debug.Log("Sniper Tower gotten from save system.");
+                _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Sniper_Tower"));
+                break;
+            case "Organ_Tower":
+                Debug.Log("Organ Gun gotten from save system.");
+                _buttonScripts[2].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/OrganGun_Tower"));
+                break;
+            case "Lighting_Bolt":
+                Debug.Log("Lighting Bolt spell gotten from save system.");
+                _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Lightning Spell"));
+                break;
+            case "Big_Bomb":
+                Debug.Log("Big Bomb spell gotten from save system.");
+                _buttonScripts[2].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Big Bomb Spell"));
+                break;
+            case "Fireball":
+                Debug.Log("Fireball spell gotten from save system.");
+                _buttonScripts[1].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Fireball"));
+                break;
+            case "Nuke":
+                Debug.Log("Nuke spell gotten from save system.");
+                _buttonScripts[4].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Nuke"));
+                break;
+            case "Frost":
+                Debug.Log("Frost spell gotten from save system.");
+                _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Chill"));
+                break;
+            case "Freeze_Time":
+                Debug.Log("Freeze Time spell gotten from save system.");
+                _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Freeze"));
+                break;
+            case "Black_Hole":
+                Debug.Log("Black Hole spell gotten from save system.");
+                _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Black Hole"));
+                break;
+            default:
+                Debug.LogError("Unknown Card Name gotten from save system.");
+                break;
+        }
+    }
+
     public SelectedCard[] SetTierRenderers(int cardsInTier, string tier)
     {
         _currentTier = tier;

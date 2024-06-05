@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class BuyRandomCard : MonoBehaviour
 {
     private SaveSystem saveSystem;
     [SerializeField] int prices;
+    [SerializeField] ShopUIManager _uiManager;
 
     private void Start()
     {
@@ -51,5 +53,6 @@ public class BuyRandomCard : MonoBehaviour
                 }
             }
         }
+        _uiManager.UpdateUI();
     }
 }
