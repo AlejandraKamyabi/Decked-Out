@@ -23,14 +23,7 @@ public class NonConsumableItem
     public float price;
 }
 [Serializable]
-public class SubscriptionItem
-{
-    public string Name;
-    public string Id;
-    public string desc;
-    public float price;
-    public int timeDuration;// in Days
-}
+
 
 public class ShopScript : MonoBehaviour, IStoreListener
 {
@@ -38,7 +31,7 @@ public class ShopScript : MonoBehaviour, IStoreListener
 
     public ConsumableItem cItem;
     public NonConsumableItem ncItem;
-    public SubscriptionItem sItem;
+    
 
     public TMP_InputField inp;
 
@@ -60,8 +53,7 @@ public class ShopScript : MonoBehaviour, IStoreListener
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
         builder.AddProduct(cItem.Id, ProductType.Consumable);
-        builder.AddProduct(ncItem.Id, ProductType.NonConsumable);
-        builder.AddProduct(sItem.Id, ProductType.Subscription);
+        builder.AddProduct(ncItem.Id, ProductType.NonConsumable);       
 
         UnityPurchasing.Initialize(this, builder);
     }
@@ -70,7 +62,6 @@ public class ShopScript : MonoBehaviour, IStoreListener
         print("Success");
         m_StoreContoller = controller;
         CheckNonConsumable(ncItem.Id);
-        CheckSubscription(sItem.Id);
     }
     #endregion
 
@@ -87,12 +78,6 @@ public class ShopScript : MonoBehaviour, IStoreListener
         //RemoveAds();
         m_StoreContoller.InitiatePurchase(ncItem.Id);
 
-    }
-
-    public void Subscription_Btn_Pressed()
-    {
-        //ActivateElitePass();
-        m_StoreContoller.InitiatePurchase(sItem.Id);
     }
     #endregion
 
@@ -124,10 +109,6 @@ public class ShopScript : MonoBehaviour, IStoreListener
         else if (product.definition.id == ncItem.Id)//non consumable
         {
             RemoveAds();
-        }
-        else if (product.definition.id == sItem.Id)//subscribed
-        {
-            ActivateElitePass();
         }
 
         return PurchaseProcessingResult.Complete;
