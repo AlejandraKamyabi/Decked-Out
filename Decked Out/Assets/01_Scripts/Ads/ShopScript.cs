@@ -14,15 +14,16 @@ public class ConsumableItem
     public string desc;
     public float price;
 }
-[Serializable]
+
+/* [Serializable]
 public class NonConsumableItem
 {
     public string Name;
     public string Id;
     public string desc;
     public float price;
-}
-[Serializable]
+} */
+
 
 public class ShopScript : MonoBehaviour, IStoreListener
 {
@@ -31,7 +32,7 @@ public class ShopScript : MonoBehaviour, IStoreListener
     public ConsumableItem cItem1;
     public ConsumableItem cItem2;
     public ConsumableItem cItem3;
-    public NonConsumableItem ncItem;
+    // public NonConsumableItem ncItem;
 
     public TMP_InputField inp;
 
@@ -53,7 +54,7 @@ public class ShopScript : MonoBehaviour, IStoreListener
         builder.AddProduct(cItem1.Id, ProductType.Consumable);
         builder.AddProduct(cItem2.Id, ProductType.Consumable);
         builder.AddProduct(cItem3.Id, ProductType.Consumable);
-        builder.AddProduct(ncItem.Id, ProductType.NonConsumable);
+        // builder.AddProduct(ncItem.Id, ProductType.NonConsumable);
 
         UnityPurchasing.Initialize(this, builder);
     }
@@ -61,7 +62,7 @@ public class ShopScript : MonoBehaviour, IStoreListener
     {
         print("Success");
         m_StoreContoller = controller;
-        CheckNonConsumable(ncItem.Id);
+        // CheckNonConsumable(ncItem.Id);
     }
     #endregion
 
@@ -81,10 +82,10 @@ public class ShopScript : MonoBehaviour, IStoreListener
         m_StoreContoller.InitiatePurchase(cItem3.Id);
     }
 
-    public void NonConsumable_Btn_Pressed()
+    /* public void NonConsumable_Btn_Pressed()
     {
         m_StoreContoller.InitiatePurchase(ncItem.Id);
-    }
+    } */
     #endregion
 
     #region main
@@ -108,16 +109,16 @@ public class ShopScript : MonoBehaviour, IStoreListener
         {
             AddGems(1000);
         }
-        else if (product.definition.id == ncItem.Id)
+        /* else if (product.definition.id == ncItem.Id)
         {
             RemoveAds();
-        }
+        } */
 
         return PurchaseProcessingResult.Complete;
     }
     #endregion
 
-    void CheckNonConsumable(string id)
+    /* void CheckNonConsumable(string id)
     {
         if (m_StoreContoller != null)
         {
@@ -134,7 +135,7 @@ public class ShopScript : MonoBehaviour, IStoreListener
                 }
             }
         }
-    }
+    } */
 
     void CheckSubscription(string id)
     {
@@ -206,12 +207,12 @@ public class ShopScript : MonoBehaviour, IStoreListener
         int gems = PlayerPrefs.GetInt("totalGems");
         gems += num;
         PlayerPrefs.SetInt("totalGems", gems);
-        
+
     }
     float val;
-    
 
-    [Header("Non Consumable")]
+
+    /* [Header("Non Consumable")]
     public GameObject AdsPurchasedWindow;
     public GameObject adsBanner;
     void RemoveAds()
@@ -234,7 +235,7 @@ public class ShopScript : MonoBehaviour, IStoreListener
             AdsPurchasedWindow.SetActive(false);
             adsBanner.SetActive(true);
         }
-    }
+    } */
 
     [Header("Subscription")]
     public GameObject subActivatedWindow;
