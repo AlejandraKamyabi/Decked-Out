@@ -340,8 +340,13 @@ MonoBehaviour:
   SFXSlider: {fileID: 6357524735944675261}
   musicSource: {fileID: 6357524736487188356}
   SFXSource: {fileID: 6357524735215568700}
-  musicSourceObj: {fileID: 0}
-  musicClip: []
+  waveMusicSourceObj: {fileID: 6357524736487188359}
+  waveMusicClip:
+  - {fileID: 8300000, guid: d32542b7549ac324ea1d50428c87ee98, type: 3}
+  - {fileID: 8300000, guid: 9f0a0451498c3014185dd215d810cadd, type: 3}
+  - {fileID: 8300000, guid: ada3c6d7c005e924cbe2cfb8cf719e61, type: 3}
+  - {fileID: 8300000, guid: 2d9b8559e653a6d45b227358f0bb827c, type: 3}
+  - {fileID: 8300000, guid: 211faf4fa5d321349a4a536ba435d3c7, type: 3}
   canvas: {fileID: 6357524734859177048}
 --- !u!81 &6357524734856202516
 AudioListener:
@@ -1991,7 +1996,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8896187756198644821, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 58373c397420bf243b32d274a38f72c8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c9f1c8be75212d84c85d6669d2fbda9d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
