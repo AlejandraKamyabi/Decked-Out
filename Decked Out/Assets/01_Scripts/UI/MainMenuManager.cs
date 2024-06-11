@@ -64,7 +64,7 @@ public class MainMenuManager : MonoBehaviour
     public void OpenSettings()
     {
         Debug.Log("Settings not yet implimented");
-        //settingsPanel.SetActive(true);
+        settingsPanel.SetActive(true);
         //minimizeCollider.SetActive(true);
     }
     public void MinimizeScripturePanel()

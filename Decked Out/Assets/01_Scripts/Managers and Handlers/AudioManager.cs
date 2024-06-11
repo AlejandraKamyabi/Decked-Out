@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
     private GameObject[] musicPlayer;
 
     [SerializeField] private GameObject canvas;
+
     private bool canvasActive = false;
 
     private GameLoader _loader;
@@ -238,5 +239,9 @@ public class AudioManager : MonoBehaviour
     public void LoadTest()
     {
         SceneManager.LoadScene("Test");
+    }
+    public void CloseMenu()
+    {
+        canvas.SetActive(false);
     }
 }
