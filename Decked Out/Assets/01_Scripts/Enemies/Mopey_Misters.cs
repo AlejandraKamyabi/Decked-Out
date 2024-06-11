@@ -11,6 +11,7 @@ public class Mopey_Misters : MonoBehaviour
     public float damage = 10.0f;
     public float maxHealth;
     public float currentHealth;
+
     public Slider healthSlider;
     public GameObject zapPrefab;
     public bool isBurning = false;

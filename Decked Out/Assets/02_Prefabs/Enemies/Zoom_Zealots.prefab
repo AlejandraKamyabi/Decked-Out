@@ -61,8 +61,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd7fc89af7b27941a8d87708e9ac6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetCastle: {fileID: 0}
+  moveSpeed: 1
+  damage: 10
+  maxHealth: 0
+  currentHealth: 0
+  healthSlider: {fileID: 0}
+  zapPrefab: {fileID: 0}
+  isBurning: 0
   detectionRadius: 2
   speedUpPrecentage: 1.8
+  isFrozen: 0
+  TotalFreezeTime: 3
+  isTotalFrozen: 0
+  deathEffectPrefab: {fileID: 0}
+  deathSound: {fileID: 0}
+  circleCollider: {fileID: 0}
+  isAttracted: 0
+  isPoisoned: 0
+  isBeingPushed: 0
 --- !u!1 &3913288997857569341
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3913288999114805958}
-  - component: {fileID: 3913288999114805944}
+  - component: {fileID: 8685378576549819976}
   - component: {fileID: 1920306922376555978}
   - component: {fileID: -7672974679039879729}
   - component: {fileID: 5728615593586163833}
@@ -210,7 +227,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3913288999114805944
+--- !u!114 &8685378576549819976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,7 +236,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3913288999114805945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e12011f114e443449fd63bdaa3bb628, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd7fc89af7b27941a8d87708e9ac6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetCastle: {fileID: 1489383117142098686, guid: 0a30b35a6a7e66240aae322b6bb80d81, type: 3}
@@ -230,10 +247,12 @@ MonoBehaviour:
   healthSlider: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
   zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
   isBurning: 0
+  detectionRadius: 2
+  speedUpPrecentage: 1.8
   isFrozen: 0
   TotalFreezeTime: 3
   isTotalFrozen: 0
-  deathEffectPrefab: {fileID: 3161217357562407052, guid: dbc04a59f62726747bcc36af6783caa7, type: 3}
+  deathEffectPrefab: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
   circleCollider: {fileID: 0}
   isAttracted: 0
@@ -449,11 +468,12 @@ MonoBehaviour:
   _slowEffect: {fileID: 7305093231076520712}
   _charmEffect: {fileID: 5909795512529521299}
   _poisonEffect: {fileID: 2274059105432949642}
-  _enemyScript: {fileID: 3913288999114805944}
+  _enemyScript: {fileID: 0}
   _apostateScript: {fileID: 0}
   _kaboomScript: {fileID: 0}
   _necromancerScript: {fileID: 0}
   Mopey_Script: {fileID: 0}
+  Zoom_Zealtos: {fileID: 8685378576549819976}
   _AegisScript: {fileID: 0}
   cleric: {fileID: 0}
   _mainSpriteRenderer: {fileID: 1380346453654109597}
