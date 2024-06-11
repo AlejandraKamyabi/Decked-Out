@@ -33,8 +33,8 @@ public class TransitionScreenManager : MonoBehaviour
     bool _twinkiling;
     string _previousScene;
     string _targetScene;
-    float _transitionTimer;
-    float _fadeOutTimer;
+    float _transitionTimer = 0f;
+    float _fadeOutTimer = 0f;
 
     private void Awake()
     {
@@ -141,7 +141,7 @@ public class TransitionScreenManager : MonoBehaviour
         _fading = true;
 
         _transitionTimer = 0f;
-
+        _fadeOutTimer = 0f;
         _objectsToFade.Clear();
         _imagesToFade.Clear();
         _colorOfImagesToFade.Clear();
