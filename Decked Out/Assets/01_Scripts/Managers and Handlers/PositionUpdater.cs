@@ -50,17 +50,21 @@ public class PositionUpdater : MonoBehaviour
     {
         input.setIsland(false);
 
+      
         if (gameObject.CompareTag("Buffer") || gameObject.CompareTag("Placed") || gameObject.CompareTag("Spell"))
         {
             return;
         }
 
+        StartCoroutine(ChangeTagAfterDelay(0.4f));
+
         if (other.CompareTag("Empty"))
         {
             Destroy(other.gameObject);
+            input.setIsland(false);
         }
 
-        StartCoroutine(ChangeTagAfterDelay(0.4f));
+       
 
         if (!mouse.collisionOccurred && other.CompareTag("Platform"))
         {
