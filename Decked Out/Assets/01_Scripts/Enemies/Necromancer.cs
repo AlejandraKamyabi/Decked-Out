@@ -33,6 +33,9 @@ public class Necromancer : MonoBehaviour
     private EnemyHealthFlash healthFlash;
     [SerializeField] private CircleCollider2D circleCollider;
 
+    private float spawnCooldown = 3f; 
+    private float lastSpawnTime;
+
     //Attraction tower 
 
     private Transform originalTarget;
@@ -49,7 +52,6 @@ public class Necromancer : MonoBehaviour
 
     private WaveManager wave;
     private GameLoader _loader;
-
     private void Start()
     {
         currentHealth = maxHealth;
@@ -66,11 +68,14 @@ public class Necromancer : MonoBehaviour
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         StartCoroutine(DetectAndAddAcolyteCoroutine());
+        lastSpawnTime = -spawnCooldown; // Initialize last spawn time
     }
+
     public void Initialize()
     {
         wave = ServiceLocator.Get<WaveManager>();
     }
+
     private IEnumerator DetectAndAddAcolyteCoroutine()
     {
         while (true)
@@ -106,16 +111,19 @@ public class Necromancer : MonoBehaviour
 
         UpdateSortingLayer();
     }
+
     public void Insta_Kill()
     {
         Die();
     }
+
     private void UpdateSortingLayer()
     {
         _yPos = transform.position.y;
         _yPos = -_yPos;
         _spriteRenderer.sortingOrder = (int)(_yPos * 100);
     }
+
     public void HandleWaveImpact(Vector2 direction, float duration, float distance)
     {
         if (!isBeingPushed)
@@ -125,6 +133,7 @@ public class Necromancer : MonoBehaviour
             StartCoroutine(ManualPushback(oppositeDirection, duration, distance));
         }
     }
+
     public IEnumerator ManualPushback(Vector2 direction, float duration, float distance)
     {
         Vector2 startPosition = transform.position;
@@ -139,8 +148,10 @@ public class Necromancer : MonoBehaviour
         }
         isBeingPushed = false;
     }
+
     public bool ImmuneToDamage { get; set; }
     public bool IsShielded { get; set; }
+
     public void TakeDamage(float damage)
     {
         if (IsShielded)
@@ -171,8 +182,11 @@ public class Necromancer : MonoBehaviour
             }
         }
     }
+
     private void DetectAndAddAcolyte()
     {
+        if (Time.time - lastSpawnTime < spawnCooldown) return; // Check cooldown
+
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
         foreach (Collider2D collider in detectedObjects)
         {
@@ -185,21 +199,13 @@ public class Necromancer : MonoBehaviour
             // Add the object to the HashSet to prevent reprocessing
             detectedEnemies.Add(detectedObject);
 
-            if (collider.CompareTag("Acolyte"))
-            {
-                wave.AddEnemyToCurrentWave("Acolyte", collider.transform.position);
-            }
-            else if (collider.CompareTag("Kaboom"))
+            if (collider.CompareTag("Kaboom"))
             {
                 wave.AddEnemyToCurrentWave("Kaboom", collider.transform.position);
             }
             else if (collider.CompareTag("Golem"))
             {
                 wave.AddEnemyToCurrentWave("Golem", collider.transform.position);
-            }
-            else if (collider.CompareTag("Apostate"))
-            {
-                wave.AddEnemyToCurrentWave("Apostate", collider.transform.position);
             }
             else if (collider.CompareTag("Aegis"))
             {
@@ -210,8 +216,11 @@ public class Necromancer : MonoBehaviour
                 wave.AddEnemyToCurrentWave("Cleric", collider.transform.position);
             }
         }
+
+        lastSpawnTime = Time.time; // Update last spawn time
         StartCoroutine(AttackCooldown());
     }
+
     private IEnumerator AttackCooldown()
     {
         float actualRateOfFire = RateOfFire;
@@ -222,47 +231,13 @@ public class Necromancer : MonoBehaviour
             canAttack = true;
         }
     }
-    private void revive(Transform target)
-    {
-
-            if (target.CompareTag("Acolyte"))
-            {
-                wave.AddEnemyToCurrentWave("Acolyte", target.transform.position);
-            }
-            else if (target.CompareTag("Kaboom"))
-            {
-
-                wave.AddEnemyToCurrentWave("Kaboom", target.transform.position);
-            }
-            else if (target.CompareTag("Golem"))
-            {
-           
-                wave.AddEnemyToCurrentWave("Golem", target.transform.position);
-            }
-            else if (target.CompareTag("Apostate"))
-            {
-
-                wave.AddEnemyToCurrentWave("Apostate", target.transform.position);
-            }
-            else if (target.CompareTag("Aegis"))
-            {
-
-                wave.AddEnemyToCurrentWave("Aegis", target.transform.position);
-            }
-            else if (target.CompareTag("Cleric"))
-            {
-
-                wave.AddEnemyToCurrentWave("Cleric", target.transform.position);
-            }
-
-    }
-
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
+
     public void Attracted(Transform attractionTower)
     {
         if (!isAttracted)
@@ -273,6 +248,7 @@ public class Necromancer : MonoBehaviour
             StartCoroutine(ResetAttracted());
         }
     }
+
     public void SetPoisoning(bool poisoning)
     {
         isPoisoned = poisoning;
@@ -284,10 +260,12 @@ public class Necromancer : MonoBehaviour
         targetCastle = originalTarget;
         isAttracted = false;
     }
+
     private IEnumerator reset_Field()
     {
         yield return new WaitForSeconds(2);
     }
+
     private void Die()
     {
         _isDead = true;
@@ -318,20 +296,9 @@ public class Necromancer : MonoBehaviour
             _killTracker.EnemyDestroyed();
             Destroy(healthSlider.gameObject);
             Destroy(gameObject);
-
-
         }
         if (circleCollider == null)
         {
-
-            // if (collision.gameObject.CompareTag("Field"))
-            // {
-            //     Field force_Field = collision.gameObject.GetComponent<Field>();
-            //     force_Field.StartFlickerEffect();
-            //     StartCoroutine(reset_Field());
-            //     force_Field.ResetFieldPrefabChanges();
-            // }
-
             return;
         }
 
@@ -340,6 +307,7 @@ public class Necromancer : MonoBehaviour
             circleCollider.enabled = true;
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (circleCollider == null) return;
@@ -349,6 +317,7 @@ public class Necromancer : MonoBehaviour
             circleCollider.enabled = false;
         }
     }
+
     public void UpdateEnemyHealthUI()
     {
         healthSlider.value = currentHealth;
@@ -359,25 +328,29 @@ public class Necromancer : MonoBehaviour
     {
         healthSlider = slider;
     }
+
     public void setBurning()
     {
         isBurning = true;
     }
-    public void ApplyFreeze(float precentage)
+
+    public void ApplyFreeze(float percentage)
     {
         if (!isFrozen)
         {
             isFrozen = true;
-            moveSpeed *= precentage;
+            moveSpeed *= percentage;
             StartCoroutine(DisableFreezeAfterDuration(3.0f));
         }
     }
+
     private IEnumerator DisableFreezeAfterDuration(float duration)
     {
         yield return new WaitForSeconds(duration);
         isFrozen = false;
         moveSpeed = original_moveSpeed;
     }
+
     public void Zap()
     {
         if (!hasBeenZapped)
@@ -400,6 +373,7 @@ public class Necromancer : MonoBehaviour
             }
         }
     }
+
     public void ResetZapFlag()
     {
         hasBeenZapped = true;
@@ -414,6 +388,7 @@ public class Necromancer : MonoBehaviour
             StartCoroutine(DisableTotalFreezeAfterDuration(TotalFreezeTime));
         }
     }
+
     private IEnumerator DisableTotalFreezeAfterDuration(float duration)
     {
         yield return new WaitForSeconds(duration);
@@ -421,10 +396,11 @@ public class Necromancer : MonoBehaviour
         moveSpeed = original_moveSpeed;
     }
 
-    public void ApplySpeedUp(float precentage)
+    public void ApplySpeedUp(float percentage)
     {
-        moveSpeed *= precentage;
+        moveSpeed *= percentage;
     }
+
     public void RemoveSpeedUp()
     {
         moveSpeed = original_moveSpeed;

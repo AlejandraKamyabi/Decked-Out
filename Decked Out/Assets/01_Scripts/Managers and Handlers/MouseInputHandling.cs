@@ -62,6 +62,10 @@ public class MouseInputHandling : MonoBehaviour
         towerRig.transform.position = mousePosition;
         towerRigSprite = towerRig.GetComponentInChildren<SpriteRenderer>();
 
+        rangeIndicator.color = Color.white;
+        rangeIndicator.sprite = placeableRange;
+        towerRigSprite.color = Color.white;
+        Debug.Log($"Range Indicator Color: {rangeIndicator.color}, Sprite: {rangeIndicator.sprite.name}");
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 towerPosition = mousePos;
         mousePos.z = 0;
@@ -123,6 +127,7 @@ public class MouseInputHandling : MonoBehaviour
             {
                 HandleNonPlatformPlacement(towerCollision);
             }
+
         }
         else
         {
@@ -245,6 +250,7 @@ public class MouseInputHandling : MonoBehaviour
 
     private void SetSpellRigSprite()
     {
+     
         switch (towerSelection.spells)
         {
             case "Lightning":
@@ -297,7 +303,7 @@ public class MouseInputHandling : MonoBehaviour
                 rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                 break;
         }
-
+     
     }
 
     private void PlaceTowerOrSpell(bool towerCollision, Vector3 mousePos, RaycastHit2D hit)
@@ -445,12 +451,16 @@ public class MouseInputHandling : MonoBehaviour
                 currentTowerInstance = Instantiate(towerSelection.BlackHole, mousePos, Quaternion.identity);
                 break;
         }
-        towerSelection.SetSelectingSpell(false);
+        rangeIndicator.color = Color.white;
     }
 
     private void HandlePlatformPlacement(RaycastHit2D hit)
     {
-        if (towerSelection.towers == "Frost Tower" || towerSelection.towers == "Buff Tower" || towerSelection.towers == "Earthquake Tower" || towerSelection.spells == "Lightning" || towerSelection.spells == "BlackHole" || towerSelection.spells == "Freeze" || towerSelection.spells == "Fireball" || towerSelection.spells == "Nuke" || towerSelection.spells == "Big Bomb" || towerSelection.spells == "Chill")
+        if (towerSelection.towers == "Frost Tower" || towerSelection.towers == "Buff Tower" ||
+            towerSelection.towers == "Earthquake Tower" || towerSelection.spells == "Lightning" ||
+            towerSelection.spells == "BlackHole" || towerSelection.spells == "Freeze" ||
+            towerSelection.spells == "Fireball" || towerSelection.spells == "Nuke" ||
+            towerSelection.spells == "Big Bomb" || towerSelection.spells == "Chill")
         {
             towerRigSprite.color = notPlaceableColour;
             rangeIndicator.sprite = notPlaceableRange;
@@ -459,7 +469,6 @@ public class MouseInputHandling : MonoBehaviour
         {
             towerRigSprite.color = onIslandColour;
             rangeIndicator.sprite = onPlatformRange;
-            
         }
         islandTowerSelection = true;
     }
@@ -476,7 +485,6 @@ public class MouseInputHandling : MonoBehaviour
             islandTowerSelection = false;
         }
     }
-
     public void ClearRig()
     {
         if (towerRig != null)
