@@ -39,11 +39,15 @@ public class ShopScript : MonoBehaviour, IStoreListener
     public Data data;
     public Payload payload;
     public PayloadData payloadData;
+
+    SaveSystem saveSystem;
+    ShopUIManager shopUIManager;
+
     private void Start()
     {
-        int gems = PlayerPrefs.GetInt("totalGems");
-        gemTxt.text = gems.ToString();
         SetupBuilder();
+        saveSystem = FindObjectOfType<SaveSystem>();
+        shopUIManager = FindObjectOfType<ShopUIManager>();
     }
 
     #region setup and initialize
@@ -204,10 +208,8 @@ public class ShopScript : MonoBehaviour, IStoreListener
     public TextMeshProUGUI gemTxt;
     void AddGems(int num)
     {
-        int gems = PlayerPrefs.GetInt("totalGems");
-        gems += num;
-        PlayerPrefs.SetInt("totalGems", gems);
-
+        saveSystem.AddGem(num);
+        shopUIManager.UpdateUI();
     }
     float val;
 
