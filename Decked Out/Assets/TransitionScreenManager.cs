@@ -12,7 +12,6 @@ public class TransitionScreenManager : MonoBehaviour
     [SerializeField] float _transitionDuration;
     [SerializeField] float _fadeOutDuration;
 
-    [SerializeField] GameObject _title;
     [SerializeField] GameObject _leftParent;
     [SerializeField] Transform _leftTarget;
     [SerializeField] GameObject _northParent;
@@ -110,10 +109,6 @@ public class TransitionScreenManager : MonoBehaviour
             if (t >= 1f)
             {
                 _loading = false;
-                if (!_title)
-                {
-                    _title.SetActive(true);
-                }
                 StartCoroutine(LoadSceneAsync(_targetScene));
             }
         }
@@ -133,7 +128,6 @@ public class TransitionScreenManager : MonoBehaviour
             if (t >= 1f)
             {
                 _fading = false;
-                _title.SetActive(false);
                 _leftParent.transform.position = _startPostionLeft;
                 _northParent.transform.position = _startPostionNorth;
                 _rightParent.transform.position = _startPostionRight;
