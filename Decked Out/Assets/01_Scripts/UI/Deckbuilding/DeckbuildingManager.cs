@@ -100,7 +100,7 @@ public class DeckbuildingManager : MonoBehaviour
         Debug.Log("Slotting in " + cardName + " to button.");
         switch (cardName)
         {
-            case "Arrow":
+            case "Archer_Tower":
                 Debug.Log("Arrow Tower gotten from save system.");
                 _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Archer Tower"));
                 break;

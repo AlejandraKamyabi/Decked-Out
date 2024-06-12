@@ -44,6 +44,7 @@ public class BuyRandomCard : MonoBehaviour
                         SaveSystem.CardCollected collected = (SaveSystem.CardCollected)System.Enum.Parse(typeof(SaveSystem.CardCollected), cardNameList[i]);
                         saveSystem.SetCardCollected(collected, true);
                         saveSystem.MinusGem(prices);
+                        _uiManager.RegisterNewCard(cardNameList[i]);
                         break;
                     }
                     else if (cardList[i] == false)
