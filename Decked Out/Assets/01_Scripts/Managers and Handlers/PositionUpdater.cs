@@ -48,36 +48,32 @@ public class PositionUpdater : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        input.setIsland(false);
-
-        if (gameObject.CompareTag("Buffer") || gameObject.CompareTag("Placed") || gameObject.CompareTag("Spell"))
+        if (gameObject.CompareTag("Buffer") || gameObject.CompareTag("Placed"))
         {
             return;
         }
 
         if (other.CompareTag("Empty"))
         {
+            input.setIsland(false);
+            mouse.SetCollision(false);
             Destroy(other.gameObject);
         }
 
         StartCoroutine(ChangeTagAfterDelay(0.4f));
 
-        if (!mouse.collisionOccurred && other.CompareTag("Platform"))
+        if (other.CompareTag("Platform"))
         {
             mouse.SetCollision(false);
             hasCollided = true;
             transform.position = platformTransform.position + new Vector3(0, 0.9f, 0);
-            input.setIsland(false);
             gameObject.tag = "Temp";
+            input.setIsland(false); // Only call this if necessary
         }
     }
 
     private void Update()
     {
-        if (platformTransform == null)
-        {
-            input.setIsland(true);
-        }
 
         if (hasCollided && platformTransform != null)
         {
