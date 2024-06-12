@@ -38,14 +38,12 @@ public class ElectricTower : MonoBehaviour, ITower
 
         foreach (var clip in animator.runtimeAnimatorController.animationClips)
         {
-            if (clip.name.Equals("ElectricTower_Animation"))
+            if (clip.name.Equals("LightningTower_Animation"))
             {
                 _electricTowerAnimLength = clip.length;
                 break;
             }
         }
-
-        animator.Play("ElectricTower_Animation");
     }
 
     private void Update()

@@ -42,14 +42,12 @@ public class FrostTower : MonoBehaviour, ITower
 
         foreach (var clip in animator.runtimeAnimatorController.animationClips)
         {
-            if (clip.name.Equals("IceTower"))
+            if (clip.name.Equals("IceTower_Animation"))
             {
                 _iceTowerAnimLength = clip.length;
                 break;
             }
         }
-
-        animator.Play("IceTower_Animation");
     }
 
     public float damage
