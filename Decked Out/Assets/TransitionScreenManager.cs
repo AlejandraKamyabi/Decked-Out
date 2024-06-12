@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,22 +12,29 @@ public class TransitionScreenManager : MonoBehaviour
     [SerializeField] float _transitionDuration;
     [SerializeField] float _fadeOutDuration;
 
+    [SerializeField] GameObject _title;
     [SerializeField] GameObject _leftParent;
     [SerializeField] Transform _leftTarget;
+    [SerializeField] GameObject _northParent;
+    [SerializeField] Transform _northTarget;
     [SerializeField] GameObject _rightParent;
     [SerializeField] Transform _rightTarget;
+    [SerializeField] GameObject _southParent;
+    [SerializeField] Transform _southTarget;
+    [SerializeField]
+    Image[] _images;
 
     [SerializeField] List<GameObject> _objectsToFade = new List<GameObject>();
-    [SerializeField] List<GameObject> _objectsToEnhance = new List<GameObject>();
 
     List<Image> _imagesToFade;
-    List<Transform> _imagesToEnhance;
     List<Color> _colorOfImagesToFade;
     List<Image> _childImages;
     List<Color> _colorOfChildImages;
 
+    Vector3 _startPostionNorth;
     Vector3 _startPostionLeft;
     Vector3 _startPostionRight;
+    Vector3 _startPositionSouth;
 
     bool _loading;
     bool _fading;
@@ -51,13 +59,14 @@ public class TransitionScreenManager : MonoBehaviour
     private void Start()
     {
         _startPostionLeft = _leftParent.transform.position;
+        _startPostionNorth = _northParent.transform.position; 
+        _startPositionSouth = _southParent.transform.position;
         _startPostionRight = _rightParent.transform.position;
         _colorOfImagesToFade = new List<Color>();
         _imagesToFade = new List<Image>();
         _childImages = new List<Image>();
         _colorOfChildImages = new List<Color>();
-        GetChildrenOfTransParents(_rightParent.transform);
-        GetChildrenOfTransParents(_leftParent.transform);
+        AddImages();
     }
     public void StartTranistion(string loadingSceneName)
     {
@@ -75,7 +84,6 @@ public class TransitionScreenManager : MonoBehaviour
             {
                 _colorOfImagesToFade.Add(_imagesToFade[i].color);
             }
-            //_imagesToEnhance[i] = _objectsToEnhance[i].GetComponent<Transform>();
         }
         _loading = true;
     }
@@ -89,6 +97,8 @@ public class TransitionScreenManager : MonoBehaviour
 
             _leftParent.transform.position = Vector3.Lerp(_startPostionLeft, _leftTarget.position, t);
             _rightParent.transform.position = Vector3.Lerp(_startPostionRight, _rightTarget.position, t);
+            _northParent.transform.position = Vector3.Lerp(_startPostionNorth, _northTarget.position, t);
+            _southParent.transform.position = Vector3.Lerp(_startPositionSouth, _southTarget.position, t);
 
             for (int i = 0; i < _imagesToFade.Count; i++)
             {
@@ -100,6 +110,10 @@ public class TransitionScreenManager : MonoBehaviour
             if (t >= 1f)
             {
                 _loading = false;
+                if (!_title)
+                {
+                    _title.SetActive(true);
+                }
                 StartCoroutine(LoadSceneAsync(_targetScene));
             }
         }
@@ -119,8 +133,11 @@ public class TransitionScreenManager : MonoBehaviour
             if (t >= 1f)
             {
                 _fading = false;
+                _title.SetActive(false);
                 _leftParent.transform.position = _startPostionLeft;
+                _northParent.transform.position = _startPostionNorth;
                 _rightParent.transform.position = _startPostionRight;
+                _southParent.transform.position = _startPositionSouth;
                 for (int i = 0; i < _childImages.Count; i++)
                 {
                     _childImages[i].color = new Color(_colorOfChildImages[i].r, _colorOfChildImages[i].g, _colorOfChildImages[i].b, 1);
@@ -147,15 +164,11 @@ public class TransitionScreenManager : MonoBehaviour
         _colorOfImagesToFade.Clear();
     }
 
-    private void GetChildrenOfTransParents(Transform parent)
+    private void AddImages()
     {
-        foreach (Transform child in parent)
+        foreach (Image image in _images)
         {
-            Image image = child.GetComponent<Image>();
-            if (image != null)
-            {
-                _childImages.Add(image);
-            }
+            _childImages.Add(image);
         }
         for (int i = 0; i < _childImages.Count; i++)
         {
