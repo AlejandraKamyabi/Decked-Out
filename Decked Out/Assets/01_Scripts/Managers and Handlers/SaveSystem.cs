@@ -7,6 +7,30 @@ public class SaveSystem : MonoBehaviour
     public enum CardCollected
     {
         //Towers
+<<<<<<< HEAD
+        Arrow,
+        Frost_Tower,
+        Buff_Tower,
+        Flamethrower,
+        Electric_Tower,
+        Earthquake_Tower,
+        Attraction_Tower,
+        Cannon,
+        Wave_Tower,
+        Balista_Tower,
+        Poison_Tower,
+        Mystery_Tower,
+        Mortar_Tower,
+        Sniper_Tower,
+
+        //SPELLS
+        Lighting_Bolt,
+        Big_Bomb,
+        Fireball,
+        Nuke,
+        Frost,
+        Freeze_Time
+=======
         Archer_Tower, //Archer Tower
         Attraction_Tower, //Attraction Tower
         Cannon, //Cannon Tower
@@ -31,6 +55,7 @@ public class SaveSystem : MonoBehaviour
         Freeze, //Freeze Spell
         Black_Hole, //Black Hole Spell
         Nuke //Nuke Spell
+>>>>>>> Master
     }
     public enum PurchasedItem
     {
@@ -55,16 +80,11 @@ public class SaveSystem : MonoBehaviour
             Destroy(gameObject);
         }
 
-        cardCollectedString = new Dictionary<CardCollected, string>();
-
         foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
         {
             cardCollectedString[card] = card.ToString();
             cardCount++;
         }
-
-        purchasedItemString = new Dictionary<PurchasedItem, string>();
-
         foreach (PurchasedItem item in System.Enum.GetValues(typeof(PurchasedItem)))
         {
             purchasedItemString[item] = item.ToString();
@@ -149,8 +169,6 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost_Tower], 1);
         PlayerPrefs.SetInt(cardCollectedString[CardCollected.Fireball], 1);
         PlayerPrefs.SetInt(cardCollectedString[CardCollected.Poison_Tower], 1);
-        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Nuke], 1);
-        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Flamethrower], 1);
     }
     //Chack For Startting Card
     public void StartUpCard()
@@ -160,9 +178,7 @@ public class SaveSystem : MonoBehaviour
             PlayerPrefs.HasKey(cardCollectedString[CardCollected.Frost]) == false ||
             PlayerPrefs.HasKey(cardCollectedString[CardCollected.Frost_Tower]) == false ||
             PlayerPrefs.HasKey(cardCollectedString[CardCollected.Fireball]) == false ||
-            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Poison_Tower]) == false ||
-            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Nuke]) == false ||
-            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Flamethrower]) == false
+            PlayerPrefs.HasKey(cardCollectedString[CardCollected.Poison_Tower]) == false
             )
         {
             PlayerPrefs.SetInt(cardCollectedString[CardCollected.Archer_Tower], 1);
@@ -171,8 +187,6 @@ public class SaveSystem : MonoBehaviour
             PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost_Tower], 1);
             PlayerPrefs.SetInt(cardCollectedString[CardCollected.Fireball], 1);
             PlayerPrefs.SetInt(cardCollectedString[CardCollected.Poison_Tower], 1);
-            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Nuke], 1);
-            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Flamethrower], 1);
         }
     }
     //Get All Card Name
@@ -184,7 +198,6 @@ public class SaveSystem : MonoBehaviour
         foreach (CardCollected card in System.Enum.GetValues(typeof(CardCollected)))
         {
             allOutPutString[count] = card.ToString();
-            count++;
         }
 
         return allOutPutString;
@@ -330,7 +343,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
     //Reset Total Kill
-    public void ResetTotalKill()
+    private void ResetTotalKill()
     {
         PlayerPrefs.SetInt("TotalKill", 0);
     }

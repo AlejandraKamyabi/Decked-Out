@@ -18,22 +18,44 @@ public class EarthQuack : MonoBehaviour, ITower
     private float initialDamage;
     private float initialRateOfFire;
     private bool hasBeenBuffed = false;
+    private Animator animator;
+    public AudioSource audioSource;
+
+    private float _quakeAnimLength = 1.0f;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
     private void Start()
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         StartCoroutine(DamageOverTime());
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+
+        foreach (var clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name.Equals("EarthQuake_Animation"))
+            {
+                _quakeAnimLength = clip.length;
+                break;
+            }
+        }
+
+        animator.Play("EarthQuake_Animation");
     }
+
     private void Update()
     {
+        ApplyFreezeEffect();
+    }
 
+    private void ApplyFreezeEffect()
+    {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
         foreach (Collider2D collider in colliders)
@@ -49,31 +71,32 @@ public class EarthQuack : MonoBehaviour, ITower
 
                 if (enemy != null)
                 {
-                    enemy.ApplyFreeze(0.5f);
+                    enemy.ApplyFreeze(0.15f);
                 }
                 if (kaboom != null)
                 {
-                    kaboom.ApplyFreeze(0.5f);
+                    kaboom.ApplyFreeze(0.15f);
                 }
                 if (apostate != null)
                 {
-                    apostate.ApplyFreeze(0.5f);
+                    apostate.ApplyFreeze(0.15f);
                 }
                 if (cleric != null)
                 {
-                    cleric.ApplyFreeze(0.5f);
+                    cleric.ApplyFreeze(0.15f);
                 }
                 if (mopey != null)
                 {
-                    mopey.ApplyFreeze(0.5f);
+                    mopey.ApplyFreeze(0.15f);
                 }
                 if (aegis != null)
                 {
-                    aegis.ApplyFreeze(0.5f);
+                    aegis.ApplyFreeze(0.15f);
                 }
             }
         }
     }
+
     public void ResetTowerEffects()
     {
         Damage = initialDamage;
@@ -87,11 +110,11 @@ public class EarthQuack : MonoBehaviour, ITower
         Destroy(buffed);
         hasBeenBuffed = false;
     }
+
     private IEnumerator DamageOverTime()
     {
-        while (true) 
+        while (true)
         {
-
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
             foreach (Collider2D collider in colliders)
@@ -109,76 +132,80 @@ public class EarthQuack : MonoBehaviour, ITower
                     if (enemy != null)
                     {
                         enemy.TakeDamage(Damage);
-                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
-                        Destroy(deathEffect, 0.5f);
+                        CreateEffect();
                     }
                     if (kaboom != null)
                     {
                         kaboom.TakeDamage(Damage);
-                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
-                        Destroy(deathEffect, 0.5f);
+                        CreateEffect();
                     }
-
                     if (apostate != null)
                     {
                         apostate.TakeDamage(Damage);
-                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
-                        Destroy(deathEffect, 0.5f);
+                        CreateEffect();
                     }
                     if (necromancer != null)
                     {
                         necromancer.TakeDamage(Damage);
-                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
-                        Destroy(deathEffect, 0.5f);
+                        CreateEffect();
                     }
                     if (aegis != null)
                     {
                         aegis.TakeDamage(Damage);
-                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
-                        Destroy(deathEffect, 0.5f);
+                        CreateEffect();
                     }
                     if (cleric != null)
                     {
                         cleric.TakeDamage(Damage);
-                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
-                        Destroy(deathEffect, 0.5f);
+                        CreateEffect();
                     }
                     if (_mopey != null)
                     {
                         _mopey.TakeDamage(Damage);
-                        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
-                        Destroy(deathEffect, 0.5f);
+                        CreateEffect();
                     }
                 }
             }
             yield return new WaitForSeconds(2.0f);
         }
     }
+
+    private void CreateEffect()
+    {
+        GameObject deathEffect = Instantiate(effect, transform.position, Quaternion.identity);
+        Destroy(deathEffect, 0.5f);
+    }
+
     public float damage
     {
         get { return Damage; }
         set { Damage = value; }
     }
+
     public float attackSpeed
     {
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
+
     public float health
     {
         get { return Health; }
         set { Health = value; }
     }
+
     public float range
     {
         get { return attackRange; }
         set { attackRange = value; }
     }
+
     GameObject ITower.gameObject
     {
         get { return towerGameObject; }
         set { towerGameObject = value; }
     }
+
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
         if (!hasBeenBuffed && !gameObject.CompareTag("Empty"))
@@ -197,6 +224,7 @@ public class EarthQuack : MonoBehaviour, ITower
             hasBeenBuffed = true;
         }
     }
+
     private void OnDestroy()
     {
         if (buffed != null)

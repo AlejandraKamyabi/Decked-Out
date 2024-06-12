@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class CardTierSelector : MonoBehaviour
 {
@@ -18,25 +17,19 @@ public class CardTierSelector : MonoBehaviour
 
     [Header("Card Data")]
     [SerializeField] SelectedCard[] _cardRenderers;
-    [SerializeField] List<TowerCardSO> _cardsOfRarity = new List<TowerCardSO>();
+    [SerializeField] TowerCardSO[] _cardsOfRarity;
 
     [Header("UI")]
     [SerializeField] Sprite _selectedTextSprite;
     [SerializeField] Image _textImage;
     [SerializeField] Sprite _normalTextSprite;
-    [SerializeField] Image _cardNeededIndicator;
 
     List<CardTierSelector> _otherTierButtons = new List<CardTierSelector>();
     bool _tierSet = false;
 
-    public void LoadInCardFromSaveSystem(TowerCardSO card)
-    {
-        _cardsOfRarity.Add(card);
-    }
-
     public void SetTier()
     {
-         Debug.Log("Renderering " + _cardsOfRarity.Count + " cards from " + _tier + " tier");
+         Debug.Log("Renderering " + _cardsOfRarity.Length + " cards from " + _tier + " tier");
         _cardRenderers = _manager.SetTierRenderers(_cardsOfRarity.Count(), _tier);
         _textImage.sprite = _selectedTextSprite;
         if (_otherTierButtons.Count == 0)
@@ -89,22 +82,7 @@ public class CardTierSelector : MonoBehaviour
             }
             
         }
-        if (_manager.CheckIfSavedCards(_tier).Length > 0)
-        {
-            DisableCardNeededIndicator();
-        }
-        else if (_manager.CheckIfSavedCards(_tier).Length == 0)
-        {
-            EnableCardNeededIndicator();
-        }
     }
 
-    public void EnableCardNeededIndicator()
-    {
-        _cardNeededIndicator.gameObject.SetActive(true);
-    }
-    public void DisableCardNeededIndicator()
-    {
-        _cardNeededIndicator.gameObject.SetActive(false);
-    }
+
 }

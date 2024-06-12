@@ -15,11 +15,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
 
+<<<<<<< HEAD
+=======
     [SerializeField] private GameObject waveMusicSourceObj;
     [SerializeField] private AudioClip[] waveMusicClip;
     private int trakPlaying = 0;
     private GameObject[] musicPlayer;
 
+>>>>>>> Master
     [SerializeField] private GameObject canvas;
 
     private bool canvasActive = false;
@@ -93,6 +96,9 @@ public class AudioManager : MonoBehaviour
         canvas.SetActive(canvasActive);
 
         GameObject[] allAudioManager = GameObject.FindGameObjectsWithTag("AudioManager");
+<<<<<<< HEAD
+        
+=======
 
         musicPlayer = new GameObject[waveMusicClip.Length];
 
@@ -106,6 +112,7 @@ public class AudioManager : MonoBehaviour
             musicPlayer[i].SetActive(false);
         }
 
+>>>>>>> Master
         if (allAudioManager.Length > 1)
         {
             Destroy(gameObject);
@@ -198,40 +205,6 @@ public class AudioManager : MonoBehaviour
         SFXSource.Play();
     }
 
-    public void StartWaveMucic()
-    {
-        stopMusicClip();
-        foreach (GameObject source in musicPlayer)
-        {
-            source.SetActive(true);
-            source.GetComponent<AudioSource>().Play();
-            source.SetActive(false);
-        }
-        musicPlayer[0].SetActive(true);
-    }
-    public void PlayNextMuiscTrak()
-    {
-        trakPlaying++;
-        if (trakPlaying < musicPlayer.Length && trakPlaying >= 0)
-        {
-            foreach (GameObject source in musicPlayer)
-            {
-                source.SetActive(false);
-            }
-            musicPlayer[trakPlaying].SetActive(true);
-        }
-    }
-    public void StopWaveMusic()
-    {
-        foreach (GameObject source in musicPlayer)
-        {
-            source.SetActive(true);
-            source.GetComponent<AudioSource>().Stop();
-            source.SetActive(false);
-        }
-        musicSource.Play();
-    }
-
     public void StopAllAudio()
     {
         AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>() as AudioSource[];
@@ -244,6 +217,41 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+<<<<<<< HEAD
+
+    public void Initialize()
+    {
+        SFXSoundAudioClipDictionary = new Dictionary<SFXSound, AudioClip>();
+        foreach (SFXSound sound in System.Enum.GetValues(typeof(SFXSound)))
+        {
+            SFXSoundAudioClipDictionary[sound] = Resources.Load<AudioClip>(sound.ToString());
+        }
+
+        musicSoundAudioClipDictionary = new Dictionary<musicSound, AudioClip>();
+        foreach (musicSound sound in System.Enum.GetValues(typeof(musicSound)))
+        {
+            musicSoundAudioClipDictionary[sound] = Resources.Load<AudioClip>(sound.ToString());
+        }
+
+        if (PlayerPrefs.HasKey("masterVolume") || PlayerPrefs.HasKey("musicVolume") || PlayerPrefs.HasKey("SFXVolume"))
+        {
+            LoadVolume();
+        }
+        else
+        {
+            setMasterVolume();
+            setMusicVolume();
+            setSFXVolume();
+        }
+    }
+    public void Setting ()
+    {
+        canvasActive = !canvasActive;
+        canvas.SetActive(canvasActive);
+    }
+
+=======
+>>>>>>> Master
     public void LoadTest()
     {
         SceneManager.LoadScene("Test");

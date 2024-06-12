@@ -210,7 +210,6 @@ public class Necromancer : MonoBehaviour
                 wave.AddEnemyToCurrentWave("Cleric", collider.transform.position);
             }
         }
-        StartCoroutine(AttackCooldown());
     }
     private IEnumerator AttackCooldown()
     {
@@ -254,7 +253,7 @@ public class Necromancer : MonoBehaviour
 
                 wave.AddEnemyToCurrentWave("Cleric", target.transform.position);
             }
-
+        StartCoroutine(AttackCooldown());
     }
 
 

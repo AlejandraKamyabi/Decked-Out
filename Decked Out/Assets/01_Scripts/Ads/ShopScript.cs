@@ -22,17 +22,36 @@ public class NonConsumableItem
     public string Id;
     public string desc;
     public float price;
+<<<<<<< HEAD
+}
+[Serializable]
+public class SubscriptionItem
+{
+    public string Name;
+    public string Id;
+    public string desc;
+    public float price;
+    public int timeDuration;// in Days
+}
+=======
 } */
 
+>>>>>>> Master
 
 public class ShopScript : MonoBehaviour, IStoreListener
 {
     IStoreController m_StoreContoller;
 
+<<<<<<< HEAD
+    public ConsumableItem cItem;
+    public NonConsumableItem ncItem;
+    public SubscriptionItem sItem;
+=======
     public ConsumableItem cItem1;
     public ConsumableItem cItem2;
     public ConsumableItem cItem3;
     // public NonConsumableItem ncItem;
+>>>>>>> Master
 
     public TMP_InputField inp;
 
@@ -55,10 +74,16 @@ public class ShopScript : MonoBehaviour, IStoreListener
     {
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
+<<<<<<< HEAD
+        builder.AddProduct(cItem.Id, ProductType.Consumable);
+        builder.AddProduct(ncItem.Id, ProductType.NonConsumable);
+        builder.AddProduct(sItem.Id, ProductType.Subscription);
+=======
         builder.AddProduct(cItem1.Id, ProductType.Consumable);
         builder.AddProduct(cItem2.Id, ProductType.Consumable);
         builder.AddProduct(cItem3.Id, ProductType.Consumable);
         // builder.AddProduct(ncItem.Id, ProductType.NonConsumable);
+>>>>>>> Master
 
         UnityPurchasing.Initialize(this, builder);
     }
@@ -66,7 +91,12 @@ public class ShopScript : MonoBehaviour, IStoreListener
     {
         print("Success");
         m_StoreContoller = controller;
+<<<<<<< HEAD
+        CheckNonConsumable(ncItem.Id);
+        CheckSubscription(sItem.Id);
+=======
         // CheckNonConsumable(ncItem.Id);
+>>>>>>> Master
     }
     #endregion
 
@@ -89,7 +119,18 @@ public class ShopScript : MonoBehaviour, IStoreListener
     /* public void NonConsumable_Btn_Pressed()
     {
         m_StoreContoller.InitiatePurchase(ncItem.Id);
+<<<<<<< HEAD
+
+    }
+
+    public void Subscription_Btn_Pressed()
+    {
+        //ActivateElitePass();
+        m_StoreContoller.InitiatePurchase(sItem.Id);
+    }
+=======
     } */
+>>>>>>> Master
     #endregion
 
     #region main
@@ -116,7 +157,15 @@ public class ShopScript : MonoBehaviour, IStoreListener
         /* else if (product.definition.id == ncItem.Id)
         {
             RemoveAds();
+<<<<<<< HEAD
+        }
+        else if (product.definition.id == sItem.Id)//subscribed
+        {
+            ActivateElitePass();
+        }
+=======
         } */
+>>>>>>> Master
 
         return PurchaseProcessingResult.Complete;
     }

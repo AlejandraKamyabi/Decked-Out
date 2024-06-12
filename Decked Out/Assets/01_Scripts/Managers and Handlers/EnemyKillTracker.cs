@@ -24,7 +24,6 @@ public class EnemyKillTracker : MonoBehaviour
     public int _enemiesInWave;
     public int _enemiesDestroyedThisWave;
 
-    private SaveSystem _saveSystem;
     private void Start()
     {
         _loader = ServiceLocator.Get<GameLoader>();
@@ -35,7 +34,6 @@ public class EnemyKillTracker : MonoBehaviour
     {
         _randoEngine = FindObjectOfType<CardRandoEngine>();
         _waveManager = FindObjectOfType<WaveManager>();
-        _saveSystem = FindObjectOfType<SaveSystem>();
         UpdateEnemyCountText();
         UpdateGemCountText();
     }
@@ -71,6 +69,8 @@ public class EnemyKillTracker : MonoBehaviour
         }
     }
 
+
+
     public void AllEnemiesInWaveDestroyed()
     {
         _waveManager.AllEnemiesInWaveDestroyed();
@@ -98,10 +98,7 @@ public class EnemyKillTracker : MonoBehaviour
     public void ResetValues()
     {
         totalEnemiesDestroyed = 0;
-        totalGemsCollected = 0;
         currentWave = 1;
-        _enemiesInWave = 0;
-        _enemiesDestroyedThisWave = 0;
         UpdateEnemyCountText();
         UpdateGemCountText();
     }
@@ -110,6 +107,55 @@ public class EnemyKillTracker : MonoBehaviour
     {
         _enemiesInWave = enemies;
         Debug.Log("Enemies In Wave " + _waveManager.currentWave + ": " + _enemiesInWave);
+    }
+
+    public void AddEnemyToCurrentWave(string enemyType, Vector3 spawnPosition)
+    {
+        GameObject newEnemy = null;
+        Slider newHealthSlider = Instantiate(_waveManager.healthSliderPrefab);
+        Vector3 sliderPosition;
+
+        switch (enemyType)
+        {
+            case "Acolyte":
+                newEnemy = Instantiate(_waveManager.enemyPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+                break;
+            case "Kaboom":
+                newEnemy = Instantiate(_waveManager.KaboomPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
+                break;
+            case "Golem":
+                newEnemy = Instantiate(_waveManager.GolemPrefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+                break;
+            case "Apostate":
+                newEnemy = Instantiate(_waveManager.Apostate_Prefab, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Apostate>().maxHealth;
+                break;
+            case "Necromancer":
+                newEnemy = Instantiate(_waveManager.necromancer, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Necromancer>().maxHealth;
+                break;
+            case "Aegis":
+                newEnemy = Instantiate(_waveManager.aegis, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Aegis>().maxHealth;
+                break;
+            case "Cleric":
+                newEnemy = Instantiate(_waveManager.cleric, spawnPosition, Quaternion.identity);
+                newHealthSlider.maxValue = newEnemy.GetComponent<Cleric>().maxHealth;
+                break;
+        }
+
+        if (newEnemy != null)
+        {
+            sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
+            newHealthSlider.transform.position = sliderPosition;
+            newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+            newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
+            _waveManager.waves[_waveManager.currentWave].numberOfEnemies++;
+            NumbersOfEnemiesInWave(_waveManager.waves[_waveManager.currentWave].numberOfEnemies);
+        }
     }
 
     private void UpdateEnemyCountText()
@@ -145,8 +191,6 @@ public class EnemyKillTracker : MonoBehaviour
         endGameEnemyCountText.text = "Kills: " + totalEnemiesDestroyed.ToString("f0");
         endGameGemCountText.text = "Gems: " + totalGemsCollected.ToString("f0");
         endGameWave.text = "Wave: " + currentWave;
-        _saveSystem.AddGem(totalGemsCollected);
-        _saveSystem.AddTotalKill(totalEnemiesDestroyed);
         ResetValues();
     }
 }
