@@ -403,6 +403,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneTransition
       objectReference: {fileID: 0}
+    - target: {fileID: 7053903966273733474, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053903966381403865, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053903966545165364, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053903966545165364, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053903966545165364, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053903966545165364, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053903966545165364, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 7020
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053903966545165364, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053903966545165364, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7053903966545165367, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
       propertyPath: _fadeOutDuration
       value: 5
