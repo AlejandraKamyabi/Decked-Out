@@ -24,7 +24,7 @@ AnimationClip:
     - time: 0.016666668
       value: {fileID: 21300000, guid: f43872ff69faf9341bd5c0bd92a867c1, type: 3}
     - time: 0.033333335
-      value: {fileID: 21300000, guid: 9f71f02788d70774682764f334df2277, type: 3}
+      value: {fileID: 21300000, guid: b7ba451a846013e4f80116c5067d2290, type: 3}
     - time: 0.05
       value: {fileID: 21300000, guid: a1377e544b1906e4899651c511a714e3, type: 3}
     - time: 0.06666667
@@ -38,7 +38,7 @@ AnimationClip:
     - time: 0.13333334
       value: {fileID: 21300000, guid: 2ffe8f9d4b564a8489ede3f76b2bcc6c, type: 3}
     - time: 0.15
-      value: {fileID: 21300000, guid: 9f71f02788d70774682764f334df2277, type: 3}
+      value: {fileID: 21300000, guid: a1efe91e8e6eeec468d276072f31313f, type: 3}
     - time: 0.16666667
       value: {fileID: 21300000, guid: 5799d259c95714943b6ceb352c2878db, type: 3}
     - time: 0.18333334
@@ -160,14 +160,14 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: 21300000, guid: 9f71f02788d70774682764f334df2277, type: 3}
     - {fileID: 21300000, guid: f43872ff69faf9341bd5c0bd92a867c1, type: 3}
-    - {fileID: 21300000, guid: 9f71f02788d70774682764f334df2277, type: 3}
+    - {fileID: 21300000, guid: b7ba451a846013e4f80116c5067d2290, type: 3}
     - {fileID: 21300000, guid: a1377e544b1906e4899651c511a714e3, type: 3}
     - {fileID: 21300000, guid: 517466e458dba4941a3fa040e47aaf41, type: 3}
     - {fileID: 21300000, guid: 31b45a8674d70ca4a88ef4af8966df30, type: 3}
     - {fileID: 21300000, guid: 70d5c2bb0fa80d64e8d1cb00cb45d6fc, type: 3}
     - {fileID: 21300000, guid: 7b87b47338fa1044b8fb6de32e5a6d9e, type: 3}
     - {fileID: 21300000, guid: 2ffe8f9d4b564a8489ede3f76b2bcc6c, type: 3}
-    - {fileID: 21300000, guid: 9f71f02788d70774682764f334df2277, type: 3}
+    - {fileID: 21300000, guid: a1efe91e8e6eeec468d276072f31313f, type: 3}
     - {fileID: 21300000, guid: 5799d259c95714943b6ceb352c2878db, type: 3}
     - {fileID: 21300000, guid: 9bfbe0c5cd128d04c8d6616145f3a2fe, type: 3}
     - {fileID: 21300000, guid: ab88eb14182d1984e9b7b8f5ebf96f68, type: 3}

@@ -18,6 +18,7 @@ public class EndGameSplashManager : MonoBehaviour
         splashScreen.SetActive(false);
         castleGameObject = ServiceLocator.Get<Castle>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
+        enemyKillTracker = FindObjectOfType<EnemyKillTracker>();
     }
 
     public void Death()
@@ -27,21 +28,24 @@ public class EndGameSplashManager : MonoBehaviour
     }
 
     public void Retry()
-    {       
-        RestartGame();   
+    {
+        RestartGame();
     }
 
     // Restart the game method
     private void RestartGame()
     {
+        wave_m.StopWave();
+        enemyKillTracker.ResetValues();
         castleGameObject.ResetHealth();
         splashScreen.SetActive(false);
         cardRandoEngine.NewWave();
+        wave_m.StartWaves();
     }
 
     public void MainMenu()
     {
-        wave_m .StopWave();
+        wave_m.StopWave();
         var loadSceneTask = SceneManager.LoadSceneAsync(mainMenuScene);
     }
 

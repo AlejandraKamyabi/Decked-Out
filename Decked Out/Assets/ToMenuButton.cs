@@ -9,6 +9,7 @@ public class ToMenuButton : MonoBehaviour
 
     public void LoadScene()
     {
+        Debug.Log("Loading Main Menu");
         SceneManager.LoadScene(_menuScene);
     }
 }

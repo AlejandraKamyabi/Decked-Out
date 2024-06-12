@@ -34,7 +34,6 @@ public class TowerSelection : MonoBehaviour
     public GameObject chill;
     public GameObject freeze;
     public GameObject BlackHole;
-    public GameObject Health;     
     public bool isSelectingSpell = false;
 
 

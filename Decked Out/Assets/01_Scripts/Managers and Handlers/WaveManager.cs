@@ -16,6 +16,7 @@ public class WaveManager : MonoBehaviour
     public GameObject aegis;
     public GameObject cleric;
     public GameObject Mopey_prefab;
+    public GameObject Zealots_prefab;
     public GameObject Mistake_Prefab;
     public float unitSquareSize = 10.0f;
     public float TowersLeft = 6;
@@ -48,7 +49,7 @@ public class WaveManager : MonoBehaviour
         return this;
     }
 
-    private void StartWaves()
+    public void StartWaves()
     {
         ToggleStartButton(false);
         _gameSpeedManager.ActivateControlPanel();
@@ -77,85 +78,72 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
-                SpawnEnemyBasedOnPercentage(waves[currentWave].enemySpawnPercentages);
+                SpawnEnemyBasedOnPercentage(waves[currentWave].enemySpawnInfos);
                 enemiesSpawned++;
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
             }
         }
     }
 
-    private void SpawnEnemyBasedOnPercentage(SerializableDictionary<string, float> enemySpawnPercentages)
+    private void SpawnEnemyBasedOnPercentage(List<EnemySpawnInfo> enemySpawnInfos)
     {
         float rand = Random.value;
         float cumulative = 0f;
 
-        foreach (var enemyType in enemySpawnPercentages)
+        foreach (var enemyInfo in enemySpawnInfos)
         {
-            cumulative += enemyType.Value;
+            cumulative += enemyInfo.spawnPercentage;
             if (rand < cumulative)
             {
-                switch (enemyType.Key)
-                {
-                    case "Acolyte":
-                        SpawnEnemy();
-                        break;
-                    case "Kaboom":
-                        SpawnKaboomEnemy();
-                        break;
-                    case "Golem":
-                        SpawnGolemEnemy();
-                        break;
-                    case "Apostate":
-                        SpawnApostateEnemy();
-                        break;
-                    case "Necromancer":
-                        Spawn_Necromancer();
-                        break;
-                    case "Aegis":
-                        Spawn_Aegis();
-                        break;
-                    case "Cleric":
-                        Spawn_Cleric();
-                        break;
-                }
+                SpawnEnemyByType(enemyInfo.enemyType);
                 break;
             }
         }
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemyByType(string enemyType)
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
-    }
-
-    private void SpawnKaboomEnemy()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
-        SetupHealthSlider(newEnemy, newEnemy.GetComponent<KaboomEnemy>().maxHealth);
-    }
-
-    private void SpawnGolemEnemy()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
-        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
-    }
-
-    private void SpawnApostateEnemy()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
-        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Apostate>().maxHealth);
-    }
-
-    private void Spawn_Necromancer()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
-        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Necromancer>().maxHealth);
+        GameObject newEnemy = null;
+        switch (enemyType)
+        {
+            case "Acolyte":
+                newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+                break;
+            case "Kaboom":
+                newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
+                SetupHealthSlider(newEnemy, newEnemy.GetComponent<KaboomEnemy>().maxHealth);
+                break;
+            case "Golem":
+                newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
+                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+                break;
+            case "Apostate":
+                newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
+                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Apostate>().maxHealth);
+                break;
+            case "Necromancer":
+                newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
+                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Necromancer>().maxHealth);
+                break;
+            case "Aegis":
+                newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
+                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Aegis>().maxHealth);
+                break;
+            case "Cleric":
+                newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
+                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Cleric>().maxHealth);
+                break;
+            case "Mopey_Misters":
+                newEnemy = Instantiate(Mopey_prefab, spawnPosition, Quaternion.identity);
+                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Mopey_Misters>().maxHealth);
+                break;
+            case "Zoom_Zealots":
+                newEnemy = Instantiate(Zealots_prefab, spawnPosition, Quaternion.identity);
+                SetupHealthSlider(newEnemy, newEnemy.GetComponent<ZoomZealots>().maxHealth);
+                break;
+        }
     }
     public void IncrementTowersPlaced()
     {
@@ -308,53 +296,21 @@ public class WaveManager : MonoBehaviour
             spawningCoroutine = null;
         }
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            Destroy(enemy);
-        }
-        GameObject[] sliders = GameObject.FindGameObjectsWithTag("Health");
-        foreach (GameObject slider in sliders)
-        {
-            Destroy(slider);
-        }
+        DestroyAllGameObjectsWithTag("Enemy");
+        DestroyAllGameObjectsWithTag("Health");
+        DestroyAllGameObjectsWithTag("Tower");
+        DestroyAllGameObjectsWithTag("Placed");
+        DestroyAllGameObjectsWithTag("Empty");
+        DestroyAllGameObjectsWithTag("Buffer");
+        DestroyAllGameObjectsWithTag("buffed_icon");
+    }
 
-        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
-        foreach (GameObject tower in towers)
+    private void DestroyAllGameObjectsWithTag(string tag)
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in objects)
         {
-            ITower towerScript = tower.GetComponent<ITower>();
-            Destroy(tower);
-        }
-        GameObject[] placedTowers = GameObject.FindGameObjectsWithTag("Placed");
-        foreach (GameObject placedTower in placedTowers)
-        {
-            ITower towerScript = placedTower.GetComponent<ITower>();
-            Destroy(placedTower);
-        }
-        GameObject[] empties = GameObject.FindGameObjectsWithTag("Empty");
-        foreach (GameObject empty in empties)
-        {
-            ITower towerScript = empty.GetComponent<ITower>();
-            Destroy(empty);
-            collisionOccurred = false;
-        }
-        GameObject[] buffer = GameObject.FindGameObjectsWithTag("Buffer");
-        foreach (GameObject buffers in buffer)
-        {
-            IBuffTower towerScript = buffers.GetComponent<IBuffTower>();
-            Destroy(buffers);
-        }
-        GameObject[] buffed_icon_object = GameObject.FindGameObjectsWithTag("buffed_icon");
-        foreach (GameObject buffed_icon_objects in buffed_icon_object)
-        {
-            IBuffTower towerScript = buffed_icon_objects.GetComponent<IBuffTower>();
-            Destroy(buffed_icon_objects);
-        }
-        GameObject[] buff = GameObject.FindGameObjectsWithTag("Placed");
-        foreach (GameObject buffe in buff)
-        {
-            IBuffTower towerScript = buffe.GetComponent<IBuffTower>();
-            Destroy(buffe);
+            Destroy(obj);
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ElectricTower : MonoBehaviour, ITower
 {
     public float attackRange;
@@ -18,39 +19,23 @@ public class ElectricTower : MonoBehaviour, ITower
     private GameObject buffed;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
-    private Animator animator;
-    public AudioSource audioSource;
-
-    private float _electricTowerAnimLength = 1.0f;
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
     private void Start()
     {
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        animator = GetComponentInChildren<Animator>();
-
-        foreach (var clip in animator.runtimeAnimatorController.animationClips)
-        {
-            if (clip.name.Equals("LightningTower_Animation"))
-            {
-                _electricTowerAnimLength = clip.length;
-                break;
-            }
-        }
     }
-
     private void Update()
     {
+
         FindAndShootTarget();
     }
-
     public void ResetTowerEffects()
     {
         Damage = initialDamage;
@@ -64,37 +49,31 @@ public class ElectricTower : MonoBehaviour, ITower
         Destroy(buffed);
         hasBeenBuffed = false;
     }
-
     public float damage
     {
         get { return Damage; }
         set { Damage = value; }
     }
-
     public float attackSpeed
     {
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
-
     public float range
     {
         get { return attackRange; }
         set { attackRange = value; }
     }
-
-    public float health
-    {
-        get { return Health; }
-        set { Health = value; }
-    }
-
     GameObject ITower.gameObject
     {
         get { return towerGameObject; }
         set { towerGameObject = value; }
     }
-
+    public float health
+    {
+        get { return Health; }
+        set { Health = value; }
+    }
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
         if (!hasBeenBuffed && !gameObject.CompareTag("Empty"))
@@ -113,7 +92,6 @@ public class ElectricTower : MonoBehaviour, ITower
             hasBeenBuffed = true;
         }
     }
-
     private void FindAndShootTarget()
     {
         if (canAttack)
@@ -124,15 +102,16 @@ public class ElectricTower : MonoBehaviour, ITower
             {
                 if (collider.CompareTag("Enemy"))
                 {
-                    ShootZap(collider.transform);
+                    ShootArrow(collider.transform);
                     break;
                 }
             }
         }
     }
 
-    private void ShootZap(Transform target)
+    private void ShootArrow(Transform target)
     {
+
         GameObject Zap = Instantiate(zapPrefab, transform.position, Quaternion.identity);
         ZapProjectile Script = Zap.GetComponent<ZapProjectile>();
         Script.SetTarget(target);
@@ -140,8 +119,8 @@ public class ElectricTower : MonoBehaviour, ITower
         canAttack = false;
         Script.SetDamage(Damage);
         StartCoroutine(AttackCooldown());
-    }
 
+    }
     public float GetAttackRange()
     {
         return attackRange;
@@ -158,11 +137,4 @@ public class ElectricTower : MonoBehaviour, ITower
         }
     }
 
-    private void OnDestroy()
-    {
-        if (buffed != null)
-        {
-            Destroy(buffed);
-        }
-    }
 }

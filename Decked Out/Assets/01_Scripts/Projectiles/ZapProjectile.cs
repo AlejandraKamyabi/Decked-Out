@@ -6,13 +6,6 @@ public class ZapProjectile : MonoBehaviour
     private float damage;
     private Transform target;
     public GameObject effect;
-    private Animator animator;
-
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-        PlayAnimation();
-    }
 
     private void Update()
     {
@@ -98,14 +91,6 @@ public class ZapProjectile : MonoBehaviour
             aegis.TakeDamage(damage);
             aegis.Zap();
             aegis.ResetZapFlag();
-        }
-    }
-
-    private void PlayAnimation()
-    {
-        if (animator != null)
-        {
-            animator.Play("Zap_Animation");
         }
     }
 }

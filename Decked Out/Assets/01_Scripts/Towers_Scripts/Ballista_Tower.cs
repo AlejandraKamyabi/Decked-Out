@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Ballista_Tower : MonoBehaviour, ITower
 {
@@ -16,69 +18,48 @@ public class Ballista_Tower : MonoBehaviour, ITower
     private GameObject buffed;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
-    private Animator animator;
     public AudioSource audioSource;
-
-    private float _ballistaAnimLength = 1.0f;
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
-    private void Start()
-    {
-        initialDamage = Damage;
-        initialRateOfFire = RateOfFire;
-        animator = GetComponentInChildren<Animator>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
-        foreach (var clip in animator.runtimeAnimatorController.animationClips)
-        {
-            if (clip.name.Equals("Ballista_Animation"))
-            {
-                _ballistaAnimLength = clip.length;
-                break;
-            }
-        }
-    }
-
     private void Update()
     {
         FindAndShootTarget();
     }
-
+    private void Start()
+    {
+        initialDamage = Damage;
+        initialRateOfFire = RateOfFire;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
     public float damage
     {
         get { return Damage; }
         set { Damage = value; }
     }
-
     public float attackSpeed
     {
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
-
-    public float range
-    {
-        get { return attackRange; }
-        set { attackRange = value; }
-    }
-
-    public float health
-    {
-        get { return Health; }
-        set { Health = value; }
-    }
-
     GameObject ITower.gameObject
     {
         get { return towerGameObject; }
         set { towerGameObject = value; }
     }
-
+    public float health
+    {
+        get { return Health; }
+        set { Health = value; }
+    }
+    public float range
+    {
+        get { return attackRange; }
+        set { attackRange = value; }
+    }
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
         if (!hasBeenBuffed && !gameObject.CompareTag("Empty"))
@@ -95,14 +76,15 @@ public class Ballista_Tower : MonoBehaviour, ITower
                 buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
+
         }
     }
-
     private void FindAndShootTarget()
     {
         if (canAttack)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
             foreach (Collider2D collider in colliders)
             {
                 if (collider.CompareTag("Enemy"))
@@ -117,21 +99,15 @@ public class Ballista_Tower : MonoBehaviour, ITower
     private void ShootArrow(Transform target)
     {
         audioSource.Play();
-        animator.Play("Ballista_Animation");
-        canAttack = false;
-        StartCoroutine(ShootArrowCoroutine(target));
-        StartCoroutine(AttackCooldown());
-    }
-
-    private IEnumerator ShootArrowCoroutine(Transform target)
-    {
-        yield return new WaitForSeconds(_ballistaAnimLength);
         GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         Ballista_Arrow arrowScript = arrow.GetComponent<Ballista_Arrow>();
         arrowScript.SetTarget(target);
-        arrowScript.SetDamage(Damage);
-    }
 
+        canAttack = false;
+        arrowScript.SetDamage(Damage);
+        StartCoroutine(AttackCooldown());
+
+    }
     public void ResetTowerEffects()
     {
         Damage = initialDamage;
@@ -150,7 +126,7 @@ public class Ballista_Tower : MonoBehaviour, ITower
     {
         return attackRange;
     }
-
+   
     private IEnumerator AttackCooldown()
     {
         float actualRateOfFire = RateOfFire;
@@ -161,7 +137,6 @@ public class Ballista_Tower : MonoBehaviour, ITower
             canAttack = true;
         }
     }
-
     private void OnDestroy()
     {
         if (buffed != null)

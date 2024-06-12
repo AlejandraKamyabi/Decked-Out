@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 3341973020179541167}
   - component: {fileID: 3896669677113779306}
   - component: {fileID: 7609683532087171619}
+  - component: {fileID: 7424832325478790048}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -167,6 +168,8 @@ MonoBehaviour:
   zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
   isBurning: 0
   isFrozen: 0
+  TotalFreezeTime: 3
+  isTotalFrozen: 0
   deathEffectPrefab: {fileID: 3161217357562407052, guid: dbc04a59f62726747bcc36af6783caa7, type: 3}
   deathSound: {fileID: 8300000, guid: 30d2bb4f58ef3e4408251f14255b80d5, type: 3}
   circleCollider: {fileID: 0}
@@ -387,6 +390,8 @@ MonoBehaviour:
   _apostateScript: {fileID: 0}
   _kaboomScript: {fileID: 0}
   _necromancerScript: {fileID: 0}
+  Mopey_Script: {fileID: 0}
+  _AegisScript: {fileID: 0}
   cleric: {fileID: 0}
   _mainSpriteRenderer: {fileID: 1380346453654109597}
   _burningColour: {r: 1, g: 0.47058824, b: 0, a: 1}
@@ -397,6 +402,20 @@ MonoBehaviour:
   _slowScaleValue: 0.2
   _charmScaleValue: 0.25
   _poisonScaleValue: 0.4
+--- !u!114 &7424832325478790048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913288999114805945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9655926426bfeaa4aa7879f28240ed78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _headSprite: {fileID: 21300000, guid: cbde36913cbdc4d45bb4a2127a6bc20f, type: 3}
+  _indicatorScallingFactor: 1
 --- !u!1001 &2983724566876172182
 PrefabInstance:
   m_ObjectHideFlags: 0

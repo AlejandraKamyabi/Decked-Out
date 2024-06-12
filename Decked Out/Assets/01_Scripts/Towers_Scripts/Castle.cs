@@ -154,12 +154,4 @@ public class Castle : MonoBehaviour
             }
         }
     }
-
-    public void RecoverHealth(float amount)
-    {
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UpdateHealthUI();
-    }
-
 }
