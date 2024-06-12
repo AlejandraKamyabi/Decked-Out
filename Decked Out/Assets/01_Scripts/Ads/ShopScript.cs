@@ -14,13 +14,15 @@ public class ConsumableItem
     public string desc;
     public float price;
 }
-[Serializable]
+
+/* [Serializable]
 public class NonConsumableItem
 {
     public string Name;
     public string Id;
     public string desc;
     public float price;
+<<<<<<< HEAD
 }
 [Serializable]
 public class SubscriptionItem
@@ -31,37 +33,57 @@ public class SubscriptionItem
     public float price;
     public int timeDuration;// in Days
 }
+=======
+} */
+
+>>>>>>> Master
 
 public class ShopScript : MonoBehaviour, IStoreListener
 {
     IStoreController m_StoreContoller;
 
+<<<<<<< HEAD
     public ConsumableItem cItem;
     public NonConsumableItem ncItem;
     public SubscriptionItem sItem;
+=======
+    public ConsumableItem cItem1;
+    public ConsumableItem cItem2;
+    public ConsumableItem cItem3;
+    // public NonConsumableItem ncItem;
+>>>>>>> Master
 
     public TMP_InputField inp;
-
 
     public Data data;
     public Payload payload;
     public PayloadData payloadData;
+
+    SaveSystem saveSystem;
+    ShopUIManager shopUIManager;
+
     private void Start()
     {
-        int coins = PlayerPrefs.GetInt("totalCoins");
-        coinTxt.text = coins.ToString();
         SetupBuilder();
+        saveSystem = FindObjectOfType<SaveSystem>();
+        shopUIManager = FindObjectOfType<ShopUIManager>();
     }
 
     #region setup and initialize
     void SetupBuilder()
     {
-
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
+<<<<<<< HEAD
         builder.AddProduct(cItem.Id, ProductType.Consumable);
         builder.AddProduct(ncItem.Id, ProductType.NonConsumable);
         builder.AddProduct(sItem.Id, ProductType.Subscription);
+=======
+        builder.AddProduct(cItem1.Id, ProductType.Consumable);
+        builder.AddProduct(cItem2.Id, ProductType.Consumable);
+        builder.AddProduct(cItem3.Id, ProductType.Consumable);
+        // builder.AddProduct(ncItem.Id, ProductType.NonConsumable);
+>>>>>>> Master
 
         UnityPurchasing.Initialize(this, builder);
     }
@@ -69,23 +91,35 @@ public class ShopScript : MonoBehaviour, IStoreListener
     {
         print("Success");
         m_StoreContoller = controller;
+<<<<<<< HEAD
         CheckNonConsumable(ncItem.Id);
         CheckSubscription(sItem.Id);
+=======
+        // CheckNonConsumable(ncItem.Id);
+>>>>>>> Master
     }
     #endregion
 
-
     #region button clicks 
-    public void Consumable_Btn_Pressed()
+    public void Consumable_Btn1_Pressed()
     {
-        //AddCoins(50);
-        m_StoreContoller.InitiatePurchase(cItem.Id);
+        m_StoreContoller.InitiatePurchase(cItem1.Id);
     }
 
-    public void NonConsumable_Btn_Pressed()
+    public void Consumable_Btn2_Pressed()
     {
-        //RemoveAds();
+        m_StoreContoller.InitiatePurchase(cItem2.Id);
+    }
+
+    public void Consumable_Btn3_Pressed()
+    {
+        m_StoreContoller.InitiatePurchase(cItem3.Id);
+    }
+
+    /* public void NonConsumable_Btn_Pressed()
+    {
         m_StoreContoller.InitiatePurchase(ncItem.Id);
+<<<<<<< HEAD
 
     }
 
@@ -94,50 +128,50 @@ public class ShopScript : MonoBehaviour, IStoreListener
         //ActivateElitePass();
         m_StoreContoller.InitiatePurchase(sItem.Id);
     }
+=======
+    } */
+>>>>>>> Master
     #endregion
-
 
     #region main
     //processing purchase
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
     {
-        //Retrive the purchased product
+        //Retrieve the purchased product
         var product = purchaseEvent.purchasedProduct;
 
         print("Purchase Complete" + product.definition.id);
 
-        if (product.definition.id == cItem.Id)//consumable item is pressed
+        if (product.definition.id == cItem1.Id)
         {
-            string receipt = product.receipt;
-            data = JsonUtility.FromJson<Data>(receipt);
-            payload = JsonUtility.FromJson<Payload>(data.Payload);
-            payloadData = JsonUtility.FromJson<PayloadData>(payload.json);
-
-            int quantity = payloadData.quantity;
-
-            for (int i = 0; i < quantity; i++)
-            {
-                AddCoins(50);
-            }
-
+            AddGems(100);
         }
-        else if (product.definition.id == ncItem.Id)//non consumable
+        else if (product.definition.id == cItem2.Id)
+        {
+            AddGems(350);
+        }
+        else if (product.definition.id == cItem3.Id)
+        {
+            AddGems(1000);
+        }
+        /* else if (product.definition.id == ncItem.Id)
         {
             RemoveAds();
+<<<<<<< HEAD
         }
         else if (product.definition.id == sItem.Id)//subscribed
         {
             ActivateElitePass();
         }
+=======
+        } */
+>>>>>>> Master
 
         return PurchaseProcessingResult.Complete;
     }
     #endregion
 
-
-
-
-    void CheckNonConsumable(string id)
+    /* void CheckNonConsumable(string id)
     {
         if (m_StoreContoller != null)
         {
@@ -154,11 +188,10 @@ public class ShopScript : MonoBehaviour, IStoreListener
                 }
             }
         }
-    }
+    } */
 
     void CheckSubscription(string id)
     {
-
         var subProduct = m_StoreContoller.products.WithID(id);
         if (subProduct != null)
         {
@@ -168,21 +201,6 @@ public class ShopScript : MonoBehaviour, IStoreListener
                 {
                     var subManager = new SubscriptionManager(subProduct, null);
                     var info = subManager.getSubscriptionInfo();
-                    /*print(info.getCancelDate());
-                    print(info.getExpireDate());
-                    print(info.getFreeTrialPeriod());
-                    print(info.getIntroductoryPrice());
-                    print(info.getProductId());
-                    print(info.getPurchaseDate());
-                    print(info.getRemainingTime());
-                    print(info.getSkuDetails());
-                    print(info.getSubscriptionPeriod());
-                    print(info.isAutoRenewing());
-                    print(info.isCancelled());
-                    print(info.isExpired());
-                    print(info.isFreeTrial());
-                    print(info.isSubscribed());*/
-
 
                     if (info.isSubscribed() == Result.True)
                     {
@@ -191,86 +209,61 @@ public class ShopScript : MonoBehaviour, IStoreListener
                     }
                     else
                     {
-                        print("Un subscribed");
+                        print("Unsubscribed");
                         DeActivateElitePass();
                     }
-
                 }
                 else
                 {
-                    print("receipt not found !!");
+                    print("Receipt not found !!");
                 }
             }
             catch (Exception)
             {
-
-                print("It only work for Google store, app store, amazon store, you are using fake store!!");
+                print("It only works for Google store, app store, amazon store, you are using a fake store!!");
             }
         }
         else
         {
-            print("product not found !!");
+            print("Product not found !!");
         }
     }
 
-
-    #region error handeling
+    #region error handling
     public void OnInitializeFailed(InitializationFailureReason error)
     {
-        print("failed" + error);
+        print("Initialization failed: " + error);
     }
 
     public void OnInitializeFailed(InitializationFailureReason error, string message)
     {
-        print("initialize failed" + error + message);
+        print("Initialization failed: " + error + " - " + message);
     }
-
-
 
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
     {
-        print("purchase failed" + failureReason);
+        print("Purchase failed: " + failureReason);
     }
 
     public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
     {
-        print("purchase failed" + failureDescription);
+        print("Purchase failed: " + failureDescription);
     }
     #endregion
-
 
     #region extra 
 
     [Header("Consumable")]
-    public TextMeshProUGUI coinTxt;
-    void AddCoins(int num)
+    public TextMeshProUGUI gemTxt;
+    void AddGems(int num)
     {
-        int coins = PlayerPrefs.GetInt("totalCoins");
-        coins += num;
-        PlayerPrefs.SetInt("totalCoins", coins);
-        StartCoroutine(startCoinShakeEffect(coins - num, coins, .5f));
+        saveSystem.AddGem(num);
+        shopUIManager.UpdateUI();
     }
     float val;
-    IEnumerator startCoinShakeEffect(int oldValue, int newValue, float animTime)
-    {
-        float ct = 0;
-        float nt;
-        float tot = animTime;
-        coinTxt.GetComponent<Animation>().Play("textShake");
-        while (ct < tot)
-        {
-            ct += Time.deltaTime;
-            nt = ct / tot;
-            val = Mathf.Lerp(oldValue, newValue, nt);
-            coinTxt.text = ((int)(val)).ToString();
-            yield return null;
-        }
-        coinTxt.GetComponent<Animation>().Stop();
-
-    }
 
 
-    [Header("Non Consumable")]
+    /* [Header("Non Consumable")]
     public GameObject AdsPurchasedWindow;
     public GameObject adsBanner;
     void RemoveAds()
@@ -280,7 +273,6 @@ public class ShopScript : MonoBehaviour, IStoreListener
     void ShowAds()
     {
         DisplayAds(true);
-
     }
     void DisplayAds(bool x)
     {
@@ -294,7 +286,7 @@ public class ShopScript : MonoBehaviour, IStoreListener
             AdsPurchasedWindow.SetActive(false);
             adsBanner.SetActive(true);
         }
-    }
+    } */
 
     [Header("Subscription")]
     public GameObject subActivatedWindow;
@@ -322,12 +314,8 @@ public class ShopScript : MonoBehaviour, IStoreListener
         }
     }
 
-
-
     #endregion
-
 }
-
 
 [Serializable]
 public class SkuDetails
