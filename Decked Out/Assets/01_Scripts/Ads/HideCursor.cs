@@ -4,8 +4,12 @@ public class HideCursor : MonoBehaviour
 {
     void Start()
     {
-        // Hide the cursor
-        Cursor.visible = false;
+        if (!Application.isEditor)
+        {
+            // Hide the cursor
+            Cursor.visible = false;
+        }
+
 
         // Ensure the cursor is not locked
         Cursor.lockState = CursorLockMode.None;

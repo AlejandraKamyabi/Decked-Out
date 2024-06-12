@@ -21,21 +21,21 @@ public class TowerString
 
 public enum TowerCollection
 {
-    Arrow,
-    Frost_Tower,
-    Buff_Tower,
-    Flamethrower,
-    Electric_Tower,
-    Earthquake_Tower,
-    Attraction_Tower,
-    Cannon,
-    Wave_Tower,
-    Balista_Tower,
-    Poison_Tower,
-    Mortar_Tower,
-    Sniper_Tower,
-    Force_Field_Tower,
-    Organ_Tower
+    Archer_Tower, //Archer Tower
+    Attraction_Tower, //Attraction Tower
+    Cannon, //Cannon Tower
+    Sniper_Tower, //Sniper Tower
+    Frost_Tower, //Frost Tower
+    Earthquake_Tower, //Earthquake Tower
+    Wave_Tower, //Wave Tower
+    Balista_Tower, //Ballista Tower
+    Buff_Tower, //Buff Tower
+    Poison_Tower, //Poison Tower
+    Mystery_Tower, //Mystery Tower
+    Organ_Tower, //Organ Gun Tower
+    Flamethrower, //Fire Tower
+    Mortar_Tower, //Mortar Tower
+    Electric_Tower // Eletric Tower
 }
 
 public class MidGameSaveSystem : MonoBehaviour
@@ -225,7 +225,7 @@ public class MidGameSaveSystem : MonoBehaviour
             if (archerTower != null)
             {
                 towers[count].health = archerTower.health;
-                towers[count].towerType = TowerCollection.Arrow;
+                towers[count].towerType = TowerCollection.Archer_Tower;
             }
             else if (flamethrowerTower != null)
             {
@@ -284,7 +284,7 @@ public class MidGameSaveSystem : MonoBehaviour
     {
         foreach (Tower tower in towers)
         {
-            if (tower.towerType == TowerCollection.Arrow)
+            if (tower.towerType == TowerCollection.Archer_Tower)
             {
                 GameObject obj = Instantiate(towersObj[0]);
                 obj.transform.position = tower.postion;
@@ -361,12 +361,6 @@ public class MidGameSaveSystem : MonoBehaviour
                 GameObject obj = Instantiate(towersObj[12]);
                 obj.transform.position = tower.postion;
                 obj.GetComponent<SniperTower>().health = tower.health;
-            }
-            else if (tower.towerType == TowerCollection.Force_Field_Tower)
-            {
-                GameObject obj = Instantiate(towersObj[13]);
-                obj.transform.position = tower.postion;
-                obj.GetComponent<Force_Field_Tower>().health = tower.health;
             }
             else if (tower.towerType == TowerCollection.Organ_Tower)
             {

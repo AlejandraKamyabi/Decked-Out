@@ -40,13 +40,14 @@ public class TowerSelection : MonoBehaviour
     public void SelectTower()
     {
         isSelectingTower = true;
+        isSelectingSpell = false; 
     }
+
     public void SelectSpells()
     {
         isSelectingTower = true;
         isSelectingSpell = true;
     }
-
     public bool IsSelectingTower()
     {
         return isSelectingTower;

@@ -15,34 +15,75 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
 
-    [SerializeField] private GameObject musicSourceObj;
-    [SerializeField] private AudioClip[] musicClip;
+    [SerializeField] private GameObject waveMusicSourceObj;
+    [SerializeField] private AudioClip[] waveMusicClip;
     private int trakPlaying = 0;
     private GameObject[] musicPlayer;
 
     [SerializeField] private GameObject canvas;
+
     private bool canvasActive = false;
 
     private GameLoader _loader;
     public enum SFXSound
     {
-        Power_Earthquake,
-        Power_EoD,
+        //Other
         Power_Newhand,
+        UI_BarFill,
+        UI_Click,
+        UI_Negative,
+        UI_Positive,
+        //Spell
+        Power_Blackhole_Cast,
+        Power_Bomb_Fly,
+        Power_Bomb_Impact,
+        Power_EoD,
+        Power_Fireball_Cast,
+        Power_Fireball_Impact,
+        Power_Freeze_Cast,
+        Power_Freezetime,
+        Power_Lightning_Impact,
+        Power_Nuke_Detonate,
+        //Tower
+        Power_Earthquake,
+        Tower_Arrow_Hit,
+        Tower_Arrow_Shoot,
+        Tower_Attraction_Hit,
+        Tower_Attraction_Shot,
+        Tower_Buff_Debuff,
+        Tower_Buff_Powerup,
+        Tower_Cannon_Impact,
+        Tower_Cannon_Shoot,
         Tower_Destroy,
+        Tower_Earthquake_Impact,
+        Tower_Electricity_Hit,
+        Tower_Electricity_Shot,
+        Tower_Frost_Freeze,
+        Tower_Frost_Melt,
         Tower_Inferno,
+        Tower_Kebin_Lottery,
+        Tower_Mortar_Explode,
+        Tower_Mortar_Impact,
+        Tower_Mortar_Shot,
         Tower_Organ_Wound,
         Tower_OrganShot_Var1,
         Tower_OrganShot_Var2,
         Tower_OrganShot_Var3,
         Tower_Place,
-        UI_Click,
-        UI_Negative,
-        UI_Positive
+        Tower_Poison_Pool,
+        Tower_Poison_Shot,
+        Tower_Wave_Crash,
+        Tower_Wave_Pickup,
+        Tower_Wave_Shot
     }
     public enum musicSound
     {
-        encounter_loop
+        DeckedOut_Wave1To3,
+        DeckedOut_Wave4To6,
+        DeckedOut_Wave7To9,
+        DeckedOut_Wave10To12,
+        DeckedOut_Wave13AndOn,
+        MainMenu_DeckedOut
     }
     private Dictionary<SFXSound, AudioClip> SFXSoundAudioClipDictionary;
     private Dictionary<musicSound, AudioClip> musicSoundAudioClipDictionary;
@@ -53,15 +94,15 @@ public class AudioManager : MonoBehaviour
 
         GameObject[] allAudioManager = GameObject.FindGameObjectsWithTag("AudioManager");
 
-        musicPlayer = new GameObject[musicClip.Length];
+        musicPlayer = new GameObject[waveMusicClip.Length];
 
         for (int i = 0; i < musicPlayer.Length; i++)
         {
-            GameObject temp = Instantiate(musicSourceObj, gameObject.transform.position , Quaternion.identity);
+            GameObject temp = Instantiate(waveMusicSourceObj, gameObject.transform.position , Quaternion.identity);
             temp.transform.SetParent(gameObject.transform);
             temp.name = i.ToString();
             musicPlayer[i] = temp;
-            musicPlayer[i].GetComponent<AudioSource>().clip = musicClip[i];
+            musicPlayer[i].GetComponent<AudioSource>().clip = waveMusicClip[i];
             musicPlayer[i].SetActive(false);
         }
 
@@ -203,40 +244,12 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-    /*
-    public void Initialize()
-    {
-        SFXSoundAudioClipDictionary = new Dictionary<SFXSound, AudioClip>();
-        foreach (SFXSound sound in System.Enum.GetValues(typeof(SFXSound)))
-        {
-            SFXSoundAudioClipDictionary[sound] = Resources.Load<AudioClip>(sound.ToString());
-        }
-
-        musicSoundAudioClipDictionary = new Dictionary<musicSound, AudioClip>();
-        foreach (musicSound sound in System.Enum.GetValues(typeof(musicSound)))
-        {
-            musicSoundAudioClipDictionary[sound] = Resources.Load<AudioClip>(sound.ToString());
-        }
-
-        if (PlayerPrefs.HasKey("masterVolume") || PlayerPrefs.HasKey("musicVolume") || PlayerPrefs.HasKey("SFXVolume"))
-        {
-            LoadVolume();
-        }
-        else
-        {
-            setMasterVolume();
-            setMusicVolume();
-            setSFXVolume();
-        }
-    }
-    public void Setting ()
-    {
-        canvasActive = !canvasActive;
-        canvas.SetActive(canvasActive);
-    }
-    */
     public void LoadTest()
     {
         SceneManager.LoadScene("Test");
+    }
+    public void CloseMenu()
+    {
+        canvas.SetActive(false);
     }
 }

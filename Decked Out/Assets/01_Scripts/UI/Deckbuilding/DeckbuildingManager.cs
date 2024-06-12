@@ -100,7 +100,7 @@ public class DeckbuildingManager : MonoBehaviour
         Debug.Log("Slotting in " + cardName + " to button.");
         switch (cardName)
         {
-            case "Arrow":
+            case "Archer_Tower":
                 Debug.Log("Arrow Tower gotten from save system.");
                 _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Archer Tower"));
                 break;
@@ -223,9 +223,11 @@ public class DeckbuildingManager : MonoBehaviour
 
     public void OnStartButtonClicked()
     {
+        TransitionScreenManager transitionScreenManager = FindObjectOfType<TransitionScreenManager>();
+        transitionScreenManager.StartTranistion(nextSceneName);
         StartButtonLoading startButtonLoading = FindObjectOfType<StartButtonLoading>();
         startButtonLoading.DisableButton();
-        var loadSceneTask = SceneManager.LoadSceneAsync(nextSceneName);
+        //var loadSceneTask = SceneManager.LoadSceneAsync(nextSceneName);
     }
     public void LoadTutorialCards(TowerCardSO[] cards, string tier)
     {

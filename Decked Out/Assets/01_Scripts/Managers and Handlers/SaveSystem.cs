@@ -7,30 +7,30 @@ public class SaveSystem : MonoBehaviour
     public enum CardCollected
     {
         //Towers
-        Arrow,
-        Frost_Tower,
-        Buff_Tower,
-        Flamethrower,
-        Electric_Tower,
-        Earthquake_Tower,
-        Attraction_Tower,
-        Cannon,
-        Wave_Tower,
-        Balista_Tower,
-        Poison_Tower,
-        Mystery_Tower,
-        Mortar_Tower,
-        Sniper_Tower,
-        Organ_Tower,
+        Archer_Tower, //Archer Tower
+        Attraction_Tower, //Attraction Tower
+        Cannon, //Cannon Tower
+        Sniper_Tower, //Sniper Tower
+        Frost_Tower, //Frost Tower
+        Earthquake_Tower, //Earthquake Tower
+        Wave_Tower, //Wave Tower
+        Balista_Tower, //Ballista Tower
+        Buff_Tower, //Buff Tower
+        Poison_Tower, //Poison Tower
+        Mystery_Tower, //Mystery Tower
+        Organ_Tower, //Organ Gun Tower
+        Flamethrower, //Fire Tower
+        Mortar_Tower, //Mortar Tower
+        Electric_Tower, // Eletric Tower
 
         //SPELLS
-        Lighting_Bolt,
-        Big_Bomb,
-        Fireball,
-        Nuke,
-        Frost,
-        Freeze_Time,
-        Black_Hole
+        Frost, //Chill Spell
+        Fireball, //Fireball Spell
+        Big_Bomb, //Big Bomb Spell
+        Lighting_Bolt, //Lightning  Spell
+        Freeze, //Freeze Spell
+        Black_Hole, //Black Hole Spell
+        Nuke //Nuke Spell
     }
     public enum PurchasedItem
     {
@@ -143,7 +143,7 @@ public class SaveSystem : MonoBehaviour
         {
             PlayerPrefs.SetInt(cardCollectedString[card], 0);
         }
-        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Arrow], 1);
+        PlayerPrefs.SetInt(cardCollectedString[CardCollected.Archer_Tower], 1);
         PlayerPrefs.SetInt(cardCollectedString[CardCollected.Cannon], 1);
         PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost], 1);
         PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost_Tower], 1);
@@ -155,7 +155,7 @@ public class SaveSystem : MonoBehaviour
     //Chack For Startting Card
     public void StartUpCard()
     {
-        if (PlayerPrefs.HasKey(cardCollectedString[CardCollected.Arrow]) == false ||
+        if (PlayerPrefs.HasKey(cardCollectedString[CardCollected.Archer_Tower]) == false ||
             PlayerPrefs.HasKey(cardCollectedString[CardCollected.Cannon]) == false ||
             PlayerPrefs.HasKey(cardCollectedString[CardCollected.Frost]) == false ||
             PlayerPrefs.HasKey(cardCollectedString[CardCollected.Frost_Tower]) == false ||
@@ -165,7 +165,7 @@ public class SaveSystem : MonoBehaviour
             PlayerPrefs.HasKey(cardCollectedString[CardCollected.Flamethrower]) == false
             )
         {
-            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Arrow], 1);
+            PlayerPrefs.SetInt(cardCollectedString[CardCollected.Archer_Tower], 1);
             PlayerPrefs.SetInt(cardCollectedString[CardCollected.Cannon], 1);
             PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost], 1);
             PlayerPrefs.SetInt(cardCollectedString[CardCollected.Frost_Tower], 1);
