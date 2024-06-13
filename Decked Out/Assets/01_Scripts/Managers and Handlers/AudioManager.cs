@@ -248,6 +248,10 @@ public class AudioManager : MonoBehaviour
     {
         SceneManager.LoadScene("Test");
     }
+    public void OpenMenu()
+    {
+        canvas.SetActive(true);
+    }
     public void CloseMenu()
     {
         canvas.SetActive(false);

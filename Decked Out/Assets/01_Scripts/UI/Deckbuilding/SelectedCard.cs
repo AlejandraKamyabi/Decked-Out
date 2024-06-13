@@ -94,10 +94,10 @@ public class SelectedCard : MonoBehaviour
         _image.enabled = true;
         _icon.enabled = true;
         _name.enabled = true;
-        _dmgText.enabled = true;
-        _rangeText.enabled = true;
-        _rofText.enabled = true;
-        _durationText.enabled = true;
+        //_dmgText.enabled = true;
+        //_rangeText.enabled = true;
+        //_rofText.enabled = true;
+        //_durationText.enabled = true;
         _border.sprite = _card.background;
         _image.sprite = _card.image;
         _icon.sprite = _card.icon;
@@ -106,38 +106,38 @@ public class SelectedCard : MonoBehaviour
 
         if (_card.damage > 0)
         {
-            _dmgSlider.value = (_card.damage / 25) + _sliderCheat;
-            _dmgFill.color = _rarityColour;
-            _dmgText.text = _card.damage.ToString();
+            //_dmgSlider.value = (_card.damage / 25) + _sliderCheat;
+            //_dmgFill.color = _rarityColour;
+            //_dmgText.text = _card.damage.ToString();
         }
         else if (_card.damage <= 0)
         {
-            _dmgSlider.value = 0;
-            _dmgText.text = null;
+            //_dmgSlider.value = 0;
+            //_dmgText.text = null;
 
         }
 
 
-        _rangeSlider.value = (_card.range / 5) + _sliderCheat;
-        _rangeText.text = _card.range.ToString();
-        _rangeFill.color = _card.rarityColor;
+        //_rangeSlider.value = (_card.range / 5) + _sliderCheat;
+       // _rangeText.text = _card.range.ToString();
+       // _rangeFill.color = _card.rarityColor;
 
         if (_card.rateOfFire > 0)
         {
-            _rofSlider.value = (_card.rateOfFire / 10) + _sliderCheat;
-            _rofFill.color = _rarityColour;
-            _rofText.text = _card.rateOfFire.ToString();
+           // _rofSlider.value = (_card.rateOfFire / 10) + _sliderCheat;
+           // _rofFill.color = _rarityColour;
+           // _rofText.text = _card.rateOfFire.ToString();
         }
         else if (_card.rateOfFire <= 0)
         {
-            _rofSlider.value = 0;
-            _rofText.text = null;
+            //_rofSlider.value = 0;
+           // _rofText.text = null;
         }
 
 
-        _durationSlider.value = (_card.duration / 10) + _sliderCheat;
-        _durationText.text = _card.duration.ToString();
-        _durationFill.color = _rarityColour;
+       // _durationSlider.value = (_card.duration / 10) + _sliderCheat;
+       // _durationText.text = _card.duration.ToString();
+       // _durationFill.color = _rarityColour;
     }
     private void DisableUI()
     {
@@ -146,14 +146,14 @@ public class SelectedCard : MonoBehaviour
         _icon.enabled = false;
         _name.enabled = false;
 
-        _dmgSlider.value = 0f;
-        _dmgText.enabled = false;
-        _rangeSlider.value = 0f;
-        _rangeText.enabled = false;
-        _rofSlider.value = 0f;
-        _rofText.enabled = false;
-        _durationSlider.value = 0f;
-        _durationText.enabled = false;
+       // _dmgSlider.value = 0f;
+        //_dmgText.enabled = false;
+        //_rangeSlider.value = 0f;
+        //_rangeText.enabled = false;
+        //_rofSlider.value = 0f;
+        //_rofText.enabled = false;
+        //_durationSlider.value = 0f;
+        //_durationText.enabled = false;
     }
     public void SelectCard()
     {

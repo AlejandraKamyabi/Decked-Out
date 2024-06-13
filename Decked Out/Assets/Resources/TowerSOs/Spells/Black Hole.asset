@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
-  m_Name: Lightning Spell
+  m_Name: Black Hole
   m_EditorClassIdentifier: 
-  towerName: Lightning
+  towerName: Black Hole
   background: {fileID: 21300000, guid: b8215b1c3f830234d816ee8a00fd84e2, type: 3}
-  image: {fileID: 21300000, guid: 6309ea1de9f99bd4c83c872c28a88ce1, type: 3}
+  image: {fileID: 21300000, guid: 8a2a2a1e8726e9a48b13644b703dea51, type: 3}
   icon: {fileID: 21300000, guid: 99f7a47b58840d840879994ff1dc199a, type: 3}
-  rarityColor: {r: 0.43529415, g: 0.28627452, b: 0.6901961, a: 1}
-  towerInfo: Lightning never strikes twice, unless you want it to...
-  uses: 4
+  rarityColor: {r: 0.43529412, g: 0.28627452, b: 0.6901961, a: 1}
+  towerInfo: Feed Me...
+  uses: 1
   rarityWeight: 15
-  damage: 70
-  range: 2
+  damage: 999
+  range: 3
   rateOfFire: 0
-  duration: 4
+  duration: 30
   spell: 1

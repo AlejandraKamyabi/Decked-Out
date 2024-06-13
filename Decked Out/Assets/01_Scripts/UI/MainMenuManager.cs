@@ -8,8 +8,8 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] string gameScene;
     [SerializeField] string storeScene;
-    [SerializeField] GameObject scripturesPanel;
-    [SerializeField] GameObject settingsPanel;
+    [SerializeField] GameObject creditsPanel;
+    [SerializeField] GameObject closeCreditsButton;
     [SerializeField] GameObject minimizeCollider;
     [SerializeField] Image enemyPageImage;
     [SerializeField] GameObject _tutorialPrompt;
@@ -17,7 +17,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void Start()
     {
-        settingsPanel.SetActive(false);
         minimizeCollider.SetActive(false);
         _tutorialPrompt.SetActive(false);
     }
@@ -55,22 +54,19 @@ public class MainMenuManager : MonoBehaviour
     {
         Debug.Log("Continue Game not yet implimented");
     }
-    public void OpenScripture()
+    public void OpenCredits()
     {
-        scripturesPanel.SetActive(true);
-        minimizeCollider.SetActive(true);
+        creditsPanel.SetActive(true);
+        //minimizeCollider.SetActive(true);
+    }
+    public void CloseCredits()
+    {
+        creditsPanel.SetActive(false);
     }
     public void OpenSettings()
     {
-        Debug.Log("Settings not yet implimented");
-        settingsPanel.SetActive(true);
+        FindObjectOfType<AudioManager>().OpenMenu();
         //minimizeCollider.SetActive(true);
-    }
-    public void MinimizeScripturePanel()
-    {
-        Debug.Log("Collider Clicked");
-        scripturesPanel.SetActive(false);
-        minimizeCollider.SetActive(false);
     }
     public void ExitGame()
     {

@@ -154,7 +154,7 @@ public class MouseInputHandling : MonoBehaviour
                 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                 rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                 break;
-            case "Flamethrower Tower":
+            case "Fire Tower":
                 towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor2, _scallingFactor2);
                 towerRigSprite.sprite = towerSelection.FlameTower.GetComponentInChildren<SpriteRenderer>().sprite;
                 towerRange = towerSelection.FlameTower.GetComponent<FlamethrowerTower>().attackRange;
@@ -231,7 +231,7 @@ public class MouseInputHandling : MonoBehaviour
                 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                 rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                 break;
-            case "Sniper":
+            case "Sniper Tower":
                 towerRigSprite.gameObject.transform.localScale = new Vector2(_scallingFactor1, _scallingFactor1);
                 towerRigSprite.sprite = towerSelection.Sniper_Tower.GetComponentInChildren<SpriteRenderer>().sprite;
                 towerRange = towerSelection.Sniper_Tower.GetComponent<SniperTower>().attackRange;
@@ -295,7 +295,7 @@ public class MouseInputHandling : MonoBehaviour
                 towerRangeScaling = new Vector3(towerRange, towerRange, towerRange);
                 rangeIndicator.transform.localScale = towerRangeScaling * 0.4f;
                 break;
-            case "BlackHole":
+            case "Black Hole":
                 towerRigSprite.gameObject.transform.localScale = new Vector2(_spellScallingFactor, _spellScallingFactor);
                 towerRigSprite.sprite = towerSelection.BlackHole.GetComponentInChildren<SpriteRenderer>().sprite;
                 towerRange = towerSelection.BlackHole.GetComponent<BlackHole>().attackRange;
@@ -365,7 +365,7 @@ public class MouseInputHandling : MonoBehaviour
             case "Cannon Tower":
                 currentTowerInstance = Instantiate(towerSelection.CannonTower, mousePos, Quaternion.identity);
                 break;
-            case "Flamethrower Tower":
+            case "Fire Tower":
                 currentTowerInstance = Instantiate(towerSelection.FlameTower, mousePos, Quaternion.identity);
                 break;
             case "Frost Tower":
@@ -395,7 +395,7 @@ public class MouseInputHandling : MonoBehaviour
             case "Mortar":
                 currentTowerInstance = Instantiate(towerSelection.Mortar, mousePos, Quaternion.identity);
                 break;
-            case "Sniper":
+            case "Sniper Tower":
                 currentTowerInstance = Instantiate(towerSelection.Sniper_Tower, mousePos, Quaternion.identity);
                 break;
             case "Organ Gun":
@@ -447,7 +447,7 @@ public class MouseInputHandling : MonoBehaviour
             case "Freeze":
                 currentTowerInstance = Instantiate(towerSelection.freeze, mousePos, Quaternion.identity);
                 break;
-            case "BlackHole":
+            case "Black Hole":
                 currentTowerInstance = Instantiate(towerSelection.BlackHole, mousePos, Quaternion.identity);
                 break;
         }
@@ -458,7 +458,7 @@ public class MouseInputHandling : MonoBehaviour
     {
         if (towerSelection.towers == "Frost Tower" || towerSelection.towers == "Buff Tower" ||
             towerSelection.towers == "Earthquake Tower" || towerSelection.spells == "Lightning" ||
-            towerSelection.spells == "BlackHole" || towerSelection.spells == "Freeze" ||
+            towerSelection.spells == "Black Hole" || towerSelection.spells == "Freeze" ||
             towerSelection.spells == "Fireball" || towerSelection.spells == "Nuke" ||
             towerSelection.spells == "Big Bomb" || towerSelection.spells == "Chill")
         {

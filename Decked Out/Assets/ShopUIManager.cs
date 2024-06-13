@@ -55,6 +55,7 @@ public class ShopUIManager : MonoBehaviour
 
     public void OpenGemBuyingPanel()
     {
+        Debug.Log("Opening Gem Panel");
         _cardPanel.SetActive(false);
         _unlockCardsButton.SetActive(true);
         _gemPanel.SetActive(true);
