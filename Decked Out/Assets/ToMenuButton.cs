@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class ToMenuButton : MonoBehaviour
 {
-    [SerializeField] string _menuScene = "MainMenu";
+    string _sceneToLoadName;
+    TransitionScreenManager _transitionManager;
 
-    public void LoadScene()
+    private void Awake()
     {
-        Debug.Log("Loading Main Menu");
-        SceneManager.LoadScene(_menuScene);
+        if (_transitionManager == null)
+        {
+            _transitionManager = FindObjectOfType<TransitionScreenManager>();
+        }
+    }
+    public void LoadScene(string sceneToLoadName)
+    {
+        _transitionManager.StartTranistion(sceneToLoadName);
     }
 }

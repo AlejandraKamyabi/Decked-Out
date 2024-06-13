@@ -55,6 +55,7 @@ public class ShopUIManager : MonoBehaviour
 
     public void OpenGemBuyingPanel()
     {
+        Debug.Log("Opening Gem Panel");
         _cardPanel.SetActive(false);
         _unlockCardsButton.SetActive(true);
         _gemPanel.SetActive(true);
@@ -89,10 +90,11 @@ public class ShopUIManager : MonoBehaviour
                 index++;
             }
         }
-        _cardsUnlockedText.text = index + "<size=50%>of</size> 23";
+        _cardsUnlockedText.text = index + "<size=50%>of</size> 22";
     }
     private TowerCardSO ExtractSOFromTowerName(string name)
     {
+        Debug.Log("Registering " + name);
         switch (name)
         {
             // Towers

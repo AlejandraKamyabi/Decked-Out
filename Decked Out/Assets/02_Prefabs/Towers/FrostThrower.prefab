@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4358000083699770542}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.19, y: 1.19, z: 1.19}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7405903770306088365}
@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 405179405569602328}
   - component: {fileID: -5682083530517359058}
   - component: {fileID: 4822477586568939531}
+  - component: {fileID: -7143203119801642352}
   m_Layer: 6
   m_Name: FrostThrower
   m_TagString: Buffer
@@ -296,3 +297,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeDuration: 5
   _rangeRenderer: {fileID: 7896914285691345404}
+--- !u!114 &-7143203119801642352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSO: {fileID: 11400000, guid: edeaafcae54913549a1514d0ec193284, type: 2}
+  _holdDuration: 2

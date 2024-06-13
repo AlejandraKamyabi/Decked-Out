@@ -23,10 +23,6 @@ public class TransitionScreenManager : MonoBehaviour
     [SerializeField]
     Image[] _images;
 
-    [SerializeField] List<GameObject> _objectsToFade = new List<GameObject>();
-
-    List<Image> _imagesToFade;
-    List<Color> _colorOfImagesToFade;
     List<Image> _childImages;
     List<Color> _colorOfChildImages;
 
@@ -37,7 +33,6 @@ public class TransitionScreenManager : MonoBehaviour
 
     bool _loading;
     bool _fading;
-    bool _twinkiling;
     string _previousScene;
     string _targetScene;
     float _transitionTimer = 0f;
@@ -48,11 +43,11 @@ public class TransitionScreenManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject.transform.parent);
+            DontDestroyOnLoad(gameObject.transform.parent.gameObject);
         }
         else
         {
-            Destroy(gameObject.transform.parent);
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
     private void Start()
@@ -61,29 +56,14 @@ public class TransitionScreenManager : MonoBehaviour
         _startPostionNorth = _northParent.transform.position; 
         _startPositionSouth = _southParent.transform.position;
         _startPostionRight = _rightParent.transform.position;
-        _colorOfImagesToFade = new List<Color>();
-        _imagesToFade = new List<Image>();
         _childImages = new List<Image>();
         _colorOfChildImages = new List<Color>();
         AddImages();
     }
     public void StartTranistion(string loadingSceneName)
     {
-        DontDestroyOnLoad(gameObject);
         _previousScene = SceneManager.GetActiveScene().name;
         _targetScene = loadingSceneName;
-        for (int i = 0; i < _objectsToFade.Count; i++)
-        {
-            _imagesToFade.Add(_objectsToFade[i].GetComponent<Image>());
-            if (_imagesToFade[i] == null)
-            {
-                Debug.LogError("Can't Find Image on Object to Fade");
-            }
-            else
-            {
-                _colorOfImagesToFade.Add(_imagesToFade[i].color);
-            }
-        }
         _loading = true;
     }
     private void Update()
@@ -99,16 +79,10 @@ public class TransitionScreenManager : MonoBehaviour
             _northParent.transform.position = Vector3.Lerp(_startPostionNorth, _northTarget.position, t);
             _southParent.transform.position = Vector3.Lerp(_startPositionSouth, _southTarget.position, t);
 
-            for (int i = 0; i < _imagesToFade.Count; i++)
-            {
-                float newAlpha = Mathf.Lerp(_colorOfImagesToFade[i].a, 0f, t);
-                Color newColor = new Color(_colorOfImagesToFade[i].r, _colorOfImagesToFade[i].g, _colorOfImagesToFade[i].b, newAlpha);
-                _imagesToFade[i].color = newColor;
-            }
-
             if (t >= 1f)
             {
                 _loading = false;
+                _transitionTimer = 0f;
                 StartCoroutine(LoadSceneAsync(_targetScene));
             }
         }
@@ -128,6 +102,7 @@ public class TransitionScreenManager : MonoBehaviour
             if (t >= 1f)
             {
                 _fading = false;
+                _fadeOutTimer = 0f;
                 _leftParent.transform.position = _startPostionLeft;
                 _northParent.transform.position = _startPostionNorth;
                 _rightParent.transform.position = _startPostionRight;
@@ -136,7 +111,6 @@ public class TransitionScreenManager : MonoBehaviour
                 {
                     _childImages[i].color = new Color(_colorOfChildImages[i].r, _colorOfChildImages[i].g, _colorOfChildImages[i].b, 1);
                 }
-                _fadeOutTimer = 0;
             }
         }
        
@@ -146,16 +120,18 @@ public class TransitionScreenManager : MonoBehaviour
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
         {
-            _twinkiling = true;
             yield return null;
         }
-        _fading = true;
+        if (SceneManager.GetActiveScene().name == _targetScene)
+        {
+            _fading = true;
+        }
+        else
+        {
+            Debug.LogError("Loaded Scene is not target scene?");
+        }
 
-        _transitionTimer = 0f;
-        _fadeOutTimer = 0f;
-        _objectsToFade.Clear();
-        _imagesToFade.Clear();
-        _colorOfImagesToFade.Clear();
+        //_fadeOutTimer = 0f;
     }
 
     private void AddImages()

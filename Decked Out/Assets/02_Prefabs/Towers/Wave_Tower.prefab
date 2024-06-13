@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 4254989658110453210}
   - component: {fileID: -7690440995744898684}
   - component: {fileID: -2643935782756146918}
+  - component: {fileID: 7192510142268674368}
   m_Layer: 6
   m_Name: Wave_Tower
   m_TagString: Tower
@@ -397,3 +398,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeDuration: 5
   _rangeRenderer: {fileID: 4856268906866321775}
+--- !u!114 &7192510142268674368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSO: {fileID: 11400000, guid: c48d9ae1dbf14914e8dffa026e662845, type: 2}
+  _holdDuration: 2

@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 7857472188524846244}
   - component: {fileID: -7681412134600946586}
   - component: {fileID: -6279171113118169646}
+  - component: {fileID: -4919783427535461985}
   m_Layer: 6
   m_Name: Mystery
   m_TagString: Tower
@@ -397,3 +398,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeDuration: 5
   _rangeRenderer: {fileID: 1582317807623595349}
+--- !u!114 &-4919783427535461985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSO: {fileID: 11400000, guid: 20d47570cbb57f94fb9c2aa8fb732f72, type: 2}
+  _holdDuration: 2
