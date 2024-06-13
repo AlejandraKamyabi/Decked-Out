@@ -1509,17 +1509,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793203926}
   m_CullTransparentMesh: 1
---- !u!114 &838159372 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7053903966545165367, guid: dc26f3dce0f66794f825c899349fb5e5, type: 3}
-  m_PrefabInstance: {fileID: 249042119}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3eaecaebef95c44a9e7c9d5a83007e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &843922180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,6 +2109,7 @@ GameObject:
   - component: {fileID: 1167041870}
   - component: {fileID: 1167041869}
   - component: {fileID: 1167041868}
+  - component: {fileID: 1167041871}
   m_Layer: 5
   m_Name: STORE
   m_TagString: Untagged
@@ -2192,16 +2182,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588773269}
-        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: OpenStore
-        m_Mode: 1
+      - m_Target: {fileID: 1167041871}
+        m_TargetAssemblyTypeName: ToMenuButton, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Shop
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1167041869
@@ -2242,6 +2232,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167041866}
   m_CullTransparentMesh: 1
+--- !u!114 &1167041871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167041866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c201f27e4ed174d992e1c3ca5a0f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1265616330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,6 +2726,7 @@ GameObject:
   - component: {fileID: 1377266098}
   - component: {fileID: 1377266097}
   - component: {fileID: 1377266096}
+  - component: {fileID: 1377266099}
   m_Layer: 5
   m_Name: Start Game Button
   m_TagString: Untagged
@@ -2796,9 +2799,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 838159372}
-        m_TargetAssemblyTypeName: TransitionScreenManager, Assembly-CSharp
-        m_MethodName: StartTranistion
+      - m_Target: {fileID: 1377266099}
+        m_TargetAssemblyTypeName: ToMenuButton, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2846,6 +2849,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377266094}
   m_CullTransparentMesh: 1
+--- !u!114 &1377266099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377266094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c201f27e4ed174d992e1c3ca5a0f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1439879894
 GameObject:
   m_ObjectHideFlags: 0

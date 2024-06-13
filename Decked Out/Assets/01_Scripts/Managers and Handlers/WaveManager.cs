@@ -34,6 +34,7 @@ public class WaveManager : MonoBehaviour
     public int currentWave = 0;
     public CardHandling deck_Building;
     private GameSpeedManager _gameSpeedManager;
+    private NewWavePanelManager _newWavePanel;
 
     private void Start()
     {
@@ -46,6 +47,7 @@ public class WaveManager : MonoBehaviour
         deck_Building = FindObjectOfType<CardHandling>();
         _killTracker = FindObjectOfType<EnemyKillTracker>();
         _gameSpeedManager = FindObjectOfType<GameSpeedManager>();
+        _newWavePanel = FindObjectOfType<NewWavePanelManager>();
         return this;
     }
 
@@ -281,6 +283,7 @@ public class WaveManager : MonoBehaviour
         towersPlaced = 0;
         TowersLeft = 5;
         currentWave++;
+        _newWavePanel.NewWave(currentWave);
     }
 
     public void StopWave()

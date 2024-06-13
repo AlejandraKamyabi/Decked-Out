@@ -278,8 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3eaecaebef95c44a9e7c9d5a83007e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transitionDuration: 4
-  _fadeOutDuration: 2
+  _transitionDuration: 2
+  _fadeOutDuration: 1.25
   _leftParent: {fileID: 5688504178980507471}
   _leftTarget: {fileID: 5688504177994178603}
   _northParent: {fileID: 4087711744541872546}

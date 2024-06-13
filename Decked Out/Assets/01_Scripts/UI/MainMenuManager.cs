@@ -17,7 +17,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void Start()
     {
-        scripturesPanel.SetActive(false);
         settingsPanel.SetActive(false);
         minimizeCollider.SetActive(false);
         _tutorialPrompt.SetActive(false);
