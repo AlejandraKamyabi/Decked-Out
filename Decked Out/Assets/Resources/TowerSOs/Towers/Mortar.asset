@@ -17,7 +17,7 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 184771d20304e1c459b97a6cf9d08eda, type: 3}
   icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}
   rarityColor: {r: 0.43529415, g: 0.28627452, b: 0.6901961, a: 1}
-  towerInfo: 
+  towerInfo: Weeeeee, KABOOM!
   uses: 0
   rarityWeight: 15
   damage: 40

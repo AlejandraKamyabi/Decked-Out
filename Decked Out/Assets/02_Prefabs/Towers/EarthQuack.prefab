@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1035570142447960154}
   - component: {fileID: 145848613152980500}
   - component: {fileID: -6337799518129738569}
+  - component: {fileID: -6259646080987867883}
   m_Layer: 6
   m_Name: EarthQuack
   m_TagString: Buffer
@@ -214,6 +215,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeDuration: 5
   _rangeRenderer: {fileID: 2751336872839184879}
+--- !u!114 &-6259646080987867883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSO: {fileID: 11400000, guid: a17d7f6e4d56c2f499950572b877f0d9, type: 2}
+  _holdDuration: 2
 --- !u!1 &8642997488698851757
 GameObject:
   m_ObjectHideFlags: 0

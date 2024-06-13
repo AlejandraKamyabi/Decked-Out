@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: -6971673905459097849}
   - component: {fileID: 8505756511550814300}
   - component: {fileID: 3487888282856206043}
+  - component: {fileID: -8803019801120088569}
   m_Layer: 6
   m_Name: BuffTower 1
   m_TagString: Buffer
@@ -318,3 +319,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeDuration: 5
   _rangeRenderer: {fileID: 7117621943488355284}
+--- !u!114 &-8803019801120088569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSO: {fileID: 11400000, guid: beb6c0bf0cacdb545ac0a525d40c9432, type: 2}
+  _holdDuration: 2

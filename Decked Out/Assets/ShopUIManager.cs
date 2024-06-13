@@ -89,7 +89,7 @@ public class ShopUIManager : MonoBehaviour
                 index++;
             }
         }
-        _cardsUnlockedText.text = index + "<size=50%>of</size> 23";
+        _cardsUnlockedText.text = index + "<size=50%>of</size> 22";
     }
     private TowerCardSO ExtractSOFromTowerName(string name)
     {

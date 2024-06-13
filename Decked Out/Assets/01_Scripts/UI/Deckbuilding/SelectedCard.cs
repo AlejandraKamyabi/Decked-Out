@@ -101,7 +101,7 @@ public class SelectedCard : MonoBehaviour
         _border.sprite = _card.background;
         _image.sprite = _card.image;
         _icon.sprite = _card.icon;
-        _name.text = _card.name;
+        _name.text = _card.towerName;
         _name.color = _rarityColour;
 
         if (_card.damage > 0)

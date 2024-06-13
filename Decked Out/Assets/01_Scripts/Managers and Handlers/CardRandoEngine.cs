@@ -422,7 +422,7 @@ public class CardRandoEngine : MonoBehaviour
 
 
 
-    private void ButtonStats(TowerCardSO cardDataToShow)
+    public void ButtonStats(TowerCardSO cardDataToShow)
     {
         isButtonHeld = false;
         buttonHeldTime = 0;
@@ -438,7 +438,7 @@ public class CardRandoEngine : MonoBehaviour
         cardStatsBackground.sprite = cardDataToShow.background;
         cardStatsImage.sprite = cardDataToShow.image;
         cardStatsIcon.sprite = cardDataToShow.icon;
-        cardStatsTitleText.text = cardDataToShow.name;
+        cardStatsTitleText.text = cardDataToShow.towerName;
         cardStatsTitleText.color = cardDataToShow.rarityColor;
         cardStatsInfoText.text = cardDataToShow.towerInfo;
         cardStatsInfoText.color = cardDataToShow.rarityColor;

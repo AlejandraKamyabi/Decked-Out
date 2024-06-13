@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: -8227489239077987378}
   - component: {fileID: 4038709758504006284}
   - component: {fileID: -3666697264532008056}
+  - component: {fileID: 3038786332589225092}
   m_Layer: 6
   m_Name: Poison_Tower
   m_TagString: Tower
@@ -397,3 +398,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeDuration: 5
   _rangeRenderer: {fileID: 1882769764705632348}
+--- !u!114 &3038786332589225092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSO: {fileID: 11400000, guid: 87f541c0cb5314c48a564edae7fe8510, type: 2}
+  _holdDuration: 2
