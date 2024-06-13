@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class WaveManager : MonoBehaviour
 {
@@ -106,64 +106,51 @@ public class WaveManager : MonoBehaviour
     private void SpawnEnemyByType(string enemyType)
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = null;
+        GameObject newEnemy;
         switch (enemyType)
         {
             case "Acolyte":
                 newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
                 SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+                Debug.Log("Spawned Acolyte");
                 break;
             case "Kaboom":
                 newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
                 SetupHealthSlider(newEnemy, newEnemy.GetComponent<KaboomEnemy>().maxHealth);
+                Debug.Log("Spawned Kaboom");
                 break;
             case "Golem":
                 newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
                 SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+                Debug.Log("Spawned Golem");
                 break;
             case "Apostate":
                 newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
                 SetupHealthSlider(newEnemy, newEnemy.GetComponent<Apostate>().maxHealth);
+                Debug.Log("Spawned Apostate");
                 break;
             case "Necromancer":
                 newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
                 SetupHealthSlider(newEnemy, newEnemy.GetComponent<Necromancer>().maxHealth);
+                Debug.Log("Spawned Necromancer");
                 break;
             case "Aegis":
                 newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
                 SetupHealthSlider(newEnemy, newEnemy.GetComponent<Aegis>().maxHealth);
+                Debug.Log("Spawned Aegis");
                 break;
             case "Cleric":
                 newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
                 SetupHealthSlider(newEnemy, newEnemy.GetComponent<Cleric>().maxHealth);
+                Debug.Log("Spawned Cleric");
                 break;
-            case "Mopey_Misters":
-                newEnemy = Instantiate(Mopey_prefab, spawnPosition, Quaternion.identity);
-                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Mopey_Misters>().maxHealth);
-                break;
-            case "Zoom_Zealots":
-                newEnemy = Instantiate(Zealots_prefab, spawnPosition, Quaternion.identity);
-                SetupHealthSlider(newEnemy, newEnemy.GetComponent<ZoomZealots>().maxHealth);
-                break;
+                // Add other enemy types here
         }
     }
     public void IncrementTowersPlaced()
     {
         towersPlaced++;
         TowersLeft--;
-    }
-    private void Spawn_Aegis()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
-        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Aegis>().maxHealth);
-    }
-
-    private void Spawn_Cleric()
-    {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
-        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Cleric>().maxHealth);
     }
 
     private void SetupHealthSlider(GameObject enemy, float maxHealth)
@@ -214,50 +201,49 @@ public class WaveManager : MonoBehaviour
 
     public void AddEnemyToCurrentWave(string enemyType, Vector3 spawnPosition)
     {
-        GameObject newEnemy = null;
-        Slider newHealthSlider = Instantiate(healthSliderPrefab);
+        GameObject newEnemySpawn = null;
+        //Slider newHealthSlider = Instantiate(healthSliderPrefab);
         Vector3 sliderPosition;
+
+   
 
         switch (enemyType)
         {
-            case "Acolyte":
-                newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
-                break;
+       
             case "Kaboom":
-                newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
-                newHealthSlider.maxValue = newEnemy.GetComponent<KaboomEnemy>().maxHealth;
+                IncrementEnemyCount();
+                newEnemySpawn = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
+                //newHealthSlider.maxValue = newEnemySpawn.GetComponent<KaboomEnemy>().maxHealth;
                 break;
             case "Golem":
-                newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Enemy>().maxHealth;
+                IncrementEnemyCount();
+                newEnemySpawn = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
+                //newHealthSlider.maxValue = newEnemySpawn.GetComponent<Enemy>().maxHealth;
                 break;
             case "Apostate":
-                newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Apostate>().maxHealth;
-                break;
-            case "Necromancer":
-                newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Necromancer>().maxHealth;
+                IncrementEnemyCount();
+                newEnemySpawn = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
+                //newHealthSlider.maxValue = newEnemySpawn.GetComponent<Apostate>().maxHealth;
                 break;
             case "Aegis":
-                newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Aegis>().maxHealth;
+                IncrementEnemyCount();
+                newEnemySpawn = Instantiate(aegis, spawnPosition, Quaternion.identity);
+                //newHealthSlider.maxValue = newEnemySpawn.GetComponent<Aegis>().maxHealth;
                 break;
             case "Cleric":
-                newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
-                newHealthSlider.maxValue = newEnemy.GetComponent<Cleric>().maxHealth;
+                IncrementEnemyCount();
+                newEnemySpawn = Instantiate(cleric, spawnPosition, Quaternion.identity);
+                //newHealthSlider.maxValue = newEnemySpawn.GetComponent<Cleric>().maxHealth;
                 break;
         }
 
-        if (newEnemy != null)
+        if (newEnemySpawn != null)
         {
-            sliderPosition = Camera.main.WorldToScreenPoint(newEnemy.transform.position + new Vector3(0, 100.0f, 0));
-            newHealthSlider.transform.position = sliderPosition;
-            newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+            sliderPosition = Camera.main.WorldToScreenPoint(newEnemySpawn.transform.position + new Vector3(0, 100.0f, 0));
+            //newHealthSlider.transform.position = sliderPosition;
+            //newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
             //newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
-            waves[currentWave].numberOfEnemies++;
-            _killTracker.NumbersOfEnemiesInWave(waves[currentWave].numberOfEnemies);
+
         }
     }
 

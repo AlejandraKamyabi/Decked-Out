@@ -192,7 +192,7 @@ public class ZoomZealots : MonoBehaviour
             {
                 castle.TakeDamage(damage);
             }
-            Destroy(healthSlider.gameObject);
+            //Destroy(healthSlider.gameObject);
             Destroy(gameObject);
             _killTracker.EnemyDestroyed();
 
