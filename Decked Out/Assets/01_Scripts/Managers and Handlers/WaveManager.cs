@@ -34,6 +34,7 @@ public class WaveManager : MonoBehaviour
     public int currentWave = 0;
     public CardHandling deck_Building;
     private GameSpeedManager _gameSpeedManager;
+    private NewWavePanelManager _newWavePanel;
 
     private void Start()
     {
@@ -46,6 +47,7 @@ public class WaveManager : MonoBehaviour
         deck_Building = FindObjectOfType<CardHandling>();
         _killTracker = FindObjectOfType<EnemyKillTracker>();
         _gameSpeedManager = FindObjectOfType<GameSpeedManager>();
+        _newWavePanel = FindObjectOfType<NewWavePanelManager>();
         return this;
     }
 
@@ -69,7 +71,7 @@ public class WaveManager : MonoBehaviour
         _killTracker.NumbersOfEnemiesInWave(numberOfEnemies);
         enemiesSpawned = 0;
 
-        for (int i = 0; i < numberOfEnemies; i++)
+        for (int i = 0; i < _killTracker._enemiesInWave; i++)
         {
             if (enemiesSpawned >= numberOfEnemies)
             {
@@ -109,40 +111,49 @@ public class WaveManager : MonoBehaviour
         {
             case "Acolyte":
                 newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+                //SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
                 Debug.Log("Spawned Acolyte");
                 break;
             case "Kaboom":
                 newEnemy = Instantiate(KaboomPrefab, spawnPosition, Quaternion.identity);
-                SetupHealthSlider(newEnemy, newEnemy.GetComponent<KaboomEnemy>().maxHealth);
+                //SetupHealthSlider(newEnemy, newEnemy.GetComponent<KaboomEnemy>().maxHealth);
                 Debug.Log("Spawned Kaboom");
                 break;
             case "Golem":
                 newEnemy = Instantiate(GolemPrefab, spawnPosition, Quaternion.identity);
-                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+                //SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
                 Debug.Log("Spawned Golem");
                 break;
             case "Apostate":
                 newEnemy = Instantiate(Apostate_Prefab, spawnPosition, Quaternion.identity);
-                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Apostate>().maxHealth);
+                //SetupHealthSlider(newEnemy, newEnemy.GetComponent<Apostate>().maxHealth);
                 Debug.Log("Spawned Apostate");
                 break;
             case "Necromancer":
                 newEnemy = Instantiate(necromancer, spawnPosition, Quaternion.identity);
-                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Necromancer>().maxHealth);
+                //SetupHealthSlider(newEnemy, newEnemy.GetComponent<Necromancer>().maxHealth);
                 Debug.Log("Spawned Necromancer");
                 break;
             case "Aegis":
                 newEnemy = Instantiate(aegis, spawnPosition, Quaternion.identity);
-                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Aegis>().maxHealth);
+                //SetupHealthSlider(newEnemy, newEnemy.GetComponent<Aegis>().maxHealth);
                 Debug.Log("Spawned Aegis");
+                break;
+            case "Mopey_Misters":
+                newEnemy = Instantiate(Mopey_prefab, spawnPosition, Quaternion.identity);
+                //SetupHealthSlider(newEnemy, newEnemy.GetComponent<Mopey_Misters>().maxHealth);
+                Debug.Log("Spawned Mopey");
+                break;
+            case "Zoom_Zealots":
+                newEnemy = Instantiate(Zealots_prefab, spawnPosition, Quaternion.identity);
+                //SetupHealthSlider(newEnemy, newEnemy.GetComponent<ZoomZealots>().maxHealth);
+                Debug.Log("Spawned Zoom Zealots");
                 break;
             case "Cleric":
                 newEnemy = Instantiate(cleric, spawnPosition, Quaternion.identity);
-                SetupHealthSlider(newEnemy, newEnemy.GetComponent<Cleric>().maxHealth);
+                //SetupHealthSlider(newEnemy, newEnemy.GetComponent<Cleric>().maxHealth);
                 Debug.Log("Spawned Cleric");
                 break;
-                // Add other enemy types here
         }
     }
     public void IncrementTowersPlaced()
@@ -201,7 +212,6 @@ public class WaveManager : MonoBehaviour
     {
         GameObject newEnemySpawn = null;
         //Slider newHealthSlider = Instantiate(healthSliderPrefab);
-        Vector3 sliderPosition;
 
    
 
@@ -237,7 +247,7 @@ public class WaveManager : MonoBehaviour
 
         if (newEnemySpawn != null)
         {
-            sliderPosition = Camera.main.WorldToScreenPoint(newEnemySpawn.transform.position + new Vector3(0, 100.0f, 0));
+            //sliderPosition = Camera.main.WorldToScreenPoint(newEnemySpawn.transform.position + new Vector3(0, 100.0f, 0));
             //newHealthSlider.transform.position = sliderPosition;
             //newHealthSlider.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
             //newEnemy.GetComponent<Enemy>().SetHealthSlider(newHealthSlider);
@@ -267,6 +277,7 @@ public class WaveManager : MonoBehaviour
         towersPlaced = 0;
         TowersLeft = 5;
         currentWave++;
+        _newWavePanel.NewWave(currentWave);
     }
 
     public void StopWave()
@@ -385,7 +396,15 @@ public class WaveManager : MonoBehaviour
             }
         }
     }
-
+    public int GetCurrentEnemyCount()
+    {
+        int totalEnemies = 0;
+        foreach (Wave wave in waves)
+        {
+            totalEnemies += wave.numberOfEnemies;
+        }
+        return totalEnemies;
+    }
     private void ToggleStartButton(bool isEnabled)
     {
         startButton.interactable = isEnabled;

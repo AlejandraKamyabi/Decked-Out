@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
-  m_Name: OrganGun_Tower
+  m_Name: Organ Gun
   m_EditorClassIdentifier: 
-  towerName: Organ Gun
+  towerName: Organ Blaster
   background: {fileID: 21300000, guid: 7b276240032b8fa419849ff5eeba1a8e, type: 3}
   image: {fileID: 21300000, guid: c030e466abbd60b4fbdd57854afabd7b, type: 3}
   icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}

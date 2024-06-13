@@ -45,7 +45,7 @@ public class DeckbuildingCardStatsPanelManager : MonoBehaviour
         _image.sprite = _card.image;
         _border.sprite = _card.background;
         _icon.sprite = _card.icon;
-        _name.text = _card.name;
+        _name.text = _card.towerName;
         _name.color = _rarityColour;
         _desc.text = _card.towerInfo;
         _desc.color = _rarityColour;

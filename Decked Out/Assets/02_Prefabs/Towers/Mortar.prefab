@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 3183191852196926945}
   - component: {fileID: 8522693086399747571}
   - component: {fileID: 8993824208538257507}
+  - component: {fileID: -21161702068736916}
   m_Layer: 6
   m_Name: Mortar
   m_TagString: Tower
@@ -418,3 +419,17 @@ MonoBehaviour:
   Health: 7
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: 0}
+--- !u!114 &-21161702068736916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSO: {fileID: 11400000, guid: 3c5fd7efffdca614b9d28c8c74fec86d, type: 2}
+  _holdDuration: 2

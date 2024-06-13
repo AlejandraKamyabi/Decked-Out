@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63ac3b6aeaf6fa44a10cc50c8b99acd, type: 3}
   m_Name: Attraction Tower
   m_EditorClassIdentifier: 
-  towerName: Attraction Tower
+  towerName: Tower of Love
   background: {fileID: 21300000, guid: c397d2a97e44f524789af0621caae778, type: 3}
   image: {fileID: 21300000, guid: 4119217d7bedd5f4fa7914b8c64ba523, type: 3}
   icon: {fileID: 21300000, guid: d0ecb514b0dec684f97a1e06d5a126ff, type: 3}

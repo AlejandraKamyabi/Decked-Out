@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 7857472188524846244}
   - component: {fileID: 8571863230938026081}
   - component: {fileID: 6701241482228536604}
+  - component: {fileID: -6920427618009983745}
   m_Layer: 6
   m_Name: Sinper_Tower
   m_TagString: Tower
@@ -397,3 +398,17 @@ MonoBehaviour:
   Health: 5
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
   audioSource: {fileID: -4882260772056868227}
+--- !u!114 &-6920427618009983745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSO: {fileID: 11400000, guid: e65ade43fe9803345b756ce52c0d5ab0, type: 2}
+  _holdDuration: 2

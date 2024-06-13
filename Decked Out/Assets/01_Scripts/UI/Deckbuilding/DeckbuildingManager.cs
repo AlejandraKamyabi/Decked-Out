@@ -134,7 +134,7 @@ public class DeckbuildingManager : MonoBehaviour
                 break;
             case "Wave_Tower":
                 Debug.Log("Wave Tower gotten from save system.");
-                _buttonScripts[1].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Wave_Tower"));
+                _buttonScripts[1].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Wave Tower"));
                 break;
             case "Balista_Tower":
                 Debug.Log("Balista Tower gotten from save system.");
@@ -154,19 +154,19 @@ public class DeckbuildingManager : MonoBehaviour
                 break;
             case "Sniper_Tower":
                 Debug.Log("Sniper Tower gotten from save system.");
-                _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Sniper_Tower"));
+                _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Sniper Tower"));
                 break;
             case "Organ_Tower":
                 Debug.Log("Organ Gun gotten from save system.");
-                _buttonScripts[2].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/OrganGun_Tower"));
+                _buttonScripts[2].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Towers/Organ Gun"));
                 break;
             case "Lighting_Bolt":
                 Debug.Log("Lighting Bolt spell gotten from save system.");
-                _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Lightning Spell"));
+                _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Lightning"));
                 break;
             case "Big_Bomb":
                 Debug.Log("Big Bomb spell gotten from save system.");
-                _buttonScripts[2].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Big Bomb Spell"));
+                _buttonScripts[2].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Big Bomb"));
                 break;
             case "Fireball":
                 Debug.Log("Fireball spell gotten from save system.");
@@ -180,7 +180,7 @@ public class DeckbuildingManager : MonoBehaviour
                 Debug.Log("Frost spell gotten from save system.");
                 _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Chill"));
                 break;
-            case "Freeze_Time":
+            case "Freeze":
                 Debug.Log("Freeze Time spell gotten from save system.");
                 _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Freeze"));
                 break;

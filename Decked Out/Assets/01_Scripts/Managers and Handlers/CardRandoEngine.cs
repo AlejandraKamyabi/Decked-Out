@@ -258,7 +258,7 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace0Background.sprite = card0Data.background;
         card0TowerImage.sprite = card0Data.image;
         card0IconImage.sprite = card0Data.icon;
-        card0Name = card0Data.towerName;
+        card0Name = card0Data.name;
         if (card0Data.uses > 0)
         {
             spell0Uses = card0Data.uses;
@@ -269,7 +269,7 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace1Background.sprite = card1Data.background;
         card1TowerImage.sprite = card1Data.image;
         card1IconImage.sprite = card1Data.icon;
-        card1Name = card1Data.towerName;
+        card1Name = card1Data.name;
         if (card1Data.uses > 0)
         {
             spell1Uses = card1Data.uses;
@@ -279,7 +279,7 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace2Background.sprite = card2Data.background;
         card2TowerImage.sprite = card2Data.image;
         card2IconImage.sprite = card2Data.icon;
-        card2Name = card2Data.towerName;
+        card2Name = card2Data.name;
         if (card2Data.uses > 0)
         {
             spell2Uses = card2Data.uses;
@@ -289,7 +289,7 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace3Background.sprite = card3Data.background;
         card3TowerImage.sprite = card3Data.image;
         card3IconImage.sprite = card3Data.icon;
-        card3Name = card3Data.towerName;
+        card3Name = card3Data.name;
         if (card3Data.uses > 0)
         {
             spell3Uses = card3Data.uses;
@@ -299,7 +299,7 @@ public class CardRandoEngine : MonoBehaviour
         cardSpace4Background.sprite = card4Data.background;
         card4TowerImage.sprite = card4Data.image;
         card4IconImage.sprite = card4Data.icon;
-        card4Name = card4Data.towerName;
+        card4Name = card4Data.name;
         if (card4Data.uses > 0)
         {
             spell4Uses = card4Data.uses;
@@ -422,7 +422,7 @@ public class CardRandoEngine : MonoBehaviour
 
 
 
-    private void ButtonStats(TowerCardSO cardDataToShow)
+    public void ButtonStats(TowerCardSO cardDataToShow)
     {
         isButtonHeld = false;
         buttonHeldTime = 0;
@@ -438,29 +438,58 @@ public class CardRandoEngine : MonoBehaviour
         cardStatsBackground.sprite = cardDataToShow.background;
         cardStatsImage.sprite = cardDataToShow.image;
         cardStatsIcon.sprite = cardDataToShow.icon;
-        cardStatsTitleText.text = cardDataToShow.name;
+        cardStatsTitleText.text = cardDataToShow.towerName;
         cardStatsTitleText.color = cardDataToShow.rarityColor;
         cardStatsInfoText.text = cardDataToShow.towerInfo;
         cardStatsInfoText.color = cardDataToShow.rarityColor;
 
-        dmgSlider.value = (cardDataToShow.damage / 25) + sliderCheat;
+        if (cardDataToShow.damage > 0)
+        {
+            dmgSlider.value = (cardDataToShow.damage / 25) + sliderCheat;
+            dmgFillImage.color = cardDataToShow.rarityColor;
+        }
+        else if (cardDataToShow.damage <= 0)
+        {
+            dmgSlider.value = 0;
+        }
         dmgText.text = cardDataToShow.damage.ToString();
-        dmgFillImage.color = cardDataToShow.rarityColor;
+
         //dmgText.color = cardDataToShow.rarityColor;
 
-        rangeSlider.value = (cardDataToShow.range / 5) + sliderCheat;
+        if (cardDataToShow.range > 0)
+        {
+            rangeSlider.value = (cardDataToShow.range / 5) + sliderCheat;
+            rangeFillImage.color = cardDataToShow.rarityColor;
+        }
+        else if (cardDataToShow.range <= 0)
+        {
+            rangeSlider.value = 0;
+        }
         rangeText.text = cardDataToShow.range.ToString();
-        rangeFillImage.color = cardDataToShow.rarityColor;
         //rangeText.color = cardDataToShow.rarityColor;
 
-        rofSlider.value = (cardDataToShow.rateOfFire / 10) + sliderCheat;
+        if (cardDataToShow.rateOfFire > 0)
+        {
+            rofSlider.value = (cardDataToShow.rateOfFire / 10) + sliderCheat;
+            rofFillImage.color = cardDataToShow.rarityColor;
+        }
+        else if (cardDataToShow.rateOfFire <= 0)
+        {
+            rofSlider.value = 0f;
+        }
         rofText.text = cardDataToShow.rateOfFire.ToString();
-        rofFillImage.color = cardDataToShow.rarityColor;
         //rofText.color = cardDataToShow.rarityColor;
 
-        durationSlider.value = (cardDataToShow.duration / 10) + sliderCheat;
+        if (cardDataToShow.duration > 0)
+        {
+            durationSlider.value = (cardDataToShow.duration / 10) + sliderCheat;
+            durationFillImage.color = cardDataToShow.rarityColor;
+        }
+        else if (cardDataToShow.duration <= 0)
+        {
+            durationSlider.value = 0;
+        }
         durationText.text = cardDataToShow.duration.ToString();
-        durationFillImage.color = cardDataToShow.rarityColor;
         //durationText.color = cardDataToShow.rarityColor;
 
         //Debug.Log("Card Stats Panel Open");
