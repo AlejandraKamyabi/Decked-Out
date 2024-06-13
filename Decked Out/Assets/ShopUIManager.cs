@@ -93,6 +93,7 @@ public class ShopUIManager : MonoBehaviour
     }
     private TowerCardSO ExtractSOFromTowerName(string name)
     {
+        Debug.Log("Registering " + name);
         switch (name)
         {
             // Towers

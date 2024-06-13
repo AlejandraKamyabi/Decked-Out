@@ -32,10 +32,9 @@ public class BuyRandomCard : MonoBehaviour
                     count++;
                 }
             }
-
-            if (count > 1)
+            if (count >= 1)
             {
-                cardGet = Random.Range(0, count - 1);
+                cardGet = Random.Range(0, count);
 
                 for (int i = 0; i < cardList.Length; i++)
                 {

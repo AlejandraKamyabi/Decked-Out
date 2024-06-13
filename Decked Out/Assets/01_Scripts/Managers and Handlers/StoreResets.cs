@@ -47,4 +47,21 @@ public class StoreResets : MonoBehaviour
         _saveSystem.AddGem(100);
         _uiManager.UpdateUI();
     }
+    public void ShowAllUnlockedCards()
+    {
+        string[] unlockedCardNames = _saveSystem.GetAllCardName();
+        bool[] unlockedStatus = _saveSystem.GetAllCardCollected();
+        for (int i = 0; i < unlockedStatus.Length; i++)
+        {
+            if (unlockedStatus[i])
+            {
+                Debug.Log(unlockedCardNames[i] + " : UNLOCKED");
+            }
+            else if (!unlockedStatus[i])
+            {
+                Debug.Log(unlockedCardNames[i] + " : LOCKED");
+            }
+        }
+
+    }
 }

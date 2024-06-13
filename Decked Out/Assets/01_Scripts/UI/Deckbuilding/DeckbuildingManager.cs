@@ -180,13 +180,13 @@ public class DeckbuildingManager : MonoBehaviour
                 Debug.Log("Frost spell gotten from save system.");
                 _buttonScripts[0].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Chill"));
                 break;
-            case "Freeze_Time":
+            case "Freeze":
                 Debug.Log("Freeze Time spell gotten from save system.");
                 _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Freeze"));
                 break;
             case "Black_Hole":
                 Debug.Log("Black Hole spell gotten from save system.");
-                _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/Black Hole"));
+                _buttonScripts[3].LoadInCardFromSaveSystem(Resources.Load<TowerCardSO>("TowerSOs/Spells/BlackHole"));
                 break;
             default:
                 Debug.LogError("Unknown Card Name gotten from save system.");
