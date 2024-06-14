@@ -451,7 +451,10 @@ public class MouseInputHandling : MonoBehaviour
                 currentTowerInstance = Instantiate(towerSelection.BlackHole, mousePos, Quaternion.identity);
                 break;
         }
-        rangeIndicator.color = Color.white;
+         towerSelection.SetSelectingSpell(false);
+        towerSelection.SetSelectingTower(false);
+        towerSelection.towers = null;
+        towerSelection.spells = null;
     }
 
     private void HandlePlatformPlacement(RaycastHit2D hit)
