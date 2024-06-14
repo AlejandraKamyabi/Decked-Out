@@ -221,19 +221,18 @@ public class Aegis : MonoBehaviour
     private void Die()
     {
         _isDead = true;
-        moveSpeed = 0;
-        _capsuleCollider.enabled = false;
-        deathSoundHandling.PlayDeathSound();
         if (_killTracker != null)
         {
             _killTracker.EnemyKilled();
         }
-        float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
-        healthSlider.gameObject.SetActive(false);
-        Destroy(healthSlider.gameObject, deathAnimationDuration);
-        GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
-        Destroy(deathEffect, 10f);
-        Destroy(gameObject, 0.4f);
+        deathSoundHandling.PlayDeathSound();
+
+        Destroy(healthSlider.gameObject);
+        GameObject deathEffect_prefab = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+        Destroy(deathEffect_prefab, 10f);
+        Destroy(gameObject);
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
