@@ -15,8 +15,13 @@ public class FrostTower : MonoBehaviour, ITower
     private GameObject buffed;
     private float initialRateOfFire;
     private bool hasBeenBuffed = false;
+    private AudioSource audioSource;
+
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Frost_Freeze);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -43,7 +48,6 @@ public class FrostTower : MonoBehaviour, ITower
 
                 if (enemy != null)
                 {
-                  
                     enemy.ApplyFreeze(0.3f);
 
                 }
@@ -71,7 +75,10 @@ public class FrostTower : MonoBehaviour, ITower
                 if (aegis != null)
                 {
                     aegis.TakeDamage(damage);
-
+                }
+                if (aegis != null || mopey != null || cleric != null || apostate != null || kaboom != null || enemy != null)
+                {
+                    audioSource.Play();
                 }
             }
         }

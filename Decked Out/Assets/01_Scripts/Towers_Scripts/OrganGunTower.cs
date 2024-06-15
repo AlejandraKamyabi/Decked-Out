@@ -17,6 +17,8 @@ public class OrganGunTower : MonoBehaviour, ITower
     private float initialRateOfFire;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+    private AudioSource audioSource;
+    private AudioManager audioManager;
 
     private void OnDrawGizmos()
     {
@@ -31,6 +33,8 @@ public class OrganGunTower : MonoBehaviour, ITower
 
     private void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -95,6 +99,20 @@ public class OrganGunTower : MonoBehaviour, ITower
             {
                 if (collider.CompareTag("Enemy"))
                 {
+                    int range = Random.Range(1, 3);
+                    if(range == 1)
+                    {
+                        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_OrganShot_Var1);
+                    }
+                    else if(range == 2)
+                    {
+                        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_OrganShot_Var2);
+                    }
+                    else
+                    {
+                        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_OrganShot_Var3);
+                    }
+                    audioSource.Play();
                     ShootInAnyDirection();
                     break;
                 }

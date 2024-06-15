@@ -4,9 +4,12 @@ public class Chill : MonoBehaviour
 {
     public float attackRange = 2f;    
     [SerializeField] private float damage;
-
+    private AudioSource source;
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        source = gameObject.GetComponent<AudioSource>();
+        audioManager.playSFXClip(AudioManager.SFXSound.Power_Freeze_Cast, source);
         Invoke("DealDamage", 0.9f);        
     }
 
@@ -62,8 +65,10 @@ public class Chill : MonoBehaviour
                 }
             }
         }
-
-        Destroy(gameObject, 0.8f);
+        if(source.isPlaying == false)
+        {
+            Destroy(gameObject, 0.8f);
+        }
     }
 
     private void OnDrawGizmos()

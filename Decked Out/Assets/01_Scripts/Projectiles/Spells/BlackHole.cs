@@ -9,10 +9,14 @@ public class BlackHole : MonoBehaviour
     private float damage = 999;
     private Vector3 size;
     private Vector3 zero = new Vector3(0, 0, 0);
+    AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        source = gameObject.GetComponent<AudioSource>();
+        audioManager.playSFXClip(AudioManager.SFXSound.Power_Blackhole_Cast, source);
         size = gameObject.transform.localScale;
         size /= time * 30;
     }
@@ -24,7 +28,10 @@ public class BlackHole : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
         if (gameObject.transform.localScale.x <= 0 && gameObject.transform.localScale.y <= 0 && gameObject.transform.localScale.z <= 0)
         {
-            Destroy(gameObject);
+            if (source.isPlaying == false)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

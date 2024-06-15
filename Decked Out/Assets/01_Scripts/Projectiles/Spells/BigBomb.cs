@@ -4,9 +4,13 @@ public class BigBomb : MonoBehaviour
 {
     public float attackRange = 2f;    
     [SerializeField] private float damage;
+    private AudioSource source;
 
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        source = gameObject.GetComponent<AudioSource>();
+        audioManager.playSFXClip(AudioManager.SFXSound.Power_Bomb_Impact, source);
         Invoke("DealDamage", 0.5f);        
     }
 
@@ -55,12 +59,13 @@ public class BigBomb : MonoBehaviour
                 if (aegis != null)
                 {
                     aegis.TakeDamage(damage);
-
                 }
             }
         }
-
-        Destroy(gameObject, 0.5f);
+        if(source.isPlaying == false)
+        {
+            Destroy(gameObject, 0.5f);
+        }
     }
 
     private void OnDrawGizmos()

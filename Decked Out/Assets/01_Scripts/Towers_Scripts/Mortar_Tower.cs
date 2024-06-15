@@ -22,7 +22,7 @@ public class Mortar_Tower : MonoBehaviour, ITower
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
     private Animator animator;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
 
     private float _cannonTowerAnimLength = 1.0f;
 
@@ -39,6 +39,9 @@ public class Mortar_Tower : MonoBehaviour, ITower
     }
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Mortar_Shot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         animator = GetComponentInChildren<Animator>();
@@ -116,7 +119,7 @@ public class Mortar_Tower : MonoBehaviour, ITower
 
     private void ShootCannon(Transform target)
     {
-        // audioSource.Play();
+        audioSource.Play();
         animator.SetBool("IsShooting", true);
         canAttack = false;
 
