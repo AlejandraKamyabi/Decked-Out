@@ -18,7 +18,7 @@ public class ArcherTower : MonoBehaviour, ITower
     private GameObject buffed;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
 
     private void OnDrawGizmos()
     {
@@ -32,6 +32,9 @@ public class ArcherTower : MonoBehaviour, ITower
     }
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Arrow_Shoot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponent<SpriteRenderer>();

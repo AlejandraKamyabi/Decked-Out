@@ -4,9 +4,13 @@ public class Fireball : MonoBehaviour
 {
     public float attackRange = 2f;    
     [SerializeField] private float damage;
+    private AudioSource source;
 
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        source = gameObject.GetComponent<AudioSource>();
+        audioManager.playSFXClip(AudioManager.SFXSound.Power_Fireball_Cast, source);
         Invoke("DealDamage", 0.5f);        
     }
 
@@ -62,8 +66,10 @@ public class Fireball : MonoBehaviour
                 }
             }
         }
-
-        Destroy(gameObject, 0.5f);
+        if(source.isPlaying == false)
+        {
+            Destroy(gameObject, 0.5f);
+        }
     }
 
     private void OnDrawGizmos()

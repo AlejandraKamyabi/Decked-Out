@@ -4,9 +4,12 @@ public class Nuke : MonoBehaviour
 {
     public float attackRange = 2f;    
     [SerializeField] private float damage;
-
+    private AudioSource source;
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        source = gameObject.GetComponent<AudioSource>();
+        audioManager.playSFXClip(AudioManager.SFXSound.Power_Nuke_Detonate, source);
         Invoke("DealDamage", 0.5f);        
     }
 
@@ -31,7 +34,7 @@ public class Nuke : MonoBehaviour
                 if (apostate != null)
                 {
                     apostate.TakeDamage(damage);
-             
+
                 }
                 Necromancer necromancer = collider.GetComponent<Necromancer>();
                 if (necromancer != null)
@@ -50,8 +53,10 @@ public class Nuke : MonoBehaviour
                 }
             }
         }
-
-        Destroy(gameObject, 0.5f);
+        if (source.isPlaying == false)
+        {
+            Destroy(gameObject, 0.5f);
+        }
     }
 
     private void OnDrawGizmos()

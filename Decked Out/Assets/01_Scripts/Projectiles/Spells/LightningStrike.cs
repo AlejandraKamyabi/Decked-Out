@@ -4,9 +4,13 @@ public class LightningStrike : MonoBehaviour
 {
     public float attackRange = 2f;    
     [SerializeField] private float damage;
+    private AudioSource source;
 
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        source = gameObject.GetComponent<AudioSource>();
+        audioManager.playSFXClip(AudioManager.SFXSound.Power_Lightning_Impact, source);
         Invoke("DealDamage", 0.5f);        
     }
 
@@ -59,7 +63,10 @@ public class LightningStrike : MonoBehaviour
             }
         }
 
-        Destroy(gameObject, 0.5f);
+        if (source.isPlaying == false)
+        {
+            Destroy(gameObject, 0.5f);
+        }
     }
 
     private void OnDrawGizmos()

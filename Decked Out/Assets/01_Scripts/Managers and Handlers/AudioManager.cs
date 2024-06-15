@@ -74,7 +74,8 @@ public class AudioManager : MonoBehaviour
         Tower_Poison_Shot,
         Tower_Wave_Crash,
         Tower_Wave_Pickup,
-        Tower_Wave_Shot
+        Tower_Wave_Shot,
+        Tower_Mystery_Box
     }
     public enum musicSound
     {
@@ -190,12 +191,17 @@ public class AudioManager : MonoBehaviour
 
     public void playSFXClip(SFXSound sound)
     {
-        SFXSource.PlayOneShot(SFXSoundAudioClipDictionary[sound]);
+        SFXSource.clip = SFXSoundAudioClipDictionary[sound];
+        SFXSource.Play();
     }
     public void playSFXClip(SFXSound sound, AudioSource source)
     {
-        SFXSource.clip = SFXSoundAudioClipDictionary[sound];
-        SFXSource.Play();
+        source.clip = SFXSoundAudioClipDictionary[sound];
+        source.Play();
+    }
+    public AudioClip SetSFXClip(SFXSound sound)
+    {
+        return SFXSoundAudioClipDictionary[sound];
     }
 
     public void StartWaveMucic()

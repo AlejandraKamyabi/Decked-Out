@@ -20,7 +20,7 @@ public class Wave_Tower : MonoBehaviour, ITower
     public GameObject effect;
     private GameObject buffed;
     private bool hasBeenBuffed = false;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     private List<GameObject> recentlyShotEnemies = new List<GameObject>();
     private void OnDrawGizmos()
     {
@@ -35,6 +35,9 @@ public class Wave_Tower : MonoBehaviour, ITower
     }
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Wave_Shot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -124,7 +127,7 @@ public class Wave_Tower : MonoBehaviour, ITower
 
     private void ShootWave(Transform target)
     {
-       // audioSource.Play();
+        audioSource.Play();
         GameObject Slash_Prefab = Instantiate(Wave_Slash_Prefab, transform.position, Quaternion.identity);
         Wave_Projectile waveScript = Slash_Prefab.GetComponent<Wave_Projectile>();
         waveScript.SetTarget(target);
