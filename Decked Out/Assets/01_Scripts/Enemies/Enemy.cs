@@ -65,8 +65,8 @@ public class Enemy : MonoBehaviour
 
             if (healthSlider != null)
             {
-                Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-                healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
+                //Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+                //healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
             }
         }
         if (isBurning)
@@ -191,7 +191,7 @@ public class Enemy : MonoBehaviour
             {
                 castle.TakeDamage(damage);
             }
-            Destroy(healthSlider.gameObject);
+            //Destroy(healthSlider.gameObject);
             Destroy(gameObject);
             _killTracker.EnemyDestroyed();
 
