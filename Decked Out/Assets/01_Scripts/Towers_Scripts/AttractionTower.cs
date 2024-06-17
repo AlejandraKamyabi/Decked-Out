@@ -18,7 +18,7 @@ public class AttractionTower : MonoBehaviour, ITower
     private bool hasBeenBuffed = false;
     public GameObject effect;
     private GameObject buffed;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
 
     private List<GameObject> recentlyShotEnemies = new List<GameObject>();
     private void OnDrawGizmos()
@@ -33,6 +33,9 @@ public class AttractionTower : MonoBehaviour, ITower
     }
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Attraction_Shot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -100,7 +103,7 @@ public class AttractionTower : MonoBehaviour, ITower
 
     private void ShootHeart(Transform target)
     {
-        //audioSource.Play();
+        audioSource.Play();
         GameObject Heart = Instantiate(HeartPrefab, transform.position, Quaternion.identity);
         Heart_Projectile Heart_Script = Heart.GetComponent<Heart_Projectile>();
         Heart_Script.SetTarget(target);

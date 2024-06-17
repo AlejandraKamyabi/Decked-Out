@@ -252,7 +252,6 @@ MonoBehaviour:
   RateOfFire: 1
   Health: 4
   effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
-  audioSource: {fileID: -4882260772056868227}
 --- !u!50 &-8631973492879612246
 Rigidbody2D:
   serializedVersion: 4
@@ -284,7 +283,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -766855418508781966, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6e73cd9a6e031c04c96bc3b19497252b, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.75
   m_Pitch: 0.9

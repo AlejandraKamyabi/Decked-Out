@@ -19,6 +19,7 @@ public class ElectricTower : MonoBehaviour, ITower
     private GameObject buffed;
     private bool canAttack = true;
     private bool hasBeenBuffed = false;
+    private AudioSource audioSource;
 
     private void OnDrawGizmos()
     {
@@ -27,13 +28,15 @@ public class ElectricTower : MonoBehaviour, ITower
     }
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Electricity_Shot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     private void Update()
     {
-
         FindAndShootTarget();
     }
     public void ResetTowerEffects()
@@ -111,7 +114,7 @@ public class ElectricTower : MonoBehaviour, ITower
 
     private void ShootArrow(Transform target)
     {
-
+        audioSource.Play();
         GameObject Zap = Instantiate(zapPrefab, transform.position, Quaternion.identity);
         ZapProjectile Script = Zap.GetComponent<ZapProjectile>();
         Script.SetTarget(target);
@@ -119,7 +122,6 @@ public class ElectricTower : MonoBehaviour, ITower
         canAttack = false;
         Script.SetDamage(Damage);
         StartCoroutine(AttackCooldown());
-
     }
     public float GetAttackRange()
     {
@@ -136,5 +138,4 @@ public class ElectricTower : MonoBehaviour, ITower
             canAttack = true;
         }
     }
-
 }
