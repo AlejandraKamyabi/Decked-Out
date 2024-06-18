@@ -31,8 +31,7 @@ public class BuffTower : MonoBehaviour, IBuffTower
     }
     private void Start()
     {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        audioManager.playSFXClip(AudioManager.SFXSound.Tower_Buff_Powerup, gameObject.GetComponent<AudioSource>());
+        AudioManager.Instance.playSFXClip(AudioManager.SFXSound.Tower_Buff_Powerup, gameObject.GetComponent<AudioSource>());
     }
     private void Update()
     {

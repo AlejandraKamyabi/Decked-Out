@@ -67,6 +67,26 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator StartWave()
     {
+        if(currentWave == 0)
+        {
+            AudioManager.Instance.StartWaveMucic();
+        }
+        else if(currentWave == 3)
+        {
+            AudioManager.Instance.PlayNextMuiscTrak();
+        }
+        else if(currentWave == 6)
+        {
+            AudioManager.Instance.PlayNextMuiscTrak();
+        }
+        else if(currentWave == 9)
+        {
+            AudioManager.Instance.PlayNextMuiscTrak();
+        }
+        else if(currentWave == 12)
+        {
+            AudioManager.Instance.PlayNextMuiscTrak();
+        }
         int numberOfEnemies = waves[currentWave].numberOfEnemies;
         _killTracker.NumbersOfEnemiesInWave(numberOfEnemies);
         enemiesSpawned = 0;

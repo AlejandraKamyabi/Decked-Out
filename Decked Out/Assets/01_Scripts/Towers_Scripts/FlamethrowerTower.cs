@@ -28,9 +28,8 @@ public class FlamethrowerTower : MonoBehaviour, ITower
     }
     private void Start()
     {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Power_Fireball_Cast);
+        audioSource.clip = AudioManager.Instance.SetSFXClip(AudioManager.SFXSound.Power_Fireball_Cast);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();

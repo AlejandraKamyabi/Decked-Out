@@ -38,7 +38,7 @@ public enum TowerCollection
     Electric_Tower // Eletric Tower
 }
 
-public class MidGameSaveSystem : MonoBehaviour
+public class MidGameSaveSystem : SingletonMonobehaviour<MidGameSaveSystem>
 {
     private string path = Application.streamingAssetsPath + "/MidGameSave.txt";
 
@@ -56,20 +56,16 @@ public class MidGameSaveSystem : MonoBehaviour
     private string[] allOutPutString;
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        GameObject[] saveSystem = GameObject.FindGameObjectsWithTag("MidGameSaveSystem");
+        base.Awake();
 
-        if (saveSystem.Length > 1)
-        {
-            Destroy(gameObject);
-        }
+        DontDestroyOnLoad(gameObject);
 
         foreach (TowerCollection card in System.Enum.GetValues(typeof(TowerCollection)))
         {
             towerCollectionCount++;
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     public void WriteText()

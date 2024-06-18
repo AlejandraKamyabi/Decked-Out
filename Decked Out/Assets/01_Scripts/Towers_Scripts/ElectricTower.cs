@@ -28,9 +28,8 @@ public class ElectricTower : MonoBehaviour, ITower
     }
     private void Start()
     {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Electricity_Shot);
+        audioSource.clip = AudioManager.Instance.SetSFXClip(AudioManager.SFXSound.Tower_Electricity_Shot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();

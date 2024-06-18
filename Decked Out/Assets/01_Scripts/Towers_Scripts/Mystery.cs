@@ -31,9 +31,8 @@ public class Mystery : MonoBehaviour, ITower
     }
     private void Start()
     {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Mystery_Box);
+        audioSource.clip = AudioManager.Instance.SetSFXClip(AudioManager.SFXSound.Tower_Mystery_Box);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();

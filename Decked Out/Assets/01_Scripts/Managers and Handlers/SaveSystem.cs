@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveSystem : MonoBehaviour
+public class SaveSystem : SingletonMonobehaviour<SaveSystem>
 {
     public enum CardCollected
     {
@@ -46,14 +46,11 @@ public class SaveSystem : MonoBehaviour
     private Dictionary<CardCollected, string> cardCollectedString;
     private Dictionary<PurchasedItem, string> purchasedItemString;
 
-    private void Awake()
+    protected override void Awake()
     {
-        GameObject[] saveSystem = GameObject.FindGameObjectsWithTag("SaveSystem");
+        base.Awake();
 
-        if (saveSystem.Length > 1)
-        {
-            Destroy(gameObject);
-        }
+        DontDestroyOnLoad(gameObject);
 
         cardCollectedString = new Dictionary<CardCollected, string>();
 
@@ -72,8 +69,6 @@ public class SaveSystem : MonoBehaviour
         }
 
         StartUpCard();
-
-        DontDestroyOnLoad(gameObject);
     }
 
     //Set Card Collected

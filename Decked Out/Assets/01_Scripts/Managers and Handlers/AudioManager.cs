@@ -197,10 +197,6 @@ public class AudioManager : SingletonMonobehaviour<AudioManager>
     {
         return SFXSoundAudioClipDictionary[sound];
     }
-    public void SetSFXClip(SFXSound sound, AudioSource source)
-    {
-        source.clip = SFXSoundAudioClipDictionary[sound];
-    }
 
     public void StartWaveMucic()
     {

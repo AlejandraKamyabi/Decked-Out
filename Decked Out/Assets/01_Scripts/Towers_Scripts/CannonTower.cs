@@ -39,9 +39,8 @@ public class CannonTower : MonoBehaviour, ITower
     }
     private void Start()
     {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Cannon_Shoot);
+        audioSource.clip = AudioManager.Instance.SetSFXClip(AudioManager.SFXSound.Tower_Cannon_Shoot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         animator = GetComponentInChildren<Animator>();

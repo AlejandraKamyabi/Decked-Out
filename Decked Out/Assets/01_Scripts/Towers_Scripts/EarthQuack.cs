@@ -18,7 +18,6 @@ public class EarthQuack : MonoBehaviour, ITower
     private float initialDamage;
     private float initialRateOfFire;
     private bool hasBeenBuffed = false;
-    private AudioManager audioManager;
 
     private void OnDrawGizmos()
     {
@@ -27,7 +26,6 @@ public class EarthQuack : MonoBehaviour, ITower
     }
     private void Start()
     {
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         StartCoroutine(DamageOverTime());
@@ -108,7 +106,7 @@ public class EarthQuack : MonoBehaviour, ITower
                     Aegis aegis = collider.GetComponent<Aegis>();
                     Cleric cleric = collider.GetComponent<Cleric>();
 
-                    audioManager.playSFXClip(AudioManager.SFXSound.Tower_Earthquake_Impact, gameObject.GetComponent<AudioSource>());
+                    AudioManager.Instance.playSFXClip(AudioManager.SFXSound.Tower_Earthquake_Impact, gameObject.GetComponent<AudioSource>());
 
                     if (enemy != null)
                     {

@@ -4,12 +4,10 @@ public class Chill : MonoBehaviour
 {
     public float attackRange = 2f;    
     [SerializeField] private float damage;
-    private AudioSource source;
+
     private void Start()
     {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        source = gameObject.GetComponent<AudioSource>();
-        audioManager.playSFXClip(AudioManager.SFXSound.Power_Freeze_Cast, source);
+        AudioManager.Instance.playSFXClip(AudioManager.SFXSound.Power_Freeze_Cast, gameObject.GetComponent<AudioSource>());
         Invoke("DealDamage", 0.9f);        
     }
 
@@ -65,7 +63,7 @@ public class Chill : MonoBehaviour
                 }
             }
         }
-        if(source.isPlaying == false)
+        if(gameObject.GetComponent<AudioSource>().isPlaying == false)
         {
             Destroy(gameObject, 0.8f);
         }

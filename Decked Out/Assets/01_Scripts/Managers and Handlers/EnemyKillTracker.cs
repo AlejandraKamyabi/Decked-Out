@@ -147,6 +147,7 @@ public class EnemyKillTracker : MonoBehaviour
         endGameWave.text = "Wave: " + currentWave;
         _saveSystem.AddGem(totalGemsCollected);
         _saveSystem.AddTotalKill(totalEnemiesDestroyed);
+        AudioManager.Instance.StopWaveMusic();
         ResetValues();
     }
 }

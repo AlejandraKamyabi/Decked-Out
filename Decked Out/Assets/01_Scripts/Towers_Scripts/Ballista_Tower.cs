@@ -32,9 +32,8 @@ public class Ballista_Tower : MonoBehaviour, ITower
     }
     private void Start()
     {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Arrow_Shoot);
+        audioSource.clip = AudioManager.Instance.SetSFXClip(AudioManager.SFXSound.Tower_Arrow_Shoot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
