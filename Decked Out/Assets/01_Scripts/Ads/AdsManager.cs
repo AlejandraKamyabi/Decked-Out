@@ -33,7 +33,7 @@ public class AdsManager : MonoBehaviour
 
     // These ad units are configured to always serve test ads. ------------------------------ INTERSTITIAL ---------------------------------
 #if UNITY_ANDROID
-    private string _adUnitIdInterstitial = "ca-app-pub-3940256099942544/1033173712";
+    private string _adUnitIdInterstitial = "ca-app-pub-9233726348359911/1686752969";
 #elif UNITY_IPHONE
   private string _adUnitIdInterstitial = "ca-app-pub-3940256099942544/4411468910";
 #else
@@ -147,7 +147,7 @@ public class AdsManager : MonoBehaviour
 
     // These ad units are configured to always serve test ads. ------------------------------------ REWARDED --------------------------------------
 #if UNITY_ANDROID
-    private string _adUnitIdRewarded = "ca-app-pub-3940256099942544/5224354917";
+    private string _adUnitIdRewarded = "ca-app-pub-9233726348359911/8024930606";
 #elif UNITY_IPHONE
   private string _adUnitIdRewarded = "ca-app-pub-3940256099942544/1712485313";
 #else
