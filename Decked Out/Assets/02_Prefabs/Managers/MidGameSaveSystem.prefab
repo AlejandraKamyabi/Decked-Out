@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2587695880443528699}
   - component: {fileID: 5194637593756119149}
   m_Layer: 0
-  m_Name: MadGameSaveSystem
+  m_Name: MidGameSaveSystem
   m_TagString: MidGameSaveSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
