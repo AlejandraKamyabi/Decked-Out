@@ -29,18 +29,22 @@ public class GameSpeedManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+        Debug.Log("Game Speed at timescale: " + Time.timeScale.ToString());
     }
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        Debug.Log("Game Speed at timescale: " + Time.timeScale.ToString());
     }
     public void FastSpeed()
     {
         Time.timeScale = _fastSpeedTimeScale;
+        Debug.Log("Game Speed at timescale: " + Time.timeScale.ToString());
     }
     public void TurboSpeed()
     {
         Time.timeScale = _turboSpeedTimeScale;
+        Debug.Log("Game Speed at timescale: " + Time.timeScale.ToString());
     }
 
 }

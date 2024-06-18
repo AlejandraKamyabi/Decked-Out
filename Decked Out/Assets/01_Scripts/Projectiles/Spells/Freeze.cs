@@ -5,9 +5,13 @@ using UnityEngine;
 public class Freeze : MonoBehaviour
 {
     public float attackRange = 2f;
+    private AudioSource source;
 
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        source = gameObject.GetComponent<AudioSource>();
+        audioManager.playSFXClip(AudioManager.SFXSound.Power_Freeze_Cast, source);
         Invoke("DealDamage", 0.9f);
     }
 
@@ -56,8 +60,10 @@ public class Freeze : MonoBehaviour
                 }
             }
         }
-
-        Destroy(gameObject, 0.8f);
+        if (source.isPlaying == false)
+        {
+            Destroy(gameObject, 0.8f);
+        }
     }
 
     private void OnDrawGizmos()

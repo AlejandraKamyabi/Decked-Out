@@ -29,6 +29,11 @@ public class BuffTower : MonoBehaviour, IBuffTower
         get { return buffRange; }
         set { buffRange = value; }
     }
+    private void Start()
+    {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioManager.playSFXClip(AudioManager.SFXSound.Tower_Buff_Powerup, gameObject.GetComponent<AudioSource>());
+    }
     private void Update()
     {
         towersInRange = FindTowersInRange();

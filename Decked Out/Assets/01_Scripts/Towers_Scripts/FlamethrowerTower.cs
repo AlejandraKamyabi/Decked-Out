@@ -19,6 +19,8 @@ public class FlamethrowerTower : MonoBehaviour, ITower
     public GameObject effect;
     private GameObject buffed;
     private bool hasBeenBuffed = false;
+    private AudioSource audioSource;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -26,6 +28,9 @@ public class FlamethrowerTower : MonoBehaviour, ITower
     }
     private void Start()
     {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Power_Fireball_Cast);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -33,7 +38,6 @@ public class FlamethrowerTower : MonoBehaviour, ITower
     private void Update()
     {
         FindAndShootTarget();
-
     }
 
     public float damage
@@ -78,7 +82,6 @@ public class FlamethrowerTower : MonoBehaviour, ITower
                 buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
-
         }
     }
     private void FindAndShootTarget()
@@ -112,7 +115,7 @@ public class FlamethrowerTower : MonoBehaviour, ITower
     }
     private void ShootArrow(Transform target)
     {
-
+        audioSource.Play();
         GameObject arrow = Instantiate(Flame, transform.position, Quaternion.identity);
         FlamesEffect flameScript = arrow.GetComponent<FlamesEffect>();
         flameScript.SetTarget(target);
@@ -121,7 +124,6 @@ public class FlamethrowerTower : MonoBehaviour, ITower
         canAttack = false;
         flameScript.SetDamage(Damage);
         StartCoroutine(AttackCooldown());
-
     }
     public float GetAttackRange()
     {

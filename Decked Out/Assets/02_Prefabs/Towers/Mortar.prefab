@@ -200,11 +200,11 @@ GameObject:
   - component: {fileID: 7405903770306088365}
   - component: {fileID: 7405903770306088371}
   - component: {fileID: -8631973492879612246}
-  - component: {fileID: -4882260772056868227}
   - component: {fileID: 3183191852196926945}
   - component: {fileID: 8522693086399747571}
   - component: {fileID: 8993824208538257507}
   - component: {fileID: -21161702068736916}
+  - component: {fileID: 5096908137035094108}
   m_Layer: 6
   m_Name: Mortar
   m_TagString: Tower
@@ -276,7 +276,68 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!82 &-4882260772056868227
+--- !u!114 &3183191852196926945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deaa893ecd58724eba6f6ebd5ff3b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColour: {r: 1, g: 0, b: 0, a: 1}
+  _healthThreshold: 1
+--- !u!114 &8522693086399747571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbbbb2b520a71241b7c1321c414a2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeDuration: 5
+  _rangeRenderer: {fileID: 4624478891745161417}
+--- !u!114 &8993824208538257507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23f68b0e25f9f048be6a5756c016da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 6
+  CannonBall: {fileID: 3956206777213680668, guid: 21eddf438ee6db44c80db1c3982fe713, type: 3}
+  Damage: 40
+  RateOfFire: 3.5
+  Health: 7
+  effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
+  audioSource: {fileID: 0}
+--- !u!114 &-21161702068736916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405903770306088367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSO: {fileID: 11400000, guid: 3c5fd7efffdca614b9d28c8c74fec86d, type: 2}
+  _holdDuration: 2
+--- !u!82 &5096908137035094108
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,15 +347,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -766855418508781966, guid: cc4df2a274b91ad4b90c60229259e3af, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6e73cd9a6e031c04c96bc3b19497252b, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
-  m_Pitch: 0.9
+  m_Volume: 1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 150
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -372,64 +433,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3183191852196926945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7405903770306088367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7deaa893ecd58724eba6f6ebd5ff3b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flashColour: {r: 1, g: 0, b: 0, a: 1}
-  _healthThreshold: 1
---- !u!114 &8522693086399747571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7405903770306088367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdbbbb2b520a71241b7c1321c414a2b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fadeDuration: 5
-  _rangeRenderer: {fileID: 4624478891745161417}
---- !u!114 &8993824208538257507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7405903770306088367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f23f68b0e25f9f048be6a5756c016da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 6
-  CannonBall: {fileID: 3956206777213680668, guid: 21eddf438ee6db44c80db1c3982fe713, type: 3}
-  Damage: 40
-  RateOfFire: 3.5
-  Health: 7
-  effect: {fileID: 443179554803152393, guid: 90658741aea4e8249b2f1e9bdf07a2b6, type: 3}
-  audioSource: {fileID: 0}
---- !u!114 &-21161702068736916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7405903770306088367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511bf39fff37cfb438b00ae36f44dc47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerSO: {fileID: 11400000, guid: 3c5fd7efffdca614b9d28c8c74fec86d, type: 2}
-  _holdDuration: 2
