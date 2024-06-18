@@ -16,6 +16,10 @@ public class FrostTower : MonoBehaviour, ITower
     private float initialRateOfFire;
     private bool hasBeenBuffed = false;
     private AudioSource audioSource;
+    private Animator animator;
+
+    private float _iceTowerAnimLength = 1.0f;
+    private bool canAttack = true;
 
     private void Start()
     {
@@ -25,89 +29,131 @@ public class FrostTower : MonoBehaviour, ITower
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+
+        foreach (var clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name.Equals("IceTower_Animation"))
+            {
+                _iceTowerAnimLength = clip.length;
+                break;
+            }
+        }
     }
+
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
     private void Update()
     {
+        if (canAttack)
+        {
+            FindAndFreezeTarget();
+        }
+    }
 
+    private void FindAndFreezeTarget()
+    {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
             {
-                Enemy enemy = collider.GetComponent<Enemy>();
-                KaboomEnemy kaboom = collider.GetComponent<KaboomEnemy>();
-                Mopey_Misters mopey = collider.GetComponent<Mopey_Misters>();
-                Apostate apostate = collider.GetComponent<Apostate>();
-                Cleric cleric = collider.GetComponent<Cleric>();
-
-                if (enemy != null)
-                {
-                    enemy.ApplyFreeze(0.3f);
-
-                }
-                if (kaboom != null)
-                {
-                    kaboom.ApplyFreeze(0.3f);
-
-                }
-                if (apostate != null)
-                {
-                    apostate.ApplyFreeze(0.3f);
-
-                }
-                if (cleric != null)
-                {
-                    cleric.ApplyFreeze(0.3f);
-
-                }
-                if (mopey != null)
-                {
-                    mopey.ApplyFreeze(0.3f);
-
-                }
-                Aegis aegis = collider.GetComponent<Aegis>();
-                if (aegis != null)
-                {
-                    aegis.TakeDamage(damage);
-                }
-                if (aegis != null || mopey != null || cleric != null || apostate != null || kaboom != null || enemy != null)
-                {
-                    audioSource.Play();
-                }
+                FreezeTarget(collider.gameObject);
+                break;
             }
         }
     }
+
+    private void FreezeTarget(GameObject target)
+    {
+        if (canAttack)
+        {
+            canAttack = false;
+            ApplyFreeze(target);
+            StartCoroutine(PlayAnimationAndCooldown());
+        }
+    }
+
+    private void ApplyFreeze(GameObject target)
+    {
+        Enemy enemy = target.GetComponent<Enemy>();
+        KaboomEnemy kaboom = target.GetComponent<KaboomEnemy>();
+        Mopey_Misters mopey = target.GetComponent<Mopey_Misters>();
+        Apostate apostate = target.GetComponent<Apostate>();
+        Cleric cleric = target.GetComponent<Cleric>();
+
+        if (enemy != null)
+        {
+            enemy.ApplyFreeze(0.3f);
+        }
+        if (kaboom != null)
+        {
+            kaboom.ApplyFreeze(0.3f);
+        }
+        if (apostate != null)
+        {
+            apostate.ApplyFreeze(0.3f);
+        }
+        if (cleric != null)
+        {
+            cleric.ApplyFreeze(0.3f);
+        }
+        if (mopey != null)
+        {
+            mopey.ApplyFreeze(0.3f);
+        }
+        Aegis aegis = target.GetComponent<Aegis>();
+        if (aegis != null)
+        {
+            aegis.TakeDamage(damage);
+        }
+        audioSource.Play();
+    }
+
+    private IEnumerator PlayAnimationAndCooldown()
+    {
+        animator.SetBool("IsShooting", true);
+        yield return new WaitForSeconds(_iceTowerAnimLength);
+        animator.SetBool("IsShooting", false);
+        yield return new WaitForSeconds(RateOfFire);
+        canAttack = true;
+    }
+
     public float damage
     {
         get { return Damage; }
         set { Damage = value; }
     }
+
     public float attackSpeed
     {
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
+
     public float range
     {
         get { return attackRange; }
         set { attackRange = value; }
     }
+
     public float health
     {
         get { return Health; }
         set { Health = value; }
     }
+
     GameObject ITower.gameObject
     {
         get { return towerGameObject; }
         set { towerGameObject = value; }
     }
+
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
         if (!hasBeenBuffed && !gameObject.CompareTag("Empty"))
@@ -118,28 +164,29 @@ public class FrostTower : MonoBehaviour, ITower
             {
                 RateOfFire = 0.1f;
             }
-            SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            if (spriteRenderer != null && health != 0)
+            if (spriteRenderer != null && Health != 0)
             {
                 buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
-
         }
     }
+
     public void ResetTowerEffects()
     {
         Damage = initialDamage;
         RateOfFire = initialRateOfFire;
-        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer != null)
         {
-            Color defaultColor = Color.white;
-            spriteRenderer.color = defaultColor;
+            spriteRenderer.color = Color.white;
         }
-        Destroy(buffed);
+        if (buffed != null)
+        {
+            Destroy(buffed);
+        }
         hasBeenBuffed = false;
     }
+
     private void OnDestroy()
     {
         if (buffed != null)
