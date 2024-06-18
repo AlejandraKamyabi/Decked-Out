@@ -1,9 +1,6 @@
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 public class Wave_Tower : MonoBehaviour, ITower
 {
@@ -12,16 +9,21 @@ public class Wave_Tower : MonoBehaviour, ITower
     [SerializeField] private float Damage;
     [SerializeField] private float RateOfFire;
     [SerializeField] private float Health = 2;
+    public GameObject effect;
+    private GameObject buffed;
     private GameObject towerGameObject;
     private SpriteRenderer spriteRenderer;
     private float initialDamage;
     private float initialRateOfFire;
     private bool canAttack = true;
-    public GameObject effect;
-    private GameObject buffed;
     private bool hasBeenBuffed = false;
-    private AudioSource audioSource;
+    private Animator animator;
+    public AudioSource audioSource;
+
+    private float _waveTowerAnimLength = 1.0f;
+
     private List<GameObject> recentlyShotEnemies = new List<GameObject>();
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -31,42 +33,55 @@ public class Wave_Tower : MonoBehaviour, ITower
     private void Update()
     {
         FindAndShootTarget();
-
     }
+
     private void Start()
     {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Wave_Shot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+
+        foreach (var clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name.Equals("WaveTower_Animation"))
+            {
+                _waveTowerAnimLength = clip.length;
+                break;
+            }
+        }
     }
+
     public float damage
     {
         get { return Damage; }
         set { Damage = value; }
     }
+
     public float attackSpeed
     {
         get { return RateOfFire; }
         set { RateOfFire = value; }
     }
+
     public float range
     {
         get { return attackRange; }
         set { attackRange = value; }
     }
+
     GameObject ITower.gameObject
     {
         get { return towerGameObject; }
         set { towerGameObject = value; }
     }
+
     public float health
     {
         get { return Health; }
         set { Health = value; }
     }
+
     public void ApplyBuff(float damageBuff, float rateOfFireBuff)
     {
         if (!hasBeenBuffed && !gameObject.CompareTag("Empty"))
@@ -83,9 +98,9 @@ public class Wave_Tower : MonoBehaviour, ITower
                 buffed = Instantiate(effect, transform.position, Quaternion.identity);
             }
             hasBeenBuffed = true;
-
         }
     }
+
     private void FindAndShootTarget()
     {
         if (canAttack)
@@ -107,13 +122,11 @@ public class Wave_Tower : MonoBehaviour, ITower
             GameObject target = null;
             if (newTargets.Count > 0)
             {
-
                 target = newTargets[0];
                 recentlyShotEnemies.Add(target);
             }
             else if (recentlyShotEnemies.Count > 0)
             {
-
                 target = recentlyShotEnemies[0];
                 recentlyShotEnemies.RemoveAt(0);
             }
@@ -127,17 +140,24 @@ public class Wave_Tower : MonoBehaviour, ITower
 
     private void ShootWave(Transform target)
     {
-        audioSource.Play();
+        animator.SetBool("IsShooting", true);
+        // audioSource.Play();
         GameObject Slash_Prefab = Instantiate(Wave_Slash_Prefab, transform.position, Quaternion.identity);
         Wave_Projectile waveScript = Slash_Prefab.GetComponent<Wave_Projectile>();
         waveScript.SetTarget(target);
 
         canAttack = false;
         waveScript.SetDamage(Damage);
+        StartCoroutine(DeactivateAnimation());
         StartCoroutine(AttackCooldown());
-
-
     }
+
+    private IEnumerator DeactivateAnimation()
+    {
+        yield return new WaitForSeconds(_waveTowerAnimLength);
+        animator.SetBool("IsShooting", false);
+    }
+
     public void ResetTowerEffects()
     {
         Damage = initialDamage;
@@ -167,6 +187,7 @@ public class Wave_Tower : MonoBehaviour, ITower
             canAttack = true;
         }
     }
+
     private void OnDestroy()
     {
         if (buffed != null)
@@ -174,5 +195,4 @@ public class Wave_Tower : MonoBehaviour, ITower
             Destroy(buffed);
         }
     }
-
 }
