@@ -21,7 +21,8 @@ public class Poison_tower : MonoBehaviour, ITower
     private bool canAttack = true;
     private List<GameObject> recentlyShotEnemies = new List<GameObject>();
     private bool hasBeenBuffed = false;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
+    public AudioManager audioManager;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -38,9 +39,6 @@ public class Poison_tower : MonoBehaviour, ITower
     }
     private void Start()
     {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioManager.SetSFXClip(AudioManager.SFXSound.Tower_Poison_Shot);
         initialDamage = Damage;
         initialRateOfFire = RateOfFire;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -108,7 +106,7 @@ public class Poison_tower : MonoBehaviour, ITower
 
     private void ShootArrow(Transform target)
     {
-        audioSource.Play();
+        AudioManager.Instance.playSFXClip(AudioManager.SFXSound.Tower_Poison_Shot, gameObject.GetComponent<AudioSource>());
         GameObject arrow = Instantiate(poision_prefab, transform.position, Quaternion.identity);
         Poison_Projectile arrowScript = arrow.GetComponent<Poison_Projectile>();
         arrowScript.SetTarget(target);

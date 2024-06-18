@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : SingletonMonobehaviour<AudioManager>
 {
     [SerializeField] private AudioMixer myMixer;
     [SerializeField] private Slider masterSlider;
@@ -89,11 +89,13 @@ public class AudioManager : MonoBehaviour
     private Dictionary<SFXSound, AudioClip> SFXSoundAudioClipDictionary;
     private Dictionary<musicSound, AudioClip> musicSoundAudioClipDictionary;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         canvas.SetActive(canvasActive);
 
-        GameObject[] allAudioManager = GameObject.FindGameObjectsWithTag("AudioManager");
+        DontDestroyOnLoad(gameObject);
 
         musicPlayer = new GameObject[waveMusicClip.Length];
 
@@ -106,13 +108,6 @@ public class AudioManager : MonoBehaviour
             musicPlayer[i].GetComponent<AudioSource>().clip = waveMusicClip[i];
             musicPlayer[i].SetActive(false);
         }
-
-        if (allAudioManager.Length > 1)
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
 
         SFXSoundAudioClipDictionary = new Dictionary<SFXSound, AudioClip>();
         foreach (SFXSound sound in System.Enum.GetValues(typeof(SFXSound)))
@@ -191,8 +186,7 @@ public class AudioManager : MonoBehaviour
 
     public void playSFXClip(SFXSound sound)
     {
-        SFXSource.clip = SFXSoundAudioClipDictionary[sound];
-        SFXSource.Play();
+        SFXSource.PlayOneShot(SFXSoundAudioClipDictionary[sound]);
     }
     public void playSFXClip(SFXSound sound, AudioSource source)
     {
@@ -202,6 +196,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip SetSFXClip(SFXSound sound)
     {
         return SFXSoundAudioClipDictionary[sound];
+    }
+    public void SetSFXClip(SFXSound sound, AudioSource source)
+    {
+        source.clip = SFXSoundAudioClipDictionary[sound];
     }
 
     public void StartWaveMucic()
