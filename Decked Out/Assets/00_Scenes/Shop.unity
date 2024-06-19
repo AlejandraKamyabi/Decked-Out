@@ -8759,7 +8759,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1585923264}
         m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
-        m_MethodName: Consumable_Btn2_Pressed
+        m_MethodName: Consumable_Btn3_Pressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
