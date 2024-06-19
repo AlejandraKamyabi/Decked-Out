@@ -65,7 +65,7 @@ public class MouseInputHandling : MonoBehaviour
         rangeIndicator.color = Color.white;
         rangeIndicator.sprite = placeableRange;
         towerRigSprite.color = Color.white;
-        Debug.Log($"Range Indicator Color: {rangeIndicator.color}, Sprite: {rangeIndicator.sprite.name}");
+        //Debug.Log($"Range Indicator Color: {rangeIndicator.color}, Sprite: {rangeIndicator.sprite.name}");
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 towerPosition = mousePos;
         mousePos.z = 0;

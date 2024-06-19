@@ -17,6 +17,18 @@ public class GameSpeedManager : MonoBehaviour
     private void Awake()
     {
         DeactiveControlPanel();
+        if (_panel == null)
+        {
+            Debug.LogError("Panel GameObject not found");
+        }
+        if (_activetedSpot == null)
+        {
+            Debug.LogError("Active Transform Not Found");
+        }
+        if (_decativeSpot == null)
+        {
+            Debug.LogError("Deactive Tranform Not Found");
+        }
     }
 
     public void ActivateControlPanel()

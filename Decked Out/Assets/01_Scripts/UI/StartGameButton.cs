@@ -5,18 +5,24 @@ public class StartGameButton : MonoBehaviour
 {
     [SerializeField] private Button _startButton;
 
-    private GameLoader _loader;
-
-    private void Start()
+    bool _foundManager;
+    WaveManager waveManager;
+    private void Awake()
     {
-        _loader = ServiceLocator.Get<GameLoader>();
-        _loader.CallOnComplete(Initialize);
+        Initialize();
     }
-
+    private void LateUpdate()
+    {
+        if (_foundManager == false)
+        {
+            waveManager = FindObjectOfType<WaveManager>();
+            waveManager.SetStartButton(_startButton);
+            _foundManager = true;
+        }
+    }
     private void Initialize() 
     {
-        var waveManager = ServiceLocator.Get<WaveManager>();
-        waveManager.SetStartButton(_startButton);
+        _foundManager = false;
     }
 
 }

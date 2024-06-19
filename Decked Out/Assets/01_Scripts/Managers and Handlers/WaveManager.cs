@@ -36,9 +36,13 @@ public class WaveManager : MonoBehaviour
     private GameSpeedManager _gameSpeedManager;
     private NewWavePanelManager _newWavePanel;
 
+    public static WaveManager Instance { get; private set; }
+
     private void Start()
     {
-        Initialize();
+
+           Initialize();
+
     }
 
     public WaveManager Initialize()

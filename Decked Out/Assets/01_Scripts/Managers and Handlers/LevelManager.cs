@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Registering Wave Manager");
         if (_waveManager != null)
         {
-            var wm = Instantiate(_waveManager, GameLoader.SystemsParent);
+            var wm = Instantiate(_waveManager);
             var waveManager = wm.GetComponent<WaveManager>();
             ServiceLocator.Register<WaveManager>(waveManager.Initialize());
         }
