@@ -357,6 +357,7 @@ MonoBehaviour:
   _kaboomScript: {fileID: 0}
   _necromancerScript: {fileID: 0}
   Mopey_Script: {fileID: 0}
+  Zoom_Zealtos: {fileID: 0}
   _AegisScript: {fileID: 0}
   cleric: {fileID: 0}
   _mainSpriteRenderer: {fileID: 1380346453654109597}

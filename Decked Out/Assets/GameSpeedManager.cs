@@ -5,24 +5,28 @@ using UnityEngine.UI;
 
 public class GameSpeedManager : MonoBehaviour
 {
+    [SerializeField] GameObject _panel;
     [SerializeField] float _fastSpeedTimeScale = 1.5f;
     [SerializeField] float _turboSpeedTimeScale = 3f;
+    [SerializeField] Transform _activetedSpot;
+    [SerializeField] Transform _decativeSpot;
 
     [Header("UI")]
     [SerializeField] GameObject _timeControlPanel;
 
-    private void Start()
+    private void Awake()
     {
         DeactiveControlPanel();
     }
 
     public void ActivateControlPanel()
     {
-        _timeControlPanel.SetActive(true);
+        _panel.transform.position = _activetedSpot.position;
+        ResumeGame();
     }
     public void DeactiveControlPanel()
     {
-        _timeControlPanel.SetActive(false);
+        _panel.transform.position = _decativeSpot.position;
         ResumeGame();
     }
 

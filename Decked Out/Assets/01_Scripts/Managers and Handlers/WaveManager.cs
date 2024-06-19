@@ -259,7 +259,7 @@ public class WaveManager : MonoBehaviour
     {
         Vector3 spawnOffset = Random.insideUnitCircle * 0.5f;
         GameObject newEnemy = Instantiate(Mistake_Prefab, spawnPosition + spawnOffset, Quaternion.identity);
-        SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
+        //SetupHealthSlider(newEnemy, newEnemy.GetComponent<Enemy>().maxHealth);
     }
 
     public void IncrementEnemyCount()

@@ -11,7 +11,7 @@ public class Apostate : MonoBehaviour
     public float damage = 10.0f;
     public float maxHealth;
     public float currentHealth;
-    public Slider healthSlider;
+    //public Slider healthSlider;
     public GameObject zapPrefab;
     public bool isBurning = false;
     private bool hasBeenZapped = false;
@@ -114,10 +114,10 @@ public class Apostate : MonoBehaviour
             Vector2 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
-            if (healthSlider != null)
+            //if (healthSlider != null)
             {
-                Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-                healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
+                //Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+               // healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
             }
         }
         if (isBurning)
@@ -237,9 +237,9 @@ public class Apostate : MonoBehaviour
         {
             _killTracker.EnemyKilled();
         }
-        deathSoundHandling.PlayDeathSound();
+        //deathSoundHandling.PlayDeathSound();
 
-        Destroy(healthSlider.gameObject);
+        //Destroy(healthSlider.gameObject);
         GameObject deathEffect_prefab = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
         Destroy(deathEffect_prefab, 10f);
         Destroy(gameObject);
@@ -257,7 +257,7 @@ public class Apostate : MonoBehaviour
                 castle.TakeDamage(damage);
             }
             _killTracker.EnemyDestroyed();
-            Destroy(healthSlider.gameObject);
+            //Destroy(healthSlider.gameObject);
             Destroy(gameObject);
            
         }
@@ -296,13 +296,13 @@ public class Apostate : MonoBehaviour
     }
     public void UpdateEnemyHealthUI()
     {
-        healthSlider.value = currentHealth;
+        //healthSlider.value = currentHealth;
         healthFlash.TakeDamage(currentHealth);
     }
 
     public void SetHealthSlider(Slider slider)
     {
-        healthSlider = slider;
+        //healthSlider = slider;
     }
     public void setBurning()
     {

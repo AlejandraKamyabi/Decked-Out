@@ -163,9 +163,9 @@ MonoBehaviour:
   damage: 3
   maxHealth: 100
   currentHealth: 0
-  healthSlider: {fileID: 956535979688031471, guid: d8d74a3c455cbbd42ac012beff27c121, type: 3}
   zapPrefab: {fileID: 3956206777213680668, guid: 34b8bb03efaa18d48b0710eaa4a40198, type: 3}
   isBurning: 0
+  healthSliderPrefab: {fileID: 2556155033036221494, guid: d03ac537eab7cc642b7159f0f9ff8ebe, type: 3}
   isFrozen: 0
   TotalFreezeTime: 3
   isTotalFrozen: 0

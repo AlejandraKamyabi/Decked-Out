@@ -4,10 +4,9 @@ using UnityEngine.SceneManagement;
 public class EndGameSplashManager : MonoBehaviour
 {
     public GameObject splashScreen;
-    public string gameScene;
-    public string mainMenuScene;
-    public string deckbuilderScene;
     private WaveManager wave_m;
+    private GameSpeedManager _gameSpeedManager;
+    private TransitionScreenManager _transitionScreenManager;
     public Castle castleGameObject;
     public CardRandoEngine cardRandoEngine;
     public EnemyKillTracker enemyKillTracker;
@@ -15,6 +14,8 @@ public class EndGameSplashManager : MonoBehaviour
     public void Initialize()
     {
         wave_m = ServiceLocator.Get<WaveManager>();
+        _transitionScreenManager = FindObjectOfType<TransitionScreenManager>();
+        _gameSpeedManager = FindObjectOfType<GameSpeedManager>();
         splashScreen.SetActive(false);
         castleGameObject = ServiceLocator.Get<Castle>();
         cardRandoEngine = FindObjectOfType<CardRandoEngine>();
@@ -23,15 +24,20 @@ public class EndGameSplashManager : MonoBehaviour
 
     public void Death()
     {
+        _gameSpeedManager.ActivateControlPanel();
+        _gameSpeedManager.ResumeGame();
         splashScreen.SetActive(true);
         enemyKillTracker.EndGame();
     }
 
-    public void Retry()
+    public void Continue()
     {
-        RestartGame();
+        wave_m.StopWave();
+        castleGameObject.ResetHealth();
+        splashScreen.SetActive(false);
+        cardRandoEngine.NewWave();
+        wave_m.StartWaves();
     }
-
     // Restart the game method
     private void RestartGame()
     {
@@ -45,13 +51,6 @@ public class EndGameSplashManager : MonoBehaviour
 
     public void MainMenu()
     {
-        wave_m.StopWave();
-        var loadSceneTask = SceneManager.LoadSceneAsync(mainMenuScene);
-    }
-
-    public void Deckbuilder()
-    {
-        Debug.Log("Deckbuilding not yet implemented");
-        //SceneManager.LoadScene(deckbuilderScene);
+        _transitionScreenManager.StartTranistion("MainMenu");
     }
 }

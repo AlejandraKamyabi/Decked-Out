@@ -9,16 +9,16 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] string gameScene;
     [SerializeField] string storeScene;
     [SerializeField] GameObject creditsPanel;
-    [SerializeField] GameObject closeCreditsButton;
-    [SerializeField] GameObject minimizeCollider;
-    [SerializeField] Image enemyPageImage;
-    [SerializeField] GameObject _tutorialPrompt;
+    //[SerializeField] GameObject closeCreditsButton;
+    //[SerializeField] GameObject minimizeCollider;
+    //[SerializeField] Image enemyPageImage;
+    //[SerializeField] GameObject _tutorialPrompt;
 
 
     public void Start()
     {
-        minimizeCollider.SetActive(false);
-        _tutorialPrompt.SetActive(false);
+        //minimizeCollider.SetActive(false);
+        //_tutorialPrompt.SetActive(false);
     }
 
     public void StartGame()

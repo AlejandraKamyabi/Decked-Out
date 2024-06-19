@@ -10,7 +10,7 @@ public class ZoomZealots : MonoBehaviour
     public float damage = 10.0f;
     public float maxHealth;
     public float currentHealth;
-    public Slider healthSlider;
+    //public Slider healthSlider;
     public GameObject zapPrefab;
     public bool isBurning = false;
     private bool hasBeenZapped = false;
@@ -64,10 +64,10 @@ public class ZoomZealots : MonoBehaviour
             Vector2 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
-            if (healthSlider != null)
+            //if (healthSlider != null)
             {
-                Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-                healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
+                //Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+               // healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
             }
         }
         if (isBurning)
@@ -176,8 +176,8 @@ public class ZoomZealots : MonoBehaviour
             _killTracker.EnemyKilled();
         }
         float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
-        healthSlider.gameObject.SetActive(false);
-        Destroy(healthSlider.gameObject, deathAnimationDuration);
+        //healthSlider.gameObject.SetActive(false);
+        //Destroy(healthSlider.gameObject, deathAnimationDuration);
         //GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
         //Destroy(deathEffect, 10f);
         Destroy(gameObject, 0.4f);
@@ -293,14 +293,14 @@ public class ZoomZealots : MonoBehaviour
     }
     public void UpdateEnemyHealthUI()
     {
-        healthSlider.value = currentHealth;
+        //healthSlider.value = currentHealth;
         _healthFlash.TakeDamage(currentHealth);
 
     }
 
     public void SetHealthSlider(Slider slider)
     {
-        healthSlider = slider;
+        //healthSlider = slider;
     }
     public void setBurning()
     {

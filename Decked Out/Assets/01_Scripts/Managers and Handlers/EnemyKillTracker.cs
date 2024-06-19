@@ -97,6 +97,8 @@ public class EnemyKillTracker : MonoBehaviour
 
     public void ResetValues()
     {
+        _saveSystem.AddGem(totalGemsCollected);
+        _saveSystem.AddTotalKill(totalEnemiesDestroyed);
         totalEnemiesDestroyed = 0;
         totalGemsCollected = 0;
         currentWave = 1;
@@ -142,11 +144,8 @@ public class EnemyKillTracker : MonoBehaviour
 
     public void EndGame()
     {
-        endGameEnemyCountText.text = "Kills: " + totalEnemiesDestroyed.ToString("f0");
-        endGameGemCountText.text = "Gems: " + totalGemsCollected.ToString("f0");
-        endGameWave.text = "Wave: " + currentWave;
-        _saveSystem.AddGem(totalGemsCollected);
-        _saveSystem.AddTotalKill(totalEnemiesDestroyed);
-        ResetValues();
+        endGameEnemyCountText.text = totalEnemiesDestroyed.ToString("f0");
+        endGameGemCountText.text = totalGemsCollected.ToString("f0");
+        endGameWave.text = currentWave.ToString("f0");
     }
 }

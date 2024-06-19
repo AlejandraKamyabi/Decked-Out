@@ -14,7 +14,7 @@ public class Necromancer : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
     private float RateOfFire = 2;
-    public Slider healthSlider;
+    //public Slider healthSlider;
     public GameObject zapPrefab;
     public bool isBurning = false;
     private bool canAttack = true;
@@ -92,10 +92,10 @@ public class Necromancer : MonoBehaviour
             Vector2 moveDirection = (targetCastle.position + new Vector3(0f, -1f, 0) - transform.position).normalized;
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
-            if (healthSlider != null)
+           // if (healthSlider != null)
             {
-                Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-                healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
+               // Vector2 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+               // healthSlider.transform.position = screenPosition + new Vector2(0, 70.0f);
             }
         }
         if (isBurning)
@@ -277,8 +277,8 @@ public class Necromancer : MonoBehaviour
             _killTracker.EnemyKilled();
         }
         float deathAnimationDuration = _enemyDeathAnimation.PlayDeathAnimation();
-        healthSlider.gameObject.SetActive(false);
-        Destroy(healthSlider.gameObject, deathAnimationDuration);
+        //healthSlider.gameObject.SetActive(false);
+        //Destroy(healthSlider.gameObject, deathAnimationDuration);
         GameObject deathEffect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
         Destroy(deathEffect, 10f);
         Destroy(gameObject, 0.4f);
@@ -294,7 +294,7 @@ public class Necromancer : MonoBehaviour
                 castle.TakeDamage(damage);
             }
             _killTracker.EnemyDestroyed();
-            Destroy(healthSlider.gameObject);
+            //Destroy(healthSlider.gameObject);
             Destroy(gameObject);
         }
         if (circleCollider == null)
@@ -320,13 +320,13 @@ public class Necromancer : MonoBehaviour
 
     public void UpdateEnemyHealthUI()
     {
-        healthSlider.value = currentHealth;
+        //healthSlider.value = currentHealth;
         healthFlash.TakeDamage(currentHealth);
     }
 
     public void SetHealthSlider(Slider slider)
     {
-        healthSlider = slider;
+        //healthSlider = slider;
     }
 
     public void setBurning()

@@ -15,7 +15,6 @@ public class GlobalFlashTimer : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
