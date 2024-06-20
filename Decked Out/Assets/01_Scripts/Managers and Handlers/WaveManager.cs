@@ -283,13 +283,11 @@ public class WaveManager : MonoBehaviour
         currentWave++;
         _newWavePanel.NewWave(currentWave);
     }
-
     public void StopWave()
     {
         towersPlaced = 0;
         TowersLeft = 5;
-        currentWave = 0;
-        _killTracker.resetWave();
+        //currentWave = 0;
         ToggleStartButton(true);
         if (spawningCoroutine != null)
         {
@@ -299,11 +297,11 @@ public class WaveManager : MonoBehaviour
 
         DestroyAllGameObjectsWithTag("Enemy");
         DestroyAllGameObjectsWithTag("Health");
-        DestroyAllGameObjectsWithTag("Tower");
-        DestroyAllGameObjectsWithTag("Placed");
-        DestroyAllGameObjectsWithTag("Empty");
-        DestroyAllGameObjectsWithTag("Buffer");
-        DestroyAllGameObjectsWithTag("buffed_icon");
+        //DestroyAllGameObjectsWithTag("Tower");
+        //DestroyAllGameObjectsWithTag("Placed");
+        //DestroyAllGameObjectsWithTag("Empty");
+        //DestroyAllGameObjectsWithTag("Buffer");
+        //DestroyAllGameObjectsWithTag("buffed_icon");
     }
 
     private void DestroyAllGameObjectsWithTag(string tag)

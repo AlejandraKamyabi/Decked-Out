@@ -6,13 +6,16 @@ public class Freeze : MonoBehaviour
 {
     public float attackRange = 2f;
     private AudioSource source;
+    private Animator animator;
 
     private void Start()
     {
         AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         source = gameObject.GetComponent<AudioSource>();
+        animator = gameObject.GetComponentInChildren<Animator>();
         audioManager.playSFXClip(AudioManager.SFXSound.Power_Freeze_Cast, source);
         Invoke("DealDamage", 0.9f);
+        StartCoroutine(DestroyWhenAnimationComplete());
     }
 
     private void DealDamage()
@@ -60,10 +63,17 @@ public class Freeze : MonoBehaviour
                 }
             }
         }
-        if (source.isPlaying == false)
+    }
+    private IEnumerator DestroyWhenAnimationComplete()
+    {
+        yield return null;
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        while (stateInfo.normalizedTime < 1)
         {
-            Destroy(gameObject, 0.8f);
+            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
         }
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()

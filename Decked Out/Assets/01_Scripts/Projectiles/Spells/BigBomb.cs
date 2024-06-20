@@ -1,17 +1,21 @@
 using UnityEngine;
+using System.Collections;
 
 public class BigBomb : MonoBehaviour
 {
     public float attackRange = 2f;    
     [SerializeField] private float damage;
     private AudioSource source;
+    private Animator animator;
 
     private void Start()
     {
         AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         source = gameObject.GetComponent<AudioSource>();
+        animator = gameObject.GetComponentInChildren<Animator>();
         audioManager.playSFXClip(AudioManager.SFXSound.Power_Bomb_Impact, source);
-        Invoke("DealDamage", 0.5f);        
+        Invoke("DealDamage", 0.5f);
+        StartCoroutine(DestroyWhenAnimationComplete());
     }
 
     private void DealDamage()
@@ -62,10 +66,18 @@ public class BigBomb : MonoBehaviour
                 }
             }
         }
-        if(source.isPlaying == false)
+
+    }
+    private IEnumerator DestroyWhenAnimationComplete()
+    {
+        yield return null;
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        while (stateInfo.normalizedTime < 1)
         {
-            Destroy(gameObject, 0.5f);
+            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
         }
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()

@@ -28,25 +28,14 @@ public class EndGameSplashManager : MonoBehaviour
         _gameSpeedManager.ResumeGame();
         splashScreen.SetActive(true);
         enemyKillTracker.EndGame();
+        wave_m.StopWave();
     }
 
     public void Continue()
     {
-        wave_m.StopWave();
         castleGameObject.ResetHealth();
+        wave_m.AllEnemiesInWaveDestroyed();
         splashScreen.SetActive(false);
-        cardRandoEngine.NewWave();
-        wave_m.StartWaves();
-    }
-    // Restart the game method
-    private void RestartGame()
-    {
-        wave_m.StopWave();
-        enemyKillTracker.ResetValues();
-        castleGameObject.ResetHealth();
-        splashScreen.SetActive(false);
-        cardRandoEngine.NewWave();
-        wave_m.StartWaves();
     }
 
     public void MainMenu()

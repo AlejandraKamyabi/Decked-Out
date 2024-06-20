@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Chill : MonoBehaviour
@@ -5,12 +6,15 @@ public class Chill : MonoBehaviour
     public float attackRange = 2f;    
     [SerializeField] private float damage;
     private AudioSource source;
+    private Animator animator;
     private void Start()
     {
         AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         source = gameObject.GetComponent<AudioSource>();
         audioManager.playSFXClip(AudioManager.SFXSound.Power_Freeze_Cast, source);
-        Invoke("DealDamage", 0.9f);        
+        animator = gameObject.GetComponentInChildren<Animator>();
+        Invoke("DealDamage", 0.9f);
+        StartCoroutine(DestroyWhenAnimationComplete());
     }
 
     private void DealDamage()
@@ -65,12 +69,18 @@ public class Chill : MonoBehaviour
                 }
             }
         }
-        if(source.isPlaying == false)
-        {
-            Destroy(gameObject, 0.8f);
-        }
     }
-
+    private IEnumerator DestroyWhenAnimationComplete()
+    {
+        yield return null;
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        while (stateInfo.normalizedTime < 1)
+        {
+            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;

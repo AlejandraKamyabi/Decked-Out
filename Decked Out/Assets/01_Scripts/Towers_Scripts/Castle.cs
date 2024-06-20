@@ -48,7 +48,7 @@ public class Castle : MonoBehaviour
     {
         VibratorManager.Vibrate(_deathVibrationDuration);
         endGame.Death();
-        wave.StopWave();
+        //wave.StopWave();
 
     }
     public void ResetHealth()

@@ -1,16 +1,20 @@
 using UnityEngine;
+using System.Collections;
 
 public class Nuke : MonoBehaviour
 {
     public float attackRange = 2f;    
     [SerializeField] private float damage;
     private AudioSource source;
+    private Animator animator;
     private void Start()
     {
         AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         source = gameObject.GetComponent<AudioSource>();
+        animator = GetComponentInChildren<Animator>();
         audioManager.playSFXClip(AudioManager.SFXSound.Power_Nuke_Detonate, source);
-        Invoke("DealDamage", 0.5f);        
+        Invoke("DealDamage", 0.5f);
+        StartCoroutine(DestroyWhenAnimationComplete());
     }
 
     private void DealDamage()
@@ -53,12 +57,18 @@ public class Nuke : MonoBehaviour
                 }
             }
         }
-        if (source.isPlaying == false)
-        {
-            Destroy(gameObject, 0.5f);
-        }
     }
-
+    private IEnumerator DestroyWhenAnimationComplete()
+    {
+        yield return null;
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        while (stateInfo.normalizedTime < 1)
+        {
+            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
