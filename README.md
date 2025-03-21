@@ -1,0 +1,1 @@
+Dive into the epic realm of Decked Out, where you harness the divine powers to defend your village! Join the battle against formidable foes like Resilient Golems, Necromancers, Apostates, Swift Kabooms, Clerics, and more. Each enemy brings a unique challenge, pushing you to earn and unlock cards to build the ultimate deck. 🃏⚔️​⁠
